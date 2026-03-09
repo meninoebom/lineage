@@ -1,0 +1,13 @@
+{
+  "name": "Spirit Rock Meditation Center",
+  "slug": "spirit-rock",
+  "description": "Spirit Rock Meditation Center is a retreat center and community dharma center in Woodacre, California, in the hills of West Marin County. Founded in 1988 by Jack Kornfield and other Western Vipassana teachers, Spirit Rock offers residential retreats, daylong programs, classes, and community events rooted in the Theravada Buddhist tradition. The center sits on 412 acres of rolling hills and is known for its inclusive approach, integrating mindfulness with social justice, creativity, and psychological insight.",
+  "website": "https://www.spiritrock.org",
+  "city": "Woodacre",
+  "state": "California",
+  "country": "US",
+  "latitude": 38.0144,
+  "longitude": -122.6478,
+  "traditions": ["theravada"],
+  "teachers": []
+}
