@@ -1,7 +1,8 @@
 import { describe, it, expect } from "vitest";
 import { readdirSync, readFileSync } from "fs";
 import { join } from "path";
-import type { Teacher, Center, Tradition, TraditionFamily, ConnectionType } from "../types";
+import matter from "gray-matter";
+import type { Teacher, Center, TraditionFamily, ConnectionType } from "../types";
 
 const DATA_DIR = join(process.cwd(), "data");
 const VALID_FAMILIES: TraditionFamily[] = [
@@ -60,6 +61,8 @@ describe("Teacher seed data", () => {
       expect(
         teacher.longitude === null || typeof teacher.longitude === "number"
       ).toBe(true);
+      // lat/lng must both be present or both be null
+      expect(teacher.latitude === null).toBe(teacher.longitude === null);
     }
   );
 
@@ -100,6 +103,8 @@ describe("Center seed data", () => {
       expect(
         center.longitude === null || typeof center.longitude === "number"
       ).toBe(true);
+      // lat/lng must both be present or both be null
+      expect(center.latitude === null).toBe(center.longitude === null);
     }
   );
 
@@ -110,11 +115,60 @@ describe("Center seed data", () => {
   });
 });
 
+function readTraditionFrontmatter() {
+  const dir = join(DATA_DIR, "traditions");
+  return readdirSync(dir)
+    .filter((f) => f.endsWith(".mdx"))
+    .map((f) => {
+      const raw = readFileSync(join(dir, f), "utf-8");
+      const { data, content } = matter(raw);
+      return { name: f, data, content };
+    });
+}
+
 describe("Tradition seed data", () => {
+  const traditions = readTraditionFrontmatter();
+
   it("has at least 5 tradition MDX files", () => {
-    const dir = join(DATA_DIR, "traditions");
-    const files = readdirSync(dir).filter((f) => f.endsWith(".mdx"));
-    expect(files.length).toBeGreaterThanOrEqual(5);
+    expect(traditions.length).toBeGreaterThanOrEqual(5);
+  });
+
+  it.each(traditions.map((t) => [t.name, t.data]))(
+    "%s has valid frontmatter",
+    (_name, data) => {
+      expect(typeof data.name).toBe("string");
+      expect(typeof data.slug).toBe("string");
+      expect(VALID_FAMILIES).toContain(data.family);
+      expect(typeof data.summary).toBe("string");
+      expect(Array.isArray(data.connections)).toBe(true);
+      for (const conn of data.connections) {
+        expect(typeof conn.tradition_slug).toBe("string");
+        expect(VALID_CONNECTION_TYPES).toContain(conn.connection_type);
+        expect(typeof conn.description).toBe("string");
+      }
+    }
+  );
+
+  it("slugs match filenames", () => {
+    for (const { name, data } of traditions) {
+      expect(data.slug).toBe(name.replace(".mdx", ""));
+    }
+  });
+
+  it("editorial content is substantial (500+ words)", () => {
+    for (const { name, content } of traditions) {
+      const wordCount = content.trim().split(/\s+/).length;
+      expect(wordCount, `${name} has only ${wordCount} words`).toBeGreaterThanOrEqual(500);
+    }
+  });
+
+  it("connection slugs reference existing traditions", () => {
+    const slugs = traditions.map((t) => t.data.slug);
+    for (const { data } of traditions) {
+      for (const conn of data.connections) {
+        expect(slugs, `${data.slug} references unknown tradition ${conn.tradition_slug}`).toContain(conn.tradition_slug);
+      }
+    }
   });
 });
 
@@ -142,13 +196,24 @@ describe("Cross-references", () => {
     }
   });
 
-  it("teacher-center cross-references are consistent", () => {
+  it("teacher→center references are reciprocated", () => {
     const centerMap = new Map(centers.map((c) => [c.data.slug, c.data]));
     for (const { data: teacher } of teachers) {
       for (const centerSlug of teacher.centers) {
         const center = centerMap.get(centerSlug);
-        expect(center).toBeDefined();
+        expect(center, `teacher ${teacher.slug} references unknown center ${centerSlug}`).toBeDefined();
         expect(center!.teachers).toContain(teacher.slug);
+      }
+    }
+  });
+
+  it("center→teacher references are reciprocated", () => {
+    const teacherMap = new Map(teachers.map((t) => [t.data.slug, t.data]));
+    for (const { data: center } of centers) {
+      for (const teacherSlug of center.teachers) {
+        const teacher = teacherMap.get(teacherSlug);
+        expect(teacher, `center ${center.slug} references unknown teacher ${teacherSlug}`).toBeDefined();
+        expect(teacher!.centers).toContain(center.slug);
       }
     }
   });
