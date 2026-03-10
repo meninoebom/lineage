@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { writeFileSync, mkdirSync, rmSync } from "fs";
+import { writeFileSync, rmSync } from "fs";
 import { join } from "path";
 import {
   getAllTeachers,
