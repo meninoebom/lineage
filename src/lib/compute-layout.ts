@@ -77,7 +77,7 @@ export function computeLayout(traditions: ParsedTradition[]): LayoutMap {
   for (const tradition of traditions) {
     const y = centuryToY(tradition.origin_century, minCentury, maxCentury);
     graph.addNode(tradition.slug, {
-      x: rng() * 1000,
+      x: rng() * 2000 - 500,
       y,
     });
   }
@@ -120,11 +120,11 @@ export function computeLayout(traditions: ParsedTradition[]): LayoutMap {
     forceAtlas2.assign(graph, {
       iterations: iters,
       settings: {
-        gravity: 1,
-        scalingRatio: 10,
+        gravity: 0.5,
+        scalingRatio: 50,
         barnesHutOptimize: false,
         strongGravityMode: false,
-        slowDown: 1,
+        slowDown: 2,
       },
     });
 

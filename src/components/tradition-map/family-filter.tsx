@@ -21,7 +21,11 @@ export function FamilyFilter({
   onToggle,
 }: FamilyFilterProps) {
   return (
-    <div className="flex flex-wrap gap-2 justify-center" role="group" aria-label="Filter by tradition family">
+    <div
+      className="flex gap-2 justify-center overflow-x-auto pb-2 sm:flex-wrap sm:overflow-x-visible sm:pb-0 scrollbar-thin"
+      role="group"
+      aria-label="Filter by tradition family"
+    >
       {families.map((family) => {
         const active = activeFamilies.has(family);
         const colors = FAMILY_COLORS[family];
@@ -30,8 +34,8 @@ export function FamilyFilter({
             key={family}
             onClick={() => onToggle(family)}
             className={`
-              inline-flex items-center gap-2 px-3 py-1.5
-              font-sans text-xs tracking-wide uppercase
+              inline-flex items-center gap-2 px-3 py-1.5 shrink-0
+              font-sans text-xs tracking-wide uppercase whitespace-nowrap
               border rounded-sm transition-all duration-200
               ${
                 active
