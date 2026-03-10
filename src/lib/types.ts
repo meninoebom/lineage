@@ -1,16 +1,19 @@
 export type TraditionFamily =
   | "Buddhist"
   | "Hindu"
-  | "Modern Non-Dual"
-  | "Yogic"
+  | "Taoist"
+  | "Christian Contemplative"
+  | "Islamic Contemplative"
+  | "Modern Secular"
   | "Other";
 
-export type ConnectionType = "influenced_by" | "branch_of" | "related_to";
+export type ConnectionType = "influenced_by" | "branch_of" | "related_to" | "diverged_from";
 
 export interface TraditionConnection {
   tradition_slug: string;
   connection_type: ConnectionType;
   description: string;
+  strength?: 1 | 2 | 3;
 }
 
 export interface Tradition {

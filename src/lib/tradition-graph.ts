@@ -10,6 +10,7 @@ export interface GraphNode {
   name: string;
   family: TraditionFamily;
   summary: string;
+  originCentury: number;
 }
 
 export interface GraphEdge {
@@ -17,6 +18,7 @@ export interface GraphEdge {
   target: string;
   connectionType: ConnectionType;
   description: string;
+  strength: number;
 }
 
 export interface TraditionGraph {
@@ -41,17 +43,29 @@ export const FAMILY_COLORS: Record<TraditionFamily, { fill: string; stroke: stri
     text: "#5a2a20",
     bg: "#f3e8e5",
   },
-  "Modern Non-Dual": {
-    fill: "#6b8f71",     // sage green
-    stroke: "#4d7053",
-    text: "#2d4a33",
-    bg: "#e5ede7",
+  Taoist: {
+    fill: "#4a7c7e",     // teal
+    stroke: "#3a6264",
+    text: "#2a4a4c",
+    bg: "#e5eeef",
   },
-  Yogic: {
-    fill: "#8b7ec8",     // muted purple
-    stroke: "#6b5ea8",
-    text: "#3d3570",
-    bg: "#eae7f3",
+  "Christian Contemplative": {
+    fill: "#4a5a8a",     // deep blue
+    stroke: "#3a4a7a",
+    text: "#2a3560",
+    bg: "#e7e9f0",
+  },
+  "Islamic Contemplative": {
+    fill: "#3a7a5a",     // forest green
+    stroke: "#2a6a4a",
+    text: "#1a4a3a",
+    bg: "#e5ede8",
+  },
+  "Modern Secular": {
+    fill: "#6a7a8a",     // slate
+    stroke: "#5a6a7a",
+    text: "#3a4a5a",
+    bg: "#eaedf0",
   },
   Other: {
     fill: "#8a8279",     // warm gray
@@ -66,10 +80,12 @@ export interface TraditionInput {
   slug: string;
   family: string;
   summary: string;
+  origin_century?: number;
   connections: {
     tradition_slug: string;
     connection_type: string;
     description: string;
+    strength?: number;
   }[];
 }
 
@@ -85,6 +101,7 @@ export function buildTraditionGraph(traditions: TraditionInput[]): TraditionGrap
     name: t.name,
     family: t.family as TraditionFamily,
     summary: t.summary,
+    originCentury: t.origin_century ?? 0,
   }));
 
   // Deduplicate edges: use sorted slug pair as key
@@ -99,6 +116,7 @@ export function buildTraditionGraph(traditions: TraditionInput[]): TraditionGrap
           target: conn.tradition_slug,
           connectionType: conn.connection_type as ConnectionType,
           description: conn.description,
+          strength: conn.strength ?? 1,
         });
       }
     }
