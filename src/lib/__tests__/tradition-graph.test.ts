@@ -149,7 +149,7 @@ describe("filterByFamilies", () => {
 
   it("returns empty graph for no matching families", () => {
     const graph = buildTraditionGraph(sampleTraditions);
-    const filtered = filterByFamilies(graph, new Set(["Yogic"]));
+    const filtered = filterByFamilies(graph, new Set(["Taoist"]));
     expect(filtered.nodes).toHaveLength(0);
     expect(filtered.edges).toHaveLength(0);
   });

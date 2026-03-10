@@ -120,6 +120,7 @@ export interface ParsedTradition {
   slug: string;
   family: string;
   summary: string;
+  origin_century: number;
   connections: TraditionConnection[];
   content: string;
 }
@@ -132,6 +133,7 @@ function isValidTraditionFrontmatter(
     typeof data.slug === "string" &&
     typeof data.family === "string" &&
     typeof data.summary === "string" &&
+    typeof data.origin_century === "number" &&
     Array.isArray(data.connections)
   );
 }
@@ -149,6 +151,7 @@ function parseTraditionFile(filePath: string): ParsedTradition | undefined {
       slug: data.slug,
       family: data.family,
       summary: data.summary,
+      origin_century: data.origin_century,
       connections: (data.connections ?? []) as TraditionConnection[],
       content,
     };

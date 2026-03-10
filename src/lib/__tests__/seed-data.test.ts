@@ -8,14 +8,17 @@ const DATA_DIR = join(process.cwd(), "data");
 const VALID_FAMILIES: TraditionFamily[] = [
   "Buddhist",
   "Hindu",
-  "Modern Non-Dual",
-  "Yogic",
+  "Taoist",
+  "Christian Contemplative",
+  "Islamic Contemplative",
+  "Modern Secular",
   "Other",
 ];
 const VALID_CONNECTION_TYPES: ConnectionType[] = [
   "influenced_by",
   "branch_of",
   "related_to",
+  "diverged_from",
 ];
 
 function readJsonFiles<T>(subdir: string): { name: string; data: T }[] {
@@ -140,6 +143,7 @@ describe("Tradition seed data", () => {
       expect(typeof data.slug).toBe("string");
       expect(VALID_FAMILIES).toContain(data.family);
       expect(typeof data.summary).toBe("string");
+      expect(typeof data.origin_century).toBe("number");
       expect(Array.isArray(data.connections)).toBe(true);
       for (const conn of data.connections) {
         expect(typeof conn.tradition_slug).toBe("string");

@@ -7,7 +7,7 @@ import { TraditionMap } from "@/components/tradition-map";
 export const metadata: Metadata = {
   title: "Map of Contemplative Traditions — Lineage",
   description:
-    "An interactive visual map of contemplative traditions and how they connect — Buddhist, Hindu, Modern Non-Dual, Yogic, and more.",
+    "An interactive visual map of contemplative traditions and how they connect — Buddhist, Hindu, Taoist, Christian, Islamic, and more.",
 };
 
 export default function MapPage() {

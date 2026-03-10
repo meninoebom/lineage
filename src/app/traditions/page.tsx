@@ -10,15 +10,15 @@ import type { ParsedTradition } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Traditions",
   description:
-    "Explore contemplative traditions — Buddhist, Hindu, Modern Non-Dual, Yogic, and more.",
+    "Explore contemplative traditions — Buddhist, Hindu, Taoist, Christian, Islamic, and more.",
   openGraph: {
     title: "Traditions",
     description:
-      "Explore contemplative traditions — Buddhist, Hindu, Modern Non-Dual, Yogic, and more.",
+      "Explore contemplative traditions — Buddhist, Hindu, Taoist, Christian, Islamic, and more.",
   },
 };
 
-const familyOrder = ["Buddhist", "Hindu", "Modern Non-Dual", "Yogic", "Other"];
+const familyOrder = ["Buddhist", "Hindu", "Taoist", "Christian Contemplative", "Islamic Contemplative", "Modern Secular", "Other"];
 
 function groupByFamily(traditions: ParsedTradition[]) {
   const grouped = new Map<string, ParsedTradition[]>();
