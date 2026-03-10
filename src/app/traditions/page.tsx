@@ -22,7 +22,8 @@ function groupByFamily(traditions: ParsedTradition[]) {
     group.push(t);
     grouped.set(t.family, group);
   }
-  return familyOrder
+  const remaining = [...grouped.keys()].filter((f) => !familyOrder.includes(f));
+  return [...familyOrder, ...remaining]
     .filter((f) => grouped.has(f))
     .map((f) => ({ family: f, traditions: grouped.get(f)! }));
 }

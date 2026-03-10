@@ -122,7 +122,7 @@ export default async function TraditionPage({ params }: { params: Promise<{ slug
                       <CardTitle className="group-hover:text-primary transition-colors">
                         {r.name}
                       </CardTitle>
-                      <Badge variant="outline">{r.connection.connection_type.replace("_", " ")}</Badge>
+                      <Badge variant="outline">{r.connection.connection_type.replaceAll("_", " ")}</Badge>
                     </div>
                     <CardDescription>{r.connection.description}</CardDescription>
                   </CardHeader>
