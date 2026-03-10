@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "tsx scripts/compute-layout.ts",
-    "build": "next build",
+    "prebuild": "npx tsx scripts/compute-layout.ts",
+    "build": "npm run prebuild && next build",
     "start": "npx serve out",
     "lint": "eslint",
     "test": "vitest run",
