@@ -1,7 +1,7 @@
 import { readdirSync, readFileSync, existsSync } from "fs";
 import { join } from "path";
 import matter from "gray-matter";
-import type { Teacher, Center, TraditionConnection } from "./types";
+import type { Teacher, Center, Resource, TraditionConnection } from "./types";
 
 const DATA_DIR = join(process.cwd(), "data");
 
@@ -41,6 +41,25 @@ function isCenter(obj: unknown): obj is Center {
     typeof c.country === "string" &&
     Array.isArray(c.traditions) &&
     Array.isArray(c.teachers)
+  );
+}
+
+const VALID_RESOURCE_TYPES = ["book", "podcast", "video", "article", "website"];
+
+function isResource(obj: unknown): obj is Resource {
+  const r = obj as Record<string, unknown>;
+  return (
+    typeof r.title === "string" &&
+    typeof r.slug === "string" &&
+    typeof r.type === "string" &&
+    VALID_RESOURCE_TYPES.includes(r.type as string) &&
+    typeof r.url === "string" &&
+    (r.author === null || typeof r.author === "string") &&
+    (r.year === null || typeof r.year === "number") &&
+    typeof r.description === "string" &&
+    Array.isArray(r.traditions) &&
+    Array.isArray(r.teachers) &&
+    Array.isArray(r.centers)
   );
 }
 
@@ -111,6 +130,28 @@ export function getAllCenters(): Center[] {
 
 export function getCenter(slug: string): Center | undefined {
   return loadOneJson("centers", slug, isCenter);
+}
+
+// -- Resources --
+
+export function getAllResources(): Resource[] {
+  return loadAllJson("resources", isResource);
+}
+
+export function getResource(slug: string): Resource | undefined {
+  return loadOneJson("resources", slug, isResource);
+}
+
+export function getResourcesByTradition(traditionSlug: string): Resource[] {
+  return getAllResources().filter((r) => r.traditions.includes(traditionSlug));
+}
+
+export function getResourcesByTeacher(teacherSlug: string): Resource[] {
+  return getAllResources().filter((r) => r.teachers.includes(teacherSlug));
+}
+
+export function getResourcesByCenter(centerSlug: string): Resource[] {
+  return getAllResources().filter((r) => r.centers.includes(centerSlug));
 }
 
 // -- Traditions --

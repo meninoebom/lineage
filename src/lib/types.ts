@@ -39,6 +39,21 @@ export interface Teacher {
   centers: string[];
 }
 
+export type ResourceType = "book" | "podcast" | "video" | "article" | "website";
+
+export interface Resource {
+  title: string;
+  slug: string;
+  type: ResourceType;
+  url: string;
+  author: string | null;
+  year: number | null;
+  description: string;
+  traditions: string[];
+  teachers: string[];
+  centers: string[];
+}
+
 export interface Center {
   name: string;
   slug: string;
