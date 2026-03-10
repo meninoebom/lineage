@@ -4,7 +4,9 @@ import { PageLayout } from "@/components/page-layout";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { JsonLd } from "@/components/json-ld";
 import { getAllTeachers, getTeacher, getCenter, getTradition } from "@/lib/data";
+import { teacherJsonLd, SITE_URL } from "@/lib/seo";
 
 export function generateStaticParams() {
   return getAllTeachers().map((t) => ({ slug: t.slug }));
@@ -14,11 +16,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const teacher = getTeacher(slug);
   if (!teacher) return {};
+  const description = teacher.traditions.length > 0
+    ? `${teacher.name} — ${teacher.traditions.join(", ")} teacher in ${teacher.city}, ${teacher.state}.`
+    : `${teacher.name} — contemplative teacher in ${teacher.city}, ${teacher.state}.`;
   return {
-    title: `${teacher.name} — Lineage`,
-    description: teacher.traditions.length > 0
-      ? `${teacher.name} — ${teacher.traditions.join(", ")} teacher in ${teacher.city}, ${teacher.state}.`
-      : `${teacher.name} — contemplative teacher in ${teacher.city}, ${teacher.state}.`,
+    title: teacher.name,
+    description,
+    openGraph: {
+      title: teacher.name,
+      description,
+      url: `${SITE_URL}/teachers/${teacher.slug}`,
+      type: "profile",
+    },
   };
 }
 
@@ -36,6 +45,7 @@ export default async function TeacherPage({ params }: { params: Promise<{ slug: 
 
   return (
     <PageLayout>
+      <JsonLd data={teacherJsonLd(teacher)} />
       <Breadcrumbs
         items={[
           { label: "Teachers", href: "/teachers" },

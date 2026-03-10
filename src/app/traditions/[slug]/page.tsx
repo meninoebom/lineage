@@ -5,6 +5,7 @@ import { PageLayout } from "@/components/page-layout";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { JsonLd } from "@/components/json-ld";
 import {
   getAllTraditions,
   getTradition,
@@ -12,6 +13,7 @@ import {
   getCentersByTradition,
   getRelatedTraditions,
 } from "@/lib/data";
+import { traditionJsonLd, SITE_URL } from "@/lib/seo";
 
 export function generateStaticParams() {
   return getAllTraditions().map((t) => ({ slug: t.slug }));
@@ -22,8 +24,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const tradition = getTradition(slug);
   if (!tradition) return {};
   return {
-    title: `${tradition.name} — Lineage`,
+    title: tradition.name,
     description: tradition.summary,
+    openGraph: {
+      title: tradition.name,
+      description: tradition.summary,
+      url: `${SITE_URL}/traditions/${tradition.slug}`,
+      type: "article",
+    },
   };
 }
 
@@ -38,6 +46,7 @@ export default async function TraditionPage({ params }: { params: Promise<{ slug
 
   return (
     <PageLayout>
+      <JsonLd data={traditionJsonLd(tradition)} />
       <Breadcrumbs
         items={[
           { label: "Traditions", href: "/traditions" },

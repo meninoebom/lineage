@@ -4,7 +4,9 @@ import { PageLayout } from "@/components/page-layout";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { JsonLd } from "@/components/json-ld";
 import { getAllCenters, getCenter, getTeacher, getTradition } from "@/lib/data";
+import { centerJsonLd, SITE_URL } from "@/lib/seo";
 
 export function generateStaticParams() {
   return getAllCenters().map((c) => ({ slug: c.slug }));
@@ -14,11 +16,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const center = getCenter(slug);
   if (!center) return {};
+  const description = center.traditions.length > 0
+    ? `${center.name} — ${center.traditions.join(", ")} center in ${center.city}, ${center.state}.`
+    : `${center.name} — contemplative center in ${center.city}, ${center.state}.`;
   return {
-    title: `${center.name} — Lineage`,
-    description: center.traditions.length > 0
-      ? `${center.name} — ${center.traditions.join(", ")} center in ${center.city}, ${center.state}.`
-      : `${center.name} — contemplative center in ${center.city}, ${center.state}.`,
+    title: center.name,
+    description,
+    openGraph: {
+      title: center.name,
+      description,
+      url: `${SITE_URL}/centers/${center.slug}`,
+      type: "website",
+    },
   };
 }
 
@@ -36,6 +45,7 @@ export default async function CenterPage({ params }: { params: Promise<{ slug: s
 
   return (
     <PageLayout>
+      <JsonLd data={centerJsonLd(center)} />
       <Breadcrumbs
         items={[
           { label: "Centers", href: "/centers" },

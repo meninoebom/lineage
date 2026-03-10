@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
+import { defaultMetadata } from "@/lib/seo";
 import "./globals.css";
 
-export const metadata: Metadata = {
-  title: "Lineage",
-  description:
-    "An interactive map of contemplative traditions and a directory of teachers and centers.",
-};
+export const metadata: Metadata = defaultMetadata;
 
 export default function RootLayout({
   children,

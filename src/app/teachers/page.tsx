@@ -7,8 +7,12 @@ import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/ca
 import { getAllTeachers, getTradition } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Teachers — Lineage",
+  title: "Teachers",
   description: "Browse contemplative teachers by tradition and location.",
+  openGraph: {
+    title: "Teachers",
+    description: "Browse contemplative teachers by tradition and location.",
+  },
 };
 
 export default function TeachersPage() {
