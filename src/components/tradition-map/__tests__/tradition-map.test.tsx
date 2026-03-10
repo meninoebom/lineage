@@ -10,50 +10,33 @@ vi.mock("next/navigation", () => ({
   }),
 }));
 
-// Mock framer-motion to avoid animation issues in tests
-vi.mock("framer-motion", () => {
-  const actual = vi.importActual("framer-motion") as Record<string, unknown>;
-  return {
-    ...actual,
-    motion: new Proxy(
-      {},
-      {
-        get: (_target, prop: string) => {
-          // Return a simple component that renders the element
-          return ({
-            children,
-            ...props
-          }: {
-            children?: React.ReactNode;
-            [key: string]: unknown;
-          }) => {
-            // Filter out motion-specific props
-            const htmlProps: Record<string, unknown> = {};
-            for (const [key, value] of Object.entries(props)) {
-              if (
-                ![
-                  "initial",
-                  "animate",
-                  "exit",
-                  "transition",
-                  "whileHover",
-                  "whileTap",
-                  "variants",
-                  "layoutId",
-                  "onAnimationComplete",
-                ].includes(key)
-              ) {
-                htmlProps[key] = value;
-              }
-            }
-            const Element = prop as keyof JSX.IntrinsicElements;
-            return <Element {...(htmlProps as Record<string, string>)}>{children}</Element>;
-          };
-        },
-      }
-    ),
-  };
-});
+// Mock the generated layout JSON
+vi.mock("@/generated/map-layout.json", () => ({
+  default: {
+    zen: { x: 300, y: 750 },
+    theravada: { x: 300, y: 0 },
+    "advaita-vedanta": { x: 320, y: 900 },
+  },
+}));
+
+// Mock d3-zoom and d3-selection to avoid DOM measurement issues in tests
+vi.mock("d3-zoom", () => ({
+  zoom: () => {
+    const behavior = () => {};
+    behavior.scaleExtent = () => behavior;
+    behavior.on = () => behavior;
+    behavior.transform = {};
+    return behavior;
+  },
+  zoomIdentity: { x: 0, y: 0, k: 1 },
+}));
+
+vi.mock("d3-selection", () => ({
+  select: () => ({
+    call: () => {},
+    on: () => {},
+  }),
+}));
 
 const sampleTraditions: TraditionInput[] = [
   {
@@ -61,6 +44,7 @@ const sampleTraditions: TraditionInput[] = [
     slug: "zen",
     family: "Buddhist",
     summary: "A school of Mahayana Buddhism",
+    origin_century: 6,
     connections: [
       {
         tradition_slug: "theravada",
@@ -74,6 +58,7 @@ const sampleTraditions: TraditionInput[] = [
     slug: "theravada",
     family: "Buddhist",
     summary: "The Way of the Elders",
+    origin_century: -3,
     connections: [
       {
         tradition_slug: "zen",
@@ -87,6 +72,7 @@ const sampleTraditions: TraditionInput[] = [
     slug: "advaita-vedanta",
     family: "Hindu",
     summary: "Non-dual Hindu philosophy",
+    origin_century: 8,
     connections: [],
   },
 ];
@@ -94,14 +80,17 @@ const sampleTraditions: TraditionInput[] = [
 describe("TraditionMap", () => {
   it("renders all tradition nodes", () => {
     render(<TraditionMap traditions={sampleTraditions} />);
-    expect(screen.getAllByText("Zen")).toHaveLength(2); // desktop + mobile
-    expect(screen.getAllByText("Theravada")).toHaveLength(2);
-    expect(screen.getAllByText("Advaita Vedanta")).toHaveLength(2);
+    // Single SVG now (no dual desktop/mobile)
+    expect(screen.getByText("Zen")).toBeInTheDocument();
+    expect(screen.getByText("Theravada")).toBeInTheDocument();
+    expect(screen.getByText("Advaita Vedanta")).toBeInTheDocument();
   });
 
   it("renders family filter buttons", () => {
     render(<TraditionMap traditions={sampleTraditions} />);
-    const filterGroup = screen.getByRole("group", { name: /filter by tradition family/i });
+    const filterGroup = screen.getByRole("group", {
+      name: /filter by tradition family/i,
+    });
     const buttons = filterGroup.querySelectorAll("button");
     expect(buttons).toHaveLength(2);
     expect(buttons[0]).toHaveTextContent("Buddhist");
@@ -117,25 +106,27 @@ describe("TraditionMap", () => {
 
   it("filters traditions when family toggle is clicked", () => {
     render(<TraditionMap traditions={sampleTraditions} />);
-    const filterGroup = screen.getByRole("group", { name: /filter by tradition family/i });
+    const filterGroup = screen.getByRole("group", {
+      name: /filter by tradition family/i,
+    });
     const hinduButton = filterGroup.querySelector("button:last-child")!;
     expect(hinduButton).toHaveAttribute("aria-pressed", "true");
     fireEvent.click(hinduButton);
     expect(hinduButton).toHaveAttribute("aria-pressed", "false");
   });
 
-  it("has accessible SVG labels", () => {
+  it("has accessible SVG label", () => {
     render(<TraditionMap traditions={sampleTraditions} />);
-    const maps = screen.getAllByRole("img", {
+    const map = screen.getByRole("img", {
       name: /interactive map of contemplative traditions/i,
     });
-    expect(maps.length).toBeGreaterThanOrEqual(1);
+    expect(map).toBeInTheDocument();
   });
 
-  it("has accessible filter group", () => {
+  it("renders nodes as keyboard-accessible links", () => {
     render(<TraditionMap traditions={sampleTraditions} />);
-    expect(
-      screen.getByRole("group", { name: /filter by tradition family/i })
-    ).toBeInTheDocument();
+    const links = screen.getAllByRole("link");
+    expect(links.length).toBeGreaterThanOrEqual(3);
+    expect(links[0]).toHaveAttribute("tabindex", "0");
   });
 });
