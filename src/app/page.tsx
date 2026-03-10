@@ -63,8 +63,8 @@ export default function Home() {
                 <CardTitle className="group-hover:text-primary transition-colors">
                   {feature.title}
                 </CardTitle>
+                <CardDescription>{feature.description}</CardDescription>
               </CardHeader>
-              <CardDescription>{feature.description}</CardDescription>
             </Card>
           </Link>
         ))}

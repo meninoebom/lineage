@@ -80,6 +80,7 @@ describe("Breadcrumbs", () => {
     );
     const current = screen.getByText("Current Page");
     expect(current.tagName).toBe("SPAN");
+    expect(current.getAttribute("aria-current")).toBe("page");
   });
 
   it("renders intermediate items as links", () => {

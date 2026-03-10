@@ -23,7 +23,7 @@ export function SiteHeader() {
         >
           Lineage
         </Link>
-        <nav className="flex items-center gap-6">
+        <nav className="hidden sm:flex items-center gap-6">
           {navLinks.map(({ href, label }) => (
             <Link
               key={href}
