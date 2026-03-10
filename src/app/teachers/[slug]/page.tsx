@@ -16,7 +16,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!teacher) return {};
   return {
     title: `${teacher.name} — Lineage`,
-    description: `${teacher.name} — ${teacher.traditions.join(", ")} teacher in ${teacher.city}, ${teacher.state}.`,
+    description: teacher.traditions.length > 0
+      ? `${teacher.name} — ${teacher.traditions.join(", ")} teacher in ${teacher.city}, ${teacher.state}.`
+      : `${teacher.name} — contemplative teacher in ${teacher.city}, ${teacher.state}.`,
   };
 }
 
@@ -27,10 +29,10 @@ export default async function TeacherPage({ params }: { params: Promise<{ slug: 
 
   const traditions = teacher.traditions
     .map((s) => getTradition(s))
-    .filter(Boolean);
+    .filter((t): t is NonNullable<typeof t> => t != null);
   const centers = teacher.centers
     .map((s) => getCenter(s))
-    .filter(Boolean);
+    .filter((c): c is NonNullable<typeof c> => c != null);
 
   return (
     <PageLayout>
@@ -47,12 +49,12 @@ export default async function TeacherPage({ params }: { params: Promise<{ slug: 
           <h1 className="mb-3">{teacher.name}</h1>
           <p className="font-sans text-sm text-muted-foreground mb-4">
             {teacher.city}, {teacher.state}
-            {teacher.country !== "US" && `, ${teacher.country}`}
+            {teacher.country !== "US" && ` · ${teacher.country}`}
           </p>
           <div className="flex flex-wrap gap-2 mb-6">
             {traditions.map((t) => (
-              <Link key={t!.slug} href={`/traditions/${t!.slug}`}>
-                <Badge variant="tradition">{t!.name}</Badge>
+              <Link key={t.slug} href={`/traditions/${t.slug}`}>
+                <Badge variant="tradition">{t.name}</Badge>
               </Link>
             ))}
           </div>
@@ -80,14 +82,14 @@ export default async function TeacherPage({ params }: { params: Promise<{ slug: 
             <h2 className="mb-4">Centers</h2>
             <div className="grid gap-4 sm:grid-cols-2">
               {centers.map((center) => (
-                <Link key={center!.slug} href={`/centers/${center!.slug}`} className="group">
+                <Link key={center.slug} href={`/centers/${center.slug}`} className="group">
                   <Card className="h-full group-hover:shadow-md">
                     <CardHeader>
                       <CardTitle className="group-hover:text-primary transition-colors">
-                        {center!.name}
+                        {center.name}
                       </CardTitle>
                       <CardDescription>
-                        {center!.city}, {center!.state}
+                        {center.city}, {center.state}
                       </CardDescription>
                     </CardHeader>
                   </Card>
