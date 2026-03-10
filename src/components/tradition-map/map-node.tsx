@@ -1,26 +1,29 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { FAMILY_COLORS, type GraphNode } from "@/lib/tradition-graph";
-import type { NodePosition } from "./tradition-map-layout";
 
 interface MapNodeProps {
   node: GraphNode;
-  position: NodePosition;
+  position: { x: number; y: number };
   highlighted: boolean;
   connected: boolean;
   dimmed: boolean;
+  zoomScale: number;
   onHover: (slug: string | null) => void;
   onClick: (slug: string) => void;
-  index: number;
 }
 
 /**
- * A single tradition node in the map.
+ * MapNode — text-first tradition node.
  *
- * Design: small filled circle with the tradition name as a typographic label.
- * The name IS the design element — large, serif, editorial.
- * The circle is a subtle anchor point, not a dominant shape.
+ * The tradition name in italic serif IS the node. No circles.
+ * A thin colored horizontal rule beneath the name acts as a visual anchor.
+ * On hover: rule expands, family + century labels appear.
+ *
+ * CSS transitions on SVG elements replace Framer Motion for simpler,
+ * more predictable animations without a runtime dependency.
+ *
+ * Counter-scales text by 1/zoomScale so labels stay readable at all zoom levels.
  */
 export function MapNode({
   node,
@@ -28,20 +31,38 @@ export function MapNode({
   highlighted,
   connected,
   dimmed,
+  zoomScale,
   onHover,
   onClick,
-  index,
 }: MapNodeProps) {
   const colors = FAMILY_COLORS[node.family];
-  const circleRadius = highlighted ? 8 : 6;
+  const inverseScale = 1 / zoomScale;
+
+  const ruleWidth = highlighted ? 40 : 20;
+  const opacity = dimmed ? 0.25 : 1;
+  const textColor = highlighted
+    ? colors.text
+    : dimmed
+      ? "#b5ada5"
+      : "#4a4540";
+
+  const centuryLabel = node.originCentury
+    ? node.originCentury < 0
+      ? `${Math.abs(node.originCentury) * 100} BCE`
+      : `${node.originCentury * 100} CE`
+    : "";
 
   return (
-    <motion.g
+    <g
       className="cursor-pointer"
+      style={{
+        transition: "opacity 0.3s ease",
+        opacity,
+      }}
       onMouseEnter={() => onHover(node.slug)}
       onMouseLeave={() => onHover(null)}
       onClick={() => onClick(node.slug)}
-      role="button"
+      role="link"
       aria-label={`${node.name} — ${node.family} tradition`}
       tabIndex={0}
       onKeyDown={(e) => {
@@ -50,79 +71,73 @@ export function MapNode({
           onClick(node.slug);
         }
       }}
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{
-        opacity: dimmed ? 0.25 : 1,
-        scale: 1,
-      }}
-      transition={{
-        opacity: { duration: 0.3 },
-        scale: { duration: 0.5, delay: index * 0.08, ease: "easeOut" },
-      }}
     >
-      {/* Background glow on highlight */}
-      {highlighted && (
-        <motion.circle
-          cx={position.x}
-          cy={position.y}
-          r={20}
-          fill={colors.fill}
-          opacity={0.12}
-          initial={{ r: 8 }}
-          animate={{ r: 20 }}
-          transition={{ duration: 0.3 }}
-        />
-      )}
-
-      {/* Main circle */}
-      <motion.circle
-        cx={position.x}
-        cy={position.y}
-        r={circleRadius}
-        fill={dimmed ? "#d4c8bc" : colors.fill}
-        stroke={highlighted ? colors.stroke : connected ? colors.fill : "transparent"}
-        strokeWidth={highlighted ? 2 : connected ? 1.5 : 0}
-        animate={{ r: circleRadius }}
-        transition={{ duration: 0.2 }}
-      />
-
-      {/* Tradition name — the primary design element */}
-      <motion.text
-        x={position.x}
-        y={position.y - 16}
-        textAnchor="middle"
-        className="font-serif select-none pointer-events-none"
-        fill={highlighted ? colors.text : dimmed ? "#b5ada5" : "#4a4540"}
-        fontSize={highlighted ? 16 : 14}
-        fontWeight={highlighted ? 500 : 400}
-        fontStyle="italic"
-        animate={{
-          fontSize: highlighted ? 16 : 14,
-          fill: highlighted ? colors.text : dimmed ? "#b5ada5" : "#4a4540",
-        }}
-        transition={{ duration: 0.2 }}
-      >
-        {node.name}
-      </motion.text>
-
-      {/* Family label — subtle, only visible on highlight */}
-      {highlighted && (
-        <motion.text
-          x={position.x}
-          y={position.y + 24}
+      {/* Counter-scaled group — text stays same screen size regardless of zoom */}
+      <g transform={`translate(${position.x}, ${position.y}) scale(${inverseScale})`}>
+        {/* Tradition name — the primary design element */}
+        <text
+          x={0}
+          y={0}
           textAnchor="middle"
-          className="font-sans select-none pointer-events-none"
+          dominantBaseline="auto"
+          className="select-none"
+          fill={textColor}
+          fontSize={14}
+          fontFamily="Georgia, serif"
+          fontStyle="italic"
+          fontWeight={highlighted ? 500 : 400}
+          style={{ transition: "fill 0.2s ease, font-weight 0.2s ease" }}
+        >
+          {node.name}
+        </text>
+
+        {/* Colored horizontal rule beneath name */}
+        <rect
+          x={-ruleWidth / 2}
+          y={4}
+          width={ruleWidth}
+          height={2}
+          rx={1}
+          fill={colors.fill}
+          style={{
+            transition: "width 0.2s ease, x 0.2s ease",
+          }}
+        />
+
+        {/* Family label — visible on hover */}
+        <text
+          x={0}
+          y={20}
+          textAnchor="middle"
           fill={colors.text}
-          fontSize={10}
+          fontSize={9}
+          fontFamily="sans-serif"
           letterSpacing="0.08em"
-          style={{ textTransform: "uppercase" }}
-          initial={{ opacity: 0, y: position.y + 18 }}
-          animate={{ opacity: 0.7, y: position.y + 24 }}
-          transition={{ duration: 0.2 }}
+          style={{
+            textTransform: "uppercase" as const,
+            transition: "opacity 0.2s ease",
+            opacity: highlighted ? 0.7 : 0,
+          }}
         >
           {node.family}
-        </motion.text>
-      )}
-    </motion.g>
+        </text>
+
+        {/* Century label — visible on hover */}
+        <text
+          x={0}
+          y={32}
+          textAnchor="middle"
+          fill="#8a8279"
+          fontSize={9}
+          fontFamily="sans-serif"
+          style={{
+            transition: "opacity 0.2s ease",
+            opacity: highlighted ? 0.5 : 0,
+          }}
+        >
+          {centuryLabel}
+        </text>
+      </g>
+    </g>
   );
 }
