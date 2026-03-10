@@ -11,6 +11,11 @@ import {
   getTeachersByTradition,
   getCentersByTradition,
   getRelatedTraditions,
+  getAllResources,
+  getResource,
+  getResourcesByTradition,
+  getResourcesByTeacher,
+  getResourcesByCenter,
 } from "../data";
 
 describe("getAllTeachers", () => {
@@ -123,6 +128,109 @@ describe("getRelatedTraditions", () => {
 
   it("returns empty array for unknown tradition", () => {
     expect(getRelatedTraditions("nonexistent")).toEqual([]);
+  });
+});
+
+// -- Resources --
+
+describe("getAllResources", () => {
+  it("returns all resources as typed array", () => {
+    const resources = getAllResources();
+    expect(resources.length).toBeGreaterThanOrEqual(25);
+    for (const r of resources) {
+      expect(r.slug).toBeDefined();
+      expect(r.title).toBeDefined();
+      expect(["book", "podcast", "video", "article", "website"]).toContain(r.type);
+      expect(typeof r.url).toBe("string");
+      expect(typeof r.description).toBe("string");
+      expect(Array.isArray(r.traditions)).toBe(true);
+      expect(Array.isArray(r.teachers)).toBe(true);
+      expect(Array.isArray(r.centers)).toBe(true);
+    }
+  });
+});
+
+describe("getResource", () => {
+  it("returns a resource by slug", () => {
+    const resource = getResource("heart-of-the-buddhas-teaching");
+    expect(resource).toBeDefined();
+    expect(resource!.title).toBe("The Heart of the Buddha's Teaching");
+    expect(resource!.type).toBe("book");
+    expect(resource!.traditions).toContain("mahayana");
+  });
+
+  it("returns undefined for unknown slug", () => {
+    expect(getResource("nonexistent")).toBeUndefined();
+  });
+});
+
+describe("getResourcesByTradition", () => {
+  it("returns resources tagged to a tradition", () => {
+    const resources = getResourcesByTradition("zen");
+    expect(resources.length).toBeGreaterThanOrEqual(1);
+    for (const r of resources) {
+      expect(r.traditions).toContain("zen");
+    }
+  });
+
+  it("returns empty array for unknown tradition", () => {
+    expect(getResourcesByTradition("nonexistent")).toEqual([]);
+  });
+});
+
+describe("getResourcesByTeacher", () => {
+  it("returns resources tagged to a teacher", () => {
+    const resources = getResourcesByTeacher("rupert-spira");
+    expect(resources.length).toBeGreaterThanOrEqual(1);
+    for (const r of resources) {
+      expect(r.teachers).toContain("rupert-spira");
+    }
+  });
+
+  it("returns empty array for unknown teacher", () => {
+    expect(getResourcesByTeacher("nonexistent")).toEqual([]);
+  });
+});
+
+describe("getResourcesByCenter", () => {
+  it("returns resources tagged to a center", () => {
+    const resources = getResourcesByCenter("spirit-rock");
+    expect(resources.length).toBeGreaterThanOrEqual(1);
+    for (const r of resources) {
+      expect(r.centers).toContain("spirit-rock");
+    }
+  });
+
+  it("returns empty array for unknown center", () => {
+    expect(getResourcesByCenter("nonexistent")).toEqual([]);
+  });
+});
+
+describe("resource validation", () => {
+  const tmpDir = join(process.cwd(), "data", "resources");
+  const malformedFile = join(tmpDir, "_test-malformed.json");
+  const invalidShapeFile = join(tmpDir, "_test-invalid-shape.json");
+
+  beforeEach(() => {
+    writeFileSync(malformedFile, "{ not valid json !!!");
+    writeFileSync(invalidShapeFile, JSON.stringify({ title: 123, oops: true }));
+    vi.spyOn(console, "warn").mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    try { rmSync(malformedFile); } catch {}
+    try { rmSync(invalidShapeFile); } catch {}
+    vi.restoreAllMocks();
+  });
+
+  it("skips malformed resource files", () => {
+    const resources = getAllResources();
+    expect(resources.every((r) => !r.slug.startsWith("_test"))).toBe(true);
+    expect(console.warn).toHaveBeenCalled();
+  });
+
+  it("rejects path traversal on getResource", () => {
+    expect(() => getResource("../../etc/passwd")).toThrow("Invalid slug");
   });
 });
 
