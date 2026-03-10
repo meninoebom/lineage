@@ -126,6 +126,46 @@ describe("computeLayout", () => {
     expect(Object.keys(layout)).toHaveLength(1);
   });
 
+  it("separates different-family clusters on X axis", () => {
+    // Buddhist cluster (connected) and Hindu cluster (connected), no cross-family edges
+    const traditions: ParsedTradition[] = [
+      makeTradition({
+        slug: "b1",
+        origin_century: 5,
+        family: "Buddhist",
+        connections: [{ tradition_slug: "b2", connection_type: "branch_of", strength: 3, description: "" }],
+      }),
+      makeTradition({
+        slug: "b2",
+        origin_century: 5,
+        family: "Buddhist",
+        connections: [{ tradition_slug: "b1", connection_type: "branch_of", strength: 3, description: "" }],
+      }),
+      makeTradition({
+        slug: "h1",
+        origin_century: 5,
+        family: "Hindu",
+        connections: [{ tradition_slug: "h2", connection_type: "branch_of", strength: 3, description: "" }],
+      }),
+      makeTradition({
+        slug: "h2",
+        origin_century: 5,
+        family: "Hindu",
+        connections: [{ tradition_slug: "h1", connection_type: "branch_of", strength: 3, description: "" }],
+      }),
+    ];
+    const layout = computeLayout(traditions);
+
+    // Within-family distance should be smaller than between-family distance
+    const buddhistCenterX = (layout["b1"].x + layout["b2"].x) / 2;
+    const hinduCenterX = (layout["h1"].x + layout["h2"].x) / 2;
+    const withinBuddhist = Math.abs(layout["b1"].x - layout["b2"].x);
+    const betweenClusters = Math.abs(buddhistCenterX - hinduCenterX);
+
+    // The between-cluster distance should exceed within-cluster distance
+    expect(betweenClusters).toBeGreaterThan(withinBuddhist);
+  });
+
   it("works with real-ish tradition data (5 traditions)", () => {
     const traditions: ParsedTradition[] = [
       makeTradition({
