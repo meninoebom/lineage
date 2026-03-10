@@ -116,3 +116,49 @@
     @apply text-lg font-normal;
   }
 }
+
+/* Editorial prose styling for MDX content */
+.prose-editorial {
+  h1, h2, h3, h4 {
+    @apply mt-8 mb-4;
+  }
+  h1 {
+    @apply text-3xl;
+  }
+  h2 {
+    @apply text-2xl;
+  }
+  h3 {
+    @apply text-lg font-medium;
+  }
+  p {
+    @apply mb-4 leading-relaxed text-secondary-foreground;
+  }
+  ul, ol {
+    @apply mb-4 pl-6;
+  }
+  ul {
+    @apply list-disc;
+  }
+  ol {
+    @apply list-decimal;
+  }
+  li {
+    @apply mb-1 leading-relaxed text-secondary-foreground;
+  }
+  strong {
+    @apply font-semibold text-foreground;
+  }
+  em {
+    @apply italic;
+  }
+  a {
+    @apply text-primary underline underline-offset-2 hover:text-primary/80 transition-colors;
+  }
+  blockquote {
+    @apply border-l-2 border-primary/30 pl-4 my-4 italic text-muted-foreground;
+  }
+  hr {
+    @apply my-8 border-border;
+  }
+}
