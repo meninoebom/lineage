@@ -13,6 +13,7 @@ import {
   getCentersByTradition,
   getRelatedTraditions,
 } from "@/lib/data";
+import { SuggestEditLink } from "@/components/suggest-edit-link";
 import { traditionJsonLd, SITE_URL } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -141,6 +142,8 @@ export default async function TraditionPage({ params }: { params: Promise<{ slug
           </div>
         </section>
       )}
+
+      <SuggestEditLink traditionName={tradition.name} />
     </PageLayout>
   );
 }
