@@ -8,6 +8,11 @@ interface MapEdgeProps {
   sourceNode?: GraphNode;
   highlighted: boolean;
   dimmed: boolean;
+  hidden: boolean;
+  showTooltip: boolean;
+  onEdgeHover: (source: string | null, target: string | null) => void;
+  /** Entrance animation delay in ms — edge draws in after connected nodes appear */
+  entranceDelay?: number;
 }
 
 /**
@@ -57,6 +62,10 @@ export function MapEdge({
   sourceNode,
   highlighted,
   dimmed,
+  hidden,
+  showTooltip,
+  onEdgeHover,
+  entranceDelay = 0,
 }: MapEdgeProps) {
   const style = EDGE_STYLES[edge.connectionType] ?? EDGE_STYLES.related_to;
 
@@ -81,10 +90,20 @@ export function MapEdge({
   // Unique marker ID for this edge (to avoid shared mutation across edges)
   const markerId = `arrow-${edge.source}-${edge.target}`;
 
+  // Hidden edges are completely invisible (opacity 0, no pointer events)
+  if (hidden) return null;
+
   const opacity = dimmed ? 0.15 : highlighted ? 1 : 0.5;
 
   return (
-    <g style={{ transition: "opacity 0.3s ease", opacity }}>
+    <g
+      style={{
+        transition: "opacity 0.3s ease",
+        opacity,
+        animationDelay: `${entranceDelay}ms`,
+      }}
+      className="map-edge-entrance"
+    >
       {/* Arrowhead marker definition (scoped to this edge for color) */}
       {style.hasArrow && (
         <defs>
@@ -102,6 +121,17 @@ export function MapEdge({
         </defs>
       )}
 
+      {/* Invisible wider hit area for hover */}
+      <path
+        d={pathD}
+        fill="none"
+        stroke="transparent"
+        strokeWidth={12}
+        onMouseEnter={() => onEdgeHover(edge.source, edge.target)}
+        onMouseLeave={() => onEdgeHover(null, null)}
+        style={{ cursor: "default" }}
+      />
+
       <path
         d={pathD}
         fill="none"
@@ -110,7 +140,7 @@ export function MapEdge({
         strokeDasharray={style.dashArray}
         strokeLinecap="round"
         markerEnd={style.hasArrow ? `url(#${markerId})` : undefined}
-        style={{ transition: "stroke-width 0.2s ease" }}
+        style={{ transition: "stroke-width 0.2s ease", pointerEvents: "none" }}
       />
 
       {/* Diverged-from split symbol at midpoint */}
@@ -118,6 +148,36 @@ export function MapEdge({
         <g transform={`translate(${midX}, ${midY})`}>
           <line x1={-3} y1={-4} x2={-6} y2={4} stroke={strokeColor} strokeWidth={1} />
           <line x1={3} y1={-4} x2={6} y2={4} stroke={strokeColor} strokeWidth={1} />
+        </g>
+      )}
+
+      {/* Edge tooltip — description at midpoint */}
+      {showTooltip && edge.description && (
+        <g transform={`translate(${midX}, ${midY})`} style={{ pointerEvents: "none" }}>
+          <rect
+            x={-60}
+            y={-28}
+            width={120}
+            height={22}
+            rx={4}
+            fill="#f5f0eb"
+            stroke="#d4cdc4"
+            strokeWidth={0.5}
+            style={{ filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.1))" }}
+          />
+          <text
+            x={0}
+            y={-14}
+            textAnchor="middle"
+            dominantBaseline="middle"
+            fontSize={10}
+            fontFamily="system-ui, sans-serif"
+            fill="#4a4540"
+          >
+            {edge.description.length > 20
+              ? edge.description.slice(0, 18) + "…"
+              : edge.description}
+          </text>
         </g>
       )}
     </g>

@@ -11,6 +11,8 @@ interface MapNodeProps {
   zoomScale: number;
   onHover: (slug: string | null) => void;
   onClick: (slug: string) => void;
+  /** Entrance animation delay in ms — staggered by time period (top to bottom) */
+  entranceDelay?: number;
 }
 
 /**
@@ -34,6 +36,7 @@ export function MapNode({
   zoomScale,
   onHover,
   onClick,
+  entranceDelay = 0,
 }: MapNodeProps) {
   const colors = FAMILY_COLORS[node.family];
   const inverseScale = 1 / zoomScale;
@@ -54,10 +57,11 @@ export function MapNode({
 
   return (
     <g
-      className="cursor-pointer"
+      className="cursor-pointer map-node-entrance"
       style={{
         transition: "opacity 0.3s ease",
         opacity,
+        animationDelay: `${entranceDelay}ms`,
       }}
       onMouseEnter={() => onHover(node.slug)}
       onMouseLeave={() => onHover(null)}
