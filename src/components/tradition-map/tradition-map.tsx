@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo, useState, useCallback } from "react";
+import { useRef, useMemo, useState, useCallback, useEffect } from "react";
 import {
   buildTraditionGraph,
   getFamilies,
@@ -49,17 +49,26 @@ function computeViewBox(layout: LayoutMap) {
  * Architecture:
  * - Layout positions come from pre-computed JSON (generated at build time)
  * - d3-zoom handles pan/zoom behavior, React owns all DOM rendering
- * - useMapInteraction manages hover/selection state
+ * - useMapInteraction manages hover/selection/tap state
  * - MapCanvas renders the SVG content (edges, nodes, time axis)
  * - Single responsive SVG with viewBox — works on all screen sizes
  *
- * D3 integration pattern: D3 as state machine, React as renderer.
- * d3-zoom attaches to the SVG and produces a transform object.
- * React applies that transform to a `<g>` wrapper — D3 never touches the DOM directly.
+ * Touch behavior: detects touch devices and switches from hover to tap-to-select.
+ * Tap a node to focus, tap again or tap background to deselect.
  */
 export function TraditionMap({ traditions }: TraditionMapProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const layout = layoutData as LayoutMap;
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  // Detect touch device on mount
+  useEffect(() => {
+    const mq = window.matchMedia("(pointer: coarse)");
+    setIsTouchDevice(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsTouchDevice(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   const fullGraph = useMemo(() => buildTraditionGraph(traditions), [traditions]);
   const allFamilies = useMemo(() => getFamilies(fullGraph), [fullGraph]);
@@ -90,8 +99,52 @@ export function TraditionMap({ traditions }: TraditionMapProps) {
 
   const viewBox = useMemo(() => computeViewBox(layout), [layout]);
 
+  // On touch devices: use tap-to-select instead of hover
+  const nodeHoverHandler = isTouchDevice ? () => {} : interaction.handleNodeHover;
+  const nodeClickHandler = isTouchDevice
+    ? (slug: string) => {
+        if (interaction.selectedSlug === slug) {
+          // Second tap on same node: navigate
+          interaction.handleNodeClick(slug);
+        } else {
+          // First tap: select/focus
+          interaction.handleNodeSelect(slug);
+        }
+      }
+    : interaction.handleNodeClick;
+
+  // Background tap deselects on touch devices
+  const handleSvgClick = useCallback(
+    (e: React.MouseEvent<SVGSVGElement>) => {
+      if (!isTouchDevice) return;
+      // Only deselect if the tap was on the SVG background (not a node)
+      if (e.target === e.currentTarget) {
+        interaction.handleBackgroundTap();
+      }
+    },
+    [isTouchDevice, interaction]
+  );
+
   return (
     <div className="w-full">
+      {/* Entrance animation keyframes */}
+      <style>{`
+        @keyframes map-node-fade-in {
+          from { opacity: 0; transform: translateY(-8px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes map-edge-draw-in {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        .map-node-entrance {
+          animation: map-node-fade-in 0.4s ease-out both;
+        }
+        .map-edge-entrance {
+          animation: map-edge-draw-in 0.3s ease-out both;
+        }
+      `}</style>
+
       {/* Filters */}
       <div className="mb-8">
         <FamilyFilter
@@ -109,6 +162,7 @@ export function TraditionMap({ traditions }: TraditionMapProps) {
         style={{ maxHeight: "70vh", touchAction: "none" }}
         aria-label="Interactive map of contemplative traditions"
         role="img"
+        onClick={handleSvgClick}
       >
         {/* Zoom/pan transform wrapper — React applies the transform from d3-zoom */}
         <g transform={`translate(${transform.x}, ${transform.y}) scale(${transform.k})`}>
@@ -116,13 +170,16 @@ export function TraditionMap({ traditions }: TraditionMapProps) {
             graph={graph}
             layout={layout}
             zoomScale={transform.k}
-            onNodeHover={interaction.handleNodeHover}
-            onNodeClick={interaction.handleNodeClick}
+            onNodeHover={nodeHoverHandler}
+            onNodeClick={nodeClickHandler}
+            onEdgeHover={interaction.handleEdgeHover}
+            hoveredEdgeKey={interaction.hoveredEdgeKey}
             isNodeHighlighted={interaction.isNodeHighlighted}
             isNodeConnected={interaction.isNodeConnected}
             isNodeDimmed={interaction.isNodeDimmed}
             isEdgeHighlighted={interaction.isEdgeHighlighted}
             isEdgeDimmed={interaction.isEdgeDimmed}
+            isEdgeHidden={interaction.isEdgeHidden}
           />
         </g>
       </svg>
