@@ -8,9 +8,14 @@ import { getAllTraditions } from "@/lib/data";
 import type { ParsedTradition } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Traditions — Lineage",
+  title: "Traditions",
   description:
     "Explore contemplative traditions — Buddhist, Hindu, Modern Non-Dual, Yogic, and more.",
+  openGraph: {
+    title: "Traditions",
+    description:
+      "Explore contemplative traditions — Buddhist, Hindu, Modern Non-Dual, Yogic, and more.",
+  },
 };
 
 const familyOrder = ["Buddhist", "Hindu", "Modern Non-Dual", "Yogic", "Other"];
