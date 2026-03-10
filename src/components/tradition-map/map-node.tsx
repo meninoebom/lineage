@@ -80,8 +80,8 @@ export function MapNode({
         cy={position.y}
         r={circleRadius}
         fill={dimmed ? "#d4c8bc" : colors.fill}
-        stroke={highlighted ? colors.stroke : "transparent"}
-        strokeWidth={highlighted ? 2 : 0}
+        stroke={highlighted ? colors.stroke : connected ? colors.fill : "transparent"}
+        strokeWidth={highlighted ? 2 : connected ? 1.5 : 0}
         animate={{ r: circleRadius }}
         transition={{ duration: 0.2 }}
       />
