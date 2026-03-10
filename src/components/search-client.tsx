@@ -103,18 +103,23 @@ export function SearchClient({
         </div>
 
         {/* Tradition tags */}
-        <div className="flex flex-wrap gap-2">
-          {traditions.map((slug) => (
-            <button key={slug} onClick={() => toggleTradition(slug)}>
-              <Badge
-                variant={
-                  selectedTraditions.includes(slug) ? "family" : "tradition"
-                }
+        <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by tradition">
+          {traditions.map((slug) => {
+            const name = traditionNames[slug] ?? slug;
+            const isSelected = selectedTraditions.includes(slug);
+            return (
+              <button
+                key={slug}
+                onClick={() => toggleTradition(slug)}
+                aria-pressed={isSelected}
+                aria-label={`Filter by ${name}`}
               >
-                {traditionNames[slug] ?? slug}
-              </Badge>
-            </button>
-          ))}
+                <Badge variant={isSelected ? "family" : "tradition"}>
+                  {name}
+                </Badge>
+              </button>
+            );
+          })}
         </div>
       </div>
 
