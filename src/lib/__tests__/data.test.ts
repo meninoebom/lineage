@@ -1,4 +1,6 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { writeFileSync, mkdirSync, rmSync } from "fs";
+import { join } from "path";
 import {
   getAllTeachers,
   getTeacher,
@@ -121,5 +123,51 @@ describe("getRelatedTraditions", () => {
 
   it("returns empty array for unknown tradition", () => {
     expect(getRelatedTraditions("nonexistent")).toEqual([]);
+  });
+});
+
+// -- Security & Error Handling --
+
+describe("slug validation", () => {
+  it("rejects path traversal attempts", () => {
+    expect(() => getTeacher("../../etc/passwd")).toThrow("Invalid slug");
+    expect(() => getCenter("../teachers/gil-fronsdal")).toThrow("Invalid slug");
+    expect(() => getTradition("foo/bar")).toThrow("Invalid slug");
+  });
+});
+
+describe("malformed file handling", () => {
+  const tmpDir = join(process.cwd(), "data", "teachers");
+  const malformedFile = join(tmpDir, "_test-malformed.json");
+  const invalidShapeFile = join(tmpDir, "_test-invalid-shape.json");
+
+  beforeEach(() => {
+    writeFileSync(malformedFile, "{ not valid json !!!");
+    writeFileSync(invalidShapeFile, JSON.stringify({ name: 123, oops: true }));
+    vi.spyOn(console, "warn").mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    try { rmSync(malformedFile); } catch {}
+    try { rmSync(invalidShapeFile); } catch {}
+    vi.restoreAllMocks();
+  });
+
+  it("skips malformed JSON files and still returns valid ones", () => {
+    const teachers = getAllTeachers();
+    expect(teachers.length).toBeGreaterThanOrEqual(3);
+    expect(teachers.every((t) => !t.slug.startsWith("_test"))).toBe(true);
+    expect(console.warn).toHaveBeenCalled();
+  });
+
+  it("returns undefined for malformed single file", () => {
+    // _test-malformed exists but is not valid JSON
+    expect(getTeacher("_test-malformed")).toBeUndefined();
+    expect(console.warn).toHaveBeenCalled();
+  });
+
+  it("returns undefined for file with invalid shape", () => {
+    expect(getTeacher("_test-invalid-shape")).toBeUndefined();
+    expect(console.warn).toHaveBeenCalled();
   });
 });
