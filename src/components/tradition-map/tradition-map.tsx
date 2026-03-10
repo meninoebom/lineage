@@ -84,19 +84,28 @@ export function TraditionMap({ traditions }: TraditionMapProps) {
     setHoveredSlug(slug);
   }, []);
 
-  // Resolve positions for each node
+  // Pre-compute position maps for all visible nodes (avoids O(n^2) lookups)
+  const { desktopPositions, mobilePositions } = useMemo(() => {
+    const desktop: Record<string, { x: number; y: number }> = {};
+    const mobile: Record<string, { x: number; y: number }> = {};
+    let desktopFallbackIdx = 0;
+    let mobileFallbackIdx = 0;
+    for (const node of graph.nodes) {
+      desktop[node.slug] = DESKTOP_POSITIONS[node.slug] ?? getFallbackPosition(desktopFallbackIdx++, false);
+      mobile[node.slug] = MOBILE_POSITIONS[node.slug] ?? getFallbackPosition(mobileFallbackIdx++, true);
+      // Only increment fallback index for unknown slugs
+      if (DESKTOP_POSITIONS[node.slug]) desktopFallbackIdx--;
+      if (MOBILE_POSITIONS[node.slug]) mobileFallbackIdx--;
+    }
+    return { desktopPositions: desktop, mobilePositions: mobile };
+  }, [graph.nodes]);
+
   const getPosition = useCallback(
     (slug: string, isMobile: boolean) => {
-      const positions = isMobile ? MOBILE_POSITIONS : DESKTOP_POSITIONS;
-      if (positions[slug]) return positions[slug];
-      // Fallback for unknown slugs
-      const knownSlugs = Object.keys(positions);
-      const unknownIndex = graph.nodes
-        .filter((n) => !knownSlugs.includes(n.slug))
-        .findIndex((n) => n.slug === slug);
-      return getFallbackPosition(Math.max(0, unknownIndex), isMobile);
+      const positions = isMobile ? mobilePositions : desktopPositions;
+      return positions[slug] ?? { x: 500, y: 275 };
     },
-    [graph.nodes]
+    [desktopPositions, mobilePositions]
   );
 
   return (
