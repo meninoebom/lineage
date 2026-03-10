@@ -122,7 +122,7 @@ export function TraditionMap({ traditions }: TraditionMapProps) {
         interaction.handleBackgroundTap();
       }
     },
-    [isTouchDevice, interaction]
+    [isTouchDevice, interaction.handleBackgroundTap]
   );
 
   return (
