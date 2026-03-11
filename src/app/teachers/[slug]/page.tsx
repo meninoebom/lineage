@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageLayout } from "@/components/page-layout";
@@ -57,7 +58,19 @@ export default async function TeacherPage({ params }: { params: Promise<{ slug: 
 
       <article>
         {/* Header */}
-        <header className="mb-10">
+        <header className="mb-10 flex gap-8 items-start">
+          {teacher.photo && (
+            <div className="shrink-0">
+              <Image
+                src={teacher.photo}
+                alt={teacher.name}
+                width={160}
+                height={160}
+                className="rounded-lg object-cover w-32 h-32 sm:w-40 sm:h-40"
+              />
+            </div>
+          )}
+          <div>
           <h1 className="mb-3">{teacher.name}</h1>
           <p className="font-sans text-sm text-muted-foreground mb-4">
             {teacher.city}, {teacher.state}
@@ -80,6 +93,7 @@ export default async function TeacherPage({ params }: { params: Promise<{ slug: 
               Visit website &rarr;
             </a>
           )}
+          </div>
         </header>
 
         {/* Bio */}

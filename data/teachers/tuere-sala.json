@@ -1,0 +1,14 @@
+{
+  "name": "Tuere Sala",
+  "slug": "tuere-sala",
+  "bio": "Tuere Sala is a Guiding Teacher at Seattle Insight Meditation Society and Cambridge Insight Meditation Center. A retired prosecuting attorney, she brings a unique perspective to dharma teaching that integrates mindfulness with real-world experience in the justice system. She is known for her direct, relatable teaching style rooted in the Theravada vipassana tradition.",
+  "photo": null,
+  "website": null,
+  "city": "Seattle",
+  "state": "Washington",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["theravada", "vipassana-movement"],
+  "centers": ["seattle-insight-meditation-society", "cambridge-insight-meditation-center"]
+}

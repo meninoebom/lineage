@@ -1,0 +1,14 @@
+{
+  "name": "Christiane Wolf",
+  "slug": "christiane-wolf",
+  "bio": "Christiane Wolf is a physician (MD) and holds a PhD in psychosomatic medicine. She is a senior teacher at InsightLA and a leader in the Mindfulness-Based Stress Reduction (MBSR) community. Originally from Germany, she brings together vipassana practice and secular mindfulness with a deep understanding of the science of mind-body health.",
+  "photo": null,
+  "website": null,
+  "city": "Los Angeles",
+  "state": "California",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["vipassana-movement", "secular-mindfulness"],
+  "centers": ["insightla"]
+}
