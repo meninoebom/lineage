@@ -19,6 +19,7 @@ export interface GraphEdge {
   connectionType: ConnectionType;
   description: string;
   strength: number;
+  sources?: string[];
 }
 
 export interface TraditionGraph {
@@ -86,6 +87,7 @@ export interface TraditionInput {
     connection_type: string;
     description: string;
     strength?: number;
+    sources?: string[];
   }[];
 }
 
@@ -117,6 +119,7 @@ export function buildTraditionGraph(traditions: TraditionInput[]): TraditionGrap
           connectionType: conn.connection_type as ConnectionType,
           description: conn.description,
           strength: conn.strength ?? 1,
+          sources: conn.sources,
         });
       }
     }

@@ -17,8 +17,11 @@ import { useMapInteraction } from "./use-map-interaction";
 // Import pre-computed layout (generated at build time by `npm run prebuild`)
 import layoutData from "@/generated/map-layout.json";
 
+export type ResourceMap = Record<string, { title: string; url: string }>;
+
 interface TraditionMapProps {
   traditions: TraditionInput[];
+  resourceMap?: ResourceMap;
 }
 
 // Compute viewBox from layout data with padding
@@ -56,7 +59,7 @@ function computeViewBox(layout: LayoutMap) {
  * Touch behavior: detects touch devices and switches from hover to tap-to-select.
  * Tap a node to focus, tap again or tap background to deselect.
  */
-export function TraditionMap({ traditions }: TraditionMapProps) {
+export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const layout = layoutData as LayoutMap;
   const [isTouchDevice, setIsTouchDevice] = useState(false);
@@ -170,6 +173,7 @@ export function TraditionMap({ traditions }: TraditionMapProps) {
             graph={graph}
             layout={layout}
             zoomScale={transform.k}
+            resourceMap={resourceMap}
             onNodeHover={nodeHoverHandler}
             onNodeClick={nodeClickHandler}
             onEdgeHover={interaction.handleEdgeHover}

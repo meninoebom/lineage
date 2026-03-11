@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PageLayout } from "@/components/page-layout";
 import { Breadcrumbs } from "@/components/breadcrumbs";
-import { getAllTraditions } from "@/lib/data";
+import { getAllTraditions, getAllResources } from "@/lib/data";
 import { TraditionMap } from "@/components/tradition-map";
 
 export const metadata: Metadata = {
@@ -12,6 +12,13 @@ export const metadata: Metadata = {
 
 export default function MapPage() {
   const traditions = getAllTraditions();
+
+  // Build a slug→{title, url} lookup for citation sources on edges
+  const allResources = getAllResources();
+  const resourceMap: Record<string, { title: string; url: string }> = {};
+  for (const r of allResources) {
+    resourceMap[r.slug] = { title: r.title, url: r.url };
+  }
 
   return (
     <PageLayout>
@@ -25,7 +32,7 @@ export default function MapPage() {
         </p>
       </header>
 
-      <TraditionMap traditions={traditions} />
+      <TraditionMap traditions={traditions} resourceMap={resourceMap} />
     </PageLayout>
   );
 }

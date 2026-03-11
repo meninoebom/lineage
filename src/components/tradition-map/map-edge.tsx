@@ -1,5 +1,6 @@
 import { FAMILY_COLORS, type GraphEdge, type GraphNode } from "@/lib/tradition-graph";
 import type { ConnectionType } from "@/lib/types";
+import type { ResourceMap } from "./tradition-map";
 
 interface MapEdgeProps {
   edge: GraphEdge;
@@ -13,6 +14,7 @@ interface MapEdgeProps {
   onEdgeHover: (source: string | null, target: string | null) => void;
   /** Entrance animation delay in ms — edge draws in after connected nodes appear */
   entranceDelay?: number;
+  resourceMap?: ResourceMap;
 }
 
 /**
@@ -66,6 +68,7 @@ export function MapEdge({
   showTooltip,
   onEdgeHover,
   entranceDelay = 0,
+  resourceMap = {},
 }: MapEdgeProps) {
   const style = EDGE_STYLES[edge.connectionType] ?? EDGE_STYLES.related_to;
 
@@ -151,33 +154,71 @@ export function MapEdge({
         </g>
       )}
 
-      {/* Edge tooltip — description at midpoint using foreignObject for proper text wrapping */}
-      {showTooltip && edge.description && (
-        <foreignObject
-          x={midX - 140}
-          y={midY - 60}
-          width={280}
-          height={80}
-          style={{ pointerEvents: "none", overflow: "visible" }}
-        >
-          <div
-            style={{
-              background: "#f5f0eb",
-              border: "1px solid #d4cdc4",
-              borderRadius: 6,
-              padding: "8px 12px",
-              fontSize: 12,
-              fontFamily: "Georgia, serif",
-              color: "#4a4540",
-              lineHeight: 1.4,
-              boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
-              maxWidth: 280,
-            }}
+      {/* Edge tooltip — description + sources at midpoint */}
+      {showTooltip && edge.description && (() => {
+        const resolvedSources = (edge.sources ?? [])
+          .map((slug) => resourceMap[slug])
+          .filter(Boolean);
+        const hasSource = resolvedSources.length > 0;
+        return (
+          <foreignObject
+            x={midX - 160}
+            y={midY - 80}
+            width={320}
+            height={hasSource ? 140 : 100}
+            style={{ pointerEvents: "none", overflow: "visible" }}
           >
-            {edge.description}
-          </div>
-        </foreignObject>
-      )}
+            <div
+              style={{
+                background: "#f5f0eb",
+                border: "1px solid #d4cdc4",
+                borderRadius: 6,
+                padding: "10px 14px",
+                fontSize: 12,
+                fontFamily: "Georgia, serif",
+                color: "#4a4540",
+                lineHeight: 1.5,
+                boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
+                maxWidth: 320,
+              }}
+            >
+              <div>{edge.description}</div>
+              {hasSource && (
+                <div
+                  style={{
+                    marginTop: 6,
+                    paddingTop: 6,
+                    borderTop: "1px solid #d4cdc4",
+                    fontSize: 11,
+                    color: "#7a7570",
+                    pointerEvents: "auto",
+                  }}
+                >
+                  <span style={{ fontStyle: "italic" }}>Source: </span>
+                  {resolvedSources.map((r, i) => (
+                    <span key={i}>
+                      {i > 0 && ", "}
+                      <a
+                        href={r.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          color: "#9e4a3a",
+                          textDecoration: "underline",
+                          textDecorationStyle: "dotted",
+                          textUnderlineOffset: "2px",
+                        }}
+                      >
+                        {r.title}
+                      </a>
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+          </foreignObject>
+        );
+      })()}
     </g>
   );
 }

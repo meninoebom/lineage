@@ -5,6 +5,7 @@ import type { LayoutMap } from "@/lib/compute-layout";
 import { MapEdge } from "./map-edge";
 import { MapNode } from "./map-node";
 import { MapTimeAxis } from "./map-time-axis";
+import type { ResourceMap } from "./tradition-map";
 
 interface MapCanvasProps {
   graph: TraditionGraph;
@@ -20,6 +21,7 @@ interface MapCanvasProps {
   isEdgeHighlighted: (source: string, target: string) => boolean;
   isEdgeDimmed: (source: string, target: string) => boolean;
   isEdgeHidden: (source: string, target: string, connectionType: ConnectionType) => boolean;
+  resourceMap?: ResourceMap;
 }
 
 /**
@@ -43,6 +45,7 @@ export function MapCanvas({
   isEdgeHighlighted,
   isEdgeDimmed,
   isEdgeHidden,
+  resourceMap = {},
 }: MapCanvasProps) {
   // Build a lookup for source nodes (for edge coloring)
   const nodeMap = new Map<string, GraphNode>();
@@ -130,6 +133,7 @@ export function MapCanvas({
             showTooltip={hoveredEdgeKey === edgeKey}
             onEdgeHover={onEdgeHover}
             entranceDelay={edgeDelays.get(edgeKey) ?? 0}
+            resourceMap={resourceMap}
           />
         );
       })}
