@@ -13,6 +13,7 @@ import {
   getCentersByTradition,
   getRelatedTraditions,
 } from "@/lib/data";
+import { CitationLinks } from "@/components/citation-links";
 import { SuggestEditLink } from "@/components/suggest-edit-link";
 import { traditionJsonLd, SITE_URL } from "@/lib/seo";
 
@@ -134,7 +135,10 @@ export default async function TraditionPage({ params }: { params: Promise<{ slug
                       </CardTitle>
                       <Badge variant="outline">{r.connection.connection_type.replaceAll("_", " ")}</Badge>
                     </div>
-                    <CardDescription>{r.connection.description}</CardDescription>
+                    <CardDescription>
+                      {r.connection.description}
+                      <CitationLinks sources={r.connection.sources} />
+                    </CardDescription>
                   </CardHeader>
                 </Card>
               </Link>
