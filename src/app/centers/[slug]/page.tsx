@@ -5,7 +5,8 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { JsonLd } from "@/components/json-ld";
-import { getAllCenters, getCenter, getTeacher, getTradition } from "@/lib/data";
+import { ResourceList } from "@/components/resource-list";
+import { getAllCenters, getCenter, getTeacher, getTradition, getResourcesByCenter } from "@/lib/data";
 import { centerJsonLd, SITE_URL } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -36,6 +37,7 @@ export default async function CenterPage({ params }: { params: Promise<{ slug: s
   const center = getCenter(slug);
   if (!center) notFound();
 
+  const resources = getResourcesByCenter(slug);
   const traditions = center.traditions
     .map((s) => getTradition(s))
     .filter((t): t is NonNullable<typeof t> => t != null);
@@ -85,6 +87,9 @@ export default async function CenterPage({ params }: { params: Promise<{ slug: s
           <h2 className="mb-4">About</h2>
           <p className="leading-relaxed text-secondary-foreground">{center.description}</p>
         </section>
+
+        {/* Resources */}
+        <ResourceList resources={resources} />
 
         {/* Teachers */}
         {teachers.length > 0 && (
