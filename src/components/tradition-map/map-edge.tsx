@@ -151,34 +151,32 @@ export function MapEdge({
         </g>
       )}
 
-      {/* Edge tooltip — description at midpoint */}
+      {/* Edge tooltip — description at midpoint using foreignObject for proper text wrapping */}
       {showTooltip && edge.description && (
-        <g transform={`translate(${midX}, ${midY})`} style={{ pointerEvents: "none" }}>
-          <rect
-            x={-60}
-            y={-28}
-            width={120}
-            height={22}
-            rx={4}
-            fill="#f5f0eb"
-            stroke="#d4cdc4"
-            strokeWidth={0.5}
-            style={{ filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.1))" }}
-          />
-          <text
-            x={0}
-            y={-14}
-            textAnchor="middle"
-            dominantBaseline="middle"
-            fontSize={10}
-            fontFamily="system-ui, sans-serif"
-            fill="#4a4540"
+        <foreignObject
+          x={midX - 140}
+          y={midY - 60}
+          width={280}
+          height={80}
+          style={{ pointerEvents: "none", overflow: "visible" }}
+        >
+          <div
+            style={{
+              background: "#f5f0eb",
+              border: "1px solid #d4cdc4",
+              borderRadius: 6,
+              padding: "8px 12px",
+              fontSize: 12,
+              fontFamily: "Georgia, serif",
+              color: "#4a4540",
+              lineHeight: 1.4,
+              boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
+              maxWidth: 280,
+            }}
           >
-            {edge.description.length > 20
-              ? edge.description.slice(0, 18) + "…"
-              : edge.description}
-          </text>
-        </g>
+            {edge.description}
+          </div>
+        </foreignObject>
       )}
     </g>
   );
