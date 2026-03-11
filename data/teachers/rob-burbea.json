@@ -1,14 +1,19 @@
 {
   "name": "Rob Burbea",
   "slug": "rob-burbea",
-  "bio": "Rob Burbea (1965–2020) was a meditation teacher who served as resident teacher at Gaia House in Devon, England. He was known for his innovative and deep teachings on emptiness, the imaginal, and what he called 'soulmaking dharma.' His book 'Seeing That Frees' is considered one of the most important modern works on emptiness practice. He taught widely in the Insight Meditation tradition and was a guiding teacher at Insight Meditation Society.",
+  "bio": "Rob Burbea (1965\u20132020) was a meditation teacher who served as resident teacher at Gaia House in Devon, England. He was known for his innovative and deep teachings on emptiness, the imaginal, and what he called 'soulmaking dharma.' His book 'Seeing That Frees' is considered one of the most important modern works on emptiness practice. He taught widely in the Insight Meditation tradition and was a guiding teacher at Insight Meditation Society.",
   "photo": null,
   "website": null,
-  "city": null,
-  "state": null,
+  "city": "",
+  "state": "",
   "country": "GB",
   "latitude": null,
   "longitude": null,
-  "traditions": ["theravada", "vipassana-movement"],
-  "centers": ["insight-meditation-society"]
+  "traditions": [
+    "theravada",
+    "vipassana-movement"
+  ],
+  "centers": [
+    "insight-meditation-society"
+  ]
 }

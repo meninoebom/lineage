@@ -4,11 +4,14 @@
   "bio": "Kaira Jewel Lingo is a dharma teacher who spent 15 years as an ordained nun in Thich Nhat Hanh's Plum Village community before returning to lay life. She now teaches internationally, weaving together mindfulness, ecology, and racial justice. Her teaching draws from both the Zen tradition of Thich Nhat Hanh and the vipassana lineage.",
   "photo": null,
   "website": null,
-  "city": null,
-  "state": null,
+  "city": "Durham",
+  "state": "North Carolina",
   "country": "US",
   "latitude": null,
   "longitude": null,
-  "traditions": ["vipassana-movement", "zen"],
+  "traditions": [
+    "vipassana-movement",
+    "zen"
+  ],
   "centers": []
 }

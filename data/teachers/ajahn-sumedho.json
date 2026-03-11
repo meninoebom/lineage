@@ -4,11 +4,15 @@
   "bio": "Ajahn Sumedho, born Robert Jackman, is a senior Western disciple of the Thai forest tradition master Ajahn Chah. He was ordained as a bhikkhu in 1967 and trained in Thailand for ten years. He founded Amaravati Buddhist Monastery in England and was a key figure in establishing the Thai forest tradition in the West. His teachings emphasize the direct investigation of experience and the practice of 'listening to the sound of silence.' He has visited and taught at Buddhist centers throughout the US.",
   "photo": null,
   "website": null,
-  "city": null,
-  "state": null,
-  "country": "GB",
+  "city": "Hemel Hempstead",
+  "state": "England",
+  "country": "UK",
   "latitude": null,
   "longitude": null,
-  "traditions": ["theravada"],
-  "centers": ["abhayagiri-buddhist-monastery"]
+  "traditions": [
+    "theravada"
+  ],
+  "centers": [
+    "abhayagiri-buddhist-monastery"
+  ]
 }

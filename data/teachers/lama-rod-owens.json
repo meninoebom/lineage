@@ -4,11 +4,14 @@
   "bio": "Lama Rod Owens is a Tibetan Buddhist teacher, author, and activist. He is one of the few Black lamas in the Kagyu lineage, having completed a traditional three-year retreat under the guidance of Lama Norlha Rinpoche. His book 'Love and Rage' explores the intersection of Buddhist practice, radical self-care, and social justice.",
   "photo": null,
   "website": null,
-  "city": null,
-  "state": null,
+  "city": "Atlanta",
+  "state": "Georgia",
   "country": "US",
   "latitude": null,
   "longitude": null,
-  "traditions": ["vajrayana", "tibetan-buddhism-gelug"],
+  "traditions": [
+    "vajrayana",
+    "tibetan-buddhism-gelug"
+  ],
   "centers": []
 }
