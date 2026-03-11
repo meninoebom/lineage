@@ -12,8 +12,10 @@ import {
   getTeachersByTradition,
   getCentersByTradition,
   getRelatedTraditions,
+  getResourcesByTradition,
 } from "@/lib/data";
 import { CitationLinks } from "@/components/citation-links";
+import { ResourceList } from "@/components/resource-list";
 import { SuggestEditLink } from "@/components/suggest-edit-link";
 import { traditionJsonLd, SITE_URL } from "@/lib/seo";
 
@@ -45,6 +47,7 @@ export default async function TraditionPage({ params }: { params: Promise<{ slug
   const teachers = getTeachersByTradition(slug);
   const centers = getCentersByTradition(slug);
   const related = getRelatedTraditions(slug);
+  const resources = getResourcesByTradition(slug);
 
   return (
     <PageLayout>
@@ -146,6 +149,8 @@ export default async function TraditionPage({ params }: { params: Promise<{ slug
           </div>
         </section>
       )}
+
+      <ResourceList resources={resources} />
 
       <SuggestEditLink traditionName={tradition.name} />
     </PageLayout>
