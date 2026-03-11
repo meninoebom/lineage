@@ -1,0 +1,13 @@
+{
+  "name": "Barre Center for Buddhist Studies",
+  "slug": "barre-center-for-buddhist-studies",
+  "description": "The Barre Center for Buddhist Studies (BCBS) is a study and retreat center adjacent to the Insight Meditation Society in Barre, Massachusetts. Founded in 1990, BCBS offers courses, study retreats, and self-study programs that combine meditation practice with scholarly study of Buddhist texts and philosophy. It serves as an academic complement to the practice-focused programs at IMS.",
+  "website": "https://www.buddhistinquiry.org",
+  "city": "Barre",
+  "state": "Massachusetts",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["theravada", "early-buddhism"],
+  "teachers": ["stephen-batchelor"]
+}

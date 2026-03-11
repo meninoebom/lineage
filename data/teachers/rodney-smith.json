@@ -1,0 +1,14 @@
+{
+  "name": "Rodney Smith",
+  "slug": "rodney-smith",
+  "bio": "Rodney Smith is a vipassana meditation teacher who founded Seattle Insight Meditation Society. He trained as a Buddhist monk in the Theravada tradition and later became a hospice worker, bringing contemplative awareness to end-of-life care. He is the author of 'Lessons from the Dying' and 'Stepping Out of Self-Deception.' His teaching integrates the Theravada tradition with non-dual awareness.",
+  "photo": null,
+  "website": "https://seattleinsight.org",
+  "city": "Seattle",
+  "state": "Washington",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["theravada", "vipassana-movement"],
+  "centers": ["seattle-insight-meditation-society"]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Sylvia Boorstein",
+  "slug": "sylvia-boorstein",
+  "bio": "Sylvia Boorstein is a co-founding teacher at Spirit Rock Meditation Center and a senior teacher at the Insight Meditation Society. A psychotherapist and author, she is known for her warm, accessible teaching style that integrates mindfulness with everyday life. Her books include 'It's Easier Than You Think' and 'Don't Just Do Something, Sit There.' She has been teaching vipassana meditation since the 1980s.",
+  "photo": null,
+  "website": null,
+  "city": "Sonoma County",
+  "state": "California",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["theravada", "vipassana-movement"],
+  "centers": ["spirit-rock", "insight-meditation-society"]
+}

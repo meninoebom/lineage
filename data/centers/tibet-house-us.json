@@ -1,0 +1,13 @@
+{
+  "name": "Tibet House US",
+  "slug": "tibet-house-us",
+  "description": "Tibet House US is a nonprofit cultural center in New York City, founded in 1987 at the request of the Dalai Lama. It is dedicated to preserving Tibetan civilization and culture. Tibet House offers exhibitions, courses in Tibetan Buddhist philosophy and meditation, public programs, and an annual benefit concert at Carnegie Hall. Robert Thurman is a co-founder.",
+  "website": "https://www.tibethouse.us",
+  "city": "New York",
+  "state": "New York",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["vajrayana", "tibetan-buddhism-gelug"],
+  "teachers": ["robert-thurman"]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Abbey of Gethsemani",
+  "slug": "abbey-of-gethsemani",
+  "description": "The Abbey of Gethsemani is a Trappist monastery in the hills of Kentucky, founded in 1848. It is the oldest Trappist monastery in continuous operation in the United States. The abbey is best known as the home of Thomas Merton, one of the most influential Christian contemplatives of the 20th century. The monks follow the Rule of St. Benedict and offer retreats to guests seeking silence and contemplative prayer. They also produce bourbon fudge and fruitcake.",
+  "website": "https://www.monks.org",
+  "city": "Trappist",
+  "state": "Kentucky",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["christian-mysticism"],
+  "teachers": ["james-finley"]
+}

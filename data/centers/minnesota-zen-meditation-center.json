@@ -1,0 +1,13 @@
+{
+  "name": "Minnesota Zen Meditation Center",
+  "slug": "minnesota-zen-meditation-center",
+  "description": "Minnesota Zen Meditation Center (MZMC) in Minneapolis is one of the oldest Zen centers in the Midwest, founded in 1962 by Dainin Katagiri Roshi, a disciple of Shunryu Suzuki Roshi. The center offers daily zazen, sesshins, study groups, and community practice in the Soto Zen tradition. Katagiri Roshi's books 'Returning to Silence' and 'Each Moment Is the Universe' continue to inspire practitioners.",
+  "website": "https://www.mnzencenter.org",
+  "city": "Minneapolis",
+  "state": "Minnesota",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["zen"],
+  "teachers": []
+}

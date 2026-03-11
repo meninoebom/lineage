@@ -1,0 +1,13 @@
+{
+  "name": "Mt. Baldy Zen Center",
+  "slug": "mount-baldy-zen-center",
+  "description": "Mt. Baldy Zen Center is a Rinzai Zen monastery at 6,500 feet in the San Gabriel Mountains east of Los Angeles. Founded in 1971 by Joshu Sasaki Roshi, it offers intensive residential Zen training, sesshins, and summer practice programs. The center is known for its rigorous training schedule and mountain setting. Leonard Cohen was a famous long-term resident and student here.",
+  "website": "https://www.mbzc.org",
+  "city": "Mt. Baldy",
+  "state": "California",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["zen"],
+  "teachers": []
+}

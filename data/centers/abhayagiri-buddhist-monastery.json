@@ -1,0 +1,13 @@
+{
+  "name": "Abhayagiri Buddhist Monastery",
+  "slug": "abhayagiri-buddhist-monastery",
+  "description": "Abhayagiri Buddhist Monastery is a Thai forest tradition monastery in Redwood Valley, California. Founded in 1996 by Ajahn Sumedho and Ajahn Pasanno, it is one of the few authentic Western monasteries in the lineage of Ajahn Chah. The monastery operates on the traditional model of dana (generosity) — all teachings and stays are offered freely. It sits on 280 acres of meadows and forest in Mendocino County.",
+  "website": "https://www.abhayagiri.org",
+  "city": "Redwood Valley",
+  "state": "California",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["theravada"],
+  "teachers": ["ajahn-pasanno", "ajahn-sumedho"]
+}

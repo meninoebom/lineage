@@ -1,0 +1,14 @@
+{
+  "name": "Mooji",
+  "slug": "mooji",
+  "bio": "Mooji, born Anthony Paul Moo-Young, is a spiritual teacher originally from Jamaica who lives in Portugal. He is a disciple of Sri Harilal Poonja (Papaji), who was himself a devotee of Ramana Maharshi. Mooji's teaching centers on self-inquiry in the Advaita Vedanta tradition, guiding people to recognize their true nature as pure awareness. He founded Monte Sahaja ashram in Portugal and holds satsangs worldwide. While not US-based, he regularly teaches in the US and has a large American following.",
+  "photo": null,
+  "website": "https://mooji.org",
+  "city": null,
+  "state": null,
+  "country": "PT",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["advaita-vedanta", "modern-non-dual"],
+  "centers": []
+}

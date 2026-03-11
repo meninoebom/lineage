@@ -1,0 +1,13 @@
+{
+  "name": "Gampo Abbey",
+  "slug": "gampo-abbey",
+  "description": "Gampo Abbey is a Shambhala Buddhist monastery perched on the cliffs of Cape Breton, Nova Scotia. Founded by Chögyam Trungpa Rinpoche in 1984, it is one of the few Tibetan Buddhist monasteries in North America and was the first Shambhala monastery. Pema Chödrön served as resident teacher for many years. The abbey offers group retreats and individual practice periods.",
+  "website": "https://gampoabbey.org",
+  "city": "Pleasant Bay",
+  "state": "Nova Scotia",
+  "country": "CA",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["vajrayana"],
+  "teachers": ["pema-chodron"]
+}

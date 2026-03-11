@@ -1,0 +1,13 @@
+{
+  "name": "Hsi Lai Temple",
+  "slug": "hsi-lai-temple",
+  "description": "Hsi Lai Temple in Hacienda Heights, California, is one of the largest Buddhist temples in the Western Hemisphere. Built in 1988 by the Fo Guang Shan order, its name means 'Coming to the West.' The temple complex spans 15 acres and features traditional Chinese Buddhist architecture. It offers meditation classes, dharma talks, cultural events, and community programs in the Mahayana tradition.",
+  "website": "https://www.hsilai.org",
+  "city": "Hacienda Heights",
+  "state": "California",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["mahayana", "chan-buddhism"],
+  "teachers": []
+}

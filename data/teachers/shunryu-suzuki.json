@@ -1,0 +1,14 @@
+{
+  "name": "Shunryu Suzuki",
+  "slug": "shunryu-suzuki",
+  "bio": "Shunryu Suzuki (1904–1971) was a Soto Zen monk and teacher who founded the San Francisco Zen Center in 1962, one of the first Zen monasteries outside Asia. He also established Tassajara Zen Mountain Center, the first Zen monastery in the Western Hemisphere. His book 'Zen Mind, Beginner's Mind' is one of the most influential Zen texts in English and has sold millions of copies. His emphasis on 'beginner's mind' (shoshin) and the practice of shikantaza (just sitting) shaped American Zen Buddhism profoundly.",
+  "photo": null,
+  "website": null,
+  "city": "San Francisco",
+  "state": "California",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["zen"],
+  "centers": ["san-francisco-zen-center", "tassajara-zen-mountain-center"]
+}

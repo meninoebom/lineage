@@ -1,0 +1,13 @@
+{
+  "name": "Kadampa Center",
+  "slug": "kadampa-center-raleigh",
+  "description": "Kadampa Center is a Tibetan Buddhist study and meditation center in Raleigh, North Carolina, affiliated with the Foundation for the Preservation of the Mahayana Tradition (FPMT). The center offers courses in Tibetan Buddhist philosophy, meditation classes, retreats, and community events in the Gelug tradition under the spiritual direction of Lama Zopa Rinpoche.",
+  "website": "https://kadampa-center.org",
+  "city": "Raleigh",
+  "state": "North Carolina",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["tibetan-buddhism-gelug"],
+  "teachers": []
+}

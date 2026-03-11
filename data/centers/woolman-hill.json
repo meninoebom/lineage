@@ -1,0 +1,13 @@
+{
+  "name": "Woolman Hill",
+  "slug": "woolman-hill",
+  "description": "Woolman Hill is a Quaker retreat and conference center in Deerfield, Massachusetts. Named after John Woolman, an 18th-century Quaker minister and abolitionist, the center offers retreats, workshops, and gatherings rooted in the Quaker tradition of seeking the Inner Light. Programs emphasize silence, simplicity, social justice, and contemplative practice.",
+  "website": "https://woolmanhill.org",
+  "city": "Deerfield",
+  "state": "Massachusetts",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["quaker-inner-light"],
+  "teachers": []
+}

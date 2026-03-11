@@ -1,0 +1,14 @@
+{
+  "name": "Roshi Joan Halifax",
+  "slug": "roshi-joan-halifax",
+  "bio": "Roshi Joan Halifax is a Zen Buddhist teacher, anthropologist, and author. She is the founder and abbot of Upaya Zen Center in Santa Fe, New Mexico. She received dharma transmission from Roshi Bernie Glassman and has worked extensively at the intersection of Buddhism, social action, and end-of-life care. She is a pioneer in the field of contemplative care for the dying and founded the Being with Dying program. Her books include 'Standing at the Edge' and 'Being with Dying.'",
+  "photo": null,
+  "website": "https://www.upaya.org",
+  "city": "Santa Fe",
+  "state": "New Mexico",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["zen", "mahayana"],
+  "centers": ["upaya-zen-center"]
+}

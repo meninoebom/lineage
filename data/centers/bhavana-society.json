@@ -1,0 +1,13 @@
+{
+  "name": "Bhavana Society",
+  "slug": "bhavana-society",
+  "description": "The Bhavana Society is a Theravada Buddhist monastery and retreat center in High View, West Virginia, founded in 1988 by Bhante Henepola Gunaratana, author of 'Mindfulness in Plain English.' The monastery offers meditation retreats in a forest setting and serves as a training center for monastics. Bhante G's bestselling books have introduced millions to vipassana meditation.",
+  "website": "https://www.bhavanasociety.org",
+  "city": "High View",
+  "state": "West Virginia",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["theravada"],
+  "teachers": []
+}

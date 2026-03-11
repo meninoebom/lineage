@@ -1,0 +1,14 @@
+{
+  "name": "Norman Fischer",
+  "slug": "norman-fischer",
+  "bio": "Norman Fischer is a Zen teacher, poet, and author. He served as co-abbot of the San Francisco Zen Center and later founded the Everyday Zen Foundation. He received dharma transmission in the lineage of Shunryu Suzuki Roshi. He is the author of numerous books including 'Training in Compassion' and 'The World Could Be Otherwise,' and is known for his poetic approach to Zen teachings and his work bringing Zen practice into secular settings.",
+  "photo": null,
+  "website": "https://www.everydayzen.org",
+  "city": "Muir Beach",
+  "state": "California",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["zen"],
+  "centers": ["san-francisco-zen-center"]
+}

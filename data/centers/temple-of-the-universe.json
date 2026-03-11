@@ -1,0 +1,13 @@
+{
+  "name": "Temple of the Universe",
+  "slug": "temple-of-the-universe",
+  "description": "The Temple of the Universe is a yoga and meditation center in Alachua, Florida, founded by Michael Singer in 1975. Open to people of all faiths, the temple hosts weekly meditation services, yoga classes, and special events. The center sits on wooded acreage in north-central Florida and emphasizes the teachings of surrender and witnessing consciousness.",
+  "website": "https://tou.org",
+  "city": "Alachua",
+  "state": "Florida",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["classical-yoga", "vedanta"],
+  "teachers": ["michael-singer"]
+}

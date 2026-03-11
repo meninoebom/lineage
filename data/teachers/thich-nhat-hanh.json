@@ -1,0 +1,14 @@
+{
+  "name": "Thich Nhat Hanh",
+  "slug": "thich-nhat-hanh",
+  "bio": "Thich Nhat Hanh (1926–2022) was a Vietnamese Zen Buddhist monk, peace activist, and one of the most influential spiritual leaders of the modern era. He was a pioneer of engaged Buddhism and founded the Plum Village tradition. Exiled from Vietnam for his peace activism during the war, he was nominated for the Nobel Peace Prize by Martin Luther King Jr. He authored over 100 books including 'The Miracle of Mindfulness' and 'Peace Is Every Step.' He founded monasteries worldwide including Blue Cliff Monastery and Deer Park Monastery in the US.",
+  "photo": null,
+  "website": "https://plumvillage.org",
+  "city": "Escondido",
+  "state": "California",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["zen", "mahayana"],
+  "centers": ["deer-park-monastery", "blue-cliff-monastery", "magnolia-grove-monastery"]
+}

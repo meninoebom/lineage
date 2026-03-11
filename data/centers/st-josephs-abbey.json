@@ -1,0 +1,13 @@
+{
+  "name": "St. Joseph's Abbey",
+  "slug": "st-josephs-abbey",
+  "description": "St. Joseph's Abbey is a Trappist monastery in Spencer, Massachusetts. Founded in 1950, it was the home community of Father Thomas Keating before he moved to Snowmass. The abbey was instrumental in the development of the Centering Prayer movement. The monks produce Spencer Trappist Ale, the first and only certified Trappist beer brewed in the United States. Retreats focus on contemplative prayer.",
+  "website": "https://www.spencerabbey.org",
+  "city": "Spencer",
+  "state": "Massachusetts",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["christian-mysticism"],
+  "teachers": ["father-thomas-keating"]
+}

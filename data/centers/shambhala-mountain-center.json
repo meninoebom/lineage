@@ -1,0 +1,13 @@
+{
+  "name": "Shambhala Mountain Center",
+  "slug": "shambhala-mountain-center",
+  "description": "Shambhala Mountain Center is a retreat center located on 600 acres in the mountains of northern Colorado near Red Feather Lakes. Founded in 1971 by Chögyam Trungpa Rinpoche, it hosts meditation retreats, yoga programs, and contemplative arts in the Shambhala Buddhist tradition. The center features the Great Stupa of Dharmakaya, one of the largest examples of Buddhist sacred architecture in North America.",
+  "website": "https://www.shambhalamountain.org",
+  "city": "Red Feather Lakes",
+  "state": "Colorado",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["vajrayana"],
+  "teachers": ["sakyong-mipham", "david-nichtern"]
+}

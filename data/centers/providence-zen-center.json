@@ -1,0 +1,13 @@
+{
+  "name": "Providence Zen Center",
+  "slug": "providence-zen-center",
+  "description": "Providence Zen Center in Cumberland, Rhode Island, is the head temple of the Kwan Um School of Zen, founded by Zen Master Seung Sahn in 1972. It was one of the first Korean Zen centers in the United States. The center offers residential training, retreats, and daily practice. The campus includes a traditional Korean-style dharma hall and pagoda.",
+  "website": "https://www.providencezen.org",
+  "city": "Cumberland",
+  "state": "Rhode Island",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["zen"],
+  "teachers": []
+}

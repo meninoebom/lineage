@@ -1,0 +1,13 @@
+{
+  "name": "Village Zendo",
+  "slug": "village-zendo",
+  "description": "The Village Zendo is a Zen Buddhist community in downtown Manhattan, New York City. Founded by Roshi Pat Enkyo O'Hara, it offers daily zazen, retreats, study groups, and social action programs in the White Plum Asanga lineage. The Village Zendo is known for its inclusive, urban approach to Zen practice and its engagement with social justice issues.",
+  "website": "https://villagezendo.org",
+  "city": "New York",
+  "state": "New York",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["zen"],
+  "teachers": ["roshi-enkyo-ohara"]
+}

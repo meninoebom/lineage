@@ -1,0 +1,13 @@
+{
+  "name": "Center for Action and Contemplation",
+  "slug": "center-for-action-and-contemplation",
+  "description": "The Center for Action and Contemplation (CAC) is a nonprofit educational center in Albuquerque, New Mexico, founded by Franciscan friar Richard Rohr in 1987. The CAC supports the transformation of individuals and systems through contemplative practice and prophetic action. It produces daily meditations, podcasts, and educational programs drawing on the Christian contemplative tradition. The Living School for Action and Contemplation offers a two-year program in Christian mysticism.",
+  "website": "https://cac.org",
+  "city": "Albuquerque",
+  "state": "New Mexico",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["christian-mysticism"],
+  "teachers": ["richard-rohr", "cynthia-bourgeault", "james-finley"]
+}

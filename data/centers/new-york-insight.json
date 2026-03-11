@@ -1,0 +1,13 @@
+{
+  "name": "New York Insight Meditation Center",
+  "slug": "new-york-insight",
+  "description": "New York Insight Meditation Center is an urban vipassana meditation center in Manhattan. It offers daily meditation sittings, dharma talks, classes, daylong retreats, and community practice. The center makes Insight meditation accessible to New Yorkers and serves as a sangha for practitioners in the city.",
+  "website": "https://nyimc.org",
+  "city": "New York",
+  "state": "New York",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["theravada", "vipassana-movement"],
+  "teachers": []
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Kadampa Meditation Center New York",
+  "slug": "kadampa-meditation-center-new-york",
+  "description": "Kadampa Meditation Center New York is the US headquarters of the New Kadampa Tradition, located in Glen Spey, New York. Set on 72 acres in the Catskill Mountains, the center features a traditional Buddhist temple and offers retreats, meditation courses, and teacher training programs. It hosts the annual US National Festival attracting hundreds of practitioners.",
+  "website": "https://kadampanewyork.org",
+  "city": "Glen Spey",
+  "state": "New York",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["tibetan-buddhism-gelug"],
+  "teachers": []
+}

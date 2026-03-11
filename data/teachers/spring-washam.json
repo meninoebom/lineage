@@ -1,0 +1,14 @@
+{
+  "name": "Spring Washam",
+  "slug": "spring-washam",
+  "bio": "Spring Washam is a meditation and dharma teacher based in Oakland, California. She is a founding member of the East Bay Meditation Center and has trained extensively in the Theravada and Tibetan Buddhist traditions. She is the author of 'A Fierce Heart: Finding Strength, Courage, and Wisdom in Any Moment.' She is known for her work in making meditation accessible to communities of color and for integrating ancestral healing with Buddhist practice.",
+  "photo": null,
+  "website": "https://www.springwasham.com",
+  "city": "Oakland",
+  "state": "California",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["theravada", "vipassana-movement"],
+  "centers": ["east-bay-meditation-center", "spirit-rock"]
+}

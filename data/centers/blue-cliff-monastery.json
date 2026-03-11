@@ -1,0 +1,13 @@
+{
+  "name": "Blue Cliff Monastery",
+  "slug": "blue-cliff-monastery",
+  "description": "Blue Cliff Monastery is a Plum Village practice center in Pine Bush, New York, in the Hudson Valley. Founded in 2007 by Thich Nhat Hanh, it is home to monks and nuns practicing in the Plum Village tradition. The monastery offers public Days of Mindfulness, retreats, and residential practice. It sits on 80 acres of meadows and woods in the foothills of the Shawangunk Mountains.",
+  "website": "https://bluecliffmonastery.org",
+  "city": "Pine Bush",
+  "state": "New York",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["zen", "mahayana"],
+  "teachers": ["thich-nhat-hanh"]
+}

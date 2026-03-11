@@ -1,0 +1,13 @@
+{
+  "name": "San Francisco Zen Center",
+  "slug": "san-francisco-zen-center",
+  "description": "San Francisco Zen Center (SFZC) is one of the largest Soto Zen communities outside Asia. Founded by Shunryu Suzuki Roshi in 1962, it includes three practice places: City Center (Beginner's Mind Temple) in San Francisco, Green Gulch Farm Zen Center in Muir Beach, and Tassajara Zen Mountain Center in Carmel Valley. SFZC has been central to the development of Zen practice in America and offers residential practice, retreats, classes, and public programs.",
+  "website": "https://www.sfzc.org",
+  "city": "San Francisco",
+  "state": "California",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["zen"],
+  "teachers": ["shunryu-suzuki", "norman-fischer", "tenshin-reb-anderson"]
+}

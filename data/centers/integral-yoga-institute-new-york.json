@@ -1,0 +1,13 @@
+{
+  "name": "Integral Yoga Institute New York",
+  "slug": "integral-yoga-institute-new-york",
+  "description": "Integral Yoga Institute in New York City is one of the leading yoga centers in Manhattan, founded in the tradition of Sri Swami Satchidananda. The institute offers daily yoga classes, meditation, teacher training, and wellness programs. It follows the Integral Yoga system, which synthesizes various branches of yoga including Hatha, Raja, Bhakti, Karma, and Jnana yoga.",
+  "website": "https://iyiny.org",
+  "city": "New York",
+  "state": "New York",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["classical-yoga", "bhakti"],
+  "teachers": []
+}

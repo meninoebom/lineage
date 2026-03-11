@@ -1,0 +1,13 @@
+{
+  "name": "East Bay Meditation Center",
+  "slug": "east-bay-meditation-center",
+  "description": "East Bay Meditation Center (EBMC) is a community meditation center in downtown Oakland, California. Founded in 2007, it is dedicated to making meditation accessible to diverse communities, particularly people of color, LGBTQ+ individuals, and those with disabilities. EBMC offers sitting groups, classes, and retreats rooted in Buddhist and other contemplative traditions. All programs operate on a dana (generosity) basis.",
+  "website": "https://eastbaymeditation.org",
+  "city": "Oakland",
+  "state": "California",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["theravada", "vipassana-movement"],
+  "teachers": ["spring-washam"]
+}

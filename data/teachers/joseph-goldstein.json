@@ -1,0 +1,14 @@
+{
+  "name": "Joseph Goldstein",
+  "slug": "joseph-goldstein",
+  "bio": "Joseph Goldstein is a co-founder of the Insight Meditation Society (IMS) in Barre, Massachusetts, and one of the first American vipassana teachers. He began practicing meditation in 1967 as a Peace Corps volunteer in Thailand and went on to study with renowned teachers including Anagarika Munindra, S.N. Goenka, and Sayadaw U Pandita. He is the author of several influential books including 'Mindfulness: A Practical Guide to Awakening' and 'The Experience of Insight.' He continues to teach retreats and guide practitioners at IMS.",
+  "photo": null,
+  "website": "https://www.dharma.org",
+  "city": "Barre",
+  "state": "Massachusetts",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["theravada", "vipassana-movement"],
+  "centers": ["insight-meditation-society"]
+}

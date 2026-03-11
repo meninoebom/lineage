@@ -1,0 +1,13 @@
+{
+  "name": "Tara Mandala",
+  "slug": "tara-mandala",
+  "description": "Tara Mandala is a Tibetan Buddhist retreat center founded by Tsultrim Allione in 1993, located on 700 acres in the San Juan Mountains near Pagosa Springs, Colorado. The center is dedicated to the feminine principle in Buddhism and hosts retreats, teachings, and long-term practice programs. Its centerpiece is the Tara Temple, a three-story shrine room designed in traditional Tibetan style.",
+  "website": "https://www.taramandala.org",
+  "city": "Pagosa Springs",
+  "state": "Colorado",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["vajrayana"],
+  "teachers": ["tsultrim-allione"]
+}

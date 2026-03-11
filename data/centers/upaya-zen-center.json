@@ -1,0 +1,13 @@
+{
+  "name": "Upaya Zen Center",
+  "slug": "upaya-zen-center",
+  "description": "Upaya Zen Center is a Buddhist monastery, temple, and retreat center founded by Roshi Joan Halifax in 1990 in Santa Fe, New Mexico. The center offers Zen meditation training, residential programs, and public talks. Upaya is known for its programs on contemplative end-of-life care and engaged Buddhism. The center sits on 16 acres at the base of the Sangre de Cristo Mountains.",
+  "website": "https://www.upaya.org",
+  "city": "Santa Fe",
+  "state": "New Mexico",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["zen"],
+  "teachers": ["roshi-joan-halifax"]
+}

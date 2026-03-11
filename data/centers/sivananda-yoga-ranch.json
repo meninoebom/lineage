@@ -1,0 +1,13 @@
+{
+  "name": "Sivananda Yoga Ranch",
+  "slug": "sivananda-yoga-ranch",
+  "description": "The Sivananda Yoga Ranch is a yoga and meditation ashram in Woodbourne, New York, in the Catskill Mountains. It is part of the international network of Sivananda Yoga Vedanta Centers founded by Swami Vishnudevananda. The ashram offers yoga teacher training, weekend retreats, and daily classes in classical yoga, including asana, pranayama, meditation, and Vedantic philosophy.",
+  "website": "https://sivanandayogaranch.org",
+  "city": "Woodbourne",
+  "state": "New York",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["classical-yoga", "vedanta"],
+  "teachers": []
+}

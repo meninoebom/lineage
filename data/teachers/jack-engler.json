@@ -1,0 +1,14 @@
+{
+  "name": "Jack Engler",
+  "slug": "jack-engler",
+  "bio": "Jack Engler is a clinical psychologist and vipassana meditation teacher. He is a contributing editor and teacher at the Insight Meditation Society and has studied in the Theravada tradition in Burma and India. He is known for his integration of Western psychology and Buddhist meditation practice, and for his statement 'You have to be somebody before you can be nobody,' which became influential in the dialogue between psychotherapy and meditation. He co-authored 'Transformations of Consciousness.'",
+  "photo": null,
+  "website": null,
+  "city": "Cambridge",
+  "state": "Massachusetts",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["theravada", "vipassana-movement"],
+  "centers": ["insight-meditation-society"]
+}

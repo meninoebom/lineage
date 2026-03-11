@@ -1,0 +1,13 @@
+{
+  "name": "Garrison Institute",
+  "slug": "garrison-institute",
+  "description": "The Garrison Institute is a nonprofit retreat and conference center in Garrison, New York, housed in a former Capuchin monastery overlooking the Hudson River. Founded in 2003, it hosts retreats from diverse contemplative traditions and convenes leaders at the intersection of contemplative practice and civic life. The institute explores the application of contemplative practices to social and environmental issues.",
+  "website": "https://www.garrisoninstitute.org",
+  "city": "Garrison",
+  "state": "New York",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["vipassana-movement", "secular-mindfulness"],
+  "teachers": []
+}

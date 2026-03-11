@@ -1,0 +1,14 @@
+{
+  "name": "Sharon Salzberg",
+  "slug": "sharon-salzberg",
+  "bio": "Sharon Salzberg is a co-founder of the Insight Meditation Society and one of America's most beloved meditation teachers. She began studying meditation in India in 1971 and has been teaching since 1974. She is particularly known for her teachings on lovingkindness (metta) meditation and is the author of numerous books including 'Lovingkindness: The Revolutionary Art of Happiness' and 'Real Happiness.' She hosts the 'Metta Hour' podcast and continues to teach worldwide.",
+  "photo": null,
+  "website": "https://www.sharonsalzberg.com",
+  "city": "New York",
+  "state": "New York",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["theravada", "vipassana-movement"],
+  "centers": ["insight-meditation-society"]
+}

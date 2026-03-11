@@ -1,0 +1,13 @@
+{
+  "name": "Cloud Mountain Retreat Center",
+  "slug": "cloud-mountain-retreat-center",
+  "description": "Cloud Mountain Retreat Center is a nonprofit retreat center in Castle Rock, Washington, offering meditation retreats from diverse Buddhist traditions and other contemplative paths. Founded in 1984, the center hosts teachers from Theravada, Zen, Tibetan, and secular mindfulness traditions on its forested 90-acre campus in the Cascade foothills.",
+  "website": "https://www.cloudmountain.org",
+  "city": "Castle Rock",
+  "state": "Washington",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["vipassana-movement", "zen"],
+  "teachers": []
+}

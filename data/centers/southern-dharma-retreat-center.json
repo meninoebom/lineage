@@ -1,0 +1,13 @@
+{
+  "name": "Southern Dharma Retreat Center",
+  "slug": "southern-dharma-retreat-center",
+  "description": "Southern Dharma Retreat Center is a contemplative retreat center on 52 acres in the mountains of western North Carolina near Hot Springs. Founded in 1978, it offers meditation retreats from diverse traditions including Buddhism, yoga, Sufism, and Christian contemplation. The center's mission is to support individual and collective awakening through contemplative practice.",
+  "website": "https://www.southerndharma.org",
+  "city": "Hot Springs",
+  "state": "North Carolina",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["vipassana-movement", "zen", "classical-yoga"],
+  "teachers": []
+}

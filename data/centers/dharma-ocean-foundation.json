@@ -1,0 +1,13 @@
+{
+  "name": "Dharma Ocean Foundation",
+  "slug": "dharma-ocean-foundation",
+  "description": "Dharma Ocean Foundation is a nonprofit educational organization founded by Reggie Ray, based in Crestone, Colorado. It offers meditation retreats and programs emphasizing somatic meditation — a body-based approach to Tibetan Buddhist practice. The foundation draws on the teachings of Chögyam Trungpa Rinpoche and the Kagyu and Nyingma lineages.",
+  "website": "https://www.dharmaocean.org",
+  "city": "Crestone",
+  "state": "Colorado",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["vajrayana"],
+  "teachers": ["reggie-ray"]
+}

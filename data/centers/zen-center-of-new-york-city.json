@@ -1,0 +1,13 @@
+{
+  "name": "Zen Center of New York City",
+  "slug": "zen-center-of-new-york-city",
+  "description": "The Zen Center of New York City (Fire Lotus Zendo) is a residential Zen community in Brooklyn. It is part of the Mountains and Rivers Order founded by John Daido Loori Roshi. The center offers daily zazen, sesshins, study programs, and arts and Zen workshops. It serves as an urban complement to Zen Mountain Monastery in the Catskills.",
+  "website": "https://zmm.org/zcnyc",
+  "city": "Brooklyn",
+  "state": "New York",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["zen"],
+  "teachers": []
+}

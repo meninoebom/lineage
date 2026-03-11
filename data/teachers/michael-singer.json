@@ -1,0 +1,14 @@
+{
+  "name": "Michael Singer",
+  "slug": "michael-singer",
+  "bio": "Michael Singer is a spiritual teacher and author best known for his books 'The Untethered Soul' and 'The Surrender Experiment,' both of which became New York Times bestsellers. He founded the Temple of the Universe, a yoga and meditation center in Alachua, Florida, that has been open to people of all faiths since 1975. His teachings draw on classical yoga and meditation traditions, emphasizing the witness consciousness and the practice of letting go.",
+  "photo": null,
+  "website": "https://tou.org",
+  "city": "Alachua",
+  "state": "Florida",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["classical-yoga", "vedanta"],
+  "centers": ["temple-of-the-universe"]
+}

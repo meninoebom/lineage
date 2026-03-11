@@ -1,0 +1,13 @@
+{
+  "name": "Green Gulch Farm Zen Center",
+  "slug": "green-gulch-farm",
+  "description": "Green Gulch Farm Zen Center, also known as Green Dragon Temple, is a Soto Zen practice center and organic farm in Muir Beach, California. It is one of the three practice places of the San Francisco Zen Center. The center integrates Zen practice with organic farming, environmental education, and community life. It offers public programs, retreats, guest accommodations, and a Sunday program open to all.",
+  "website": "https://www.sfzc.org/green-gulch",
+  "city": "Muir Beach",
+  "state": "California",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["zen"],
+  "teachers": ["norman-fischer"]
+}

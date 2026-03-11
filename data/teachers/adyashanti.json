@@ -1,0 +1,14 @@
+{
+  "name": "Adyashanti",
+  "slug": "adyashanti",
+  "bio": "Adyashanti is an American spiritual teacher from the San Francisco Bay Area. Born Steven Gray, he studied Zen Buddhism for 14 years under Arvis Joen Justi before experiencing a series of transformative awakenings. He began teaching in 1996 at the request of his teacher and is known for his direct, non-dogmatic approach that draws from Zen, Advaita Vedanta, and Christian mysticism. He is the author of 'The End of Your World,' 'Emptiness Dancing,' and 'Falling into Grace.' He teaches through Open Gate Sangha.",
+  "photo": null,
+  "website": "https://www.adyashanti.org",
+  "city": "San Jose",
+  "state": "California",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["zen", "modern-non-dual", "advaita-vedanta"],
+  "centers": []
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Tenzin Wangyal Rinpoche",
+  "slug": "tenzin-wangyal-rinpoche",
+  "bio": "Tenzin Wangyal Rinpoche is a Tibetan Buddhist teacher of the Bön tradition and a lineage holder of Bön Dzogchen. He is the founder of Ligmincha International and the author of several books including 'The Tibetan Yogas of Dream and Sleep' and 'Waking the Luminous Mind.' Born in India to Tibetan refugee parents, he was recognized as the reincarnation of a renowned Bön teacher and trained at Menri Monastery. He is based in Charlottesville, Virginia.",
+  "photo": null,
+  "website": "https://www.ligmincha.org",
+  "city": "Charlottesville",
+  "state": "Virginia",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["dzogchen", "vajrayana"],
+  "centers": ["ligmincha-international"]
+}
