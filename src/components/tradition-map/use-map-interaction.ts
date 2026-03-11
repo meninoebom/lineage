@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import type { TraditionGraph } from "@/lib/tradition-graph";
 import type { ConnectionType } from "@/lib/types";
@@ -20,6 +20,8 @@ export function useMapInteraction(graph: TraditionGraph) {
   const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
   const [hoveredEdgeKey, setHoveredEdgeKey] = useState<string | null>(null);
+  // Source bibliography hover — highlights all edges citing this resource
+  const [highlightedSourceSlug, setHighlightedSourceSlug] = useState<string | null>(null);
 
   const activeSlug = hoveredSlug ?? selectedSlug;
 
@@ -58,16 +60,40 @@ export function useMapInteraction(graph: TraditionGraph) {
     setSelectedSlug(null);
   }, []);
 
+  // Delayed edge unhover — gives user time to move mouse to the tooltip
+  const edgeHideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   const handleEdgeHover = useCallback(
     (source: string | null, target: string | null) => {
+      if (edgeHideTimer.current) {
+        clearTimeout(edgeHideTimer.current);
+        edgeHideTimer.current = null;
+      }
       if (source && target) {
         setHoveredEdgeKey(`${source}--${target}`);
       } else {
-        setHoveredEdgeKey(null);
+        // Delay hiding so user can move mouse to tooltip
+        edgeHideTimer.current = setTimeout(() => {
+          setHoveredEdgeKey(null);
+        }, 300);
       }
     },
     []
   );
+
+  // Allow tooltip itself to keep the edge hovered
+  const handleTooltipEnter = useCallback(() => {
+    if (edgeHideTimer.current) {
+      clearTimeout(edgeHideTimer.current);
+      edgeHideTimer.current = null;
+    }
+  }, []);
+
+  const handleTooltipLeave = useCallback(() => {
+    edgeHideTimer.current = setTimeout(() => {
+      setHoveredEdgeKey(null);
+    }, 200);
+  }, []);
 
   const isNodeHighlighted = useCallback(
     (slug: string) => slug === activeSlug,
@@ -79,22 +105,54 @@ export function useMapInteraction(graph: TraditionGraph) {
     [connectedSlugs]
   );
 
+  // Nodes connected to source-cited edges
+  const sourceNodeSlugs = useMemo(() => {
+    if (!highlightedSourceSlug) return new Set<string>();
+    const slugs = new Set<string>();
+    for (const edge of graph.edges) {
+      if (edge.sources?.includes(highlightedSourceSlug)) {
+        slugs.add(edge.source);
+        slugs.add(edge.target);
+      }
+    }
+    return slugs;
+  }, [graph, highlightedSourceSlug]);
+
   const isNodeDimmed = useCallback(
-    (slug: string) =>
-      activeSlug !== null && slug !== activeSlug && !connectedSlugs.has(slug),
-    [activeSlug, connectedSlugs]
+    (slug: string) => {
+      if (highlightedSourceSlug) return !sourceNodeSlugs.has(slug);
+      return activeSlug !== null && slug !== activeSlug && !connectedSlugs.has(slug);
+    },
+    [activeSlug, connectedSlugs, highlightedSourceSlug, sourceNodeSlugs]
   );
 
+  // Edges that cite the highlighted source
+  const sourceEdgeKeys = useMemo(() => {
+    if (!highlightedSourceSlug) return new Set<string>();
+    const keys = new Set<string>();
+    for (const edge of graph.edges) {
+      if (edge.sources?.includes(highlightedSourceSlug)) {
+        keys.add(`${edge.source}--${edge.target}`);
+      }
+    }
+    return keys;
+  }, [graph, highlightedSourceSlug]);
+
   const isEdgeHighlighted = useCallback(
-    (source: string, target: string) =>
-      connectedEdgeKeys.has(`${source}--${target}`),
-    [connectedEdgeKeys]
+    (source: string, target: string) => {
+      const key = `${source}--${target}`;
+      return connectedEdgeKeys.has(key) || sourceEdgeKeys.has(key);
+    },
+    [connectedEdgeKeys, sourceEdgeKeys]
   );
 
   const isEdgeDimmed = useCallback(
-    (source: string, target: string) =>
-      activeSlug !== null && !connectedEdgeKeys.has(`${source}--${target}`),
-    [activeSlug, connectedEdgeKeys]
+    (source: string, target: string) => {
+      const key = `${source}--${target}`;
+      if (highlightedSourceSlug) return !sourceEdgeKeys.has(key);
+      return activeSlug !== null && !connectedEdgeKeys.has(key);
+    },
+    [activeSlug, connectedEdgeKeys, highlightedSourceSlug, sourceEdgeKeys]
   );
 
   /**
@@ -121,6 +179,10 @@ export function useMapInteraction(graph: TraditionGraph) {
     handleNodeSelect,
     handleBackgroundTap,
     handleEdgeHover,
+    handleTooltipEnter,
+    handleTooltipLeave,
+    highlightedSourceSlug,
+    setHighlightedSourceSlug,
     isNodeHighlighted,
     isNodeConnected,
     isNodeDimmed,

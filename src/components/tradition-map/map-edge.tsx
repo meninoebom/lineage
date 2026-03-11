@@ -12,6 +12,8 @@ interface MapEdgeProps {
   hidden: boolean;
   showTooltip: boolean;
   onEdgeHover: (source: string | null, target: string | null) => void;
+  onTooltipEnter: () => void;
+  onTooltipLeave: () => void;
   /** Entrance animation delay in ms — edge draws in after connected nodes appear */
   entranceDelay?: number;
   resourceMap?: ResourceMap;
@@ -67,6 +69,8 @@ export function MapEdge({
   hidden,
   showTooltip,
   onEdgeHover,
+  onTooltipEnter,
+  onTooltipLeave,
   entranceDelay = 0,
   resourceMap = {},
 }: MapEdgeProps) {
@@ -166,9 +170,11 @@ export function MapEdge({
             y={midY - 80}
             width={320}
             height={hasSource ? 140 : 100}
-            style={{ pointerEvents: "none", overflow: "visible" }}
+            style={{ overflow: "visible" }}
           >
             <div
+              onMouseEnter={onTooltipEnter}
+              onMouseLeave={onTooltipLeave}
               style={{
                 background: "#f5f0eb",
                 border: "1px solid #d4cdc4",
@@ -191,7 +197,6 @@ export function MapEdge({
                     borderTop: "1px solid #d4cdc4",
                     fontSize: 11,
                     color: "#7a7570",
-                    pointerEvents: "auto",
                   }}
                 >
                   <span style={{ fontStyle: "italic" }}>Source: </span>

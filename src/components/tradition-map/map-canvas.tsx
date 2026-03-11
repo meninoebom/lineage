@@ -14,6 +14,8 @@ interface MapCanvasProps {
   onNodeHover: (slug: string | null) => void;
   onNodeClick: (slug: string) => void;
   onEdgeHover: (source: string | null, target: string | null) => void;
+  onTooltipEnter: () => void;
+  onTooltipLeave: () => void;
   hoveredEdgeKey: string | null;
   isNodeHighlighted: (slug: string) => boolean;
   isNodeConnected: (slug: string) => boolean;
@@ -38,6 +40,8 @@ export function MapCanvas({
   onNodeHover,
   onNodeClick,
   onEdgeHover,
+  onTooltipEnter,
+  onTooltipLeave,
   hoveredEdgeKey,
   isNodeHighlighted,
   isNodeConnected,
@@ -132,6 +136,8 @@ export function MapCanvas({
             hidden={isEdgeHidden(edge.source, edge.target, edge.connectionType)}
             showTooltip={hoveredEdgeKey === edgeKey}
             onEdgeHover={onEdgeHover}
+            onTooltipEnter={onTooltipEnter}
+            onTooltipLeave={onTooltipLeave}
             entranceDelay={edgeDelays.get(edgeKey) ?? 0}
             resourceMap={resourceMap}
           />

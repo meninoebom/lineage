@@ -74,6 +74,30 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
   }, []);
 
   const fullGraph = useMemo(() => buildTraditionGraph(traditions), [traditions]);
+
+  // Collect all sources cited by edges, with the connections they support
+  const sourcedEdges = useMemo(() => {
+    const sourceMap = new Map<string, { edgeKeys: string[]; connections: string[] }>();
+    for (const edge of fullGraph.edges) {
+      if (!edge.sources) continue;
+      const sourceNode = fullGraph.nodes.find((n) => n.slug === edge.source);
+      const targetNode = fullGraph.nodes.find((n) => n.slug === edge.target);
+      const connectionLabel = sourceNode && targetNode
+        ? `${sourceNode.name} → ${targetNode.name}`
+        : `${edge.source} → ${edge.target}`;
+      for (const slug of edge.sources) {
+        const existing = sourceMap.get(slug);
+        const edgeKey = `${edge.source}--${edge.target}`;
+        if (existing) {
+          existing.edgeKeys.push(edgeKey);
+          existing.connections.push(connectionLabel);
+        } else {
+          sourceMap.set(slug, { edgeKeys: [edgeKey], connections: [connectionLabel] });
+        }
+      }
+    }
+    return sourceMap;
+  }, [fullGraph]);
   const allFamilies = useMemo(() => getFamilies(fullGraph), [fullGraph]);
 
   const [activeFamilies, setActiveFamilies] = useState<Set<TraditionFamily>>(
@@ -177,6 +201,8 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
             onNodeHover={nodeHoverHandler}
             onNodeClick={nodeClickHandler}
             onEdgeHover={interaction.handleEdgeHover}
+            onTooltipEnter={interaction.handleTooltipEnter}
+            onTooltipLeave={interaction.handleTooltipLeave}
             hoveredEdgeKey={interaction.hoveredEdgeKey}
             isNodeHighlighted={interaction.isNodeHighlighted}
             isNodeConnected={interaction.isNodeConnected}
@@ -219,6 +245,54 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
           Related
         </span>
       </div>
+
+      {/* Sources bibliography */}
+      {sourcedEdges.size > 0 && (
+        <section className="mt-12 max-w-2xl mx-auto">
+          <h2 className="text-lg font-normal mb-4 text-center" style={{ fontFamily: "Georgia, serif" }}>
+            Sources
+          </h2>
+          <p className="text-sm text-muted-foreground text-center mb-6">
+            Hover over a source to see which connections it supports on the map.
+          </p>
+          <ul className="space-y-3">
+            {Array.from(sourcedEdges.entries()).map(([slug, info]) => {
+              const resource = resourceMap[slug];
+              if (!resource) return null;
+              const isActive = interaction.highlightedSourceSlug === slug;
+              return (
+                <li
+                  key={slug}
+                  className="group rounded-md px-4 py-3 transition-colors cursor-default"
+                  style={{
+                    background: isActive ? "#f0e8df" : "transparent",
+                    border: `1px solid ${isActive ? "#d4cdc4" : "transparent"}`,
+                  }}
+                  onMouseEnter={() => interaction.setHighlightedSourceSlug(slug)}
+                  onMouseLeave={() => interaction.setHighlightedSourceSlug(null)}
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <a
+                        href={resource.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-medium hover:text-primary transition-colors"
+                        style={{ fontFamily: "Georgia, serif", color: "#4a4540" }}
+                      >
+                        <em>{resource.title}</em> ↗
+                      </a>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        Supports: {info.connections.join(", ")}
+                      </p>
+                    </div>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      )}
     </div>
   );
 }
