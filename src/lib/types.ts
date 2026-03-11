@@ -14,6 +14,7 @@ export interface TraditionConnection {
   connection_type: ConnectionType;
   description: string;
   strength?: 1 | 2 | 3;
+  sources?: string[];
 }
 
 export interface Tradition {

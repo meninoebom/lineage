@@ -175,7 +175,13 @@ function isValidTraditionFrontmatter(
     typeof data.family === "string" &&
     typeof data.summary === "string" &&
     typeof data.origin_century === "number" &&
-    Array.isArray(data.connections)
+    Array.isArray(data.connections) &&
+    (data.connections as Record<string, unknown>[]).every(
+      (c) =>
+        c.sources === undefined ||
+        (Array.isArray(c.sources) &&
+          (c.sources as unknown[]).every((s) => typeof s === "string"))
+    )
   );
 }
 
