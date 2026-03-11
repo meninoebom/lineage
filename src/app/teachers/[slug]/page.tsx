@@ -5,7 +5,8 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { JsonLd } from "@/components/json-ld";
-import { getAllTeachers, getTeacher, getCenter, getTradition } from "@/lib/data";
+import { ResourceList } from "@/components/resource-list";
+import { getAllTeachers, getTeacher, getCenter, getTradition, getResourcesByTeacher } from "@/lib/data";
 import { teacherJsonLd, SITE_URL } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -36,6 +37,7 @@ export default async function TeacherPage({ params }: { params: Promise<{ slug: 
   const teacher = getTeacher(slug);
   if (!teacher) notFound();
 
+  const resources = getResourcesByTeacher(slug);
   const traditions = teacher.traditions
     .map((s) => getTradition(s))
     .filter((t): t is NonNullable<typeof t> => t != null);
@@ -85,6 +87,9 @@ export default async function TeacherPage({ params }: { params: Promise<{ slug: 
           <h2 className="mb-4">About</h2>
           <p className="leading-relaxed text-secondary-foreground">{teacher.bio}</p>
         </section>
+
+        {/* Resources */}
+        <ResourceList resources={resources} />
 
         {/* Centers */}
         {centers.length > 0 && (
