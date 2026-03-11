@@ -59,6 +59,7 @@ export interface Center {
   name: string;
   slug: string;
   description: string;
+  photo: string | null;
   website: string | null;
   city: string;
   state: string;
