@@ -22,6 +22,8 @@ function isTeacher(obj: unknown): obj is Teacher {
     typeof t.name === "string" &&
     typeof t.slug === "string" &&
     typeof t.bio === "string" &&
+    (t.birth_year === null || t.birth_year === undefined || typeof t.birth_year === "number") &&
+    (t.death_year === null || t.death_year === undefined || typeof t.death_year === "number") &&
     typeof t.city === "string" &&
     typeof t.state === "string" &&
     typeof t.country === "string" &&

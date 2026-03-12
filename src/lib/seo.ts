@@ -37,6 +37,8 @@ export function teacherJsonLd(teacher: Teacher): Record<string, unknown> {
     url: `${SITE_URL}/teachers/${teacher.slug}`,
     description: teacher.bio,
     ...(teacher.website && { sameAs: [teacher.website] }),
+    ...(teacher.birth_year && { birthDate: `${teacher.birth_year}` }),
+    ...(teacher.death_year && { deathDate: `${teacher.death_year}` }),
     address: {
       "@type": "PostalAddress",
       addressLocality: teacher.city,
