@@ -3,6 +3,7 @@ import type { TraditionGraph } from "@/lib/tradition-graph";
 import type { ConnectionType } from "@/lib/types";
 import { yearToY, type LayoutMap } from "@/lib/compute-layout";
 import { MapEdge } from "./map-edge";
+import { MapEdgeTooltip } from "./map-edge-tooltip";
 import { MapNode } from "./map-node";
 import { MapTimeAxis } from "./map-time-axis";
 import type { ResourceMap } from "./tradition-map";
@@ -90,9 +91,14 @@ export function MapCanvas({
   const xMin = Math.min(...xValues);
   const xMax = Math.max(...xValues);
 
+  // Find the hovered edge for tooltip rendering
+  const hoveredEdge = hoveredEdgeKey
+    ? graph.edges.find((e) => `${e.source}--${e.target}` === hoveredEdgeKey)
+    : null;
+
   return (
     <>
-      {/* Time axis with era labels and grid lines — rendered first (behind everything) */}
+      {/* Layer 1: Time axis (behind everything) */}
       <MapTimeAxis
         x={xMin - 110}
         yMin={yMin - 20}
@@ -102,7 +108,7 @@ export function MapCanvas({
         xMax={xMax + 60}
       />
 
-      {/* Edges */}
+      {/* Layer 2: Edge paths */}
       {graph.edges.map((edge) => {
         const sourcePos = layout[edge.source];
         const targetPos = layout[edge.target];
@@ -117,17 +123,13 @@ export function MapCanvas({
             highlighted={isEdgeHighlighted(edge.source, edge.target)}
             dimmed={isEdgeDimmed(edge.source, edge.target)}
             hidden={isEdgeHidden(edge.source, edge.target, edge.connectionType)}
-            showTooltip={hoveredEdgeKey === edgeKey}
             onEdgeHover={onEdgeHover}
-            onTooltipEnter={onTooltipEnter}
-            onTooltipLeave={onTooltipLeave}
             entranceDelay={edgeDelays.get(edgeKey) ?? 0}
-            resourceMap={resourceMap}
           />
         );
       })}
 
-      {/* Nodes */}
+      {/* Layer 3: Nodes */}
       {graph.nodes.map((node) => {
         const pos = layout[node.slug];
         if (!pos) return null;
@@ -146,6 +148,23 @@ export function MapCanvas({
           />
         );
       })}
+
+      {/* Layer 4: Tooltips/popovers (topmost) */}
+      {hoveredEdge && (() => {
+        const sourcePos = layout[hoveredEdge.source];
+        const targetPos = layout[hoveredEdge.target];
+        if (!sourcePos || !targetPos) return null;
+        return (
+          <MapEdgeTooltip
+            edge={hoveredEdge}
+            sourcePos={sourcePos}
+            targetPos={targetPos}
+            onTooltipEnter={onTooltipEnter}
+            onTooltipLeave={onTooltipLeave}
+            resourceMap={resourceMap}
+          />
+        );
+      })()}
     </>
   );
 }
