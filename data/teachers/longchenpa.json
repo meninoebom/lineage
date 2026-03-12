@@ -1,0 +1,16 @@
+{
+  "name": "Longchenpa",
+  "slug": "longchenpa",
+  "bio": "Longchenpa (1308–1364) was a Tibetan Buddhist master and scholar regarded as one of the most brilliant minds in the Nyingma tradition. His masterwork, the 'Seven Treasuries,' systematized the Dzogchen teachings into a comprehensive philosophical and meditative framework. His writings remain foundational texts for the study and practice of the Great Perfection.",
+  "photo": null,
+  "website": null,
+  "birth_year": 1308,
+  "death_year": 1364,
+  "city": "Gangri Thokar",
+  "state": "Central Tibet",
+  "country": "CN",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["dzogchen", "vajrayana"],
+  "centers": []
+}

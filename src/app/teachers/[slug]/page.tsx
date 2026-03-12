@@ -9,6 +9,13 @@ import { JsonLd } from "@/components/json-ld";
 import { ResourceList } from "@/components/resource-list";
 import { getAllTeachers, getTeacher, getCenter, getTradition, getResourcesByTeacher } from "@/lib/data";
 import { teacherJsonLd, SITE_URL } from "@/lib/seo";
+import type { Teacher } from "@/lib/types";
+
+function formatYears(teacher: Teacher): string | null {
+  if (teacher.birth_year && teacher.death_year) return `${teacher.birth_year}–${teacher.death_year}`;
+  if (teacher.birth_year) return `b. ${teacher.birth_year}`;
+  return null;
+}
 
 export function generateStaticParams() {
   return getAllTeachers().map((t) => ({ slug: t.slug }));
@@ -71,7 +78,14 @@ export default async function TeacherPage({ params }: { params: Promise<{ slug: 
             </div>
           )}
           <div>
-          <h1 className="mb-3">{teacher.name}</h1>
+          <h1 className="mb-3">
+            {teacher.name}
+            {formatYears(teacher) && (
+              <span className="font-sans text-lg text-muted-foreground ml-3">
+                ({formatYears(teacher)})
+              </span>
+            )}
+          </h1>
           <p className="font-sans text-sm text-muted-foreground mb-4">
             {teacher.city}, {teacher.state}
             {teacher.country !== "US" && ` · ${teacher.country}`}

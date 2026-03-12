@@ -1,0 +1,16 @@
+{
+  "name": "St. Teresa of Avila",
+  "slug": "st-teresa-of-avila",
+  "bio": "St. Teresa of Avila (1515–1582) was a Spanish Carmelite nun, mystic, and Doctor of the Church whose 'Interior Castle' mapped the stages of contemplative prayer with remarkable psychological insight. She reformed the Carmelite order, founding the Discalced Carmelites alongside St. John of the Cross. Her writings on the soul's journey through prayer remain central to Christian contemplative practice.",
+  "photo": null,
+  "website": null,
+  "birth_year": 1515,
+  "death_year": 1582,
+  "city": "Avila",
+  "state": "Castile and León",
+  "country": "ES",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["christian-mysticism"],
+  "centers": []
+}

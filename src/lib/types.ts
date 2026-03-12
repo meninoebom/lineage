@@ -31,6 +31,8 @@ export interface Teacher {
   bio: string;
   photo: string | null;
   website: string | null;
+  birth_year: number | null;
+  death_year: number | null;
   city: string;
   state: string;
   country: string;
