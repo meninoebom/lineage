@@ -2,11 +2,13 @@
   "title": "The Interior Castle",
   "slug": "interior-castle",
   "type": "book",
-  "url": "https://bookshop.org/p/books/interior-castle-teresa-of-avila/11380218",
+  "url": "https://bookshop.org/p/books/interior-castle-teresa-of-avila/11380218?aid=LINEAGE",
   "author": "Teresa of Avila",
   "year": 1577,
   "description": "Teresa of Avila's masterwork mapping seven stages of spiritual development as mansions within a crystal castle, a landmark of Christian mystical literature.",
-  "traditions": ["christian-mysticism"],
+  "traditions": [
+    "christian-mysticism"
+  ],
   "teachers": [],
   "centers": []
 }

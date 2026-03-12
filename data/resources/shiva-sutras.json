@@ -2,11 +2,15 @@
   "title": "Shiva Sutras: The Supreme Awakening",
   "slug": "shiva-sutras",
   "type": "book",
-  "url": "https://bookshop.org/p/books/siva-sutras-the-supreme-awakening-swami-lakshmanjoo/9920064",
+  "url": "https://bookshop.org/p/books/siva-sutras-the-supreme-awakening-swami-lakshmanjoo/9920064?aid=LINEAGE",
   "author": "Swami Lakshmanjoo",
   "year": 2007,
   "description": "Commentary on the foundational text of Kashmir Shaivism by the last living master of the tradition, revealing the nature of consciousness and liberation.",
-  "traditions": ["kashmir-shaivism"],
-  "teachers": ["sally-kempton"],
+  "traditions": [
+    "kashmir-shaivism"
+  ],
+  "teachers": [
+    "sally-kempton"
+  ],
   "centers": []
 }

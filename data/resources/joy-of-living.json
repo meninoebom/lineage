@@ -2,11 +2,14 @@
   "title": "The Joy of Living",
   "slug": "joy-of-living",
   "type": "book",
-  "url": "https://bookshop.org/p/books/the-joy-of-living-unlocking-the-secret-and-science-of-happiness-yongey-mingyur-rinpoche/6693832",
+  "url": "https://bookshop.org/p/books/the-joy-of-living-unlocking-the-secret-and-science-of-happiness-yongey-mingyur-rinpoche/6693832?aid=LINEAGE",
   "author": "Yongey Mingyur Rinpoche",
   "year": 2007,
   "description": "Tibetan Buddhist master bridges meditation practice and modern neuroscience, offering practical tools for transforming anxiety into contentment.",
-  "traditions": ["tibetan-buddhism-gelug", "vajrayana"],
+  "traditions": [
+    "tibetan-buddhism-gelug",
+    "vajrayana"
+  ],
   "teachers": [],
   "centers": []
 }
