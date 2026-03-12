@@ -134,13 +134,40 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
     [handleBackgroundTap]
   );
 
-  // Filter sidebar resources by selected tradition
+  // Build a slug→family lookup for filtering resources by active families
+  const slugToFamily = useMemo(() => {
+    const map = new Map<string, TraditionFamily>();
+    for (const node of fullGraph.nodes) {
+      map.set(node.slug, node.family);
+    }
+    return map;
+  }, [fullGraph]);
+
+  // Auto-clear selectedSlug when its family is toggled off
+  useEffect(() => {
+    if (selectedSlug) {
+      const family = slugToFamily.get(selectedSlug);
+      if (family && !activeFamilies.has(family)) {
+        handleBackgroundTap();
+      }
+    }
+  }, [selectedSlug, activeFamilies, slugToFamily, handleBackgroundTap]);
+
+  // Filter sidebar resources by active families AND selected tradition
   const filteredResources = useMemo(() => {
-    if (!selectedSlug) return mapResources;
-    return mapResources.filter((r) =>
-      r.traditions.some((t) => t.slug === selectedSlug)
+    let resources = mapResources.filter((r) =>
+      r.traditions.some((t) => {
+        const family = slugToFamily.get(t.slug);
+        return family && activeFamilies.has(family);
+      })
     );
-  }, [mapResources, selectedSlug]);
+    if (selectedSlug) {
+      resources = resources.filter((r) =>
+        r.traditions.some((t) => t.slug === selectedSlug)
+      );
+    }
+    return resources;
+  }, [mapResources, selectedSlug, activeFamilies, slugToFamily]);
 
   const selectedTraditionName = selectedSlug
     ? graph.nodes.find((n) => n.slug === selectedSlug)?.name
@@ -269,27 +296,19 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
                 )}
               </div>
 
-              {!selectedSlug && (
-                <>
-                  <p className="text-sm text-muted-foreground mb-4">
+              {/* Fixed-height intro area — content swaps but height stays stable */}
+              <div className="mb-4 min-h-[3.5rem]">
+                {selectedSlug ? (
+                  <p className="text-sm text-muted-foreground">
+                    Showing sources related to {selectedTraditionName}. Click another tradition or &ldquo;Show all&rdquo; to change.
+                  </p>
+                ) : (
+                  <p className="text-sm text-muted-foreground">
                     These are the texts, teachings, and references we drew on to build
-                    this map. Click a tradition on the map to filter.
+                    this map. Click a tradition to filter.
                   </p>
-                  <p className="text-sm text-muted-foreground mb-6">
-                    See something missing or misrepresented?{" "}
-                    <a
-                      href="https://github.com/meninoebom/lineage/issues"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:underline"
-                      style={{ color: "#c0553a" }}
-                    >
-                      Help us make it better
-                    </a>
-                    .
-                  </p>
-                </>
-              )}
+                )}
+              </div>
 
               <div className="space-y-3">
                 {filteredResources.length === 0 && selectedSlug && (
