@@ -1,12 +1,10 @@
-import { FAMILY_COLORS, type GraphEdge, type GraphNode } from "@/lib/tradition-graph";
-import type { ConnectionType } from "@/lib/types";
+import type { GraphEdge } from "@/lib/tradition-graph";
 import type { ResourceMap } from "./tradition-map";
 
 interface MapEdgeProps {
   edge: GraphEdge;
   sourcePos: { x: number; y: number };
   targetPos: { x: number; y: number };
-  sourceNode?: GraphNode;
   highlighted: boolean;
   dimmed: boolean;
   hidden: boolean;
@@ -31,7 +29,6 @@ export function MapEdge({
   edge,
   sourcePos,
   targetPos,
-  sourceNode,
   highlighted,
   dimmed,
   hidden,
@@ -44,14 +41,8 @@ export function MapEdge({
 }: MapEdgeProps) {
   if (hidden) return null;
 
-  // Figma-style colors per connection type
   const isBranch = edge.connectionType === "branch_of";
-  const isInfluence = edge.connectionType === "influenced_by";
-
-  const baseAlpha = highlighted ? 1 : dimmed ? 0.12 : 0.5;
-  const strokeColor = isBranch
-    ? `rgba(180, 140, 100, ${baseAlpha})`
-    : `rgba(140, 140, 160, ${baseAlpha})`;
+  const strokeColor = isBranch ? "rgb(180, 140, 100)" : "rgb(140, 140, 160)";
   const strokeWidth = highlighted ? 2.5 : 1.5;
   const dashArray = isBranch ? undefined : "6 4";
 
@@ -59,11 +50,9 @@ export function MapEdge({
   const midY = (sourcePos.y + targetPos.y) / 2;
   const pathD = `M ${sourcePos.x} ${sourcePos.y} C ${sourcePos.x} ${midY}, ${targetPos.x} ${midY}, ${targetPos.x} ${targetPos.y}`;
 
-  const opacity = dimmed ? 0.15 : highlighted ? 1 : 0.5;
+  const opacity = dimmed ? 0.12 : highlighted ? 1 : 0.5;
 
-  // Tooltip midpoint
   const midX = (sourcePos.x + targetPos.x) / 2;
-  const tooltipY = midY;
 
   return (
     <g
@@ -104,7 +93,7 @@ export function MapEdge({
         return (
           <foreignObject
             x={midX - 160}
-            y={tooltipY - 80}
+            y={midY - 80}
             width={320}
             height={hasSource ? 140 : 100}
             style={{ overflow: "visible" }}

@@ -1,7 +1,7 @@
 import { useMemo } from "react";
-import type { TraditionGraph, GraphNode } from "@/lib/tradition-graph";
+import type { TraditionGraph } from "@/lib/tradition-graph";
 import type { ConnectionType } from "@/lib/types";
-import type { LayoutMap } from "@/lib/compute-layout";
+import { yearToY, type LayoutMap } from "@/lib/compute-layout";
 import { MapEdge } from "./map-edge";
 import { MapNode } from "./map-node";
 import { MapTimeAxis } from "./map-time-axis";
@@ -26,19 +26,6 @@ interface MapCanvasProps {
   resourceMap?: ResourceMap;
 }
 
-// Layout constants matching compute-layout.ts
-const MIN_YEAR = -1100;
-const MAX_YEAR = 2100;
-const MAP_HEIGHT = 1100;
-const PADDING_TOP = 0;
-const PADDING_BOTTOM = 0;
-
-function yearToY(year: number): number {
-  const range = MAX_YEAR - MIN_YEAR;
-  const ratio = (year - MIN_YEAR) / range;
-  return PADDING_TOP + ratio * (MAP_HEIGHT - PADDING_TOP - PADDING_BOTTOM);
-}
-
 export function MapCanvas({
   graph,
   layout,
@@ -57,11 +44,6 @@ export function MapCanvas({
   isEdgeHidden,
   resourceMap = {},
 }: MapCanvasProps) {
-  const nodeMap = new Map<string, GraphNode>();
-  for (const node of graph.nodes) {
-    nodeMap.set(node.slug, node);
-  }
-
   // Entrance animation delays based on Y position
   const nodeDelays = useMemo(() => {
     const delays = new Map<string, number>();
@@ -100,6 +82,7 @@ export function MapCanvas({
 
   // Compute bounds for time axis
   const positions = Object.values(layout);
+  if (positions.length === 0) return null;
   const yValues = positions.map((p) => p.y);
   const xValues = positions.map((p) => p.x);
   const yMin = Math.min(...yValues);
@@ -131,7 +114,6 @@ export function MapCanvas({
             edge={edge}
             sourcePos={sourcePos}
             targetPos={targetPos}
-            sourceNode={nodeMap.get(edge.source)}
             highlighted={isEdgeHighlighted(edge.source, edge.target)}
             dimmed={isEdgeDimmed(edge.source, edge.target)}
             hidden={isEdgeHidden(edge.source, edge.target, edge.connectionType)}

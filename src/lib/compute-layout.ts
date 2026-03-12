@@ -83,7 +83,7 @@ const MAX_YEAR = 2100;
 
 // -- Helpers --
 
-function yearToY(year: number): number {
+export function yearToY(year: number): number {
   const range = MAX_YEAR - MIN_YEAR;
   const ratio = (year - MIN_YEAR) / range;
   return PADDING_TOP + ratio * (MAP_HEIGHT - PADDING_TOP - PADDING_BOTTOM);
