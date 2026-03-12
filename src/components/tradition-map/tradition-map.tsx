@@ -46,19 +46,6 @@ function computeViewBox(layout: LayoutMap) {
   };
 }
 
-/**
- * TraditionMap — the signature visualization of Lineage.
- *
- * Architecture:
- * - Layout positions come from pre-computed JSON (generated at build time)
- * - d3-zoom handles pan/zoom behavior, React owns all DOM rendering
- * - useMapInteraction manages hover/selection/tap state
- * - MapCanvas renders the SVG content (edges, nodes, time axis)
- * - Single responsive SVG with viewBox — works on all screen sizes
- *
- * Touch behavior: detects touch devices and switches from hover to tap-to-select.
- * Tap a node to focus, tap again or tap background to deselect.
- */
 export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const layout = layoutData as LayoutMap;
@@ -83,12 +70,14 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
       .map(([slug, r]) => ({
         slug,
         ...r,
+        traditionSlugs: (r.traditions ?? []).filter((t) => traditionSlugs.has(t)),
         traditionNames: (r.traditions ?? [])
           .map((t) => fullGraph.nodes.find((n) => n.slug === t)?.name)
           .filter(Boolean) as string[],
       }))
       .sort((a, b) => a.title.localeCompare(b.title));
   }, [fullGraph, resourceMap]);
+
   const allFamilies = useMemo(() => getFamilies(fullGraph), [fullGraph]);
 
   const [activeFamilies, setActiveFamilies] = useState<Set<TraditionFamily>>(
@@ -117,31 +106,41 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
 
   const viewBox = useMemo(() => computeViewBox(layout), [layout]);
 
-  // On touch devices: use tap-to-select instead of hover
+  // Click a node → select it (filter sidebar + focus map). Same on desktop and touch.
+  // On touch, second tap on same node navigates. On desktop, use the link in summary.
   const nodeHoverHandler = isTouchDevice ? () => {} : interaction.handleNodeHover;
-  const nodeClickHandler = isTouchDevice
-    ? (slug: string) => {
-        if (interaction.selectedSlug === slug) {
-          // Second tap on same node: navigate
-          interaction.handleNodeClick(slug);
-        } else {
-          // First tap: select/focus
-          interaction.handleNodeSelect(slug);
-        }
+  const nodeClickHandler = useCallback(
+    (slug: string) => {
+      if (isTouchDevice && interaction.selectedSlug === slug) {
+        interaction.handleNodeClick(slug);
+      } else {
+        interaction.handleNodeSelect(slug);
       }
-    : interaction.handleNodeClick;
+    },
+    [isTouchDevice, interaction]
+  );
 
-  // Background tap deselects on touch devices
+  // Background click deselects on all devices
   const handleSvgClick = useCallback(
     (e: React.MouseEvent<SVGSVGElement>) => {
-      if (!isTouchDevice) return;
-      // Only deselect if the tap was on the SVG background (not a node)
       if (e.target === e.currentTarget) {
         interaction.handleBackgroundTap();
       }
     },
-    [isTouchDevice, interaction.handleBackgroundTap]
+    [interaction.handleBackgroundTap]
   );
+
+  // Filter sidebar resources by selected tradition
+  const filteredResources = useMemo(() => {
+    if (!interaction.selectedSlug) return mapResources;
+    return mapResources.filter((r) =>
+      r.traditionSlugs.includes(interaction.selectedSlug!)
+    );
+  }, [mapResources, interaction.selectedSlug]);
+
+  const selectedTraditionName = interaction.selectedSlug
+    ? graph.nodes.find((n) => n.slug === interaction.selectedSlug)?.name
+    : null;
 
   return (
     <div className="w-full">
@@ -225,12 +224,21 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
             </svg>
           </div>
 
-          {/* Summary on hover */}
+          {/* Summary + link on selection */}
           {interaction.activeSlug && (
             <div className="mt-4 text-center animate-in fade-in duration-200">
               <p className="text-sm text-muted-foreground italic max-w-md mx-auto">
                 {graph.nodes.find((n) => n.slug === interaction.activeSlug)?.summary}
               </p>
+              {interaction.selectedSlug && (
+                <a
+                  href={`/traditions/${interaction.selectedSlug}`}
+                  className="inline-block mt-2 text-sm hover:underline"
+                  style={{ color: "#c0553a" }}
+                >
+                  Read about {selectedTraditionName} →
+                </a>
+              )}
             </div>
           )}
         </div>
@@ -239,30 +247,67 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
         {mapResources.length > 0 && (
           <aside className="w-full lg:w-[320px] lg:shrink-0">
             <div className="lg:sticky lg:top-20 overflow-y-auto max-h-[800px]">
-              <h2 className="font-serif text-xl font-normal mb-2">Sources</h2>
-              <p className="text-sm text-muted-foreground mb-4">
-                These are the texts, teachings, and references we drew on to build
-                this map. Each one deepens our understanding of how these traditions
-                connect.
-              </p>
-              <p className="text-sm text-muted-foreground mb-6">
-                See something missing or misrepresented?{" "}
-                <a
-                  href="https://github.com/meninoebom/lineage/issues"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:underline"
-                  style={{ color: "#c0553a" }}
-                >
-                  Help us make it better
-                </a>
-                .
-              </p>
+              {/* Header with optional filter label */}
+              <div className="flex items-baseline justify-between mb-2">
+                <h2 className="font-serif text-xl font-normal">
+                  {selectedTraditionName
+                    ? `Sources for ${selectedTraditionName}`
+                    : "Sources"}
+                </h2>
+                {interaction.selectedSlug && (
+                  <button
+                    onClick={() => interaction.handleBackgroundTap()}
+                    className="text-xs hover:underline"
+                    style={{ color: "#c0553a" }}
+                  >
+                    Show all
+                  </button>
+                )}
+              </div>
+
+              {!interaction.selectedSlug && (
+                <>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    These are the texts, teachings, and references we drew on to build
+                    this map. Click a tradition on the map to filter.
+                  </p>
+                  <p className="text-sm text-muted-foreground mb-6">
+                    See something missing or misrepresented?{" "}
+                    <a
+                      href="https://github.com/meninoebom/lineage/issues"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline"
+                      style={{ color: "#c0553a" }}
+                    >
+                      Help us make it better
+                    </a>
+                    .
+                  </p>
+                </>
+              )}
+
               <div className="space-y-3">
-                {mapResources.map((r) => (
+                {filteredResources.length === 0 && interaction.selectedSlug && (
+                  <div className="text-center py-8">
+                    <p className="text-sm text-[#999] mb-2">
+                      No sources yet for {selectedTraditionName}.
+                    </p>
+                    <a
+                      href="https://github.com/meninoebom/lineage/issues"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm hover:underline"
+                      style={{ color: "#c0553a" }}
+                    >
+                      Help us add some
+                    </a>
+                  </div>
+                )}
+                {filteredResources.map((r) => (
                   <div
                     key={r.slug}
-                    className="bg-white border border-[#e8e4df] rounded-lg p-3 hover:shadow-md transition-shadow"
+                    className="bg-white border border-[#e8e4df] rounded-lg p-3 hover:shadow-md transition-all duration-200"
                   >
                     <a
                       href={r.url}
@@ -280,8 +325,19 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
                       </p>
                     )}
                     {r.traditionNames.length > 0 && (
-                      <p className="text-xs text-[#999] mt-1.5">
-                        {r.traditionNames.join(" · ")}
+                      <p className="text-xs mt-1.5 flex flex-wrap gap-x-1.5 gap-y-0.5">
+                        {r.traditionSlugs.map((tSlug, i) => (
+                          <button
+                            key={tSlug}
+                            onClick={() => interaction.handleNodeSelect(tSlug)}
+                            className="hover:underline transition-colors cursor-pointer"
+                            style={{
+                              color: tSlug === interaction.selectedSlug ? "#c0553a" : "#999",
+                            }}
+                          >
+                            {r.traditionNames[i]}
+                          </button>
+                        ))}
                       </p>
                     )}
                   </div>
