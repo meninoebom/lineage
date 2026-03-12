@@ -1,0 +1,16 @@
+{
+  "name": "Hafiz",
+  "slug": "hafiz",
+  "bio": "Khwaja Shams-ud-Din Muhammad Hafez-e Shirazi, known simply as Hafiz, is one of the most beloved poets in the Persian-speaking world. His collected poems, the Divan-e-Hafez, are found in nearly every Iranian home and are used for divination and guidance. A Sufi poet of ecstatic love, his work celebrates divine intoxication, the beloved, and the dissolution of the separate self — themes that have made his poetry a touchstone for seekers across traditions and centuries.",
+  "photo": null,
+  "website": null,
+  "birth_year": 1325,
+  "death_year": 1390,
+  "city": "Shiraz",
+  "state": "Fars",
+  "country": "IR",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["sufism"],
+  "centers": []
+}
