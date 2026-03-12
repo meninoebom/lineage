@@ -1,6 +1,6 @@
 export type TraditionFamily =
   | "Buddhist"
-  | "Hindu"
+  | "Vedic-Yogic"
   | "Taoist"
   | "Christian Contemplative"
   | "Islamic Contemplative"

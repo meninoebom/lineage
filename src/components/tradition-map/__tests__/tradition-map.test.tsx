@@ -70,8 +70,8 @@ const sampleTraditions: TraditionInput[] = [
   {
     name: "Advaita Vedanta",
     slug: "advaita-vedanta",
-    family: "Hindu",
-    summary: "Non-dual Hindu philosophy",
+    family: "Vedic-Yogic",
+    summary: "Non-dual Vedic-Yogic philosophy",
     origin_century: 8,
     connections: [],
   },
@@ -94,7 +94,7 @@ describe("TraditionMap", () => {
     const buttons = filterGroup.querySelectorAll("button");
     expect(buttons).toHaveLength(2);
     expect(buttons[0]).toHaveTextContent("Buddhist");
-    expect(buttons[1]).toHaveTextContent("Hindu");
+    expect(buttons[1]).toHaveTextContent("Vedic-Yogic");
   });
 
   it("renders connection legend", () => {
@@ -109,10 +109,10 @@ describe("TraditionMap", () => {
     const filterGroup = screen.getByRole("group", {
       name: /filter by tradition family/i,
     });
-    const hinduButton = filterGroup.querySelector("button:last-child")!;
-    expect(hinduButton).toHaveAttribute("aria-pressed", "true");
-    fireEvent.click(hinduButton);
-    expect(hinduButton).toHaveAttribute("aria-pressed", "false");
+    const vedicYogicButton = filterGroup.querySelector("button:last-child")!;
+    expect(vedicYogicButton).toHaveAttribute("aria-pressed", "true");
+    fireEvent.click(vedicYogicButton);
+    expect(vedicYogicButton).toHaveAttribute("aria-pressed", "false");
   });
 
   it("has accessible SVG label", () => {

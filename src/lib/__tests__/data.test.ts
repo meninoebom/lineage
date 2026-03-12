@@ -86,7 +86,7 @@ describe("getTradition", () => {
     const tradition = getTradition("advaita-vedanta");
     expect(tradition).toBeDefined();
     expect(tradition!.name).toBe("Advaita Vedanta");
-    expect(tradition!.family).toBe("Hindu");
+    expect(tradition!.family).toBe("Vedic-Yogic");
     expect(tradition!.content).toContain("# Advaita Vedanta");
     expect(tradition!.connections.length).toBeGreaterThan(0);
   });

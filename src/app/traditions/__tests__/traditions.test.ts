@@ -14,7 +14,7 @@ describe("Tradition pages data", () => {
     const tradition = getTradition("advaita-vedanta");
     expect(tradition).toBeDefined();
     expect(tradition!.name).toBe("Advaita Vedanta");
-    expect(tradition!.family).toBe("Hindu");
+    expect(tradition!.family).toBe("Vedic-Yogic");
     expect(tradition!.summary.length).toBeGreaterThan(0);
     expect(tradition!.content).toContain("# Advaita Vedanta");
   });
@@ -51,6 +51,6 @@ describe("Tradition pages data", () => {
     }
     expect(grouped.size).toBeGreaterThanOrEqual(2);
     expect(grouped.has("Buddhist")).toBe(true);
-    expect(grouped.has("Hindu")).toBe(true);
+    expect(grouped.has("Vedic-Yogic")).toBe(true);
   });
 });

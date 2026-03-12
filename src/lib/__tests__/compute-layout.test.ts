@@ -127,7 +127,7 @@ describe("computeLayout", () => {
   });
 
   it("separates different-family clusters on X axis", () => {
-    // Buddhist cluster (connected) and Hindu cluster (connected), no cross-family edges
+    // Buddhist cluster (connected) and Vedic-Yogic cluster (connected), no cross-family edges
     const traditions: ParsedTradition[] = [
       makeTradition({
         slug: "b1",
@@ -144,13 +144,13 @@ describe("computeLayout", () => {
       makeTradition({
         slug: "h1",
         origin_century: 5,
-        family: "Hindu",
+        family: "Vedic-Yogic",
         connections: [{ tradition_slug: "h2", connection_type: "branch_of", strength: 3, description: "" }],
       }),
       makeTradition({
         slug: "h2",
         origin_century: 5,
-        family: "Hindu",
+        family: "Vedic-Yogic",
         connections: [{ tradition_slug: "h1", connection_type: "branch_of", strength: 3, description: "" }],
       }),
     ];
@@ -158,9 +158,9 @@ describe("computeLayout", () => {
 
     // Within-family distance should be smaller than between-family distance
     const buddhistCenterX = (layout["b1"].x + layout["b2"].x) / 2;
-    const hinduCenterX = (layout["h1"].x + layout["h2"].x) / 2;
+    const vedicYogicCenterX = (layout["h1"].x + layout["h2"].x) / 2;
     const withinBuddhist = Math.abs(layout["b1"].x - layout["b2"].x);
-    const betweenClusters = Math.abs(buddhistCenterX - hinduCenterX);
+    const betweenClusters = Math.abs(buddhistCenterX - vedicYogicCenterX);
 
     // The between-cluster distance should exceed within-cluster distance
     expect(betweenClusters).toBeGreaterThan(withinBuddhist);
@@ -197,7 +197,7 @@ describe("computeLayout", () => {
       makeTradition({
         slug: "advaita-vedanta",
         origin_century: 8,
-        family: "Hindu",
+        family: "Vedic-Yogic",
         connections: [
           { tradition_slug: "kashmir-shaivism", connection_type: "related_to", strength: 3, description: "" },
         ],
@@ -205,7 +205,7 @@ describe("computeLayout", () => {
       makeTradition({
         slug: "kashmir-shaivism",
         origin_century: 9,
-        family: "Hindu",
+        family: "Vedic-Yogic",
         connections: [
           { tradition_slug: "advaita-vedanta", connection_type: "diverged_from", strength: 3, description: "" },
         ],

@@ -7,7 +7,7 @@ import type { Teacher, Center, TraditionFamily, ConnectionType } from "../types"
 const DATA_DIR = join(process.cwd(), "data");
 const VALID_FAMILIES: TraditionFamily[] = [
   "Buddhist",
-  "Hindu",
+  "Vedic-Yogic",
   "Taoist",
   "Christian Contemplative",
   "Islamic Contemplative",
