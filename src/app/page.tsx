@@ -1,11 +1,19 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { PageLayout } from "@/components/page-layout";
+import { SITE_URL } from "@/lib/seo";
+
+const description =
+  "An editorial guide to contemplative traditions, teachers, and meditation centers. Explore how Buddhist, Hindu, Christian, Sufi, and secular paths connect.";
 
 export const metadata: Metadata = {
-  title: "Lineage — A Map of Contemplative Traditions",
-  description:
-    "An editorial guide to contemplative traditions, teachers, and meditation centers. Explore how Buddhist, Hindu, Christian, Sufi, and secular paths connect.",
+  title: { absolute: "Lineage — A Map of Contemplative Traditions" },
+  description,
+  openGraph: {
+    title: "Lineage — A Map of Contemplative Traditions",
+    description,
+    url: SITE_URL,
+  },
 };
 
 const sections = [
