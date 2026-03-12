@@ -1,9 +1,17 @@
+import { useEffect, useRef } from "react";
 import type { GraphNode } from "@/lib/tradition-graph";
 
 interface MapNodePopoverProps {
   node: GraphNode;
   position: { x: number; y: number };
   onClose: () => void;
+}
+
+const MAX_SUMMARY_LENGTH = 140;
+
+function truncateSummary(text: string): string {
+  if (text.length <= MAX_SUMMARY_LENGTH) return text;
+  return text.slice(0, MAX_SUMMARY_LENGTH).replace(/\s+\S*$/, "") + "…";
 }
 
 /**
@@ -17,11 +25,17 @@ export function MapNodePopover({
   position,
   onClose,
 }: MapNodePopoverProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const width = 260;
-  const height = 160;
+  const height = 180;
   // Position above the node, centered horizontally
   const x = position.x - width / 2;
   const y = position.y - height - 18;
+
+  // Auto-focus for keyboard dismiss
+  useEffect(() => {
+    containerRef.current?.focus();
+  }, []);
 
   return (
     <foreignObject
@@ -32,6 +46,13 @@ export function MapNodePopover({
       style={{ overflow: "visible" }}
     >
       <div
+        ref={containerRef}
+        tabIndex={-1}
+        role="dialog"
+        aria-label={`${node.name} details`}
+        onKeyDown={(e) => {
+          if (e.key === "Escape") onClose();
+        }}
         style={{
           background: "#faf8f5",
           border: "1px solid #d4cdc4",
@@ -41,6 +62,7 @@ export function MapNodePopover({
           color: "#3a3632",
           boxShadow: "0 2px 8px rgba(0,0,0,0.10)",
           maxWidth: width,
+          outline: "none",
         }}
       >
         <div
@@ -90,9 +112,10 @@ export function MapNodePopover({
               color: "#6a6560",
             }}
           >
-            {node.summary}
+            {truncateSummary(node.summary)}
           </p>
         )}
+        {/* Plain <a> instead of next/link — Link doesn't work inside SVG foreignObject */}
         <a
           href={`/traditions/${node.slug}`}
           style={{
