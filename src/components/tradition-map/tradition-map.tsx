@@ -250,28 +250,14 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
                   isEdgeHighlighted={interaction.isEdgeHighlighted}
                   isEdgeDimmed={interaction.isEdgeDimmed}
                   isEdgeHidden={interaction.isEdgeHidden}
+                  selectedSlug={selectedSlug}
+                  onNodeDeselect={handleBackgroundTap}
                 />
               </g>
             </svg>
           </div>
 
-          {/* Summary + link on selection */}
-          {interaction.activeSlug && (
-            <div className="mt-4 text-center animate-in fade-in duration-200">
-              <p className="text-sm text-muted-foreground italic max-w-md mx-auto">
-                {graph.nodes.find((n) => n.slug === interaction.activeSlug)?.summary}
-              </p>
-              {selectedSlug && (
-                <a
-                  href={`/traditions/${selectedSlug}`}
-                  className="inline-block mt-2 text-sm hover:underline"
-                  style={{ color: "#c0553a" }}
-                >
-                  Read about {selectedTraditionName} →
-                </a>
-              )}
-            </div>
-          )}
+          {/* Summary now shown in the node popover (Layer 5 in MapCanvas) */}
         </div>
 
         {/* Sources sidebar */}
