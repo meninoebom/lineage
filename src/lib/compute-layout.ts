@@ -1,13 +1,16 @@
 /**
- * Build-time layout computation using graphology + ForceAtlas2.
+ * Build-time layout computation for the tradition map.
  *
- * Extracts the pure logic so it can be tested without filesystem I/O.
+ * Uses curated column positions + century-based Y for a clean editorial layout.
+ * Each tradition has a hand-assigned column (0-7) that groups by family/geography:
+ *   0-1: Taoist traditions (left)
+ *   2-3: Buddhist traditions (center-left)
+ *   4-5: Vedic-Yogic/Hindu traditions (center-right)
+ *   6-7: Christian/Islamic/Other traditions (right)
+ *
  * The script in scripts/compute-layout.ts is a thin CLI wrapper.
  */
-import Graph from "graphology";
-import forceAtlas2 from "graphology-layout-forceatlas2";
 import type { ParsedTradition } from "./data";
-import type { ConnectionType } from "./types";
 
 // -- Types --
 
@@ -18,23 +21,82 @@ export interface LayoutPosition {
 
 export type LayoutMap = Record<string, LayoutPosition>;
 
-// -- Constants --
+// -- Curated column assignments --
+// column 0-7 maps to X position, year maps to Y position
 
-const DEFAULT_EDGE_WEIGHTS: Record<ConnectionType, number> = {
-  branch_of: 3,
-  influenced_by: 2,
-  related_to: 1,
-  diverged_from: 1,
+const CURATED_POSITIONS: Record<string, { column: number; year: number }> = {
+  // ~1000 BCE
+  "jainism":              { column: 3, year: -900 },
+  "vedanta":              { column: 4, year: -800 },
+
+  // ~500 BCE
+  "taoism":               { column: 1, year: -500 },
+  "early-buddhism":       { column: 3, year: -450 },
+  "theravada":            { column: 2, year: -300 },
+
+  // ~1 CE
+  "mahayana":             { column: 3, year: 50 },
+  "classical-yoga":       { column: 4, year: 100 },
+  "gnosticism":           { column: 7, year: 100 },
+  "neoplatonism":         { column: 6, year: 250 },
+  "christian-mysticism":  { column: 7, year: 300 },
+
+  // ~500 CE
+  "chan-buddhism":        { column: 2, year: 500 },
+  "zen":                  { column: 2, year: 500 },
+  "vajrayana":            { column: 3, year: 550 },
+  "tantra":               { column: 3.5, year: 550 },
+  "dzogchen":             { column: 3, year: 700 },
+  "advaita-vedanta":      { column: 4, year: 700 },
+  "sufism":               { column: 6, year: 700 },
+  "kashmir-shaivism":     { column: 5, year: 750 },
+
+  // ~1000 CE
+  "tai-chi-qigong":       { column: 1, year: 1000 },
+  "bhakti":               { column: 5, year: 1100 },
+  "kabbalah":             { column: 6, year: 1100 },
+  "hesychasm":            { column: 7, year: 1200 },
+
+  // ~1500 CE
+  "tibetan-buddhism-gelug": { column: 3, year: 1400 },
+
+  // ~1650 CE
+  "quaker-inner-light":   { column: 7, year: 1650 },
+
+  // ~2000 CE
+  "vipassana-movement":   { column: 2, year: 1900 },
+  "secular-mindfulness":  { column: 3, year: 1970 },
+  "modern-non-dual":      { column: 5, year: 1980 },
 };
 
-const ITERATIONS = 500;
+// -- Constants --
+
+const TOTAL_COLUMNS = 8;
+const MAP_WIDTH = 1000;
+const MAP_HEIGHT = 1100;
+const PADDING_LEFT = 80;
+const PADDING_RIGHT = 40;
+const PADDING_TOP = 0;
+const PADDING_BOTTOM = 0;
+const MIN_YEAR = -1100;
+const MAX_YEAR = 2100;
 
 // -- Helpers --
 
+function yearToY(year: number): number {
+  const range = MAX_YEAR - MIN_YEAR;
+  const ratio = (year - MIN_YEAR) / range;
+  return PADDING_TOP + ratio * (MAP_HEIGHT - PADDING_TOP - PADDING_BOTTOM);
+}
+
+function columnToX(column: number): number {
+  const usableWidth = MAP_WIDTH - PADDING_LEFT - PADDING_RIGHT;
+  return PADDING_LEFT + (column / (TOTAL_COLUMNS - 1)) * usableWidth;
+}
+
 /**
  * Maps origin_century to a Y coordinate.
- * Earlier centuries → smaller Y (top), later centuries → larger Y (bottom).
- * Normalizes across the range of centuries present in the data.
+ * Exported for test compatibility.
  */
 export function centuryToY(
   century: number,
@@ -46,102 +108,33 @@ export function centuryToY(
   return ((century - minCentury) / (maxCentury - minCentury)) * height;
 }
 
-/**
- * Deterministic pseudo-random number generator (mulberry32).
- * Ensures same input → same layout every time.
- */
-function mulberry32(seed: number): () => number {
-  let s = seed | 0;
-  return () => {
-    s = (s + 0x6d2b79f5) | 0;
-    let t = Math.imul(s ^ (s >>> 15), 1 | s);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
-
 // -- Main --
 
 export function computeLayout(traditions: ParsedTradition[]): LayoutMap {
   if (traditions.length === 0) return {};
 
-  const graph = new Graph({ type: "undirected" });
-  const rng = mulberry32(42);
+  const layout: LayoutMap = {};
 
-  // Compute century range for Y mapping
-  const centuries = traditions.map((t) => t.origin_century);
-  const minCentury = Math.min(...centuries);
-  const maxCentury = Math.max(...centuries);
-
-  // Add nodes with initial positions
   for (const tradition of traditions) {
-    const y = centuryToY(tradition.origin_century, minCentury, maxCentury);
-    graph.addNode(tradition.slug, {
-      x: rng() * 2000 - 500,
-      y,
-    });
-  }
+    const curated = CURATED_POSITIONS[tradition.slug];
 
-  // Add edges with weights
-  const slugSet = new Set(traditions.map((t) => t.slug));
-  for (const tradition of traditions) {
-    for (const conn of tradition.connections) {
-      if (!slugSet.has(conn.tradition_slug)) continue;
-
-      // Avoid duplicate edges (undirected graph)
-      const edgeKey = [tradition.slug, conn.tradition_slug].sort().join("--");
-      if (graph.hasEdge(edgeKey)) continue;
-
-      const weight =
-        conn.strength ?? DEFAULT_EDGE_WEIGHTS[conn.connection_type] ?? 1;
-      graph.addEdgeWithKey(edgeKey, tradition.slug, conn.tradition_slug, {
-        weight,
-      });
+    if (curated) {
+      layout[tradition.slug] = {
+        x: Math.round(columnToX(curated.column) * 10) / 10,
+        y: Math.round(yearToY(curated.year) * 10) / 10,
+      };
+    } else {
+      // Fallback: use century for Y, center X with offset based on slug hash
+      const y = yearToY(tradition.origin_century * 100);
+      let hash = 0;
+      for (const ch of tradition.slug) hash = ((hash << 5) - hash + ch.charCodeAt(0)) | 0;
+      const col = Math.abs(hash) % TOTAL_COLUMNS;
+      layout[tradition.slug] = {
+        x: Math.round(columnToX(col) * 10) / 10,
+        y: Math.round(y * 10) / 10,
+      };
     }
   }
-
-  // Build Y-constraint map (slug → fixed Y)
-  const fixedY: Record<string, number> = {};
-  for (const tradition of traditions) {
-    fixedY[tradition.slug] = centuryToY(
-      tradition.origin_century,
-      minCentury,
-      maxCentury
-    );
-  }
-
-  // Run ForceAtlas2 with Y-constraint:
-  // We run in chunks, resetting Y after each chunk to enforce the time axis.
-  const CHUNK_SIZE = 10;
-  const chunks = Math.ceil(ITERATIONS / CHUNK_SIZE);
-
-  for (let i = 0; i < chunks; i++) {
-    const iters = Math.min(CHUNK_SIZE, ITERATIONS - i * CHUNK_SIZE);
-    forceAtlas2.assign(graph, {
-      iterations: iters,
-      settings: {
-        gravity: 0.5,
-        scalingRatio: 50,
-        barnesHutOptimize: false,
-        strongGravityMode: false,
-        slowDown: 2,
-      },
-    });
-
-    // Reset Y to time-derived value after each chunk
-    graph.forEachNode((node) => {
-      graph.setNodeAttribute(node, "y", fixedY[node]);
-    });
-  }
-
-  // Extract final positions
-  const layout: LayoutMap = {};
-  graph.forEachNode((node) => {
-    layout[node] = {
-      x: Math.round(graph.getNodeAttribute(node, "x") * 10) / 10,
-      y: Math.round(graph.getNodeAttribute(node, "y") * 10) / 10,
-    };
-  });
 
   return layout;
 }
