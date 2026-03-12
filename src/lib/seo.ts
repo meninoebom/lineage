@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { Teacher, Center } from "./types";
 import type { ParsedTradition } from "./data";
 
-export const SITE_URL = "https://lineage.app";
+export const SITE_URL = "https://lineage-5ub.pages.dev";
 export const SITE_NAME = "Lineage";
 export const SITE_DESCRIPTION =
   "An interactive map of contemplative traditions and a directory of teachers and centers.";
