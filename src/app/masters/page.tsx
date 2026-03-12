@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { PageLayout } from "@/components/page-layout";
 import { Breadcrumbs } from "@/components/breadcrumbs";
-import { Badge } from "@/components/ui/badge";
-import { getAllTeachers, getTradition } from "@/lib/data";
+import { getAllTeachers, getTradition, getAllTraditions } from "@/lib/data";
+import { MastersClient } from "@/components/masters-client";
 import { SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -18,56 +17,30 @@ export const metadata: Metadata = {
   },
 };
 
-function formatYears(birth: number | null, death: number | null): string {
-  const b = birth ?? "?";
-  const d = death ?? "?";
-  return `(${b}\u2013${d})`;
-}
-
-function truncateBio(bio: string, maxLength = 120): string {
-  if (bio.length <= maxLength) return bio;
-  return bio.slice(0, maxLength).replace(/\s+\S*$/, "") + "\u2026";
-}
-
 export default function MastersPage() {
   const allTeachers = getAllTeachers();
+  const allTraditions = getAllTraditions();
 
-  // Filter to deceased teachers only
-  const masters = allTeachers.filter((t) => t.death_year !== null);
-
-  // Resolve tradition info and group by family
-  const mastersWithTraditions = masters.map((t) => {
-    const firstTradition = t.traditions[0]
-      ? getTradition(t.traditions[0])
-      : undefined;
-    const family = firstTradition?.family ?? "Other";
-    const traditionNames = t.traditions.map((slug) => {
-      const tradition = getTradition(slug);
-      return { slug, name: tradition?.name ?? slug };
-    });
-    return { ...t, family, traditionNames };
-  });
-
-  // Group by family
-  const grouped = new Map<
-    string,
-    typeof mastersWithTraditions
-  >();
-  for (const master of mastersWithTraditions) {
-    const existing = grouped.get(master.family) ?? [];
-    existing.push(master);
-    grouped.set(master.family, existing);
+  const traditionNames: Record<string, string> = {};
+  for (const t of allTraditions) {
+    traditionNames[t.slug] = t.name;
   }
 
-  // Sort families alphabetically, sort masters within each group by birth_year
-  const sortedFamilies = Array.from(grouped.entries())
-    .sort(([a], [b]) => a.localeCompare(b))
-    .map(([family, members]) => ({
-      family,
-      members: members.sort(
-        (a, b) => (a.birth_year ?? 0) - (b.birth_year ?? 0)
-      ),
-    }));
+  const masters = allTeachers
+    .filter((t) => t.death_year !== null)
+    .map((t) => {
+      const firstTradition = t.traditions[0]
+        ? getTradition(t.traditions[0])
+        : undefined;
+      const family = firstTradition?.family ?? "Other";
+      const traditionNameMap = t.traditions.map((slug) => ({
+        slug,
+        name: traditionNames[slug] ?? slug,
+      }));
+      return { ...t, family, traditionNameMap };
+    });
+
+  const families = Array.from(new Set(masters.map((m) => m.family))).sort();
 
   return (
     <PageLayout>
@@ -80,48 +53,11 @@ export default function MastersPage() {
         </p>
       </header>
 
-      <div className="space-y-12">
-        {sortedFamilies.map(({ family, members }) => (
-          <section key={family}>
-            <h2 className="font-serif text-2xl font-normal text-[#9e4a3a] mb-6 pb-2 border-b border-[#9e4a3a]/20">
-              {family}
-            </h2>
-
-            <div className="space-y-4">
-              {members.map((master) => (
-                <div
-                  key={master.slug}
-                  className="flex flex-col sm:flex-row sm:items-baseline gap-x-4 gap-y-1 py-2 border-b border-border/40 last:border-b-0"
-                >
-                  <div className="flex items-baseline gap-2 shrink-0">
-                    <Link
-                      href={`/teachers/${master.slug}`}
-                      className="font-serif text-lg font-medium text-foreground hover:text-[#9e4a3a] transition-colors"
-                    >
-                      {master.name}
-                    </Link>
-                    <span className="text-sm text-muted-foreground whitespace-nowrap">
-                      {formatYears(master.birth_year, master.death_year)}
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-2 shrink-0">
-                    {master.traditionNames.map(({ slug, name }) => (
-                      <Badge key={slug} variant="tradition" className="text-xs">
-                        {name}
-                      </Badge>
-                    ))}
-                  </div>
-
-                  <p className="text-sm text-muted-foreground leading-relaxed line-clamp-1">
-                    {truncateBio(master.bio)}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </section>
-        ))}
-      </div>
+      <MastersClient
+        masters={masters}
+        traditionNames={traditionNames}
+        families={families}
+      />
     </PageLayout>
   );
 }
