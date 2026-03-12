@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { PageLayout } from "@/components/page-layout";
 import { Breadcrumbs } from "@/components/breadcrumbs";
-import { getAllTeachers, getTradition } from "@/lib/data";
-import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { getAllTeachers, getAllTraditions } from "@/lib/data";
+import { TeachersClient } from "@/components/teachers-client";
 import { SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -24,13 +22,11 @@ export default function TeachersPage() {
     .filter((t) => t.death_year === null || t.death_year === undefined)
     .sort((a, b) => a.name.localeCompare(b.name));
 
-  const teachersWithTraditions = teachers.map((t) => ({
-    ...t,
-    traditionNames: t.traditions.map((slug) => {
-      const tradition = getTradition(slug);
-      return { slug, name: tradition?.name ?? slug };
-    }),
-  }));
+  const traditions = getAllTraditions();
+  const traditionNames: Record<string, string> = {};
+  for (const t of traditions) {
+    traditionNames[t.slug] = t.name;
+  }
 
   return (
     <PageLayout>
@@ -43,40 +39,7 @@ export default function TeachersPage() {
         </p>
       </header>
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        {teachersWithTraditions.map((teacher) => (
-          <Link
-            key={teacher.slug}
-            href={`/teachers/${teacher.slug}`}
-            className="group"
-          >
-            <Card accent="terracotta" className="h-full group-hover:shadow-md">
-              <CardHeader>
-                <CardTitle className="group-hover:text-primary transition-colors">
-                  {teacher.name}
-                </CardTitle>
-                <CardDescription>
-                  {teacher.city}, {teacher.state}
-                  {teacher.country !== "US" && ` · ${teacher.country}`}
-                </CardDescription>
-              </CardHeader>
-              <div className="flex flex-wrap gap-1.5 px-5 pb-5">
-                {teacher.traditionNames.map(({ slug, name }) => (
-                  <Badge key={slug} variant="tradition">
-                    {name}
-                  </Badge>
-                ))}
-              </div>
-            </Card>
-          </Link>
-        ))}
-      </div>
-
-      {teachersWithTraditions.length === 0 && (
-        <p className="text-center text-muted-foreground py-12">
-          No living teachers found.
-        </p>
-      )}
+      <TeachersClient teachers={teachers} traditionNames={traditionNames} />
     </PageLayout>
   );
 }
