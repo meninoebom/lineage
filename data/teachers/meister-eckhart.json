@@ -1,0 +1,16 @@
+{
+  "name": "Meister Eckhart",
+  "slug": "meister-eckhart",
+  "bio": "Meister Eckhart (c. 1260–1328) was a German Dominican theologian, philosopher, and mystic whose sermons on detachment, the birth of the Word in the soul, and the Godhead beyond God made him one of the most radical voices in Christian mysticism. He taught at the University of Paris and held leadership positions in the Dominican order. Though some of his propositions were condemned posthumously, his influence on later mystics and modern contemplative traditions has been profound.",
+  "photo": null,
+  "website": null,
+  "birth_year": 1260,
+  "death_year": 1328,
+  "city": "Cologne",
+  "state": "North Rhine-Westphalia",
+  "country": "DE",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["christian-mysticism"],
+  "centers": []
+}

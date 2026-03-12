@@ -1,0 +1,16 @@
+{
+  "name": "Ajahn Chah",
+  "slug": "ajahn-chah",
+  "bio": "Ajahn Chah (1918–1992) was a Thai forest tradition monk whose direct, humorous teaching style made the Dhamma accessible to both Thai laypeople and Western seekers. He established Wat Pah Pong in northeast Thailand and its international branch monastery Wat Pah Nanachat. His students include Ajahn Sumedho, Ajahn Pasanno, and Jack Kornfield, who brought his lineage to the West.",
+  "photo": null,
+  "website": null,
+  "birth_year": 1918,
+  "death_year": 1992,
+  "city": "Ubon Ratchathani",
+  "state": "Ubon Ratchathani",
+  "country": "TH",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["theravada"],
+  "centers": []
+}
