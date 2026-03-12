@@ -20,9 +20,9 @@ export const metadata: Metadata = {
 export default function MapPage() {
   const traditions = getAllTraditions();
   const allResources = getAllResources();
-  const resourceMap: Record<string, { title: string; url: string }> = {};
+  const resourceMap: Record<string, { title: string; url: string; author: string | null; description: string }> = {};
   for (const r of allResources) {
-    resourceMap[r.slug] = { title: r.title, url: r.url };
+    resourceMap[r.slug] = { title: r.title, url: r.url, author: r.author, description: r.description };
   }
 
   return (

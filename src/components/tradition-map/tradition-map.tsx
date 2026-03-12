@@ -17,7 +17,7 @@ import { useMapInteraction } from "./use-map-interaction";
 // Import pre-computed layout (generated at build time by `npm run prebuild`)
 import layoutData from "@/generated/map-layout.json";
 
-export type ResourceMap = Record<string, { title: string; url: string }>;
+export type ResourceMap = Record<string, { title: string; url: string; author?: string | null; description?: string }>;
 
 interface TraditionMapProps {
   traditions: TraditionInput[];
@@ -173,7 +173,7 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
       `}</style>
 
       {/* Filters */}
-      <div className="mb-8">
+      <div className="mb-6">
         <FamilyFilter
           families={allFamilies}
           activeFamilies={activeFamilies}
@@ -181,50 +181,8 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
         />
       </div>
 
-      {/* Single responsive SVG */}
-      <svg
-        ref={svgRef}
-        className="w-full h-auto"
-        viewBox={`${viewBox.x} ${viewBox.y} ${viewBox.width} ${viewBox.height}`}
-        style={{ maxHeight: "70vh", touchAction: "none" }}
-        aria-label="Interactive map of contemplative traditions"
-        role="img"
-        onClick={handleSvgClick}
-      >
-        {/* Zoom/pan transform wrapper — React applies the transform from d3-zoom */}
-        <g transform={`translate(${transform.x}, ${transform.y}) scale(${transform.k})`}>
-          <MapCanvas
-            graph={graph}
-            layout={layout}
-            zoomScale={transform.k}
-            resourceMap={resourceMap}
-            onNodeHover={nodeHoverHandler}
-            onNodeClick={nodeClickHandler}
-            onEdgeHover={interaction.handleEdgeHover}
-            onTooltipEnter={interaction.handleTooltipEnter}
-            onTooltipLeave={interaction.handleTooltipLeave}
-            hoveredEdgeKey={interaction.hoveredEdgeKey}
-            isNodeHighlighted={interaction.isNodeHighlighted}
-            isNodeConnected={interaction.isNodeConnected}
-            isNodeDimmed={interaction.isNodeDimmed}
-            isEdgeHighlighted={interaction.isEdgeHighlighted}
-            isEdgeDimmed={interaction.isEdgeDimmed}
-            isEdgeHidden={interaction.isEdgeHidden}
-          />
-        </g>
-      </svg>
-
-      {/* Summary on hover */}
-      {interaction.activeSlug && (
-        <div className="mt-4 text-center animate-in fade-in duration-200">
-          <p className="text-sm text-muted-foreground italic max-w-md mx-auto">
-            {graph.nodes.find((n) => n.slug === interaction.activeSlug)?.summary}
-          </p>
-        </div>
-      )}
-
-      {/* Legend */}
-      <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-1 text-xs text-muted-foreground font-sans">
+      {/* Legend — between filters and map */}
+      <div className="mb-6 flex flex-wrap justify-center gap-x-6 gap-y-1 text-xs text-muted-foreground font-sans">
         <span className="flex items-center gap-2">
           <svg width="20" height="8">
             <line x1="0" y1="4" x2="20" y2="4" stroke="#b5ada5" strokeWidth="1.5" />
@@ -238,61 +196,137 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
           </svg>
           Influenced by
         </span>
-        <span className="flex items-center gap-2">
-          <svg width="20" height="8">
-            <line x1="0" y1="4" x2="20" y2="4" stroke="#b5ada5" strokeWidth="0.8" strokeDasharray="1 2" />
-          </svg>
-          Related
-        </span>
       </div>
 
-      {/* Sources bibliography */}
-      {sourcedEdges.size > 0 && (
-        <section className="mt-12 max-w-2xl mx-auto">
-          <h2 className="text-lg font-normal mb-4 text-center" style={{ fontFamily: "Georgia, serif" }}>
-            Sources
-          </h2>
-          <p className="text-sm text-muted-foreground text-center mb-6">
-            Hover over a source to see which connections it supports on the map.
-          </p>
-          <ul className="space-y-3">
-            {Array.from(sourcedEdges.entries()).map(([slug, info]) => {
-              const resource = resourceMap[slug];
-              if (!resource) return null;
-              const isActive = interaction.highlightedSourceSlug === slug;
-              return (
-                <li
-                  key={slug}
-                  className="group rounded-md px-4 py-3 transition-colors cursor-default"
-                  style={{
-                    background: isActive ? "#f0e8df" : "transparent",
-                    border: `1px solid ${isActive ? "#d4cdc4" : "transparent"}`,
-                  }}
-                  onMouseEnter={() => interaction.setHighlightedSourceSlug(slug)}
-                  onMouseLeave={() => interaction.setHighlightedSourceSlug(null)}
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <a
-                        href={resource.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm font-medium hover:text-primary transition-colors"
-                        style={{ fontFamily: "Georgia, serif", color: "#4a4540" }}
-                      >
-                        <em>{resource.title}</em> ↗
-                      </a>
-                      <p className="text-xs text-muted-foreground mt-1">
-                        Supports: {info.connections.join(", ")}
-                      </p>
+      {/* Two-column layout: map + sources sidebar */}
+      <div className="flex flex-col lg:flex-row gap-8">
+        {/* Map column */}
+        <div className="flex-1 min-w-0">
+          <div className="border border-border/40 rounded-sm">
+            <svg
+              ref={svgRef}
+              className="w-full h-auto"
+              viewBox={`${viewBox.x} ${viewBox.y} ${viewBox.width} ${viewBox.height}`}
+              style={{ maxHeight: "70vh", touchAction: "none" }}
+              aria-label="Interactive map of contemplative traditions"
+              role="img"
+              onClick={handleSvgClick}
+            >
+              <g transform={`translate(${transform.x}, ${transform.y}) scale(${transform.k})`}>
+                <MapCanvas
+                  graph={graph}
+                  layout={layout}
+                  zoomScale={transform.k}
+                  resourceMap={resourceMap}
+                  onNodeHover={nodeHoverHandler}
+                  onNodeClick={nodeClickHandler}
+                  onEdgeHover={interaction.handleEdgeHover}
+                  onTooltipEnter={interaction.handleTooltipEnter}
+                  onTooltipLeave={interaction.handleTooltipLeave}
+                  hoveredEdgeKey={interaction.hoveredEdgeKey}
+                  isNodeHighlighted={interaction.isNodeHighlighted}
+                  isNodeConnected={interaction.isNodeConnected}
+                  isNodeDimmed={interaction.isNodeDimmed}
+                  isEdgeHighlighted={interaction.isEdgeHighlighted}
+                  isEdgeDimmed={interaction.isEdgeDimmed}
+                  isEdgeHidden={interaction.isEdgeHidden}
+                />
+              </g>
+            </svg>
+          </div>
+
+          {/* Summary on hover */}
+          {interaction.activeSlug && (
+            <div className="mt-4 text-center animate-in fade-in duration-200">
+              <p className="text-sm text-muted-foreground italic max-w-md mx-auto">
+                {graph.nodes.find((n) => n.slug === interaction.activeSlug)?.summary}
+              </p>
+            </div>
+          )}
+        </div>
+
+        {/* Key Sources sidebar */}
+        {sourcedEdges.size > 0 && (
+          <aside className="lg:w-[340px] lg:shrink-0">
+            <div className="lg:sticky lg:top-20 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto">
+              <h2 className="font-serif text-xl font-normal mb-2">Key Sources</h2>
+              <p className="text-sm text-muted-foreground mb-6">
+                Hover over a source below to illuminate the specific connections it
+                supports on the landscape map.
+              </p>
+              <div className="space-y-4">
+                {Array.from(sourcedEdges.entries()).map(([slug, info]) => {
+                  const resource = resourceMap[slug];
+                  if (!resource) return null;
+                  const isActive = interaction.highlightedSourceSlug === slug;
+                  return (
+                    <div
+                      key={slug}
+                      className="rounded-md border px-5 py-4 transition-all cursor-default"
+                      style={{
+                        background: isActive ? "#f0e8df" : "#faf8f5",
+                        borderColor: isActive ? "#d4cdc4" : "#e8e2da",
+                      }}
+                      onMouseEnter={() => interaction.setHighlightedSourceSlug(slug)}
+                      onMouseLeave={() => interaction.setHighlightedSourceSlug(null)}
+                    >
+                      <div className="flex items-start justify-between gap-2">
+                        <a
+                          href={resource.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-serif text-base font-medium hover:text-primary transition-colors"
+                          style={{ color: "#4a4540" }}
+                        >
+                          {resource.title}{" "}
+                          <span className="text-muted-foreground text-xs">↗</span>
+                        </a>
+                      </div>
+                      {resource.author && (
+                        <p className="text-sm mt-1" style={{ color: "#9e4a3a" }}>
+                          {resource.author}
+                        </p>
+                      )}
+                      {resource.description && (
+                        <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+                          {resource.description}
+                        </p>
+                      )}
+                      <div className="mt-3 space-y-1">
+                        <p className="text-[11px] font-sans uppercase tracking-wider text-muted-foreground/70">
+                          Supports Connection
+                        </p>
+                        {info.connections.map((conn) => (
+                          <span
+                            key={conn}
+                            className="inline-flex items-center gap-1.5 text-xs font-sans text-muted-foreground bg-background border border-border/60 rounded-full px-2.5 py-0.5 mr-1.5"
+                          >
+                            → {conn}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </section>
-      )}
+                  );
+                })}
+              </div>
+              <div className="mt-8 text-center text-sm text-muted-foreground">
+                <p>
+                  Explore the full editorial directory to suggest edits or additions
+                  to the lineage.
+                </p>
+                <a
+                  href="https://github.com/meninoebom/lineage/issues"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:text-primary/80 transition-colors mt-2 inline-block"
+                >
+                  Suggest an Edit
+                </a>
+              </div>
+            </div>
+          </aside>
+        )}
+      </div>
     </div>
   );
 }
