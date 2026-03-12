@@ -38,7 +38,7 @@ export const FAMILY_COLORS: Record<TraditionFamily, { fill: string; stroke: stri
     text: "#6b4c2a",
     bg: "#f5ead8",
   },
-  Hindu: {
+  "Vedic-Yogic": {
     fill: "#9e4a3a",     // terracotta
     stroke: "#7d3a2e",
     text: "#5a2a20",

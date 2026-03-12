@@ -43,26 +43,26 @@ const sampleTraditions: TraditionInput[] = [
   {
     name: "Advaita Vedanta",
     slug: "advaita-vedanta",
-    family: "Hindu",
-    summary: "Non-dual Hindu philosophy",
+    family: "Vedic-Yogic",
+    summary: "Non-dual Vedic-Yogic philosophy",
     connections: [
       {
         tradition_slug: "kashmir-shaivism",
         connection_type: "related_to",
-        description: "Both non-dual Hindu traditions",
+        description: "Both non-dual Vedic-Yogic traditions",
       },
     ],
   },
   {
     name: "Kashmir Shaivism",
     slug: "kashmir-shaivism",
-    family: "Hindu",
+    family: "Vedic-Yogic",
     summary: "Non-dual tantric tradition",
     connections: [
       {
         tradition_slug: "advaita-vedanta",
         connection_type: "related_to",
-        description: "Both non-dual Hindu traditions",
+        description: "Both non-dual Vedic-Yogic traditions",
       },
     ],
   },
@@ -126,7 +126,7 @@ describe("buildTraditionGraph", () => {
     const zen = graph.nodes.find((n) => n.slug === "zen");
     expect(zen?.family).toBe("Buddhist");
     const advaita = graph.nodes.find((n) => n.slug === "advaita-vedanta");
-    expect(advaita?.family).toBe("Hindu");
+    expect(advaita?.family).toBe("Vedic-Yogic");
   });
 });
 
@@ -134,7 +134,7 @@ describe("getFamilies", () => {
   it("returns unique families", () => {
     const graph = buildTraditionGraph(sampleTraditions);
     const families = getFamilies(graph);
-    expect(families.sort()).toEqual(["Buddhist", "Hindu"]);
+    expect(families.sort()).toEqual(["Buddhist", "Vedic-Yogic"]);
   });
 });
 

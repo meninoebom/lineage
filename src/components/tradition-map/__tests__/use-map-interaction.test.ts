@@ -13,7 +13,7 @@ const testGraph: TraditionGraph = {
   nodes: [
     { slug: "zen", name: "Zen", family: "Buddhist", summary: "Zen Buddhism", originCentury: 6 },
     { slug: "theravada", name: "Theravada", family: "Buddhist", summary: "Way of the Elders", originCentury: -3 },
-    { slug: "advaita", name: "Advaita", family: "Hindu", summary: "Non-dual", originCentury: 8 },
+    { slug: "advaita", name: "Advaita", family: "Vedic-Yogic", summary: "Non-dual", originCentury: 8 },
   ],
   edges: [
     { source: "zen", target: "theravada", connectionType: "related_to", description: "Both meditate", strength: 1 },
@@ -24,8 +24,8 @@ const mixedEdgeGraph: TraditionGraph = {
   nodes: [
     { slug: "zen", name: "Zen", family: "Buddhist", summary: "Zen Buddhism", originCentury: 6 },
     { slug: "theravada", name: "Theravada", family: "Buddhist", summary: "Way of the Elders", originCentury: -3 },
-    { slug: "advaita", name: "Advaita", family: "Hindu", summary: "Non-dual", originCentury: 8 },
-    { slug: "yoga", name: "Yoga", family: "Hindu", summary: "Yoga tradition", originCentury: -5 },
+    { slug: "advaita", name: "Advaita", family: "Vedic-Yogic", summary: "Non-dual", originCentury: 8 },
+    { slug: "yoga", name: "Yoga", family: "Vedic-Yogic", summary: "Yoga tradition", originCentury: -5 },
   ],
   edges: [
     { source: "zen", target: "theravada", connectionType: "branch_of", description: "Branch", strength: 2 },

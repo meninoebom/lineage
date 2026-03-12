@@ -4,7 +4,7 @@ import { PageLayout } from "@/components/page-layout";
 import { SITE_URL } from "@/lib/seo";
 
 const description =
-  "An editorial guide to contemplative traditions, teachers, and meditation centers. Explore how Buddhist, Hindu, Christian, Sufi, and secular paths connect.";
+  "An editorial guide to contemplative traditions, teachers, and meditation centers. Explore how Buddhist, Vedic-Yogic, Christian, Sufi, and secular paths connect.";
 
 export const metadata: Metadata = {
   title: { absolute: "Lineage — A Map of Contemplative Traditions" },

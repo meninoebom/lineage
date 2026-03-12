@@ -5,7 +5,7 @@ import type { TraditionFamily } from "@/lib/types";
 
 const ALL_FAMILIES: TraditionFamily[] = [
   "Buddhist",
-  "Hindu",
+  "Vedic-Yogic",
   "Taoist",
   "Christian Contemplative",
   "Islamic Contemplative",
@@ -28,7 +28,7 @@ describe("FamilyFilter", () => {
   });
 
   it("marks active families with aria-pressed=true", () => {
-    const active = new Set<TraditionFamily>(["Buddhist", "Hindu"]);
+    const active = new Set<TraditionFamily>(["Buddhist", "Vedic-Yogic"]);
     render(
       <FamilyFilter families={ALL_FAMILIES} activeFamilies={active} onToggle={() => {}} />
     );

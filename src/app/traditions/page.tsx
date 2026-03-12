@@ -11,16 +11,16 @@ import { SITE_URL } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "Traditions",
   description:
-    "Explore contemplative traditions — Buddhist, Hindu, Taoist, Christian, Islamic, and more.",
+    "Explore contemplative traditions — Buddhist, Vedic-Yogic, Taoist, Christian, Islamic, and more.",
   openGraph: {
     title: "Traditions",
     description:
-      "Explore contemplative traditions — Buddhist, Hindu, Taoist, Christian, Islamic, and more.",
+      "Explore contemplative traditions — Buddhist, Vedic-Yogic, Taoist, Christian, Islamic, and more.",
     url: `${SITE_URL}/traditions`,
   },
 };
 
-const familyOrder = ["Buddhist", "Hindu", "Taoist", "Christian Contemplative", "Islamic Contemplative", "Modern Secular", "Other"];
+const familyOrder = ["Buddhist", "Vedic-Yogic", "Taoist", "Christian Contemplative", "Islamic Contemplative", "Modern Secular", "Other"];
 
 function groupByFamily(traditions: ParsedTradition[]) {
   const grouped = new Map<string, ParsedTradition[]>();
