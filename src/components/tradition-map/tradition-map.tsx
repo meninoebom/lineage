@@ -67,14 +67,17 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
     const traditionSlugs = new Set(fullGraph.nodes.map((n) => n.slug));
     return Object.entries(resourceMap)
       .filter(([, r]) => r.traditions?.some((t) => traditionSlugs.has(t)))
-      .map(([slug, r]) => ({
-        slug,
-        ...r,
-        traditionSlugs: (r.traditions ?? []).filter((t) => traditionSlugs.has(t)),
-        traditionNames: (r.traditions ?? [])
-          .map((t) => fullGraph.nodes.find((n) => n.slug === t)?.name)
-          .filter(Boolean) as string[],
-      }))
+      .map(([slug, r]) => {
+        const matched = (r.traditions ?? [])
+          .filter((t) => traditionSlugs.has(t))
+          .map((t) => ({ slug: t, name: fullGraph.nodes.find((n) => n.slug === t)?.name }))
+          .filter((t): t is { slug: string; name: string } => !!t.name);
+        return {
+          slug,
+          ...r,
+          traditions: matched,
+        };
+      })
       .sort((a, b) => a.title.localeCompare(b.title));
   }, [fullGraph, resourceMap]);
 
@@ -108,38 +111,39 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
 
   // Click a node → select it (filter sidebar + focus map). Same on desktop and touch.
   // On touch, second tap on same node navigates. On desktop, use the link in summary.
-  const nodeHoverHandler = isTouchDevice ? () => {} : interaction.handleNodeHover;
+  const { selectedSlug, handleNodeClick, handleNodeSelect, handleNodeHover, handleBackgroundTap } = interaction;
+  const nodeHoverHandler = isTouchDevice ? () => {} : handleNodeHover;
   const nodeClickHandler = useCallback(
     (slug: string) => {
-      if (isTouchDevice && interaction.selectedSlug === slug) {
-        interaction.handleNodeClick(slug);
+      if (isTouchDevice && selectedSlug === slug) {
+        handleNodeClick(slug);
       } else {
-        interaction.handleNodeSelect(slug);
+        handleNodeSelect(slug);
       }
     },
-    [isTouchDevice, interaction]
+    [isTouchDevice, selectedSlug, handleNodeClick, handleNodeSelect]
   );
 
   // Background click deselects on all devices
   const handleSvgClick = useCallback(
     (e: React.MouseEvent<SVGSVGElement>) => {
       if (e.target === e.currentTarget) {
-        interaction.handleBackgroundTap();
+        handleBackgroundTap();
       }
     },
-    [interaction.handleBackgroundTap]
+    [handleBackgroundTap]
   );
 
   // Filter sidebar resources by selected tradition
   const filteredResources = useMemo(() => {
-    if (!interaction.selectedSlug) return mapResources;
+    if (!selectedSlug) return mapResources;
     return mapResources.filter((r) =>
-      r.traditionSlugs.includes(interaction.selectedSlug!)
+      r.traditions.some((t) => t.slug === selectedSlug)
     );
-  }, [mapResources, interaction.selectedSlug]);
+  }, [mapResources, selectedSlug]);
 
-  const selectedTraditionName = interaction.selectedSlug
-    ? graph.nodes.find((n) => n.slug === interaction.selectedSlug)?.name
+  const selectedTraditionName = selectedSlug
+    ? graph.nodes.find((n) => n.slug === selectedSlug)?.name
     : null;
 
   return (
@@ -230,9 +234,9 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
               <p className="text-sm text-muted-foreground italic max-w-md mx-auto">
                 {graph.nodes.find((n) => n.slug === interaction.activeSlug)?.summary}
               </p>
-              {interaction.selectedSlug && (
+              {selectedSlug && (
                 <a
-                  href={`/traditions/${interaction.selectedSlug}`}
+                  href={`/traditions/${selectedSlug}`}
                   className="inline-block mt-2 text-sm hover:underline"
                   style={{ color: "#c0553a" }}
                 >
@@ -254,9 +258,9 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
                     ? `Sources for ${selectedTraditionName}`
                     : "Sources"}
                 </h2>
-                {interaction.selectedSlug && (
+                {selectedSlug && (
                   <button
-                    onClick={() => interaction.handleBackgroundTap()}
+                    onClick={() => handleBackgroundTap()}
                     className="text-xs hover:underline"
                     style={{ color: "#c0553a" }}
                   >
@@ -265,7 +269,7 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
                 )}
               </div>
 
-              {!interaction.selectedSlug && (
+              {!selectedSlug && (
                 <>
                   <p className="text-sm text-muted-foreground mb-4">
                     These are the texts, teachings, and references we drew on to build
@@ -288,7 +292,7 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
               )}
 
               <div className="space-y-3">
-                {filteredResources.length === 0 && interaction.selectedSlug && (
+                {filteredResources.length === 0 && selectedSlug && (
                   <div className="text-center py-8">
                     <p className="text-sm text-[#999] mb-2">
                       No sources yet for {selectedTraditionName}.
@@ -324,18 +328,20 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
                         {r.author}
                       </p>
                     )}
-                    {r.traditionNames.length > 0 && (
+                    {r.traditions.length > 0 && (
                       <p className="text-xs mt-1.5 flex flex-wrap gap-x-1.5 gap-y-0.5">
-                        {r.traditionSlugs.map((tSlug, i) => (
+                        {r.traditions.map((t) => (
                           <button
-                            key={tSlug}
-                            onClick={() => interaction.handleNodeSelect(tSlug)}
+                            key={t.slug}
+                            onClick={() => handleNodeSelect(t.slug)}
+                            aria-label={`Filter by ${t.name}`}
+                            aria-pressed={t.slug === selectedSlug}
                             className="hover:underline transition-colors cursor-pointer"
                             style={{
-                              color: tSlug === interaction.selectedSlug ? "#c0553a" : "#999",
+                              color: t.slug === selectedSlug ? "#c0553a" : "#999",
                             }}
                           >
-                            {r.traditionNames[i]}
+                            {t.name}
                           </button>
                         ))}
                       </p>
