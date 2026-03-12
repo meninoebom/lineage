@@ -5,6 +5,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { getAllTeachers, getTradition } from "@/lib/data";
+import { SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Teachers",
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Teachers",
     description: "Browse contemplative teachers by tradition and location.",
+    url: `${SITE_URL}/teachers`,
   },
 };
 

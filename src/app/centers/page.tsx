@@ -3,6 +3,7 @@ import { PageLayout } from "@/components/page-layout";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { getAllCenters, getAllTraditions } from "@/lib/data";
 import { CentersClient } from "@/components/centers-client";
+import { SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Centers",
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
     title: "Centers",
     description:
       "Find contemplative practice centers by tradition and location.",
+    url: `${SITE_URL}/centers`,
   },
 };
 

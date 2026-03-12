@@ -3,11 +3,19 @@ import { PageLayout } from "@/components/page-layout";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { SearchClient } from "@/components/search-client";
 import { getAllTeachers, getAllCenters, getAllTraditions } from "@/lib/data";
+import { SITE_URL } from "@/lib/seo";
+
+const description =
+  "Find contemplative teachers and meditation centers by tradition and location.";
 
 export const metadata: Metadata = {
-  title: "Search — Lineage",
-  description:
-    "Find contemplative teachers and meditation centers by tradition and location.",
+  title: "Search",
+  description,
+  openGraph: {
+    title: "Search",
+    description,
+    url: `${SITE_URL}/search`,
+  },
 };
 
 export default function SearchPage() {

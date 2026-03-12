@@ -2,11 +2,19 @@ import type { Metadata } from "next";
 import { PageLayout } from "@/components/page-layout";
 import { getAllTraditions, getAllResources } from "@/lib/data";
 import { TraditionMap } from "@/components/tradition-map";
+import { SITE_URL } from "@/lib/seo";
+
+const description =
+  "An interactive map of contemplative traditions — how they connect, diverge, and speak to one another across history.";
 
 export const metadata: Metadata = {
-  title: "Interactive Map — Lineage",
-  description:
-    "An interactive map of contemplative traditions — how they connect, diverge, and speak to one another across history.",
+  title: "Interactive Map",
+  description,
+  openGraph: {
+    title: "Interactive Map",
+    description,
+    url: `${SITE_URL}/map`,
+  },
 };
 
 export default function MapPage() {

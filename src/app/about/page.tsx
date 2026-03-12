@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
 import { PageLayout } from "@/components/page-layout";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { SITE_URL } from "@/lib/seo";
+
+const description =
+  "What Lineage is, how it's built, and how you can contribute to this community-driven map of contemplative traditions.";
 
 export const metadata: Metadata = {
-  title: "About — Lineage",
-  description:
-    "What Lineage is, how it's built, and how you can contribute to this community-driven map of contemplative traditions.",
+  title: "About",
+  description,
+  openGraph: {
+    title: "About",
+    description,
+    url: `${SITE_URL}/about`,
+  },
 };
 
 export default function AboutPage() {

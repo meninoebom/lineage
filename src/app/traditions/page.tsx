@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { getAllTraditions } from "@/lib/data";
 import type { ParsedTradition } from "@/lib/data";
+import { SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Traditions",
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     title: "Traditions",
     description:
       "Explore contemplative traditions — Buddhist, Hindu, Taoist, Christian, Islamic, and more.",
+    url: `${SITE_URL}/traditions`,
   },
 };
 
