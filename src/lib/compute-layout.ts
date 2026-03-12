@@ -44,8 +44,8 @@ const CURATED_POSITIONS: Record<string, { column: number; year: number }> = {
   // ~500 CE
   "chan-buddhism":        { column: 2, year: 500 },
   "zen":                  { column: 2, year: 500 },
-  "vajrayana":            { column: 3, year: 550 },
-  "tantra":               { column: 3.5, year: 550 },
+  "vajrayana":            { column: 2.5, year: 550 },
+  "tantra":               { column: 4, year: 550 },
   "dzogchen":             { column: 3, year: 700 },
   "advaita-vedanta":      { column: 4, year: 700 },
   "sufism":               { column: 6, year: 700 },

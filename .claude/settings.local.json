@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git checkout:*)",
+      "Bash(ls data/resources/*.json | wc -l && cat data/resources/tao-te-ching.json)"
+    ]
+  }
+}
