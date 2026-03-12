@@ -17,7 +17,7 @@ import { useMapInteraction } from "./use-map-interaction";
 // Import pre-computed layout (generated at build time by `npm run prebuild`)
 import layoutData from "@/generated/map-layout.json";
 
-export type ResourceMap = Record<string, { title: string; url: string; author?: string | null; description?: string }>;
+export type ResourceMap = Record<string, { title: string; url: string; author?: string | null; description?: string; traditions?: string[] }>;
 
 interface TraditionMapProps {
   traditions: TraditionInput[];
@@ -75,29 +75,20 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
 
   const fullGraph = useMemo(() => buildTraditionGraph(traditions), [traditions]);
 
-  // Collect all sources cited by edges, with the connections they support
-  const sourcedEdges = useMemo(() => {
-    const sourceMap = new Map<string, { edgeKeys: string[]; connections: string[] }>();
-    for (const edge of fullGraph.edges) {
-      if (!edge.sources) continue;
-      const sourceNode = fullGraph.nodes.find((n) => n.slug === edge.source);
-      const targetNode = fullGraph.nodes.find((n) => n.slug === edge.target);
-      const connectionLabel = sourceNode && targetNode
-        ? `${sourceNode.name} → ${targetNode.name}`
-        : `${edge.source} → ${edge.target}`;
-      for (const slug of edge.sources) {
-        const existing = sourceMap.get(slug);
-        const edgeKey = `${edge.source}--${edge.target}`;
-        if (existing) {
-          existing.edgeKeys.push(edgeKey);
-          existing.connections.push(connectionLabel);
-        } else {
-          sourceMap.set(slug, { edgeKeys: [edgeKey], connections: [connectionLabel] });
-        }
-      }
-    }
-    return sourceMap;
-  }, [fullGraph]);
+  // Collect all resources that relate to traditions on the map
+  const mapResources = useMemo(() => {
+    const traditionSlugs = new Set(fullGraph.nodes.map((n) => n.slug));
+    return Object.entries(resourceMap)
+      .filter(([, r]) => r.traditions?.some((t) => traditionSlugs.has(t)))
+      .map(([slug, r]) => ({
+        slug,
+        ...r,
+        traditionNames: (r.traditions ?? [])
+          .map((t) => fullGraph.nodes.find((n) => n.slug === t)?.name)
+          .filter(Boolean) as string[],
+      }))
+      .sort((a, b) => a.title.localeCompare(b.title));
+  }, [fullGraph, resourceMap]);
   const allFamilies = useMemo(() => getFamilies(fullGraph), [fullGraph]);
 
   const [activeFamilies, setActiveFamilies] = useState<Set<TraditionFamily>>(
@@ -244,75 +235,63 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
           )}
         </div>
 
-        {/* Key Sources sidebar */}
-        {sourcedEdges.size > 0 && (
+        {/* Sources sidebar */}
+        {mapResources.length > 0 && (
           <aside className="w-full lg:w-[320px] lg:shrink-0">
             <div className="lg:sticky lg:top-20 overflow-y-auto max-h-[800px]">
-              <h2 className="font-serif text-xl font-normal mb-2">Key Sources</h2>
-              <p className="text-sm text-muted-foreground mb-6">
-                Hover over a source below to illuminate the specific connections it
-                supports on the landscape map.
+              <h2 className="font-serif text-xl font-normal mb-2">Sources</h2>
+              <p className="text-sm text-muted-foreground mb-4">
+                These are the texts, teachings, and references we drew on to build
+                this map. Each one deepens our understanding of how these traditions
+                connect.
               </p>
-              <div className="space-y-4">
-                {Array.from(sourcedEdges.entries()).map(([slug, info]) => {
-                  const resource = resourceMap[slug];
-                  if (!resource) return null;
-                  const isActive = interaction.highlightedSourceSlug === slug;
-                  return (
-                    <div
-                      key={slug}
-                      className="bg-white border border-[#e8e4df] rounded-lg p-4 hover:shadow-md transition-shadow cursor-default"
-                      style={{
-                        background: isActive ? "#f0e8df" : undefined,
-                        borderColor: isActive ? "#d4cdc4" : undefined,
-                      }}
-                      onMouseEnter={() => interaction.setHighlightedSourceSlug(slug)}
-                      onMouseLeave={() => interaction.setHighlightedSourceSlug(null)}
+              <p className="text-sm text-muted-foreground mb-6">
+                See something missing or misrepresented?{" "}
+                <a
+                  href="https://github.com/meninoebom/lineage/issues"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                  style={{ color: "#c0553a" }}
+                >
+                  Help us make it better
+                </a>
+                .
+              </p>
+              <div className="space-y-3">
+                {mapResources.map((r) => (
+                  <div
+                    key={r.slug}
+                    className="bg-white border border-[#e8e4df] rounded-lg p-3 hover:shadow-md transition-shadow"
+                  >
+                    <a
+                      href={r.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[14px] leading-snug hover:text-primary transition-colors"
+                      style={{ color: "#2a2a2a" }}
                     >
-                      <div className="flex items-start justify-between gap-2">
-                        <a
-                          href={resource.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-[15px] hover:text-primary transition-colors"
-                          style={{ color: "#2a2a2a" }}
-                        >
-                          {resource.title}{" "}
-                          <span className="text-[#aaa] text-xs">↗</span>
-                        </a>
-                      </div>
-                      {resource.author && (
-                        <p className="text-sm mt-0.5" style={{ color: "#c0553a" }}>
-                          {resource.author}
-                        </p>
-                      )}
-                      {resource.description && (
-                        <p className="text-sm text-[#666] mt-2">
-                          {resource.description}
-                        </p>
-                      )}
-                      <div className="mt-3 pt-3 border-t border-[#f0ece7]">
-                        <p className="text-xs text-[#999] tracking-wide uppercase mb-1.5">
-                          Supports Connection
-                        </p>
-                        {info.connections.map((conn) => (
-                          <div
-                            key={conn}
-                            className="flex items-center gap-1.5 text-sm text-[#555]"
-                          >
-                            <span className="text-[#999]">→</span>
-                            <span>{conn}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                })}
+                      {r.title}{" "}
+                      <span className="text-[#aaa] text-xs">↗</span>
+                    </a>
+                    {r.author && (
+                      <p className="text-[13px] mt-0.5" style={{ color: "#c0553a" }}>
+                        {r.author}
+                      </p>
+                    )}
+                    {r.traditionNames.length > 0 && (
+                      <p className="text-xs text-[#999] mt-1.5">
+                        {r.traditionNames.join(" · ")}
+                      </p>
+                    )}
+                  </div>
+                ))}
               </div>
               <div className="text-center pt-4 mt-4 border-t border-[#e8e4df]">
                 <p className="text-sm text-[#999] mb-2">
-                  Explore the full editorial directory to suggest edits or additions
-                  to the lineage.
+                  This map is a living document. We&apos;re building it in the open
+                  and inviting anyone to contribute sources, corrections, or new
+                  connections.
                 </p>
                 <a
                   href="https://github.com/meninoebom/lineage/issues"
