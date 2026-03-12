@@ -182,27 +182,26 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
       </div>
 
       {/* Legend — between filters and map */}
-      <div className="mb-6 flex flex-wrap justify-center gap-x-6 gap-y-1 text-xs text-muted-foreground font-sans">
+      <div className="mb-6 flex items-center justify-center gap-6 text-sm text-[#888] font-sans">
         <span className="flex items-center gap-2">
-          <svg width="20" height="8">
-            <line x1="0" y1="4" x2="20" y2="4" stroke="#b5ada5" strokeWidth="1.5" />
-            <polygon points="16,1 20,4 16,7" fill="#b5ada5" />
+          <svg width="40" height="2">
+            <line x1="0" y1="1" x2="40" y2="1" stroke="#b48c64" strokeWidth="2" />
           </svg>
           Branch of
         </span>
         <span className="flex items-center gap-2">
-          <svg width="20" height="8">
-            <line x1="0" y1="4" x2="20" y2="4" stroke="#b5ada5" strokeWidth="1" strokeDasharray="4 2" />
+          <svg width="40" height="2">
+            <line x1="0" y1="1" x2="40" y2="1" stroke="#8c8ca0" strokeWidth="2" strokeDasharray="6 4" />
           </svg>
           Influenced by
         </span>
       </div>
 
       {/* Two-column layout: map + sources sidebar */}
-      <div className="flex flex-col lg:flex-row gap-8">
+      <div className="flex flex-col lg:flex-row gap-6">
         {/* Map column */}
         <div className="flex-1 min-w-0">
-          <div className="border border-border/40 rounded-sm">
+          <div className="bg-[#faf8f5] rounded-lg border border-[#e8e4df]">
             <svg
               ref={svgRef}
               className="w-full h-auto"
@@ -247,8 +246,8 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
 
         {/* Key Sources sidebar */}
         {sourcedEdges.size > 0 && (
-          <aside className="lg:w-[340px] lg:shrink-0">
-            <div className="lg:sticky lg:top-20 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto">
+          <aside className="w-full lg:w-[320px] lg:shrink-0">
+            <div className="lg:sticky lg:top-20 overflow-y-auto max-h-[800px]">
               <h2 className="font-serif text-xl font-normal mb-2">Key Sources</h2>
               <p className="text-sm text-muted-foreground mb-6">
                 Hover over a source below to illuminate the specific connections it
@@ -262,10 +261,10 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
                   return (
                     <div
                       key={slug}
-                      className="rounded-md border px-5 py-4 transition-all cursor-default"
+                      className="bg-white border border-[#e8e4df] rounded-lg p-4 hover:shadow-md transition-shadow cursor-default"
                       style={{
-                        background: isActive ? "#f0e8df" : "#faf8f5",
-                        borderColor: isActive ? "#d4cdc4" : "#e8e2da",
+                        background: isActive ? "#f0e8df" : undefined,
+                        borderColor: isActive ? "#d4cdc4" : undefined,
                       }}
                       onMouseEnter={() => interaction.setHighlightedSourceSlug(slug)}
                       onMouseLeave={() => interaction.setHighlightedSourceSlug(null)}
@@ -275,42 +274,43 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
                           href={resource.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="font-serif text-base font-medium hover:text-primary transition-colors"
-                          style={{ color: "#4a4540" }}
+                          className="text-[15px] hover:text-primary transition-colors"
+                          style={{ color: "#2a2a2a" }}
                         >
                           {resource.title}{" "}
-                          <span className="text-muted-foreground text-xs">↗</span>
+                          <span className="text-[#aaa] text-xs">↗</span>
                         </a>
                       </div>
                       {resource.author && (
-                        <p className="text-sm mt-1" style={{ color: "#9e4a3a" }}>
+                        <p className="text-sm mt-0.5" style={{ color: "#c0553a" }}>
                           {resource.author}
                         </p>
                       )}
                       {resource.description && (
-                        <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+                        <p className="text-sm text-[#666] mt-2">
                           {resource.description}
                         </p>
                       )}
-                      <div className="mt-3 space-y-1">
-                        <p className="text-[11px] font-sans uppercase tracking-wider text-muted-foreground/70">
+                      <div className="mt-3 pt-3 border-t border-[#f0ece7]">
+                        <p className="text-xs text-[#999] tracking-wide uppercase mb-1.5">
                           Supports Connection
                         </p>
                         {info.connections.map((conn) => (
-                          <span
+                          <div
                             key={conn}
-                            className="inline-flex items-center gap-1.5 text-xs font-sans text-muted-foreground bg-background border border-border/60 rounded-full px-2.5 py-0.5 mr-1.5"
+                            className="flex items-center gap-1.5 text-sm text-[#555]"
                           >
-                            → {conn}
-                          </span>
+                            <span className="text-[#999]">→</span>
+                            <span>{conn}</span>
+                          </div>
                         ))}
                       </div>
                     </div>
                   );
                 })}
               </div>
-              <div className="mt-8 text-center text-sm text-muted-foreground">
-                <p>
+              <div className="text-center pt-4 mt-4 border-t border-[#e8e4df]">
+                <p className="text-sm text-[#999] mb-2">
                   Explore the full editorial directory to suggest edits or additions
                   to the lineage.
                 </p>
@@ -318,7 +318,8 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
                   href="https://github.com/meninoebom/lineage/issues"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary hover:text-primary/80 transition-colors mt-2 inline-block"
+                  className="text-sm hover:underline"
+                  style={{ color: "#c0553a" }}
                 >
                   Suggest an Edit
                 </a>
