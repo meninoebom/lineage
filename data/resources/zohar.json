@@ -2,11 +2,13 @@
   "title": "The Zohar: Pritzker Edition",
   "slug": "zohar",
   "type": "book",
-  "url": "https://bookshop.org/p/books/the-zohar-pritzker-edition-volume-one-daniel-c-matt/8211563",
+  "url": "https://bookshop.org/p/books/the-zohar-pritzker-edition-volume-one-daniel-c-matt/8211563?aid=LINEAGE",
   "author": "Daniel C. Matt",
   "year": 2003,
   "description": "Definitive English translation of the central text of Kabbalah, a 13th-century mystical commentary on the Torah exploring the hidden dimensions of reality.",
-  "traditions": ["kabbalah"],
+  "traditions": [
+    "kabbalah"
+  ],
   "teachers": [],
   "centers": []
 }

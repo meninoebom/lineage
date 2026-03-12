@@ -2,11 +2,14 @@
   "title": "The Philokalia",
   "slug": "philokalia",
   "type": "book",
-  "url": "https://bookshop.org/p/books/the-philokalia-volume-1-the-complete-text-g-e-h-palmer/15914905",
+  "url": "https://bookshop.org/p/books/the-philokalia-volume-1-the-complete-text-g-e-h-palmer/15914905?aid=LINEAGE",
   "author": null,
   "year": 1782,
   "description": "Collection of texts on contemplative prayer by Eastern Orthodox monks spanning the 4th to 15th centuries, central to the Hesychast tradition.",
-  "traditions": ["hesychasm", "christian-mysticism"],
+  "traditions": [
+    "hesychasm",
+    "christian-mysticism"
+  ],
   "teachers": [],
   "centers": []
 }

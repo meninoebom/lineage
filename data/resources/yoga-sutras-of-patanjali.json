@@ -2,11 +2,13 @@
   "title": "The Yoga Sutras of Patanjali",
   "slug": "yoga-sutras-of-patanjali",
   "type": "book",
-  "url": "https://bookshop.org/p/books/the-yoga-sutras-of-patanjali-sri-swami-satchidananda/6425182",
+  "url": "https://bookshop.org/p/books/the-yoga-sutras-of-patanjali-sri-swami-satchidananda/6425182?aid=LINEAGE",
   "author": "Patanjali",
   "year": null,
   "description": "Foundational text of Classical Yoga, systematizing the philosophy and practice of yoga into 196 concise aphorisms.",
-  "traditions": ["classical-yoga"],
+  "traditions": [
+    "classical-yoga"
+  ],
   "teachers": [],
   "centers": []
 }

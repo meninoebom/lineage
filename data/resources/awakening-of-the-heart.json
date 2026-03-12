@@ -2,11 +2,14 @@
   "title": "Awakening of the Heart",
   "slug": "awakening-of-the-heart",
   "type": "book",
-  "url": "https://bookshop.org/p/books/awakening-of-the-heart-essential-buddhist-sutras-and-commentaries-thich-nhat-hanh/6693559",
+  "url": "https://bookshop.org/p/books/awakening-of-the-heart-essential-buddhist-sutras-and-commentaries-thich-nhat-hanh/6693559?aid=LINEAGE",
   "author": "Thich Nhat Hanh",
   "year": 2012,
   "description": "Collection of essential Buddhist sutras with commentary by Thich Nhat Hanh, presenting foundational Mahayana teachings in accessible language.",
-  "traditions": ["mahayana", "zen"],
+  "traditions": [
+    "mahayana",
+    "zen"
+  ],
   "teachers": [],
   "centers": []
 }
