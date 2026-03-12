@@ -34,18 +34,17 @@ export function FamilyFilter({
             key={family}
             onClick={() => onToggle(family)}
             className={`
-              inline-flex items-center gap-2 px-3 py-1.5 shrink-0
-              font-sans text-xs tracking-wide uppercase whitespace-nowrap
-              border rounded-sm transition-all duration-200
+              inline-flex items-center gap-1.5 px-3 py-1 shrink-0
+              font-sans text-sm whitespace-nowrap
+              border rounded-full transition-all duration-200
               ${
                 active
-                  ? "border-current opacity-100"
+                  ? "border-[#e8e4df] bg-white opacity-100"
                   : "border-transparent opacity-40 hover:opacity-70"
               }
             `}
             style={{
-              color: active ? colors.text : "#8a8279",
-              backgroundColor: active ? colors.bg : "transparent",
+              color: active ? "#555" : "#8a8279",
             }}
             aria-pressed={active}
           >
