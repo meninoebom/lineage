@@ -1,12 +1,10 @@
-import { FAMILY_COLORS, type GraphEdge, type GraphNode } from "@/lib/tradition-graph";
-import type { ConnectionType } from "@/lib/types";
+import type { GraphEdge } from "@/lib/tradition-graph";
 import type { ResourceMap } from "./tradition-map";
 
 interface MapEdgeProps {
   edge: GraphEdge;
   sourcePos: { x: number; y: number };
   targetPos: { x: number; y: number };
-  sourceNode?: GraphNode;
   highlighted: boolean;
   dimmed: boolean;
   hidden: boolean;
@@ -14,56 +12,23 @@ interface MapEdgeProps {
   onEdgeHover: (source: string | null, target: string | null) => void;
   onTooltipEnter: () => void;
   onTooltipLeave: () => void;
-  /** Entrance animation delay in ms — edge draws in after connected nodes appear */
   entranceDelay?: number;
   resourceMap?: ResourceMap;
 }
 
 /**
- * Edge style configuration per connection type.
+ * MapEdge — bezier curve connection between traditions.
  *
- * - branch_of: solid line with arrowhead in child's family color
- * - influenced_by: dashed with small arrowhead, warm gray
- * - related_to: dotted, no arrow
- * - diverged_from: dashed with split symbol at midpoint
+ * Matches Figma's TimelineMap: vertical S-curves using cubic bezier
+ * with control points at the vertical midpoint.
+ * - branch_of: solid line, rgba(180, 140, 100)
+ * - influenced_by: dashed (6 4), rgba(140, 140, 160)
+ * - related_to / diverged_from: dotted, warm gray
  */
-const EDGE_STYLES: Record<
-  ConnectionType,
-  {
-    strokeWidth: number;
-    dashArray?: string;
-    hasArrow: boolean;
-    useSourceColor: boolean;
-  }
-> = {
-  branch_of: { strokeWidth: 1.5, hasArrow: true, useSourceColor: true },
-  influenced_by: {
-    strokeWidth: 1,
-    dashArray: "4 2",
-    hasArrow: true,
-    useSourceColor: false,
-  },
-  related_to: {
-    strokeWidth: 0.8,
-    dashArray: "1 2",
-    hasArrow: false,
-    useSourceColor: false,
-  },
-  diverged_from: {
-    strokeWidth: 1,
-    dashArray: "4 2",
-    hasArrow: false,
-    useSourceColor: false,
-  },
-};
-
-const WARM_GRAY = "#b5ada5";
-
 export function MapEdge({
   edge,
   sourcePos,
   targetPos,
-  sourceNode,
   highlighted,
   dimmed,
   hidden,
@@ -74,33 +39,20 @@ export function MapEdge({
   entranceDelay = 0,
   resourceMap = {},
 }: MapEdgeProps) {
-  const style = EDGE_STYLES[edge.connectionType] ?? EDGE_STYLES.related_to;
-
-  // Determine stroke color
-  const strokeColor =
-    style.useSourceColor && sourceNode
-      ? FAMILY_COLORS[sourceNode.family].fill
-      : WARM_GRAY;
-
-  // Subtle curve via quadratic bezier
-  const midX = (sourcePos.x + targetPos.x) / 2;
-  const midY = (sourcePos.y + targetPos.y) / 2;
-  const dx = targetPos.x - sourcePos.x;
-  const dy = targetPos.y - sourcePos.y;
-  const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-  const offset = Math.min(30, dist * 0.1);
-  const controlX = midX - (dy * offset) / dist;
-  const controlY = midY + (dx * offset) / dist;
-
-  const pathD = `M ${sourcePos.x} ${sourcePos.y} Q ${controlX} ${controlY} ${targetPos.x} ${targetPos.y}`;
-
-  // Unique marker ID for this edge (to avoid shared mutation across edges)
-  const markerId = `arrow-${edge.source}-${edge.target}`;
-
-  // Hidden edges are completely invisible (opacity 0, no pointer events)
   if (hidden) return null;
 
-  const opacity = dimmed ? 0.15 : highlighted ? 1 : 0.5;
+  const isBranch = edge.connectionType === "branch_of";
+  const strokeColor = isBranch ? "rgb(180, 140, 100)" : "rgb(140, 140, 160)";
+  const strokeWidth = highlighted ? 2.5 : 1.5;
+  const dashArray = isBranch ? undefined : "6 4";
+
+  // Figma-style vertical bezier: control points at midY
+  const midY = (sourcePos.y + targetPos.y) / 2;
+  const pathD = `M ${sourcePos.x} ${sourcePos.y} C ${sourcePos.x} ${midY}, ${targetPos.x} ${midY}, ${targetPos.x} ${targetPos.y}`;
+
+  const opacity = dimmed ? 0.12 : highlighted ? 1 : 0.5;
+
+  const midX = (sourcePos.x + targetPos.x) / 2;
 
   return (
     <g
@@ -111,23 +63,6 @@ export function MapEdge({
       }}
       className="map-edge-entrance"
     >
-      {/* Arrowhead marker definition (scoped to this edge for color) */}
-      {style.hasArrow && (
-        <defs>
-          <marker
-            id={markerId}
-            viewBox="0 0 10 10"
-            refX={8}
-            refY={5}
-            markerWidth={6}
-            markerHeight={6}
-            orient="auto-start-reverse"
-          >
-            <path d="M 0 0 L 10 5 L 0 10 z" fill={strokeColor} opacity={0.6} />
-          </marker>
-        </defs>
-      )}
-
       {/* Invisible wider hit area for hover */}
       <path
         d={pathD}
@@ -143,22 +78,13 @@ export function MapEdge({
         d={pathD}
         fill="none"
         stroke={strokeColor}
-        strokeWidth={highlighted ? style.strokeWidth + 0.5 : style.strokeWidth}
-        strokeDasharray={style.dashArray}
+        strokeWidth={strokeWidth}
+        strokeDasharray={dashArray}
         strokeLinecap="round"
-        markerEnd={style.hasArrow ? `url(#${markerId})` : undefined}
         style={{ transition: "stroke-width 0.2s ease", pointerEvents: "none" }}
       />
 
-      {/* Diverged-from split symbol at midpoint */}
-      {edge.connectionType === "diverged_from" && (
-        <g transform={`translate(${midX}, ${midY})`}>
-          <line x1={-3} y1={-4} x2={-6} y2={4} stroke={strokeColor} strokeWidth={1} />
-          <line x1={3} y1={-4} x2={6} y2={4} stroke={strokeColor} strokeWidth={1} />
-        </g>
-      )}
-
-      {/* Edge tooltip — description + sources at midpoint */}
+      {/* Edge tooltip */}
       {showTooltip && edge.description && (() => {
         const resolvedSources = (edge.sources ?? [])
           .map((slug) => resourceMap[slug])

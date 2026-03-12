@@ -1,71 +1,75 @@
 /**
- * MapTimeAxis — a subtle vertical ruler on the left side of the map
- * showing century markers from the earliest to latest traditions.
+ * MapTimeAxis — era labels with horizontal grid lines.
  *
- * Styled like a margin ruler in a Lapham's Quarterly feature — faint,
- * informational, never competing with the content.
+ * Matches the Figma design: era labels on the left (1000 BCE, 500 BCE, etc.)
+ * with light horizontal lines extending across the map width.
  */
 
+interface TimelineEra {
+  year: number;
+  label: string;
+}
+
+const TIMELINE_ERAS: TimelineEra[] = [
+  { year: -1000, label: "1000 BCE" },
+  { year: -500, label: "500 BCE" },
+  { year: 0, label: "1 CE" },
+  { year: 500, label: "500 CE" },
+  { year: 1000, label: "1000 CE" },
+  { year: 1500, label: "1500 CE" },
+  { year: 2000, label: "2000 CE" },
+];
+
 interface MapTimeAxisProps {
-  /** X position for the axis line */
+  /** X position for labels */
   x: number;
   /** Y range: top of the map content area */
   yMin: number;
   /** Y range: bottom of the map content area */
   yMax: number;
-  /** Centuries to display as labels */
-  centuries: number[];
-  /** Maps a century value to a Y coordinate */
-  centuryToY: (century: number) => number;
-}
-
-function formatCentury(century: number): string {
-  if (century < 0) return `${Math.abs(century) * 100} BCE`;
-  if (century === 0) return "1 CE";
-  return `${century * 100} CE`;
+  /** Maps a year to a Y coordinate */
+  yearToY: (year: number) => number;
+  /** Right edge of the map for grid lines */
+  xMax: number;
+  /** Left edge of the grid lines */
+  xGridStart: number;
 }
 
 export function MapTimeAxis({
   x,
   yMin,
   yMax,
-  centuries,
-  centuryToY,
+  yearToY,
+  xMax,
+  xGridStart,
 }: MapTimeAxisProps) {
   return (
-    <g className="map-time-axis" opacity={0.3}>
-      {/* Main vertical line */}
-      <line
-        x1={x}
-        y1={yMin}
-        x2={x}
-        y2={yMax}
-        stroke="#b5ada5"
-        strokeWidth={0.5}
-      />
-      {/* Century tick marks and labels */}
-      {centuries.map((century) => {
-        const y = centuryToY(century);
+    <g className="map-time-axis">
+      {TIMELINE_ERAS.map((era) => {
+        const y = yearToY(era.year);
+        // Only render if within the visible Y range (with some padding)
+        if (y < yMin - 40 || y > yMax + 40) return null;
         return (
-          <g key={century}>
+          <g key={era.year}>
+            {/* Horizontal grid line */}
             <line
-              x1={x - 4}
+              x1={xGridStart}
               y1={y}
-              x2={x + 4}
+              x2={xMax}
               y2={y}
-              stroke="#b5ada5"
-              strokeWidth={0.5}
+              stroke="#e5e5e5"
+              strokeWidth={1}
             />
+            {/* Era label */}
             <text
-              x={x - 8}
-              y={y}
-              textAnchor="end"
-              dominantBaseline="middle"
-              fill="#b5ada5"
-              fontSize={9}
-              fontFamily="sans-serif"
+              x={x}
+              y={y + 4}
+              textAnchor="start"
+              fill="#999"
+              fontSize={12}
+              fontFamily="system-ui, sans-serif"
             >
-              {formatCentury(century)}
+              {era.label}
             </text>
           </g>
         );

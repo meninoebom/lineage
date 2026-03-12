@@ -1,7 +1,7 @@
 import { useMemo } from "react";
-import type { TraditionGraph, GraphNode } from "@/lib/tradition-graph";
+import type { TraditionGraph } from "@/lib/tradition-graph";
 import type { ConnectionType } from "@/lib/types";
-import type { LayoutMap } from "@/lib/compute-layout";
+import { yearToY, type LayoutMap } from "@/lib/compute-layout";
 import { MapEdge } from "./map-edge";
 import { MapNode } from "./map-node";
 import { MapTimeAxis } from "./map-time-axis";
@@ -26,13 +26,6 @@ interface MapCanvasProps {
   resourceMap?: ResourceMap;
 }
 
-/**
- * MapCanvas — the SVG content layer for the tradition map.
- *
- * Renders edges first (behind), then time axis, then nodes (in front).
- * Computes entrance animation delays: nodes stagger top-to-bottom (by y position),
- * edges appear after both connected nodes have appeared.
- */
 export function MapCanvas({
   graph,
   layout,
@@ -51,13 +44,7 @@ export function MapCanvas({
   isEdgeHidden,
   resourceMap = {},
 }: MapCanvasProps) {
-  // Build a lookup for source nodes (for edge coloring)
-  const nodeMap = new Map<string, GraphNode>();
-  for (const node of graph.nodes) {
-    nodeMap.set(node.slug, node);
-  }
-
-  // Compute entrance animation delays based on Y position (top = ancient, bottom = modern)
+  // Entrance animation delays based on Y position
   const nodeDelays = useMemo(() => {
     const delays = new Map<string, number>();
     const yValues = graph.nodes
@@ -68,7 +55,7 @@ export function MapCanvas({
     const yMin = Math.min(...yValues);
     const yMax = Math.max(...yValues);
     const yRange = yMax - yMin || 1;
-    const maxDelay = 600; // ms total stagger duration
+    const maxDelay = 600;
 
     for (const node of graph.nodes) {
       const pos = layout[node.slug];
@@ -79,10 +66,9 @@ export function MapCanvas({
     return delays;
   }, [graph.nodes, layout]);
 
-  // Edge entrance delays: appear after both connected nodes
   const edgeDelays = useMemo(() => {
     const delays = new Map<string, number>();
-    const extraDelay = 150; // ms after the later node appears
+    const extraDelay = 150;
     for (const edge of graph.edges) {
       const sourceDelay = nodeDelays.get(edge.source) ?? 0;
       const targetDelay = nodeDelays.get(edge.target) ?? 0;
@@ -94,31 +80,29 @@ export function MapCanvas({
     return delays;
   }, [graph.edges, nodeDelays]);
 
-  // Compute time axis parameters from node data
-  const centuries = graph.nodes
-    .map((n) => n.originCentury)
-    .filter((c) => c !== 0);
-  const uniqueCenturies = Array.from(new Set(centuries)).sort((a, b) => a - b);
-
-  // Y range from layout positions
-  const yValues = Object.values(layout).map((p) => p.y);
+  // Compute bounds for time axis
+  const positions = Object.values(layout);
+  if (positions.length === 0) return null;
+  const yValues = positions.map((p) => p.y);
+  const xValues = positions.map((p) => p.x);
   const yMin = Math.min(...yValues);
   const yMax = Math.max(...yValues);
-  const xMin = Math.min(...Object.values(layout).map((p) => p.x));
-
-  // Map century to Y based on the layout range
-  const minCentury = uniqueCenturies.length > 0 ? uniqueCenturies[0] : 0;
-  const maxCentury =
-    uniqueCenturies.length > 0 ? uniqueCenturies[uniqueCenturies.length - 1] : 0;
-
-  const centuryToY = (century: number): number => {
-    if (minCentury === maxCentury) return (yMin + yMax) / 2;
-    return yMin + ((century - minCentury) / (maxCentury - minCentury)) * (yMax - yMin);
-  };
+  const xMin = Math.min(...xValues);
+  const xMax = Math.max(...xValues);
 
   return (
     <>
-      {/* Edges — rendered first (behind nodes) */}
+      {/* Time axis with era labels and grid lines — rendered first (behind everything) */}
+      <MapTimeAxis
+        x={xMin - 110}
+        yMin={yMin - 20}
+        yMax={yMax + 20}
+        yearToY={yearToY}
+        xGridStart={xMin - 10}
+        xMax={xMax + 60}
+      />
+
+      {/* Edges */}
       {graph.edges.map((edge) => {
         const sourcePos = layout[edge.source];
         const targetPos = layout[edge.target];
@@ -130,7 +114,6 @@ export function MapCanvas({
             edge={edge}
             sourcePos={sourcePos}
             targetPos={targetPos}
-            sourceNode={nodeMap.get(edge.source)}
             highlighted={isEdgeHighlighted(edge.source, edge.target)}
             dimmed={isEdgeDimmed(edge.source, edge.target)}
             hidden={isEdgeHidden(edge.source, edge.target, edge.connectionType)}
@@ -144,18 +127,7 @@ export function MapCanvas({
         );
       })}
 
-      {/* Time axis */}
-      {uniqueCenturies.length > 1 && (
-        <MapTimeAxis
-          x={xMin - 60}
-          yMin={yMin - 20}
-          yMax={yMax + 20}
-          centuries={uniqueCenturies}
-          centuryToY={centuryToY}
-        />
-      )}
-
-      {/* Nodes — rendered on top */}
+      {/* Nodes */}
       {graph.nodes.map((node) => {
         const pos = layout[node.slug];
         if (!pos) return null;
