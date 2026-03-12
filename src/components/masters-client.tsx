@@ -3,6 +3,7 @@
 import { useState, useMemo, useCallback } from "react";
 import Link from "next/link";
 import type { Teacher } from "@/lib/types";
+import { filterTeachers } from "@/lib/search";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
@@ -41,18 +42,13 @@ export function MastersClient({ masters, traditionNames, families }: MastersClie
   }, [masters]);
 
   const results = useMemo(() => {
-    return masters.filter((m) => {
-      if (query.trim() && !m.name.toLowerCase().includes(query.toLowerCase().trim())) {
-        return false;
-      }
-      if (selectedTraditions.length > 0 && !selectedTraditions.every((t) => m.traditions.includes(t))) {
-        return false;
-      }
-      if (selectedFamily && m.family !== selectedFamily) {
-        return false;
-      }
-      return true;
-    });
+    const filtered = filterTeachers(masters, {
+      query,
+      traditions: selectedTraditions,
+      state: "",
+    }) as MasterWithMeta[];
+    if (!selectedFamily) return filtered;
+    return filtered.filter((m) => m.family === selectedFamily);
   }, [masters, query, selectedTraditions, selectedFamily]);
 
   const toggleTradition = useCallback((slug: string) => {
