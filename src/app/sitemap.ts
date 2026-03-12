@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/traditions`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${SITE_URL}/teachers`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${SITE_URL}/centers`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${SITE_URL}/masters`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
   ];
 
   const traditionPages: MetadataRoute.Sitemap = getAllTraditions().map((t) => ({

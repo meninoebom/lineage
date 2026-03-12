@@ -18,42 +18,53 @@ export const metadata: Metadata = {
 
 const sections = [
   {
-    title: "Traditions",
+    title: "Find a Teacher",
     description:
-      "Explore the landscape of contemplative paths and how they connect.",
-    href: "/traditions",
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <rect x="4" y="4" width="10" height="14" rx="1" stroke="currentColor" strokeWidth="1.5" />
-        <rect x="18" y="4" width="10" height="14" rx="1" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M9 22v6M23 22v6M9 28h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
-    ),
-  },
-  {
-    title: "Teachers",
-    description:
-      "Find teachers across Vipassana, Zen, Christian contemplative, and more.",
+      "Discover living teachers you can study with across traditions.",
     href: "/teachers",
     icon: (
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <circle cx="12" cy="10" r="4" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="22" cy="12" r="3" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M4 26c0-4.418 3.582-8 8-8 2.21 0 4.21.895 5.657 2.343" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        <path d="M18 26c0-2.761 1.79-4 4-4s4 1.239 4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <circle cx="16" cy="10" r="5" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M6 28c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
       </svg>
     ),
   },
   {
-    title: "Centers",
+    title: "Explore the Masters",
     description:
-      "Discover meditation centers and practice communities near you.",
+      "The great teachers whose wisdom shaped the contemplative paths.",
+    href: "/masters",
+    icon: (
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <circle cx="16" cy="8" r="4" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M8 28c0-4.418 3.582-8 8-8s8 3.582 8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M10 6l6-3 6 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
+    title: "Find a Center",
+    description:
+      "Meditation centers and practice communities near you.",
     href: "/centers",
     icon: (
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
         <rect x="6" y="12" width="20" height="16" rx="1" stroke="currentColor" strokeWidth="1.5" />
         <path d="M6 12l10-8 10 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         <rect x="13" y="20" width="6" height="8" rx="0.5" stroke="currentColor" strokeWidth="1.5" />
+      </svg>
+    ),
+  },
+  {
+    title: "Explore Traditions",
+    description:
+      "How contemplative paths connect, diverge, and speak to one another.",
+    href: "/traditions",
+    icon: (
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect x="4" y="4" width="10" height="14" rx="1" stroke="currentColor" strokeWidth="1.5" />
+        <rect x="18" y="4" width="10" height="14" rx="1" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M9 22v6M23 22v6M9 28h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
       </svg>
     ),
   },
@@ -72,7 +83,7 @@ export default function Home() {
       </header>
 
       {/* Navigation cards — primary CTA */}
-      <section className="grid gap-6 sm:grid-cols-3 mb-16">
+      <section className="grid gap-6 sm:grid-cols-2 mb-16">
         {sections.map((section) => (
           <Link key={section.href} href={section.href} className="group">
             <div className="h-full rounded-lg border border-border bg-card p-6 transition-shadow group-hover:shadow-md">
