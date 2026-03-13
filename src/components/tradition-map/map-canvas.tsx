@@ -5,6 +5,7 @@ import { yearToY, type LayoutMap } from "@/lib/compute-layout";
 import { MapEdge } from "./map-edge";
 import { MapEdgeTooltip } from "./map-edge-tooltip";
 import { MapNode } from "./map-node";
+import { MapNodePopover } from "./map-node-popover";
 import { MapTimeAxis } from "./map-time-axis";
 import type { ResourceMap } from "./tradition-map";
 
@@ -25,6 +26,8 @@ interface MapCanvasProps {
   isEdgeDimmed: (source: string, target: string) => boolean;
   isEdgeHidden: (source: string, target: string, connectionType: ConnectionType) => boolean;
   resourceMap?: ResourceMap;
+  selectedSlug: string | null;
+  onNodeDeselect: () => void;
 }
 
 export function MapCanvas({
@@ -44,6 +47,8 @@ export function MapCanvas({
   isEdgeDimmed,
   isEdgeHidden,
   resourceMap = {},
+  selectedSlug,
+  onNodeDeselect,
 }: MapCanvasProps) {
   // Entrance animation delays based on Y position
   const nodeDelays = useMemo(() => {
@@ -149,7 +154,7 @@ export function MapCanvas({
         );
       })}
 
-      {/* Layer 4: Tooltips/popovers (topmost) */}
+      {/* Layer 4: Edge tooltips */}
       {hoveredEdge && (() => {
         const sourcePos = layout[hoveredEdge.source];
         const targetPos = layout[hoveredEdge.target];
@@ -162,6 +167,20 @@ export function MapCanvas({
             onTooltipEnter={onTooltipEnter}
             onTooltipLeave={onTooltipLeave}
             resourceMap={resourceMap}
+          />
+        );
+      })()}
+
+      {/* Layer 5: Node popover (topmost) */}
+      {selectedSlug && (() => {
+        const node = graph.nodes.find((n) => n.slug === selectedSlug);
+        const pos = node ? layout[node.slug] : null;
+        if (!node || !pos) return null;
+        return (
+          <MapNodePopover
+            node={node}
+            position={pos}
+            onClose={onNodeDeselect}
           />
         );
       })()}
