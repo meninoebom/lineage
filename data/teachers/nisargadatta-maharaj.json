@@ -2,7 +2,7 @@
   "name": "Nisargadatta Maharaj",
   "slug": "nisargadatta-maharaj",
   "bio": "Nisargadatta Maharaj (1897–1981) was an Indian spiritual teacher of Advaita Vedanta who lived and taught in a small apartment in the back streets of Mumbai. A simple shopkeeper by trade, his dialogues with visitors were recorded in the classic 'I Am That,' which introduced his radical non-dual teachings to the West. His direct, uncompromising pointing to pure awareness beyond all concepts continues to influence seekers worldwide.",
-  "photo": null,
+  "photo": "/images/teachers/nisargadatta-maharaj.jpg",
   "website": null,
   "birth_year": 1897,
   "death_year": 1981,
@@ -11,6 +11,8 @@
   "country": "IN",
   "latitude": null,
   "longitude": null,
-  "traditions": ["advaita-vedanta"],
+  "traditions": [
+    "advaita-vedanta"
+  ],
   "centers": []
 }

@@ -2,7 +2,7 @@
   "name": "Hongzhi Zhengjue",
   "slug": "hongzhi",
   "bio": "Hongzhi Zhengjue (1091–1157) was a Chinese Chan master of the Caodong (Soto) lineage who articulated the practice of silent illumination (mozhao), a form of objectless meditation emphasizing the luminous clarity of the mind at rest. His poetic writings on practice, collected in 'Cultivating the Empty Field,' are among the finest expressions of Chan literature. He served as abbot of Mount Tiantong monastery for nearly thirty years.",
-  "photo": null,
+  "photo": "/images/teachers/hongzhi.jpg",
   "website": null,
   "birth_year": 1091,
   "death_year": 1157,
@@ -11,6 +11,9 @@
   "country": "CN",
   "latitude": null,
   "longitude": null,
-  "traditions": ["zen", "chan-buddhism"],
+  "traditions": [
+    "zen",
+    "chan-buddhism"
+  ],
   "centers": []
 }

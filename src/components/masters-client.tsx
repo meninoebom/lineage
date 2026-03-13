@@ -185,9 +185,11 @@ export function MastersClient({ masters, traditionNames, families }: MastersClie
 
                     <div className="flex items-center gap-2 shrink-0">
                       {master.traditionNameMap.map(({ slug, name }) => (
-                        <Badge key={slug} variant="tradition" className="text-xs">
-                          {name}
-                        </Badge>
+                        <Link key={slug} href={`/traditions/${slug}`}>
+                          <Badge variant="tradition" className="text-xs hover:bg-[#9e4a3a]/20 transition-colors">
+                            {name}
+                          </Badge>
+                        </Link>
                       ))}
                     </div>
 

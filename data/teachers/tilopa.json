@@ -2,7 +2,7 @@
   "name": "Tilopa",
   "slug": "tilopa",
   "bio": "Tilopa (988–1069) was an Indian tantric practitioner and mahasiddha who is considered the human source of the Kagyu lineage of Tibetan Buddhism. He received teachings directly from the primordial Buddha Vajradhara and transmitted the Mahamudra lineage to his student Naropa. His 'Six Words of Advice' and 'Ganges Mahamudra' remain foundational texts in the Kagyu tradition.",
-  "photo": null,
+  "photo": "/images/teachers/tilopa.jpg",
   "website": null,
   "birth_year": 988,
   "death_year": 1069,
@@ -11,6 +11,8 @@
   "country": "IN",
   "latitude": null,
   "longitude": null,
-  "traditions": ["vajrayana"],
+  "traditions": [
+    "vajrayana"
+  ],
   "centers": []
 }

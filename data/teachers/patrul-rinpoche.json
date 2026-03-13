@@ -2,7 +2,7 @@
   "name": "Patrul Rinpoche",
   "slug": "patrul-rinpoche",
   "bio": "Patrul Rinpoche (1808–1887) was a wandering Tibetan Buddhist master of the Nyingma tradition known for his humility, fierce compassion, and brilliant writing. His 'Words of My Perfect Teacher' is one of the most beloved introductions to Tibetan Buddhist practice. He lived as a homeless yogi despite his fame, teaching in meadows and refusing institutional trappings.",
-  "photo": null,
+  "photo": "/images/teachers/patrul-rinpoche.jpg",
   "website": null,
   "birth_year": 1808,
   "death_year": 1887,
@@ -11,6 +11,9 @@
   "country": "CN",
   "latitude": null,
   "longitude": null,
-  "traditions": ["vajrayana", "dzogchen"],
+  "traditions": [
+    "vajrayana",
+    "dzogchen"
+  ],
   "centers": []
 }

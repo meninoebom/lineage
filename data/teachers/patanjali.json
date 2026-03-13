@@ -2,7 +2,7 @@
   "name": "Patanjali",
   "slug": "patanjali",
   "bio": "Patanjali is the sage traditionally credited with compiling the Yoga Sutras, the foundational text of Classical Yoga. Writing around the second century BCE, he systematized the eight-limbed path (ashtanga) from ethical conduct through meditation to samadhi. His concise aphorisms have guided contemplative practice across traditions for over two millennia.",
-  "photo": null,
+  "photo": "/images/teachers/patanjali.jpg",
   "website": null,
   "birth_year": -200,
   "death_year": -100,
@@ -11,6 +11,8 @@
   "country": "IN",
   "latitude": null,
   "longitude": null,
-  "traditions": ["classical-yoga"],
+  "traditions": [
+    "classical-yoga"
+  ],
   "centers": []
 }

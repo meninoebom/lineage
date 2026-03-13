@@ -2,7 +2,7 @@
   "name": "Tulku Urgyen Rinpoche",
   "slug": "tulku-urgyen-rinpoche",
   "bio": "Tulku Urgyen Rinpoche (1920–1996) was a Tibetan Buddhist master renowned for his ability to transmit the direct experience of the nature of mind with extraordinary clarity. He spent over twenty years in retreat and taught at Nagi Gompa hermitage above the Kathmandu Valley. His teachings on Dzogchen and Mahamudra, compiled in books like 'Rainbow Painting' and 'As It Is,' are celebrated for their directness and precision.",
-  "photo": null,
+  "photo": "/images/teachers/tulku-urgyen-rinpoche.jpg",
   "website": null,
   "birth_year": 1920,
   "death_year": 1996,
@@ -11,6 +11,9 @@
   "country": "NP",
   "latitude": null,
   "longitude": null,
-  "traditions": ["vajrayana", "dzogchen"],
+  "traditions": [
+    "vajrayana",
+    "dzogchen"
+  ],
   "centers": []
 }
