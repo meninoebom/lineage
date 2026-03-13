@@ -250,7 +250,7 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
                   isEdgeHighlighted={interaction.isEdgeHighlighted}
                   isEdgeDimmed={interaction.isEdgeDimmed}
                   isEdgeHidden={interaction.isEdgeHidden}
-                  selectedSlug={selectedSlug}
+                  activeSlug={interaction.activeSlug}
                   onNodeDeselect={handleBackgroundTap}
                 />
               </g>
