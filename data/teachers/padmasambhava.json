@@ -2,7 +2,7 @@
   "name": "Padmasambhava",
   "slug": "padmasambhava",
   "bio": "Padmasambhava, known as Guru Rinpoche, was an eighth-century Indian tantric master credited with establishing Buddhism in Tibet. He subdued local deities and consecrated Samye, Tibet's first Buddhist monastery, at the invitation of King Trisong Detsen. Revered as a second Buddha by the Nyingma tradition, he is said to have concealed treasure teachings (terma) throughout Tibet for future generations.",
-  "photo": null,
+  "photo": "/images/teachers/padmasambhava.jpg",
   "website": null,
   "birth_year": 717,
   "death_year": 800,
@@ -11,6 +11,9 @@
   "country": "CN",
   "latitude": null,
   "longitude": null,
-  "traditions": ["vajrayana", "dzogchen"],
+  "traditions": [
+    "vajrayana",
+    "dzogchen"
+  ],
   "centers": []
 }

@@ -2,7 +2,7 @@
   "name": "Ramana Maharshi",
   "slug": "ramana-maharshi",
   "bio": "Ramana Maharshi (1879–1950) was an Indian sage who attained self-realization at age sixteen and spent the rest of his life at Arunachala hill in Tiruvannamalai. He taught the practice of self-inquiry (atma vichara), directing seekers to ask 'Who am I?' as the most direct path to liberation. His silent presence and simple teachings attracted devotees from around the world and profoundly influenced modern Advaita Vedanta.",
-  "photo": null,
+  "photo": "/images/teachers/ramana-maharshi.jpg",
   "website": null,
   "birth_year": 1879,
   "death_year": 1950,
@@ -11,6 +11,8 @@
   "country": "IN",
   "latitude": null,
   "longitude": null,
-  "traditions": ["advaita-vedanta"],
+  "traditions": [
+    "advaita-vedanta"
+  ],
   "centers": []
 }

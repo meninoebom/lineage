@@ -2,7 +2,7 @@
   "name": "Rumi",
   "slug": "rumi",
   "bio": "Jalal ad-Din Muhammad Rumi (1207–1273) was a Persian poet, Islamic scholar, and Sufi mystic whose ecstatic poetry of divine love has made him one of the most widely read poets in the world. After his transformative encounter with the wandering dervish Shams-i Tabrizi, he composed the Masnavi, a vast spiritual epic considered the 'Quran in Persian.' He founded the Mevlevi Order, known for the whirling ceremony of the dervishes, in Konya.",
-  "photo": null,
+  "photo": "/images/teachers/rumi.jpg",
   "website": null,
   "birth_year": 1207,
   "death_year": 1273,
@@ -11,6 +11,8 @@
   "country": "TR",
   "latitude": null,
   "longitude": null,
-  "traditions": ["sufism"],
+  "traditions": [
+    "sufism"
+  ],
   "centers": []
 }

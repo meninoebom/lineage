@@ -2,7 +2,7 @@
   "name": "Swami Vivekananda",
   "slug": "swami-vivekananda",
   "bio": "Swami Vivekananda was the chief disciple of Ramakrishna and a key figure in bringing Vedanta and Yoga to the Western world. His address at the 1893 Parliament of the World's Religions in Chicago introduced Hindu philosophy to a broad American audience. He founded the Ramakrishna Mission and emphasized the universality of spiritual experience across traditions.",
-  "photo": null,
+  "photo": "/images/teachers/swami-vivekananda.jpg",
   "website": null,
   "birth_year": 1863,
   "death_year": 1902,
@@ -11,6 +11,9 @@
   "country": "IN",
   "latitude": null,
   "longitude": null,
-  "traditions": ["vedanta", "classical-yoga"],
+  "traditions": [
+    "vedanta",
+    "classical-yoga"
+  ],
   "centers": []
 }
