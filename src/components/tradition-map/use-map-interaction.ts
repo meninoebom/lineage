@@ -41,8 +41,35 @@ export function useMapInteraction(graph: TraditionGraph) {
     return keys;
   }, [graph, activeSlug]);
 
+  // Delayed node unhover — gives user time to move mouse to the popover
+  const nodeHideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   const handleNodeHover = useCallback((slug: string | null) => {
-    setHoveredSlug(slug);
+    if (nodeHideTimer.current) {
+      clearTimeout(nodeHideTimer.current);
+      nodeHideTimer.current = null;
+    }
+    if (slug) {
+      setHoveredSlug(slug);
+    } else {
+      nodeHideTimer.current = setTimeout(() => {
+        setHoveredSlug(null);
+      }, 300);
+    }
+  }, []);
+
+  // Allow popover itself to keep the node hovered
+  const handlePopoverEnter = useCallback(() => {
+    if (nodeHideTimer.current) {
+      clearTimeout(nodeHideTimer.current);
+      nodeHideTimer.current = null;
+    }
+  }, []);
+
+  const handlePopoverLeave = useCallback(() => {
+    nodeHideTimer.current = setTimeout(() => {
+      setHoveredSlug(null);
+    }, 200);
   }, []);
 
   const handleNodeClick = useCallback(
@@ -181,6 +208,8 @@ export function useMapInteraction(graph: TraditionGraph) {
     handleEdgeHover,
     handleTooltipEnter,
     handleTooltipLeave,
+    handlePopoverEnter,
+    handlePopoverLeave,
     highlightedSourceSlug,
     setHighlightedSourceSlug,
     isNodeHighlighted,

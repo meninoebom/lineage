@@ -28,6 +28,8 @@ interface MapCanvasProps {
   resourceMap?: ResourceMap;
   activeSlug: string | null;
   onNodeDeselect: () => void;
+  onPopoverEnter: () => void;
+  onPopoverLeave: () => void;
 }
 
 export function MapCanvas({
@@ -49,6 +51,8 @@ export function MapCanvas({
   resourceMap = {},
   activeSlug,
   onNodeDeselect,
+  onPopoverEnter,
+  onPopoverLeave,
 }: MapCanvasProps) {
   // Entrance animation delays based on Y position
   const nodeDelays = useMemo(() => {
@@ -181,6 +185,8 @@ export function MapCanvas({
             node={node}
             position={pos}
             onClose={onNodeDeselect}
+            onPopoverEnter={onPopoverEnter}
+            onPopoverLeave={onPopoverLeave}
           />
         );
       })()}

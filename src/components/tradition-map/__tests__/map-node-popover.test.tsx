@@ -19,6 +19,8 @@ const defaultProps = {
   node: mockNode,
   position: { x: 200, y: 300 },
   onClose: vi.fn(),
+  onPopoverEnter: vi.fn(),
+  onPopoverLeave: vi.fn(),
 };
 
 describe("MapNodePopover", () => {

@@ -5,6 +5,8 @@ interface MapNodePopoverProps {
   node: GraphNode;
   position: { x: number; y: number };
   onClose: () => void;
+  onPopoverEnter: () => void;
+  onPopoverLeave: () => void;
 }
 
 const MAX_SUMMARY_LENGTH = 140;
@@ -24,13 +26,15 @@ export function MapNodePopover({
   node,
   position,
   onClose,
+  onPopoverEnter,
+  onPopoverLeave,
 }: MapNodePopoverProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const width = 260;
   const height = 180;
   // Position above the node, centered horizontally
   const x = position.x - width / 2;
-  const y = position.y - height - 18;
+  const y = position.y - height - 10;
 
   // Auto-focus for keyboard dismiss
   useEffect(() => {
@@ -48,6 +52,8 @@ export function MapNodePopover({
       <div
         ref={containerRef}
         tabIndex={-1}
+        onMouseEnter={onPopoverEnter}
+        onMouseLeave={onPopoverLeave}
         role="dialog"
         aria-label={`${node.name} details`}
         onKeyDown={(e) => {

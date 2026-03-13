@@ -252,6 +252,8 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
                   isEdgeHidden={interaction.isEdgeHidden}
                   activeSlug={interaction.activeSlug}
                   onNodeDeselect={handleBackgroundTap}
+                  onPopoverEnter={interaction.handlePopoverEnter}
+                  onPopoverLeave={interaction.handlePopoverLeave}
                 />
               </g>
             </svg>
