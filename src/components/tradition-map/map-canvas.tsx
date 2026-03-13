@@ -26,7 +26,7 @@ interface MapCanvasProps {
   isEdgeDimmed: (source: string, target: string) => boolean;
   isEdgeHidden: (source: string, target: string, connectionType: ConnectionType) => boolean;
   resourceMap?: ResourceMap;
-  selectedSlug: string | null;
+  activeSlug: string | null;
   onNodeDeselect: () => void;
 }
 
@@ -47,7 +47,7 @@ export function MapCanvas({
   isEdgeDimmed,
   isEdgeHidden,
   resourceMap = {},
-  selectedSlug,
+  activeSlug,
   onNodeDeselect,
 }: MapCanvasProps) {
   // Entrance animation delays based on Y position
@@ -171,9 +171,9 @@ export function MapCanvas({
         );
       })()}
 
-      {/* Layer 5: Node popover (topmost) */}
-      {selectedSlug && (() => {
-        const node = graph.nodes.find((n) => n.slug === selectedSlug);
+      {/* Layer 5: Node popover (topmost) — shows on hover or selection */}
+      {activeSlug && (() => {
+        const node = graph.nodes.find((n) => n.slug === activeSlug);
         const pos = node ? layout[node.slug] : null;
         if (!node || !pos) return null;
         return (
