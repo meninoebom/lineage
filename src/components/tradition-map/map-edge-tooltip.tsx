@@ -44,16 +44,16 @@ export function MapEdgeTooltip({
         onMouseEnter={onTooltipEnter}
         onMouseLeave={onTooltipLeave}
         style={{
-          background: "#f5f0eb",
-          border: "1px solid #d4cdc4",
-          borderRadius: 6,
-          padding: "8px 12px",
-          fontSize: 11,
+          background: "rgba(245, 240, 235, 0.92)",
+          border: "1px solid #e0dad3",
+          borderRadius: 4,
+          padding: "5px 9px",
+          fontSize: 10,
           fontFamily: "system-ui, sans-serif",
-          color: "#6a6560",
-          lineHeight: 1.5,
-          boxShadow: "0 1px 4px rgba(0,0,0,0.08)",
-          maxWidth: 320,
+          color: "#8a8580",
+          lineHeight: 1.4,
+          boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
+          maxWidth: 280,
         }}
       >
         <div>{edge.description}</div>
@@ -63,7 +63,7 @@ export function MapEdgeTooltip({
               marginTop: 4,
               paddingTop: 4,
               borderTop: "1px solid #d4cdc4",
-              fontSize: 10,
+              fontSize: 9,
               color: "#8a8580",
             }}
           >

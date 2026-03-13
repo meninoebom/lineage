@@ -264,12 +264,17 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
         {mapResources.length > 0 && (
           <aside className="w-full lg:w-[320px] lg:shrink-0">
             <div className="lg:sticky lg:top-20 overflow-y-auto max-h-[800px]">
-              {/* Header with optional filter label */}
+              {/* Header with optional filter label and count */}
               <div className="flex items-baseline justify-between mb-2">
                 <h2 className="font-serif text-xl font-normal">
                   {selectedTraditionName
                     ? `Sources for ${selectedTraditionName}`
                     : "Sources"}
+                  {filteredResources.length !== mapResources.length && (
+                    <span className="text-sm font-sans font-normal text-[#999] ml-2">
+                      ({filteredResources.length} of {mapResources.length})
+                    </span>
+                  )}
                 </h2>
                 {selectedSlug && (
                   <button
