@@ -59,7 +59,7 @@ const sections = [
     title: "Explore Traditions",
     description:
       "How contemplative paths connect, diverge, and speak to one another.",
-    href: "/traditions",
+    href: "/map",
     icon: (
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
         <rect x="4" y="4" width="10" height="14" rx="1" stroke="currentColor" strokeWidth="1.5" />
