@@ -11,6 +11,16 @@ import { join } from "path";
 import { classifyCandidate, type RawCandidate, type Classification } from "./lib/classify";
 import { generateTeacherJson, type AcceptedCandidate } from "./lib/generate-teacher";
 import { scrapePodcast } from "./scrape-podcast";
+import { scrapeCenterTeachers, type ScrapedTeacher, type CenterConfig } from "./scrape-centers";
+
+// ---------------------------------------------------------------------------
+// Extended candidate with optional location and fallback traditions
+// ---------------------------------------------------------------------------
+
+interface PipelineCandidate extends RawCandidate {
+  location?: { city: string; state: string; country: string };
+  fallbackTraditions?: string[];
+}
 
 // ---------------------------------------------------------------------------
 // CLI arg parsing
@@ -49,15 +59,27 @@ function loadExistingTeacherNames(): string[] {
 // Gather candidates from sources
 // ---------------------------------------------------------------------------
 
-function gatherCandidates(src: string): RawCandidate[] {
-  const candidates: RawCandidate[] = [];
+async function gatherCandidates(src: string): Promise<PipelineCandidate[]> {
+  const candidates: PipelineCandidate[] = [];
 
   if (src === "podcast" || src === "all") {
     candidates.push(...scrapePodcast());
   }
 
-  if (src === "centers") {
-    console.log("⚠  Centers source not yet implemented (see #108)");
+  if (src === "centers" || src === "all") {
+    const centersPath = join(ROOT, "scripts", "data", "center-urls.json");
+    const centers: CenterConfig[] = JSON.parse(readFileSync(centersPath, "utf-8"));
+    console.log(`Scraping ${centers.length} centers...`);
+    const scraped = await scrapeCenterTeachers(centers);
+    for (const t of scraped) {
+      candidates.push({
+        name: t.name,
+        bio: t.bio,
+        source: t.source,
+        location: t.location,
+        fallbackTraditions: t.traditions,
+      });
+    }
   }
 
   return candidates;
@@ -80,13 +102,13 @@ interface PipelineRow {
 // Main pipeline
 // ---------------------------------------------------------------------------
 
-function run() {
+async function run() {
   console.log(`\nTeacher expansion pipeline — source: ${source}\n`);
 
   const existingNames = loadExistingTeacherNames();
   console.log(`Loaded ${existingNames.length} existing teachers for dedup.\n`);
 
-  const candidates = gatherCandidates(source);
+  const candidates = await gatherCandidates(source);
   console.log(`Found ${candidates.length} candidates from source(s).\n`);
 
   const rows: PipelineRow[] = [];
@@ -95,10 +117,39 @@ function run() {
 
   // Track names within this batch for intra-batch dedup
   const batchNames: string[] = [...existingNames];
+  // Track names that were explicitly rejected (not just no-match) so we
+  // don't accept them via fallback traditions from a different source
+  const rejectedNames = new Set<string>();
 
   for (let i = 0; i < candidates.length; i++) {
     const c = candidates[i];
-    const classification: Classification = classifyCandidate(c, batchNames);
+    const normalizedName = c.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+    let classification: Classification = classifyCandidate(c, batchNames);
+
+    // If this person was previously rejected for a substantive reason
+    // (therapist, self-help, etc.), don't accept via fallback traditions
+    if (rejectedNames.has(normalizedName)) {
+      classification = { traditions: [], status: "rejected", reject_reason: "previously-rejected" };
+    }
+
+    // Tradition fallback: ONLY if rejected as "no-tradition-match" (not for
+    // therapists, self-help, yoga, etc.) and the source provided fallback traditions
+    if (
+      classification.status === "rejected" &&
+      classification.reject_reason === "no-tradition-match" &&
+      c.fallbackTraditions &&
+      c.fallbackTraditions.length > 0
+    ) {
+      classification = {
+        traditions: c.fallbackTraditions,
+        status: "accepted",
+      };
+    }
+
+    // Track rejected names for cross-source dedup
+    if (classification.status === "rejected" && classification.reject_reason !== "no-tradition-match" && classification.reject_reason !== "duplicate") {
+      rejectedNames.add(normalizedName);
+    }
 
     const row: PipelineRow = {
       index: i + 1,
@@ -118,7 +169,7 @@ function run() {
           name: c.name,
           bio: c.bio,
           traditions: classification.traditions,
-          location: null,
+          location: c.location ?? null,
           website: null,
         },
         source: c.source,
@@ -212,4 +263,7 @@ function run() {
   console.log(`Center leads saved to .llm/center-leads.md`);
 }
 
-run();
+run().catch((err) => {
+  console.error("Fatal error:", err);
+  process.exit(1);
+});
