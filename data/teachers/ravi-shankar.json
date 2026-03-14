@@ -1,0 +1,19 @@
+{
+  "name": "Ravi Shankar",
+  "slug": "ravi-shankar",
+  "bio": "Sri Sri Ravi Shankar is a spiritual teacher and humanitarian who founded the Art of Living Foundation. He teaches pranayama, meditation, and yoga philosophy rooted in Vedantic and classical yoga traditions.",
+  "photo": null,
+  "website": null,
+  "birth_year": null,
+  "death_year": null,
+  "city": "",
+  "state": "",
+  "country": "",
+  "latitude": null,
+  "longitude": null,
+  "traditions": [
+    "classical-yoga",
+    "vedanta"
+  ],
+  "centers": []
+}
