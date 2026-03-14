@@ -1,7 +1,7 @@
 import { readdirSync, readFileSync, existsSync } from "fs";
 import { join } from "path";
 import matter from "gray-matter";
-import type { Teacher, Center, Resource, TraditionConnection } from "./types";
+import type { Teacher, Center, Resource, Path, ResolvedPath, TraditionConnection } from "./types";
 
 const DATA_DIR = join(process.cwd(), "data");
 
@@ -229,6 +229,47 @@ export function getTradition(slug: string): ParsedTradition | undefined {
   const filePath = join(DATA_DIR, "traditions", `${safeSlug}.mdx`);
   if (!existsSync(filePath)) return undefined;
   return parseTraditionFile(filePath);
+}
+
+// -- Paths --
+
+const VALID_PATH_TYPES = ["tradition", "thematic"];
+
+function isPath(obj: unknown): obj is Path {
+  const p = obj as Record<string, unknown>;
+  return (
+    typeof p.slug === "string" &&
+    typeof p.title === "string" &&
+    typeof p.description === "string" &&
+    typeof p.type === "string" &&
+    VALID_PATH_TYPES.includes(p.type as string) &&
+    (p.tradition === null || typeof p.tradition === "string") &&
+    Array.isArray(p.resources) &&
+    (p.resources as unknown[]).every((r) => typeof r === "string")
+  );
+}
+
+function resolvePath(path: Path): ResolvedPath {
+  const resources = path.resources.flatMap((slug) => {
+    const r = getResource(slug);
+    return r ? [r] : [];
+  });
+  return { ...path, resources };
+}
+
+export function getAllPaths(): ResolvedPath[] {
+  const paths = loadAllJson("paths", isPath);
+  // Sort: tradition paths first, then thematic
+  paths.sort((a, b) => {
+    if (a.type === b.type) return a.title.localeCompare(b.title);
+    return a.type === "tradition" ? -1 : 1;
+  });
+  return paths.map(resolvePath);
+}
+
+export function getPathBySlug(slug: string): ResolvedPath | undefined {
+  const path = loadOneJson("paths", slug, isPath);
+  return path ? resolvePath(path) : undefined;
 }
 
 // -- Cross-reference queries --
