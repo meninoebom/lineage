@@ -85,6 +85,28 @@ function looksLikeName(text: string): boolean {
   // No digits
   if (/\d/.test(trimmed)) return false;
 
+  // Reject common navigation/UI text that passes other checks
+  const NAV_BLOCKLIST = [
+    "main menu", "mobile menu", "footer navigation", "secondary menu",
+    "secondary mobile menu", "main menu mobile", "header right",
+    "read more", "contact us", "ways to give", "stay connected",
+    "privacy overview", "newsletter signup", "learn about", "mobile primary",
+    "youtube video", "teacher background", "learn about our lineage",
+    "retreat center", "forest refuge", "guiding teachers", "our guiding teachers",
+    "visiting teachers", "resident teachers", "movement instructors",
+    "teacher training", "teacher village", "teacher support", "teacher writings",
+    "teacher dana", "staff life", "sangha program", "join our list",
+    "new meditators", "beginners programs", "evening events", "creating community",
+    "ongoing sittings", "what guides us", "what we teach", "who we are",
+    "new york insight teachers", "guiding teacher collective",
+    "retreat center teachers", "forest refuge teachers",
+    "retreat center assistant teachers",
+  ];
+  if (NAV_BLOCKLIST.some((b) => trimmed.toLowerCase().includes(b))) return false;
+
+  // Reject if it looks like an organization name (contains Center, Institute, etc.)
+  if (/\b(center|institute|society|foundation|program|school)\b/i.test(trimmed)) return false;
+
   return true;
 }
 
@@ -139,7 +161,21 @@ function extractTeacherNames(html: string): string[] {
     }
   }
 
-  return Array.from(names);
+  return Array.from(names).map(cleanName);
+}
+
+/**
+ * Strip credential suffixes from names (PhD, MD, LCSW, etc.)
+ * Only strips after a comma or at the end of the string preceded by a space.
+ */
+function cleanName(name: string): string {
+  // Strip credentials: ", PhD" or " PhD" at end, or "MD, PhD" chains
+  const cleaned = name
+    .replace(/,?\s*(PhD|MD|EdD|LCSW|RN|DO|PsyD|LMFT|LPC|MSW)\b[\s,.]*/g, "")
+    // Only strip short credentials (MA, MS, etc.) after comma to avoid false positives
+    .replace(/,\s*(MA|MS|MFA|MEd|JD)\b[\s,.]*/g, "")
+    .trim();
+  return cleaned;
 }
 
 // ---------------------------------------------------------------------------
