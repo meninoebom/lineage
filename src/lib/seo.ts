@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { Teacher, Center } from "./types";
 import type { ParsedTradition } from "./data";
 
-export const SITE_URL = "https://lineage-5ub.pages.dev";
+export const SITE_URL = "https://lineage.guide";
 export const SITE_NAME = "Lineage";
 export const SITE_DESCRIPTION =
   "An interactive map of contemplative traditions and a directory of teachers and centers.";
@@ -20,6 +20,20 @@ export const defaultMetadata: Metadata = {
     type: "website",
     siteName: SITE_NAME,
     locale: "en_US",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Lineage — A Map of Contemplative Traditions",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE_NAME} — A Map of Contemplative Traditions`,
+    description: SITE_DESCRIPTION,
+    images: ["/og.png"],
   },
   robots: {
     index: true,

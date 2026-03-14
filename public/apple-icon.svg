@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+  <rect width="180" height="180" rx="20" fill="#faf8f5"/>
+  <text x="90" y="120" text-anchor="middle" font-family="Georgia, serif" font-size="100" fill="#2a2a2a" font-weight="400">L</text>
+  <circle cx="45" cy="40" r="8" fill="#c0553a" opacity="0.6"/>
+  <circle cx="135" cy="50" r="6" fill="#b48c64" opacity="0.5"/>
+  <circle cx="90" cy="30" r="5" fill="#8c8ca0" opacity="0.4"/>
+  <line x1="45" y1="40" x2="90" y2="30" stroke="#b48c64" stroke-width="1.5" opacity="0.25"/>
+  <line x1="90" y1="30" x2="135" y2="50" stroke="#8c8ca0" stroke-width="1.5" opacity="0.25" stroke-dasharray="4 3"/>
+</svg>
