@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getAllTeachers, getAllCenters, getAllTraditions } from "@/lib/data";
+import { getAllTeachers, getAllCenters, getAllTraditions, getAllPaths } from "@/lib/data";
 import { getTeacherLocationStates } from "@/lib/location";
 import { SITE_URL } from "@/lib/seo";
 
@@ -18,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/teachers`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${SITE_URL}/centers`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${SITE_URL}/masters`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${SITE_URL}/library`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
   ];
 
   const traditionPages: MetadataRoute.Sitemap = getAllTraditions().map((t) => ({
@@ -48,11 +49,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
+  const pathPages: MetadataRoute.Sitemap = getAllPaths().map((p) => ({
+    url: `${SITE_URL}/library/${p.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
   return [
     ...staticPages,
     ...traditionPages,
     ...teacherPages,
     ...centerPages,
     ...locationPages,
+    ...pathPages,
   ];
 }
