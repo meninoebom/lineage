@@ -11,6 +11,11 @@
   "country": "US",
   "latitude": null,
   "longitude": null,
-  "traditions": ["vajrayana"],
-  "centers": ["dharma-ocean-foundation"]
+  "traditions": [
+    "vajrayana"
+  ],
+  "centers": [
+    "dharma-ocean-foundation",
+    "naropa-university"
+  ]
 }
