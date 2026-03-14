@@ -5,11 +5,11 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "/traditions", label: "Traditions" },
+  { href: "/map", label: "Map" },
+  { href: "/library", label: "Library" },
   { href: "/teachers", label: "Teachers" },
   { href: "/masters", label: "Masters" },
   { href: "/centers", label: "Centers" },
-  { href: "/map", label: "Map" },
 ] as const;
 
 export function SiteHeader() {
