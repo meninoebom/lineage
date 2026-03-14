@@ -1,0 +1,14 @@
+{
+  "slug": "the-hidden-traditions",
+  "title": "The Hidden Traditions",
+  "description": "Esoteric and lesser-known contemplative paths — Gnosticism, Neoplatonism, Kabbalah, and the Quaker inner light tradition.",
+  "type": "thematic",
+  "tradition": null,
+  "resources": [
+    "the-gnostic-gospels",
+    "the-gospel-of-thomas",
+    "the-essential-kabbalah",
+    "neoplatonism",
+    "a-testament-of-devotion"
+  ]
+}

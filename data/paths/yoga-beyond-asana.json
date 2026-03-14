@@ -1,0 +1,13 @@
+{
+  "slug": "yoga-beyond-asana",
+  "title": "Yoga Beyond Asana",
+  "description": "Classical yoga as a complete contemplative system — from Patanjali's Sutras through the Bhagavad Gita to the Upanishadic roots of meditation and self-knowledge.",
+  "type": "tradition",
+  "tradition": "classical-yoga",
+  "resources": [
+    "yoga-sutras-of-patanjali",
+    "bhagavad-gita",
+    "the-upanishads",
+    "light-on-yoga"
+  ]
+}

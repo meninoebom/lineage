@@ -1,0 +1,13 @@
+{
+  "slug": "the-christian-contemplative-way",
+  "title": "The Christian Contemplative Way",
+  "description": "Mystical Christianity from the anonymous Cloud of Unknowing through Teresa of Ávila's Interior Castle to the desert prayer tradition of the Philokalia.",
+  "type": "tradition",
+  "tradition": "christian-mysticism",
+  "resources": [
+    "cloud-of-unknowing",
+    "interior-castle",
+    "the-philokalia-selections",
+    "wisdom-masters-meister-eckhart"
+  ]
+}

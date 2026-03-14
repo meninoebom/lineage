@@ -1,0 +1,13 @@
+{
+  "slug": "where-traditions-meet",
+  "title": "Where Traditions Meet",
+  "description": "Resources that cross boundaries — exploring the common ground between contemplative traditions, from secular mindfulness to the perennial philosophy.",
+  "type": "thematic",
+  "tradition": null,
+  "resources": [
+    "waking-up-app",
+    "full-catastrophe-living",
+    "be-here-now",
+    "the-end-of-your-world"
+  ]
+}

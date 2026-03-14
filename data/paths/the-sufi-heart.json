@@ -1,0 +1,13 @@
+{
+  "slug": "the-sufi-heart",
+  "title": "The Sufi Heart",
+  "description": "Discovering Sufism through its greatest poets and practitioners — Rumi's ecstatic verse, Attar's allegorical journey, and the living tradition of devotional practice.",
+  "type": "tradition",
+  "tradition": "sufism",
+  "resources": [
+    "essential-rumi",
+    "the-conference-of-the-birds",
+    "the-heart-of-sufism",
+    "wisdom-masters-rumi"
+  ]
+}

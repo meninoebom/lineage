@@ -1,0 +1,14 @@
+{
+  "slug": "the-vipassana-path",
+  "title": "The Vipassana Path",
+  "description": "Insight meditation from its Theravada roots to the modern vipassana movement — practical guides for establishing and deepening a sitting practice.",
+  "type": "tradition",
+  "tradition": "vipassana-movement",
+  "resources": [
+    "what-the-buddha-taught",
+    "mindfulness-in-plain-english",
+    "a-path-with-heart",
+    "breath-by-breath",
+    "lovingkindness"
+  ]
+}

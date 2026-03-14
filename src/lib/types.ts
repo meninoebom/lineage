@@ -57,6 +57,21 @@ export interface Resource {
   centers: string[];
 }
 
+export type PathType = "tradition" | "thematic";
+
+export interface Path {
+  slug: string;
+  title: string;
+  description: string;
+  type: PathType;
+  tradition: string | null;
+  resources: string[];
+}
+
+export interface ResolvedPath extends Omit<Path, "resources"> {
+  resources: Resource[];
+}
+
 export interface Center {
   name: string;
   slug: string;

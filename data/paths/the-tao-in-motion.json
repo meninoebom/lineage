@@ -1,0 +1,13 @@
+{
+  "slug": "the-tao-in-motion",
+  "title": "The Tao in Motion",
+  "description": "Taoism as philosophy and embodied practice — from the Tao Te Ching through tai chi and qigong to the playful wisdom of The Tao of Pooh.",
+  "type": "tradition",
+  "tradition": "taoism",
+  "resources": [
+    "tao-te-ching",
+    "the-tao-of-pooh",
+    "tai-chi-classics",
+    "the-way-of-qigong"
+  ]
+}

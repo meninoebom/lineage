@@ -1,0 +1,13 @@
+{
+  "slug": "exploring-zen",
+  "title": "Exploring Zen",
+  "description": "A journey through Zen's core texts and teachers — from the foundational Platform Sutra through the spare aesthetics of Ryokan to the accessible brilliance of Shunryu Suzuki.",
+  "type": "tradition",
+  "tradition": "zen",
+  "resources": [
+    "the-platform-sutra-red-pine",
+    "zen-mind-beginners-mind",
+    "way-of-zen",
+    "wisdom-masters-ryokan"
+  ]
+}
