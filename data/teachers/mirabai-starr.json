@@ -1,0 +1,19 @@
+{
+  "name": "Mirabai Starr",
+  "slug": "mirabai-starr",
+  "bio": "Mirabai Starr is a writer, translator, and teacher of the interspiritual path who draws on Christian mysticism, Sufism, and other contemplative traditions. She has translated works by Teresa of Ávila, John of the Cross, and other Christian contemplatives.",
+  "photo": null,
+  "website": null,
+  "birth_year": null,
+  "death_year": null,
+  "city": "",
+  "state": "",
+  "country": "",
+  "latitude": null,
+  "longitude": null,
+  "traditions": [
+    "christian-mysticism",
+    "sufism"
+  ],
+  "centers": []
+}

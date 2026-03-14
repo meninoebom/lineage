@@ -1,0 +1,20 @@
+{
+  "name": "Wes Nisker",
+  "slug": "wes-nisker",
+  "bio": "Wes Nisker is a Buddhist teacher, author, and co-founder of the journal Inquiring Mind. He teaches vipassana meditation in the Theravada tradition and explores the intersection of Buddhism and evolutionary biology.",
+  "photo": null,
+  "website": null,
+  "birth_year": null,
+  "death_year": null,
+  "city": "",
+  "state": "",
+  "country": "",
+  "latitude": null,
+  "longitude": null,
+  "traditions": [
+    "early-buddhism",
+    "theravada",
+    "vipassana-movement"
+  ],
+  "centers": []
+}
