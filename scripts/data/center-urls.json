@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Spirit Rock Meditation Center",
+    "url": "https://www.spiritrock.org/teachers",
+    "city": "Woodacre",
+    "state": "California",
+    "country": "US",
+    "traditions": ["vipassana-movement", "theravada"]
+  },
+  {
+    "name": "San Francisco Zen Center",
+    "url": "https://www.sfzc.org/about-sfzc/our-teachers",
+    "city": "San Francisco",
+    "state": "California",
+    "country": "US",
+    "traditions": ["zen"]
+  },
+  {
+    "name": "Insight Meditation Society",
+    "url": "https://www.dharma.org/teachers/",
+    "city": "Barre",
+    "state": "Massachusetts",
+    "country": "US",
+    "traditions": ["vipassana-movement", "theravada"]
+  },
+  {
+    "name": "New York Insight Meditation Center",
+    "url": "https://nyimc.org/teachers/",
+    "city": "New York",
+    "state": "New York",
+    "country": "US",
+    "traditions": ["vipassana-movement"]
+  },
+  {
+    "name": "InsightLA",
+    "url": "https://insightla.org/teachers/",
+    "city": "Los Angeles",
+    "state": "California",
+    "country": "US",
+    "traditions": ["vipassana-movement"]
+  },
+  {
+    "name": "Cambridge Insight Meditation Center",
+    "url": "https://cambridgeinsight.org/teachers/",
+    "city": "Cambridge",
+    "state": "Massachusetts",
+    "country": "US",
+    "traditions": ["vipassana-movement"]
+  }
+]
