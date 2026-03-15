@@ -1,0 +1,16 @@
+{
+  "name": "Michael Taft",
+  "slug": "michael-taft",
+  "bio": "Michael Taft is a meditation teacher, author, and host of the Deconstructing Yourself podcast. He has practiced nondual meditation for over 35 years, with extensive experience in both Buddhist and Hindu Tantric traditions — from Zen temples in Japan to yogi caves in India. He is the author of 'The Mindful Geek' and 'Nondualism: A Brief History of a Timeless Concept,' and co-founded the Alembic center in Berkeley.",
+  "photo": null,
+  "website": "https://deconstructingyourself.com",
+  "birth_year": null,
+  "death_year": null,
+  "city": "Berkeley",
+  "state": "California",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": ["modern-non-dual", "zen", "tantra"],
+  "centers": []
+}
