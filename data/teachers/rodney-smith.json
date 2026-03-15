@@ -11,6 +11,12 @@
   "country": "US",
   "latitude": null,
   "longitude": null,
-  "traditions": ["theravada", "vipassana-movement"],
-  "centers": ["seattle-insight-meditation-society"]
+  "traditions": [
+    "theravada",
+    "vipassana-movement"
+  ],
+  "centers": [
+    "seattle-insight-meditation-society",
+    "insight-meditation-society"
+  ]
 }

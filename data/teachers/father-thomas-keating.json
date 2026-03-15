@@ -11,6 +11,11 @@
   "country": "US",
   "latitude": null,
   "longitude": null,
-  "traditions": ["christian-mysticism"],
-  "centers": ["st-benedicts-monastery-snowmass"]
+  "traditions": [
+    "christian-mysticism"
+  ],
+  "centers": [
+    "st-benedicts-monastery-snowmass",
+    "st-josephs-abbey"
+  ]
 }
