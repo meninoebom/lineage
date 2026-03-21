@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 const navLinks = [
   { href: "/map", label: "Map" },
   { href: "/library", label: "Library" },
+  { href: "/resources", label: "Resources" },
   { href: "/teachers", label: "Teachers" },
   { href: "/masters", label: "Masters" },
   { href: "/centers", label: "Centers" },

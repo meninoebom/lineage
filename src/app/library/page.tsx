@@ -31,7 +31,14 @@ export default function LibraryPage() {
         <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
           Curated reading paths through the contemplative traditions — each a
           sequence of 3–5 resources chosen to guide exploration of a tradition
-          or theme.
+          or theme. Looking for individual resources?{" "}
+          <a
+            href="/resources"
+            className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
+          >
+            Browse the full collection
+          </a>
+          .
         </p>
       </header>
 

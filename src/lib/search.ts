@@ -1,4 +1,4 @@
-import type { Teacher, Center } from "./types";
+import type { Teacher, Center, Resource } from "./types";
 
 export interface SearchFilters {
   query: string;
@@ -75,6 +75,32 @@ export function searchAll(
     (item) => ({ type: "center", item })
   );
   return [...teacherResults, ...centerResults];
+}
+
+// -- Resource filtering --
+
+export interface ResourceSearchFilters {
+  query: string;
+  traditions: string[];
+  type: string; // empty string = all types
+}
+
+/**
+ * Filter resources by title/author query, tradition, and type.
+ */
+export function filterResources(
+  resources: Resource[],
+  filters: ResourceSearchFilters
+): Resource[] {
+  return resources.filter((r) => {
+    if (!matchesQuery(r.title, filters.query) &&
+        !(r.author && matchesQuery(r.author, filters.query))) {
+      return false;
+    }
+    if (!matchesTraditions(r.traditions, filters.traditions)) return false;
+    if (filters.type && r.type !== filters.type) return false;
+    return true;
+  });
 }
 
 /**
