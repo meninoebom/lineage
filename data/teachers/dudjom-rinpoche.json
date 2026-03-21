@@ -9,8 +9,11 @@
   "city": "Boudhanath",
   "state": "Bagmati",
   "country": "NP",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["vajrayana", "dzogchen"],
+  "latitude": 27.7209963,
+  "longitude": 85.3622531,
+  "traditions": [
+    "vajrayana",
+    "dzogchen"
+  ],
   "centers": []
 }

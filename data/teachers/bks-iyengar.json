@@ -9,8 +9,10 @@
   "city": "Pune",
   "state": "Maharashtra",
   "country": "IN",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["classical-yoga"],
+  "latitude": 18.5213738,
+  "longitude": 73.8545071,
+  "traditions": [
+    "classical-yoga"
+  ],
   "centers": []
 }

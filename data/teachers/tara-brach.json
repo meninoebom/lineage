@@ -9,8 +9,13 @@
   "city": "Bethesda",
   "state": "Maryland",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["theravada", "vipassana-movement"],
-  "centers": ["insight-meditation-community-of-washington"]
+  "latitude": 38.9812726,
+  "longitude": -77.1233587,
+  "traditions": [
+    "theravada",
+    "vipassana-movement"
+  ],
+  "centers": [
+    "insight-meditation-community-of-washington"
+  ]
 }

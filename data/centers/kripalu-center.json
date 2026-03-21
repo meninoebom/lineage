@@ -7,8 +7,12 @@
   "city": "Stockbridge",
   "state": "Massachusetts",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["classical-yoga"],
-  "teachers": ["rolf-gates"]
+  "latitude": 42.282398,
+  "longitude": -73.3123684,
+  "traditions": [
+    "classical-yoga"
+  ],
+  "teachers": [
+    "rolf-gates"
+  ]
 }

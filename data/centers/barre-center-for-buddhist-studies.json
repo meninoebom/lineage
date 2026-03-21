@@ -7,8 +7,13 @@
   "city": "Barre",
   "state": "Massachusetts",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["theravada", "early-buddhism"],
-  "teachers": ["stephen-batchelor"]
+  "latitude": 42.4228006,
+  "longitude": -72.1051592,
+  "traditions": [
+    "theravada",
+    "early-buddhism"
+  ],
+  "teachers": [
+    "stephen-batchelor"
+  ]
 }

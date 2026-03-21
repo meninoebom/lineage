@@ -7,8 +7,13 @@
   "city": "Red Feather Lakes",
   "state": "Colorado",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["vajrayana"],
-  "teachers": ["sakyong-mipham", "david-nichtern"]
+  "latitude": 40.8076878,
+  "longitude": -105.5756222,
+  "traditions": [
+    "vajrayana"
+  ],
+  "teachers": [
+    "sakyong-mipham",
+    "david-nichtern"
+  ]
 }

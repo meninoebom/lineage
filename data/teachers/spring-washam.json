@@ -9,8 +9,14 @@
   "city": "Oakland",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["theravada", "vipassana-movement"],
-  "centers": ["east-bay-meditation-center", "spirit-rock"]
+  "latitude": 37.8044557,
+  "longitude": -122.271356,
+  "traditions": [
+    "theravada",
+    "vipassana-movement"
+  ],
+  "centers": [
+    "east-bay-meditation-center",
+    "spirit-rock"
+  ]
 }

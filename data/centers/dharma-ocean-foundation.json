@@ -7,8 +7,12 @@
   "city": "Crestone",
   "state": "Colorado",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["vajrayana"],
-  "teachers": ["reggie-ray"]
+  "latitude": 37.995443,
+  "longitude": -105.6991929,
+  "traditions": [
+    "vajrayana"
+  ],
+  "teachers": [
+    "reggie-ray"
+  ]
 }

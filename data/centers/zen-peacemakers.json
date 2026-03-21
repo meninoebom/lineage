@@ -7,8 +7,12 @@
   "city": "Montague",
   "state": "Massachusetts",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["zen"],
-  "teachers": ["bernie-glassman"]
+  "latitude": 42.5901227,
+  "longitude": -72.5497332,
+  "traditions": [
+    "zen"
+  ],
+  "teachers": [
+    "bernie-glassman"
+  ]
 }

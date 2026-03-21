@@ -9,8 +9,12 @@
   "city": "Mt Tremper",
   "state": "New York",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["zen"],
-  "centers": ["zen-mountain-monastery"]
+  "latitude": 42.0448136,
+  "longitude": -74.2754247,
+  "traditions": [
+    "zen"
+  ],
+  "centers": [
+    "zen-mountain-monastery"
+  ]
 }

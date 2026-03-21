@@ -7,8 +7,10 @@
   "city": "Barnet",
   "state": "Vermont",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["vajrayana"],
+  "latitude": 44.2966923,
+  "longitude": -72.0495301,
+  "traditions": [
+    "vajrayana"
+  ],
   "teachers": []
 }

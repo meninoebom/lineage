@@ -9,8 +9,8 @@
   "city": "Seattle",
   "state": "Washington",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
+  "latitude": 47.6038321,
+  "longitude": -122.330062,
   "traditions": [
     "theravada",
     "vipassana-movement"

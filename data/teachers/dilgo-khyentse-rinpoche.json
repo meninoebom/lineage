@@ -9,8 +9,11 @@
   "city": "Thimphu",
   "state": "Thimphu",
   "country": "BT",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["vajrayana", "dzogchen"],
+  "latitude": 27.4713546,
+  "longitude": 89.6336729,
+  "traditions": [
+    "vajrayana",
+    "dzogchen"
+  ],
   "centers": []
 }

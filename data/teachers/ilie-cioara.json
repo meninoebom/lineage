@@ -9,8 +9,10 @@
   "city": "Bucharest",
   "state": "Bucharest",
   "country": "RO",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["modern-non-dual"],
+  "latitude": 44.4356445,
+  "longitude": 26.1009263,
+  "traditions": [
+    "modern-non-dual"
+  ],
   "centers": []
 }

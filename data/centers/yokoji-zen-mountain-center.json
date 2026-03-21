@@ -7,8 +7,10 @@
   "city": "Mountain Center",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["zen"],
+  "latitude": 33.7149535,
+  "longitude": -116.7250334,
+  "traditions": [
+    "zen"
+  ],
   "teachers": []
 }

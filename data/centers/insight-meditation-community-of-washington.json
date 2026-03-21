@@ -7,8 +7,13 @@
   "city": "Bethesda",
   "state": "Maryland",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["theravada", "vipassana-movement"],
-  "teachers": ["tara-brach"]
+  "latitude": 38.9812726,
+  "longitude": -77.1233587,
+  "traditions": [
+    "theravada",
+    "vipassana-movement"
+  ],
+  "teachers": [
+    "tara-brach"
+  ]
 }

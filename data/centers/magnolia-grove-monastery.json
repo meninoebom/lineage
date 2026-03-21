@@ -7,8 +7,13 @@
   "city": "Batesville",
   "state": "Mississippi",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["zen", "mahayana"],
-  "teachers": ["thich-nhat-hanh"]
+  "latitude": 34.316488,
+  "longitude": -89.9527108,
+  "traditions": [
+    "zen",
+    "mahayana"
+  ],
+  "teachers": [
+    "thich-nhat-hanh"
+  ]
 }

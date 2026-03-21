@@ -7,8 +7,12 @@
   "city": "Pagosa Springs",
   "state": "Colorado",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["vajrayana"],
-  "teachers": ["tsultrim-allione"]
+  "latitude": 37.2695661,
+  "longitude": -107.010816,
+  "traditions": [
+    "vajrayana"
+  ],
+  "teachers": [
+    "tsultrim-allione"
+  ]
 }

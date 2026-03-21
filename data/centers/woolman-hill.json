@@ -7,8 +7,10 @@
   "city": "Deerfield",
   "state": "Massachusetts",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["quaker-inner-light"],
+  "latitude": 42.5436951,
+  "longitude": -72.6046649,
+  "traditions": [
+    "quaker-inner-light"
+  ],
   "teachers": []
 }

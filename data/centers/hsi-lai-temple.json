@@ -7,8 +7,11 @@
   "city": "Hacienda Heights",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["mahayana", "chan-buddhism"],
+  "latitude": 34.0004225,
+  "longitude": -117.9752615,
+  "traditions": [
+    "mahayana",
+    "chan-buddhism"
+  ],
   "teachers": []
 }

@@ -9,8 +9,10 @@
   "city": "Baroda",
   "state": "Gujarat",
   "country": "IN",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["sufism"],
+  "latitude": 22.2973142,
+  "longitude": 73.1942567,
+  "traditions": [
+    "sufism"
+  ],
   "centers": []
 }

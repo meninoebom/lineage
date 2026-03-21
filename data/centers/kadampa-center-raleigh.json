@@ -7,8 +7,10 @@
   "city": "Raleigh",
   "state": "North Carolina",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["tibetan-buddhism-gelug"],
+  "latitude": 35.7803977,
+  "longitude": -78.6390989,
+  "traditions": [
+    "tibetan-buddhism-gelug"
+  ],
   "teachers": []
 }

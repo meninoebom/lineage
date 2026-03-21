@@ -7,8 +7,12 @@
   "city": "Hot Springs",
   "state": "North Carolina",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["vipassana-movement", "zen", "classical-yoga"],
+  "latitude": 35.8923253,
+  "longitude": -82.8290318,
+  "traditions": [
+    "vipassana-movement",
+    "zen",
+    "classical-yoga"
+  ],
   "teachers": []
 }

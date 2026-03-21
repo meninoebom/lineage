@@ -7,8 +7,11 @@
   "city": "Big Sur",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["classical-yoga", "secular-mindfulness"],
+  "latitude": 36.1437044,
+  "longitude": -121.564593,
+  "traditions": [
+    "classical-yoga",
+    "secular-mindfulness"
+  ],
   "teachers": []
 }

@@ -9,8 +9,10 @@
   "city": "Enzan",
   "state": "Yamanashi",
   "country": "JP",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["zen"],
+  "latitude": 35.7054703,
+  "longitude": 138.7341835,
+  "traditions": [
+    "zen"
+  ],
   "centers": []
 }

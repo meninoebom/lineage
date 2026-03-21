@@ -9,8 +9,14 @@
   "city": "Woodacre",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["theravada", "vipassana-movement"],
-  "centers": ["spirit-rock", "insight-meditation-society"]
+  "latitude": 38.004312,
+  "longitude": -122.636938,
+  "traditions": [
+    "theravada",
+    "vipassana-movement"
+  ],
+  "centers": [
+    "spirit-rock",
+    "insight-meditation-society"
+  ]
 }

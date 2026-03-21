@@ -7,8 +7,10 @@
   "city": "Worcester",
   "state": "Massachusetts",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["zen"],
+  "latitude": 42.2625621,
+  "longitude": -71.8018877,
+  "traditions": [
+    "zen"
+  ],
   "teachers": []
 }

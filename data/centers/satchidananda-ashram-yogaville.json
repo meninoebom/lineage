@@ -7,8 +7,11 @@
   "city": "Buckingham",
   "state": "Virginia",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["classical-yoga", "bhakti"],
+  "latitude": 37.5558826,
+  "longitude": -78.5547172,
+  "traditions": [
+    "classical-yoga",
+    "bhakti"
+  ],
   "teachers": []
 }

@@ -7,8 +7,12 @@
   "city": "Muir Beach",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["zen"],
-  "teachers": ["norman-fischer"]
+  "latitude": 37.8661174,
+  "longitude": -122.5898587,
+  "traditions": [
+    "zen"
+  ],
+  "teachers": [
+    "norman-fischer"
+  ]
 }

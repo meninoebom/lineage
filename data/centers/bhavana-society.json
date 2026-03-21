@@ -7,8 +7,10 @@
   "city": "High View",
   "state": "West Virginia",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["theravada"],
+  "latitude": 39.2306585,
+  "longitude": -78.4083399,
+  "traditions": [
+    "theravada"
+  ],
   "teachers": []
 }

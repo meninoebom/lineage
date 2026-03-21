@@ -9,8 +9,13 @@
   "city": "Charlottesville",
   "state": "Virginia",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["dzogchen", "vajrayana"],
-  "centers": ["ligmincha-international"]
+  "latitude": 38.029306,
+  "longitude": -78.4766781,
+  "traditions": [
+    "dzogchen",
+    "vajrayana"
+  ],
+  "centers": [
+    "ligmincha-international"
+  ]
 }

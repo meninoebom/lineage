@@ -9,8 +9,12 @@
   "city": "Redwood Valley",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["theravada"],
-  "centers": ["abhayagiri-buddhist-monastery"]
+  "latitude": 39.2683315,
+  "longitude": -123.1993752,
+  "traditions": [
+    "theravada"
+  ],
+  "centers": [
+    "abhayagiri-buddhist-monastery"
+  ]
 }

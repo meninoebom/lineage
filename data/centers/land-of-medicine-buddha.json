@@ -7,8 +7,10 @@
   "city": "Soquel",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["tibetan-buddhism-gelug"],
+  "latitude": 36.992568,
+  "longitude": -121.9428597,
+  "traditions": [
+    "tibetan-buddhism-gelug"
+  ],
   "teachers": []
 }

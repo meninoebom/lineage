@@ -9,8 +9,12 @@
   "city": "Santa Fe",
   "state": "New Mexico",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["zen"],
-  "centers": ["upaya-zen-center"]
+  "latitude": 35.6876096,
+  "longitude": -105.938456,
+  "traditions": [
+    "zen"
+  ],
+  "centers": [
+    "upaya-zen-center"
+  ]
 }

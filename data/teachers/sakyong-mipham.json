@@ -9,8 +9,12 @@
   "city": "Halifax",
   "state": "Nova Scotia",
   "country": "CA",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["vajrayana"],
-  "centers": ["shambhala-mountain-center"]
+  "latitude": 44.648618,
+  "longitude": -63.5859487,
+  "traditions": [
+    "vajrayana"
+  ],
+  "centers": [
+    "shambhala-mountain-center"
+  ]
 }

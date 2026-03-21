@@ -7,8 +7,13 @@
   "city": "Redwood Valley",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["theravada"],
-  "teachers": ["ajahn-pasanno", "ajahn-sumedho"]
+  "latitude": 39.2683315,
+  "longitude": -123.1993752,
+  "traditions": [
+    "theravada"
+  ],
+  "teachers": [
+    "ajahn-pasanno",
+    "ajahn-sumedho"
+  ]
 }

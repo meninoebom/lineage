@@ -7,8 +7,10 @@
   "city": "Brooklyn",
   "state": "New York",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["zen"],
+  "latitude": 40.6526006,
+  "longitude": -73.9497211,
+  "traditions": [
+    "zen"
+  ],
   "teachers": []
 }

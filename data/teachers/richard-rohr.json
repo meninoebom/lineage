@@ -9,8 +9,12 @@
   "city": "Albuquerque",
   "state": "New Mexico",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["christian-mysticism"],
-  "centers": ["center-for-action-and-contemplation"]
+  "latitude": 35.0841034,
+  "longitude": -106.650985,
+  "traditions": [
+    "christian-mysticism"
+  ],
+  "centers": [
+    "center-for-action-and-contemplation"
+  ]
 }

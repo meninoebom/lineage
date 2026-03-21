@@ -7,8 +7,10 @@
   "city": "Glen Spey",
   "state": "New York",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["tibetan-buddhism-gelug"],
+  "latitude": 41.4787025,
+  "longitude": -74.8134978,
+  "traditions": [
+    "tibetan-buddhism-gelug"
+  ],
   "teachers": []
 }

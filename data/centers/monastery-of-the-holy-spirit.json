@@ -7,8 +7,10 @@
   "city": "Conyers",
   "state": "Georgia",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["christian-mysticism"],
+  "latitude": 33.6676103,
+  "longitude": -84.0176904,
+  "traditions": [
+    "christian-mysticism"
+  ],
   "teachers": []
 }

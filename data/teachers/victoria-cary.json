@@ -9,8 +9,14 @@
   "city": "San Francisco",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["theravada", "vipassana-movement"],
-  "centers": ["spirit-rock", "insight-meditation-society"]
+  "latitude": 37.7879363,
+  "longitude": -122.4075201,
+  "traditions": [
+    "theravada",
+    "vipassana-movement"
+  ],
+  "centers": [
+    "spirit-rock",
+    "insight-meditation-society"
+  ]
 }

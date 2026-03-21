@@ -9,8 +9,10 @@
   "city": "Portland",
   "state": "Oregon",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["zen"],
+  "latitude": 45.5202471,
+  "longitude": -122.674194,
+  "traditions": [
+    "zen"
+  ],
   "centers": []
 }

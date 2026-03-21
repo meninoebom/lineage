@@ -7,8 +7,10 @@
   "city": "Rochester",
   "state": "New York",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["zen"],
+  "latitude": 43.157285,
+  "longitude": -77.615214,
+  "traditions": [
+    "zen"
+  ],
   "teachers": []
 }

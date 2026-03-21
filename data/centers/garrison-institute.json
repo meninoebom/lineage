@@ -7,8 +7,11 @@
   "city": "Garrison",
   "state": "New York",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["vipassana-movement", "secular-mindfulness"],
+  "latitude": 41.3839827,
+  "longitude": -73.945694,
+  "traditions": [
+    "vipassana-movement",
+    "secular-mindfulness"
+  ],
   "teachers": []
 }

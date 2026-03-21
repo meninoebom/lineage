@@ -9,8 +9,11 @@
   "city": "Ashland",
   "state": "Oregon",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["advaita-vedanta", "modern-non-dual"],
+  "latitude": 42.1972487,
+  "longitude": -122.7153995,
+  "traditions": [
+    "advaita-vedanta",
+    "modern-non-dual"
+  ],
   "centers": []
 }

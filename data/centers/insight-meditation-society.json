@@ -7,8 +7,19 @@
   "city": "Barre",
   "state": "Massachusetts",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["theravada", "vipassana-movement"],
-  "teachers": ["joseph-goldstein", "sharon-salzberg", "jack-kornfield", "sylvia-boorstein", "larry-rosenberg", "jack-engler", "rob-burbea"]
+  "latitude": 42.4228006,
+  "longitude": -72.1051592,
+  "traditions": [
+    "theravada",
+    "vipassana-movement"
+  ],
+  "teachers": [
+    "joseph-goldstein",
+    "sharon-salzberg",
+    "jack-kornfield",
+    "sylvia-boorstein",
+    "larry-rosenberg",
+    "jack-engler",
+    "rob-burbea"
+  ]
 }

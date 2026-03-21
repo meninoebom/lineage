@@ -9,8 +9,8 @@
   "city": "Cambridge",
   "state": "Massachusetts",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
+  "latitude": 42.3656347,
+  "longitude": -71.1040018,
   "traditions": [
     "theravada",
     "vipassana-movement"

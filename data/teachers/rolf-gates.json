@@ -9,8 +9,12 @@
   "city": "Santa Cruz",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["classical-yoga"],
-  "centers": ["kripalu-center"]
+  "latitude": 36.9743626,
+  "longitude": -122.0294673,
+  "traditions": [
+    "classical-yoga"
+  ],
+  "centers": [
+    "kripalu-center"
+  ]
 }

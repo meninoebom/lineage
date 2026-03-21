@@ -9,8 +9,10 @@
   "city": "Mysore",
   "state": "Karnataka",
   "country": "IN",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["classical-yoga"],
+  "latitude": 12.3051828,
+  "longitude": 76.6553609,
+  "traditions": [
+    "classical-yoga"
+  ],
   "centers": []
 }

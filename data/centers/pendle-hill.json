@@ -7,8 +7,10 @@
   "city": "Wallingford",
   "state": "Pennsylvania",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["quaker-inner-light"],
+  "latitude": 39.9036359,
+  "longitude": -75.3716623,
+  "traditions": [
+    "quaker-inner-light"
+  ],
   "teachers": []
 }

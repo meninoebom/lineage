@@ -7,8 +7,10 @@
   "city": "Minneapolis",
   "state": "Minnesota",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["zen"],
+  "latitude": 44.9772995,
+  "longitude": -93.2654692,
+  "traditions": [
+    "zen"
+  ],
   "teachers": []
 }

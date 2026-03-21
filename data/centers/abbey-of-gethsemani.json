@@ -7,8 +7,12 @@
   "city": "Trappist",
   "state": "Kentucky",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["christian-mysticism"],
-  "teachers": ["james-finley"]
+  "latitude": 37.652506,
+  "longitude": -85.569232,
+  "traditions": [
+    "christian-mysticism"
+  ],
+  "teachers": [
+    "james-finley"
+  ]
 }

@@ -9,8 +9,15 @@
   "city": "Escondido",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["zen", "mahayana"],
-  "centers": ["deer-park-monastery", "blue-cliff-monastery", "magnolia-grove-monastery"]
+  "latitude": 33.1216751,
+  "longitude": -117.0814849,
+  "traditions": [
+    "zen",
+    "mahayana"
+  ],
+  "centers": [
+    "deer-park-monastery",
+    "blue-cliff-monastery",
+    "magnolia-grove-monastery"
+  ]
 }

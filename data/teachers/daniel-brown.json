@@ -9,8 +9,11 @@
   "city": "Newton",
   "state": "Massachusetts",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["vajrayana", "dzogchen"],
+  "latitude": 42.3300435,
+  "longitude": -71.194862,
+  "traditions": [
+    "vajrayana",
+    "dzogchen"
+  ],
   "centers": []
 }

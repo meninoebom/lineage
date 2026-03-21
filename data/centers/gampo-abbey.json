@@ -7,8 +7,12 @@
   "city": "Pleasant Bay",
   "state": "Nova Scotia",
   "country": "CA",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["vajrayana"],
-  "teachers": ["pema-chodron"]
+  "latitude": 46.8230805,
+  "longitude": -60.7998526,
+  "traditions": [
+    "vajrayana"
+  ],
+  "teachers": [
+    "pema-chodron"
+  ]
 }

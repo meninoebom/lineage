@@ -7,8 +7,10 @@
   "city": "Cumberland",
   "state": "Rhode Island",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["zen"],
+  "latitude": 41.9667656,
+  "longitude": -71.4328363,
+  "traditions": [
+    "zen"
+  ],
   "teachers": []
 }

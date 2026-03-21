@@ -7,8 +7,10 @@
   "city": "Shelburne Falls",
   "state": "Massachusetts",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["vipassana-movement"],
+  "latitude": 42.6035589,
+  "longitude": -72.7394623,
+  "traditions": [
+    "vipassana-movement"
+  ],
   "teachers": []
 }

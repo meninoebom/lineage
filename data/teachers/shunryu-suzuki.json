@@ -9,8 +9,13 @@
   "city": "San Francisco",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["zen"],
-  "centers": ["san-francisco-zen-center", "tassajara-zen-mountain-center"]
+  "latitude": 37.7879363,
+  "longitude": -122.4075201,
+  "traditions": [
+    "zen"
+  ],
+  "centers": [
+    "san-francisco-zen-center",
+    "tassajara-zen-mountain-center"
+  ]
 }

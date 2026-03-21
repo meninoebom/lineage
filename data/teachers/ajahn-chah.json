@@ -9,8 +9,10 @@
   "city": "Ubon Ratchathani",
   "state": "Ubon Ratchathani",
   "country": "TH",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["theravada"],
+  "latitude": 15.2274235,
+  "longitude": 104.8589462,
+  "traditions": [
+    "theravada"
+  ],
   "centers": []
 }

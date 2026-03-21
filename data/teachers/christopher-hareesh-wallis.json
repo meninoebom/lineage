@@ -9,8 +9,11 @@
   "city": "San Francisco",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["tantra", "kashmir-shaivism"],
+  "latitude": 37.7879363,
+  "longitude": -122.4075201,
+  "traditions": [
+    "tantra",
+    "kashmir-shaivism"
+  ],
   "centers": []
 }

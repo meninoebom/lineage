@@ -9,8 +9,11 @@
   "city": "Jersey City",
   "state": "New Jersey",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["zen", "christian-mysticism"],
+  "latitude": 40.7215682,
+  "longitude": -74.047455,
+  "traditions": [
+    "zen",
+    "christian-mysticism"
+  ],
   "centers": []
 }

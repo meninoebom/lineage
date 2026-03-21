@@ -9,8 +9,12 @@
   "city": "San Jose",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["zen", "modern-non-dual", "advaita-vedanta"],
+  "latitude": 37.3361663,
+  "longitude": -121.890591,
+  "traditions": [
+    "zen",
+    "modern-non-dual",
+    "advaita-vedanta"
+  ],
   "centers": []
 }

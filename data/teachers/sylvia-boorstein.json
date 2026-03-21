@@ -9,8 +9,14 @@
   "city": "Sonoma County",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["theravada", "vipassana-movement"],
-  "centers": ["spirit-rock", "insight-meditation-society"]
+  "latitude": 38.5110803,
+  "longitude": -122.8473388,
+  "traditions": [
+    "theravada",
+    "vipassana-movement"
+  ],
+  "centers": [
+    "spirit-rock",
+    "insight-meditation-society"
+  ]
 }

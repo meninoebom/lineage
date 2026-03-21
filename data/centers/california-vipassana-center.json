@@ -7,8 +7,10 @@
   "city": "North Fork",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["vipassana-movement"],
+  "latitude": 37.2295677,
+  "longitude": -119.5096126,
+  "traditions": [
+    "vipassana-movement"
+  ],
   "teachers": []
 }

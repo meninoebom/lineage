@@ -7,8 +7,11 @@
   "city": "Talmage",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["chan-buddhism", "mahayana"],
+  "latitude": 39.1332266,
+  "longitude": -123.167782,
+  "traditions": [
+    "chan-buddhism",
+    "mahayana"
+  ],
   "teachers": []
 }
