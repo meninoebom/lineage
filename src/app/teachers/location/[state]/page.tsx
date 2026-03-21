@@ -28,6 +28,7 @@ export async function generateMetadata({
   return {
     title: `Teachers in ${group.state}`,
     description,
+    robots: { index: false, follow: true },
     openGraph: {
       title: `Teachers in ${group.state}`,
       description,
