@@ -9,8 +9,8 @@
   "city": "Boston",
   "state": "Massachusetts",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
+  "latitude": 42.3588336,
+  "longitude": -71.0578303,
   "traditions": [
     "vipassana-movement",
     "secular-mindfulness"

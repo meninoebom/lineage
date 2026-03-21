@@ -7,8 +7,10 @@
   "city": "West Park",
   "state": "New York",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["christian-mysticism"],
+  "latitude": 41.7945375,
+  "longitude": -73.9595823,
+  "traditions": [
+    "christian-mysticism"
+  ],
   "teachers": []
 }

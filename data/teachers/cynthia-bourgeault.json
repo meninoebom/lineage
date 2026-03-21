@@ -9,8 +9,12 @@
   "city": "Eagle Island",
   "state": "Maine",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["christian-mysticism"],
-  "centers": ["center-for-action-and-contemplation"]
+  "latitude": 43.7110349,
+  "longitude": -70.0527324,
+  "traditions": [
+    "christian-mysticism"
+  ],
+  "centers": [
+    "center-for-action-and-contemplation"
+  ]
 }

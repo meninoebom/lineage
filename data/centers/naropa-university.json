@@ -7,8 +7,10 @@
   "city": "Boulder",
   "state": "Colorado",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["vajrayana"],
+  "latitude": 40.0149856,
+  "longitude": -105.270545,
+  "traditions": [
+    "vajrayana"
+  ],
   "teachers": []
 }

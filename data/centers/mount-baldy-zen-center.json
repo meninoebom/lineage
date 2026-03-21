@@ -7,8 +7,10 @@
   "city": "Mt. Baldy",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["zen"],
+  "latitude": 34.2364191,
+  "longitude": -117.6591731,
+  "traditions": [
+    "zen"
+  ],
   "teachers": []
 }

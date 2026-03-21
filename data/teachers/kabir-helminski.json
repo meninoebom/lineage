@@ -9,8 +9,10 @@
   "city": "Watsonville",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["sufism"],
+  "latitude": 36.9092773,
+  "longitude": -121.7529071,
+  "traditions": [
+    "sufism"
+  ],
   "centers": []
 }

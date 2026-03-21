@@ -7,8 +7,11 @@
   "city": "Elmhurst",
   "state": "New York",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["chan-buddhism", "mahayana"],
+  "latitude": 40.7365804,
+  "longitude": -73.8783932,
+  "traditions": [
+    "chan-buddhism",
+    "mahayana"
+  ],
   "teachers": []
 }

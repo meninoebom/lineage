@@ -7,8 +7,10 @@
   "city": "Los Angeles",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["zen"],
+  "latitude": 34.0536909,
+  "longitude": -118.242766,
+  "traditions": [
+    "zen"
+  ],
   "teachers": []
 }

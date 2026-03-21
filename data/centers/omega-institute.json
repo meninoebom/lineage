@@ -7,8 +7,12 @@
   "city": "Rhinebeck",
   "state": "New York",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["classical-yoga", "vipassana-movement", "secular-mindfulness"],
+  "latitude": 41.9267604,
+  "longitude": -73.912763,
+  "traditions": [
+    "classical-yoga",
+    "vipassana-movement",
+    "secular-mindfulness"
+  ],
   "teachers": []
 }

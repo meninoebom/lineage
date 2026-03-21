@@ -9,8 +9,10 @@
   "city": "Coimbatore",
   "state": "Tamil Nadu",
   "country": "IN",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["classical-yoga"],
+  "latitude": 11.0018115,
+  "longitude": 76.9628425,
+  "traditions": [
+    "classical-yoga"
+  ],
   "centers": []
 }

@@ -7,8 +7,12 @@
   "city": "Snowmass",
   "state": "Colorado",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["christian-mysticism"],
-  "teachers": ["father-thomas-keating"]
+  "latitude": 39.3310391,
+  "longitude": -106.9846471,
+  "traditions": [
+    "christian-mysticism"
+  ],
+  "teachers": [
+    "father-thomas-keating"
+  ]
 }

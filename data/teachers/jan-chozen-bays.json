@@ -9,8 +9,12 @@
   "city": "Clatskanie",
   "state": "Oregon",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["zen"],
-  "centers": ["great-vow-zen-monastery"]
+  "latitude": 46.1036879,
+  "longitude": -123.2048168,
+  "traditions": [
+    "zen"
+  ],
+  "centers": [
+    "great-vow-zen-monastery"
+  ]
 }

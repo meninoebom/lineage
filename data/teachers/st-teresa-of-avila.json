@@ -9,8 +9,10 @@
   "city": "Avila",
   "state": "Castile and León",
   "country": "ES",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["christian-mysticism"],
+  "latitude": 40.656478,
+  "longitude": -4.7002172,
+  "traditions": [
+    "christian-mysticism"
+  ],
   "centers": []
 }

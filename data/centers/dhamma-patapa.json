@@ -7,8 +7,10 @@
   "city": "Kaufman",
   "state": "Texas",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["vipassana-movement"],
+  "latitude": 32.601641,
+  "longitude": -96.3375126,
+  "traditions": [
+    "vipassana-movement"
+  ],
   "teachers": []
 }

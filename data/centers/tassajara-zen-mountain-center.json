@@ -7,8 +7,12 @@
   "city": "Carmel Valley",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["zen"],
-  "teachers": ["shunryu-suzuki"]
+  "latitude": 36.4796839,
+  "longitude": -121.732447,
+  "traditions": [
+    "zen"
+  ],
+  "teachers": [
+    "shunryu-suzuki"
+  ]
 }

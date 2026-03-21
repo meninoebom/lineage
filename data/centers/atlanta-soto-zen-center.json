@@ -7,8 +7,10 @@
   "city": "Atlanta",
   "state": "Georgia",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["zen"],
+  "latitude": 33.7544657,
+  "longitude": -84.3898151,
+  "traditions": [
+    "zen"
+  ],
   "teachers": []
 }

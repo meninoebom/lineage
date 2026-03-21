@@ -7,8 +7,11 @@
   "city": "Rollinsville",
   "state": "Colorado",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["classical-yoga", "advaita-vedanta"],
+  "latitude": 39.9170921,
+  "longitude": -105.5017521,
+  "traditions": [
+    "classical-yoga",
+    "advaita-vedanta"
+  ],
   "teachers": []
 }

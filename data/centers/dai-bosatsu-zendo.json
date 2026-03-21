@@ -7,8 +7,10 @@
   "city": "Livingston Manor",
   "state": "New York",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["zen"],
+  "latitude": 41.89321,
+  "longitude": -74.8268287,
+  "traditions": [
+    "zen"
+  ],
   "teachers": []
 }

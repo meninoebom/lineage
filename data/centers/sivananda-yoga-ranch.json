@@ -7,8 +7,11 @@
   "city": "Woodbourne",
   "state": "New York",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["classical-yoga", "vedanta"],
+  "latitude": 41.7614715,
+  "longitude": -74.599049,
+  "traditions": [
+    "classical-yoga",
+    "vedanta"
+  ],
   "teachers": []
 }

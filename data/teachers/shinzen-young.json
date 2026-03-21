@@ -9,8 +9,12 @@
   "city": "Burlington",
   "state": "Vermont",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["vipassana-movement", "secular-mindfulness", "zen"],
+  "latitude": 44.4761601,
+  "longitude": -73.212906,
+  "traditions": [
+    "vipassana-movement",
+    "secular-mindfulness",
+    "zen"
+  ],
   "centers": []
 }

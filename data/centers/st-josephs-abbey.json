@@ -7,8 +7,12 @@
   "city": "Spencer",
   "state": "Massachusetts",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["christian-mysticism"],
-  "teachers": ["father-thomas-keating"]
+  "latitude": 42.2436316,
+  "longitude": -71.9934879,
+  "traditions": [
+    "christian-mysticism"
+  ],
+  "teachers": [
+    "father-thomas-keating"
+  ]
 }

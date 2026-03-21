@@ -9,8 +9,12 @@
   "city": "Lexington",
   "state": "Massachusetts",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["secular-mindfulness", "vipassana-movement", "zen"],
+  "latitude": 42.4473175,
+  "longitude": -71.2245003,
+  "traditions": [
+    "secular-mindfulness",
+    "vipassana-movement",
+    "zen"
+  ],
   "centers": []
 }

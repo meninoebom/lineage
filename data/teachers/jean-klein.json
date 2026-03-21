@@ -9,8 +9,11 @@
   "city": "Santa Barbara",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["advaita-vedanta", "modern-non-dual"],
+  "latitude": 34.4221319,
+  "longitude": -119.702667,
+  "traditions": [
+    "advaita-vedanta",
+    "modern-non-dual"
+  ],
   "centers": []
 }

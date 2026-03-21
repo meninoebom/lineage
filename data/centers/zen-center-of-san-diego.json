@@ -7,8 +7,10 @@
   "city": "San Diego",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["zen"],
+  "latitude": 32.7174202,
+  "longitude": -117.162772,
+  "traditions": [
+    "zen"
+  ],
   "teachers": []
 }

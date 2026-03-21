@@ -9,8 +9,8 @@
   "city": "Santa Monica",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
+  "latitude": 34.0194704,
+  "longitude": -118.491227,
   "traditions": [
     "christian-mysticism"
   ],

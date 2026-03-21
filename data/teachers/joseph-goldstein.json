@@ -9,8 +9,13 @@
   "city": "Barre",
   "state": "Massachusetts",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["theravada", "vipassana-movement"],
-  "centers": ["insight-meditation-society"]
+  "latitude": 42.4228006,
+  "longitude": -72.1051592,
+  "traditions": [
+    "theravada",
+    "vipassana-movement"
+  ],
+  "centers": [
+    "insight-meditation-society"
+  ]
 }

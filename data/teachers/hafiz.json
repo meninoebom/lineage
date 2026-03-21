@@ -9,8 +9,10 @@
   "city": "Shiraz",
   "state": "Fars",
   "country": "IR",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["sufism"],
+  "latitude": 29.6060218,
+  "longitude": 52.5378041,
+  "traditions": [
+    "sufism"
+  ],
   "centers": []
 }

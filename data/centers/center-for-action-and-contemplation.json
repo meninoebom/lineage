@@ -7,8 +7,14 @@
   "city": "Albuquerque",
   "state": "New Mexico",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["christian-mysticism"],
-  "teachers": ["richard-rohr", "cynthia-bourgeault", "james-finley"]
+  "latitude": 35.0841034,
+  "longitude": -106.650985,
+  "traditions": [
+    "christian-mysticism"
+  ],
+  "teachers": [
+    "richard-rohr",
+    "cynthia-bourgeault",
+    "james-finley"
+  ]
 }

@@ -7,8 +7,10 @@
   "city": "Watsonville",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["classical-yoga"],
+  "latitude": 36.9092773,
+  "longitude": -121.7529071,
+  "traditions": [
+    "classical-yoga"
+  ],
   "teachers": []
 }

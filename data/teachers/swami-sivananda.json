@@ -9,8 +9,11 @@
   "city": "Rishikesh",
   "state": "Uttarakhand",
   "country": "IN",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["vedanta", "classical-yoga"],
+  "latitude": 30.1086537,
+  "longitude": 78.2916193,
+  "traditions": [
+    "vedanta",
+    "classical-yoga"
+  ],
   "centers": []
 }

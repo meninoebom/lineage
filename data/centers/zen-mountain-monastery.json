@@ -7,8 +7,10 @@
   "city": "Mount Tremper",
   "state": "New York",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["zen"],
+  "latitude": 42.0448136,
+  "longitude": -74.2754247,
+  "traditions": [
+    "zen"
+  ],
   "teachers": []
 }

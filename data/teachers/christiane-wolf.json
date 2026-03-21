@@ -9,8 +9,13 @@
   "city": "Los Angeles",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["vipassana-movement", "secular-mindfulness"],
-  "centers": ["insightla"]
+  "latitude": 34.0536909,
+  "longitude": -118.242766,
+  "traditions": [
+    "vipassana-movement",
+    "secular-mindfulness"
+  ],
+  "centers": [
+    "insightla"
+  ]
 }

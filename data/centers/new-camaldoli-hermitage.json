@@ -7,8 +7,10 @@
   "city": "Big Sur",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["christian-mysticism"],
+  "latitude": 36.1437044,
+  "longitude": -121.564593,
+  "traditions": [
+    "christian-mysticism"
+  ],
   "teachers": []
 }

@@ -7,8 +7,10 @@
   "city": "Weston",
   "state": "Vermont",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["christian-mysticism"],
+  "latitude": 43.2917153,
+  "longitude": -72.7932204,
+  "traditions": [
+    "christian-mysticism"
+  ],
   "teachers": []
 }

@@ -7,8 +7,12 @@
   "city": "Carmel",
   "state": "New York",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["mahayana"],
-  "teachers": ["bhikkhu-bodhi"]
+  "latitude": 41.4266361,
+  "longitude": -73.6788272,
+  "traditions": [
+    "mahayana"
+  ],
+  "teachers": [
+    "bhikkhu-bodhi"
+  ]
 }

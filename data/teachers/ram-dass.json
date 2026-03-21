@@ -9,8 +9,11 @@
   "city": "Maui",
   "state": "Hawaii",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["bhakti", "vedanta"],
+  "latitude": 20.8029568,
+  "longitude": -156.3106833,
+  "traditions": [
+    "bhakti",
+    "vedanta"
+  ],
   "centers": []
 }

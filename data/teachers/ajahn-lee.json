@@ -9,8 +9,10 @@
   "city": "Bangkok",
   "state": "Bangkok",
   "country": "TH",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["theravada"],
+  "latitude": 13.7393113,
+  "longitude": 100.5166499,
+  "traditions": [
+    "theravada"
+  ],
   "centers": []
 }

@@ -9,8 +9,13 @@
   "city": "Marin County",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["theravada", "vipassana-movement"],
-  "centers": ["spirit-rock"]
+  "latitude": 38.0409144,
+  "longitude": -122.6199638,
+  "traditions": [
+    "theravada",
+    "vipassana-movement"
+  ],
+  "centers": [
+    "spirit-rock"
+  ]
 }

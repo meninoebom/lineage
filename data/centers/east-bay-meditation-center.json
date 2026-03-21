@@ -7,8 +7,13 @@
   "city": "Oakland",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["theravada", "vipassana-movement"],
-  "teachers": ["spring-washam"]
+  "latitude": 37.8044557,
+  "longitude": -122.271356,
+  "traditions": [
+    "theravada",
+    "vipassana-movement"
+  ],
+  "teachers": [
+    "spring-washam"
+  ]
 }

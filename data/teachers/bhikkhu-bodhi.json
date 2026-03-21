@@ -9,8 +9,13 @@
   "city": "Carmel",
   "state": "New York",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["theravada", "early-buddhism"],
-  "centers": ["chuang-yen-monastery"]
+  "latitude": 41.4266361,
+  "longitude": -73.6788272,
+  "traditions": [
+    "theravada",
+    "early-buddhism"
+  ],
+  "centers": [
+    "chuang-yen-monastery"
+  ]
 }

@@ -7,8 +7,10 @@
   "city": "Rosendale",
   "state": "New York",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["vajrayana"],
+  "latitude": 41.8439818,
+  "longitude": -74.0820865,
+  "traditions": [
+    "vajrayana"
+  ],
   "teachers": []
 }

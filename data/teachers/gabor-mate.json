@@ -9,8 +9,12 @@
   "city": "Vancouver",
   "state": "British Columbia",
   "country": "CA",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["secular-mindfulness"],
-  "centers": ["upaya-zen-center"]
+  "latitude": 49.2608724,
+  "longitude": -123.113952,
+  "traditions": [
+    "secular-mindfulness"
+  ],
+  "centers": [
+    "upaya-zen-center"
+  ]
 }

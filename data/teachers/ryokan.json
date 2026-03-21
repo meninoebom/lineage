@@ -9,8 +9,10 @@
   "city": "Izumozaki",
   "state": "Niigata",
   "country": "JP",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["zen"],
+  "latitude": 37.5306685,
+  "longitude": 138.7095075,
+  "traditions": [
+    "zen"
+  ],
   "centers": []
 }

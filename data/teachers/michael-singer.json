@@ -9,8 +9,13 @@
   "city": "Alachua",
   "state": "Florida",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["classical-yoga", "vedanta"],
-  "centers": ["temple-of-the-universe"]
+  "latitude": 29.675568,
+  "longitude": -82.3640109,
+  "traditions": [
+    "classical-yoga",
+    "vedanta"
+  ],
+  "centers": [
+    "temple-of-the-universe"
+  ]
 }

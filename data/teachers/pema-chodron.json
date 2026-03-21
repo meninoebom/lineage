@@ -9,8 +9,13 @@
   "city": "Pleasant Bay",
   "state": "Nova Scotia",
   "country": "CA",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["vajrayana", "tibetan-buddhism-gelug"],
-  "centers": ["gampo-abbey"]
+  "latitude": 46.8230805,
+  "longitude": -60.7998526,
+  "traditions": [
+    "vajrayana",
+    "tibetan-buddhism-gelug"
+  ],
+  "centers": [
+    "gampo-abbey"
+  ]
 }

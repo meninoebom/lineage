@@ -9,8 +9,11 @@
   "city": "Santa Barbara",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["vajrayana", "dzogchen"],
+  "latitude": 34.4221319,
+  "longitude": -119.702667,
+  "traditions": [
+    "vajrayana",
+    "dzogchen"
+  ],
   "centers": []
 }

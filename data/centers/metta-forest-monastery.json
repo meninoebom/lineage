@@ -7,8 +7,10 @@
   "city": "Valley Center",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["theravada"],
+  "latitude": 33.2183701,
+  "longitude": -117.0341967,
+  "traditions": [
+    "theravada"
+  ],
   "teachers": []
 }

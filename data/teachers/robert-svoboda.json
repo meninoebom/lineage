@@ -9,8 +9,11 @@
   "city": "Albuquerque",
   "state": "New Mexico",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["tantra", "classical-yoga"],
+  "latitude": 35.0841034,
+  "longitude": -106.650985,
+  "traditions": [
+    "tantra",
+    "classical-yoga"
+  ],
   "centers": []
 }

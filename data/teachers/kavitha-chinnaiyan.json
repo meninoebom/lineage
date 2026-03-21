@@ -9,8 +9,12 @@
   "city": "Rochester",
   "state": "Michigan",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["tantra", "kashmir-shaivism", "vedanta"],
+  "latitude": 42.680588,
+  "longitude": -83.1338214,
+  "traditions": [
+    "tantra",
+    "kashmir-shaivism",
+    "vedanta"
+  ],
   "centers": []
 }

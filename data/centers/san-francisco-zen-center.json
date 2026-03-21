@@ -7,8 +7,14 @@
   "city": "San Francisco",
   "state": "California",
   "country": "US",
-  "latitude": null,
-  "longitude": null,
-  "traditions": ["zen"],
-  "teachers": ["shunryu-suzuki", "norman-fischer", "tenshin-reb-anderson"]
+  "latitude": 37.7879363,
+  "longitude": -122.4075201,
+  "traditions": [
+    "zen"
+  ],
+  "teachers": [
+    "shunryu-suzuki",
+    "norman-fischer",
+    "tenshin-reb-anderson"
+  ]
 }
