@@ -153,8 +153,9 @@ function QuoteCalloutWithGrid({ traditions }: { traditions: ParsedTradition[] })
 }
 
 function HeroImageWithCards({ traditions }: { traditions: ParsedTradition[] }) {
-  const hero = traditions[0];
-  const rest = traditions.slice(1);
+  const taoismIndex = traditions.findIndex((t) => t.slug === "taoism");
+  const hero = taoismIndex >= 0 ? traditions[taoismIndex] : traditions[0];
+  const rest = traditions.filter((t) => t.slug !== hero.slug);
   return (
     <div className="grid md:grid-cols-2 gap-6">
       {hero && (
