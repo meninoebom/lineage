@@ -59,19 +59,20 @@ export function ResourcesClient({ resources, traditionNames }: ResourcesClientPr
   return (
     <div>
       <div className="mb-8 space-y-4">
-        <Input
-          placeholder="Search by title or author..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          aria-label="Search resources by title or author"
-        />
-
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <Input
+            placeholder="Search by title or author..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            aria-label="Search resources by title or author"
+            className="flex-1"
+          />
+
           <Select
             value={selectedType}
             onChange={(e) => setSelectedType(e.target.value)}
             aria-label="Filter by type"
-            className="sm:max-w-xs"
+            className="sm:max-w-[180px]"
           >
             <option value="">All types</option>
             {RESOURCE_TYPES.map((type) => (
@@ -132,7 +133,7 @@ export function ResourcesClient({ resources, traditionNames }: ResourcesClientPr
           </p>
         </div>
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {results.map((resource) => (
             <a
               key={resource.slug}
@@ -141,13 +142,13 @@ export function ResourcesClient({ resources, traditionNames }: ResourcesClientPr
               rel="noopener noreferrer"
               className="group"
             >
-              <Card accent="terracotta" className="h-full group-hover:shadow-md">
+              <Card className="h-full flex flex-col">
                 <CardHeader>
                   <div className="flex items-start justify-between gap-2">
                     <CardTitle className="group-hover:text-primary transition-colors">
                       {resource.title}
                     </CardTitle>
-                    <Badge variant="outline" className="shrink-0">
+                    <Badge variant="default" className="shrink-0">
                       {typeLabel(resource.type)}
                     </Badge>
                   </div>
@@ -157,12 +158,7 @@ export function ResourcesClient({ resources, traditionNames }: ResourcesClientPr
                     {resource.year && <span>{resource.year}</span>}
                   </CardDescription>
                 </CardHeader>
-                <div className="px-5 pb-3">
-                  <p className="font-sans text-sm text-muted-foreground line-clamp-2">
-                    {resource.description}
-                  </p>
-                </div>
-                <div className="flex flex-wrap gap-1.5 px-5 pb-5">
+                <div className="mt-auto flex flex-wrap gap-1.5 px-5 pb-5">
                   {resource.traditions.map((slug) => (
                     <Badge key={slug} variant="tradition">
                       {traditionNames[slug] ?? slug}
