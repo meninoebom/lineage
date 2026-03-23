@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageLayout } from "@/components/page-layout";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { getAllTraditions, getAllResources } from "@/lib/data";
 import { TraditionMap } from "@/components/tradition-map";
 import { SITE_URL } from "@/lib/seo";
@@ -27,6 +28,8 @@ export default function MapPage() {
 
   return (
     <PageLayout>
+      <Breadcrumbs items={[{ label: "Map" }]} />
+
       <header className="mb-8 text-center">
         <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-6">
           The Contemplative Landscape
