@@ -10,7 +10,8 @@
     "lint": "eslint",
     "test": "vitest run",
     "test:watch": "vitest",
-    "geocode": "npx tsx scripts/geocode.ts"
+    "geocode": "npx tsx scripts/geocode.ts",
+    "backfill-photos": "npx tsx scripts/backfill-photos.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.2.0",
