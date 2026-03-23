@@ -84,7 +84,7 @@ export default async function TraditionPage({ params }: { params: Promise<{ slug
           <div className="grid gap-4 sm:grid-cols-2">
             {teachers.map((teacher) => (
               <Link key={teacher.slug} href={`/teachers/${teacher.slug}`} className="group">
-                <Card className="h-full group-hover:shadow-md">
+                <Card className="h-full group-hover:bg-accent/50">
                   <CardHeader>
                     <CardTitle className="group-hover:text-primary transition-colors">
                       {teacher.name}
@@ -107,7 +107,7 @@ export default async function TraditionPage({ params }: { params: Promise<{ slug
           <div className="grid gap-4 sm:grid-cols-2">
             {centers.map((center) => (
               <Link key={center.slug} href={`/centers/${center.slug}`} className="group">
-                <Card className="h-full group-hover:shadow-md">
+                <Card className="h-full group-hover:bg-accent/50">
                   <CardHeader>
                     <CardTitle className="group-hover:text-primary transition-colors">
                       {center.name}
@@ -130,7 +130,7 @@ export default async function TraditionPage({ params }: { params: Promise<{ slug
           <div className="grid gap-4">
             {related.map((r) => (
               <Link key={r.slug} href={`/traditions/${r.slug}`} className="group">
-                <Card className="group-hover:shadow-md">
+                <Card className="group-hover:bg-accent/50">
                   <CardHeader>
                     <div className="flex items-center gap-2 mb-1">
                       <CardTitle className="group-hover:text-primary transition-colors">

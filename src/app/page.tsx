@@ -94,7 +94,7 @@ export default function Home() {
       <section className="grid gap-6 sm:grid-cols-2 mb-20">
         {sections.map((section) => (
           <Link key={section.href} href={section.href} className="group">
-            <div className="h-full rounded bg-card p-6 shadow-ambient transition-shadow group-hover:shadow-md">
+            <div className="h-full rounded bg-card p-6 border border-border/50 transition-colors group-hover:bg-accent/50">
               <div className="text-primary mb-4">{section.icon}</div>
               <h3 className="text-lg mb-2 group-hover:text-primary transition-colors">
                 {section.title}
@@ -115,7 +115,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-10">
           {/* Map preview */}
           <div className="flex-1 w-full">
-            <div className="rounded bg-card shadow-ambient overflow-hidden p-6">
+            <div className="rounded bg-card border border-border/50 overflow-hidden p-6">
               <svg
                 viewBox="0 0 500 280"
                 className="w-full h-auto"

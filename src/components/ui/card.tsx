@@ -9,7 +9,7 @@ function Card({ className, accent = "none", ...props }: CardProps) {
     <div
       data-slot="card"
       className={cn(
-        "rounded bg-card p-5 shadow-ambient transition-shadow hover:shadow-md",
+        "rounded border border-border/50 bg-card p-5 transition-colors hover:bg-accent/50",
         accent === "terracotta" && "border-t-2 border-t-primary",
         accent === "green" && "border-t-2 border-t-chart-2",
         className

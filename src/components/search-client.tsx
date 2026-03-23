@@ -158,7 +158,7 @@ export function SearchClient({
               <Link key={`${result.type}-${item.slug}`} href={href} className="group">
                 <Card
                   accent={isTeacher ? "terracotta" : "green"}
-                  className="h-full group-hover:shadow-md"
+                  className="h-full group-hover:bg-accent/50"
                 >
                   <CardHeader>
                     <div className="flex items-center gap-2 mb-1">

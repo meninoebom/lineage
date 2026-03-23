@@ -60,7 +60,7 @@ export default function TraditionsPage() {
           <div className="grid gap-4 sm:grid-cols-2">
             {traditions.map((t) => (
               <Link key={t.slug} href={`/traditions/${t.slug}`} className="group">
-                <Card accent="terracotta" className="h-full group-hover:shadow-md">
+                <Card accent="terracotta" className="h-full group-hover:bg-accent/50">
                   <CardHeader>
                     <CardTitle className="group-hover:text-primary transition-colors">
                       {t.name}

@@ -19,9 +19,9 @@ describe("Card", () => {
     const card = screen.getByTestId("card");
     expect(card).toHaveTextContent("Content");
     expect(card.className).toContain("bg-card");
-    // Stitch: no 1px borders, use shadow-ambient instead
-    expect(card.className).not.toContain("border-border");
-    expect(card.className).toContain("shadow-ambient");
+    // Flat cards: subtle border, no shadows
+    expect(card.className).toContain("border-border/50");
+    expect(card.className).not.toContain("shadow");
   });
 
   it("renders with terracotta accent", () => {
