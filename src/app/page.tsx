@@ -103,10 +103,10 @@ export default function Home() {
       </section>
 
       {/* Map teaser */}
-      <section className="py-16 -mx-6 px-6 border-t border-border bg-warm-gray-light/30">
+      <section className="py-16 -mx-6 px-6 bg-surface-container-low/30">
         <div className="max-w-2xl mx-auto">
           <Link href="/map" className="group block">
-            <div className="rounded-lg bg-card border border-border overflow-hidden transition-shadow group-hover:shadow-md">
+            <div className="rounded-lg bg-card shadow-ambient overflow-hidden transition-shadow group-hover:shadow-md">
               {/* Static decorative SVG */}
               <div className="px-8 pt-8 pb-4">
                 <svg

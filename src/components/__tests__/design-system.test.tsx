@@ -12,11 +12,14 @@ vi.mock("next/link", () => ({
 }));
 
 describe("Card", () => {
-  it("renders with default styling", () => {
+  it("renders with default styling — no borders, tonal layering", () => {
     render(<Card data-testid="card">Content</Card>);
     const card = screen.getByTestId("card");
     expect(card).toHaveTextContent("Content");
     expect(card.className).toContain("bg-card");
+    // Stitch: no 1px borders, use shadow-ambient instead
+    expect(card.className).not.toContain("border-border");
+    expect(card.className).toContain("shadow-ambient");
   });
 
   it("renders with terracotta accent", () => {
@@ -43,19 +46,25 @@ describe("Badge", () => {
   it("renders with default variant", () => {
     render(<Badge>Default</Badge>);
     const badge = screen.getByText("Default");
-    expect(badge.className).toContain("bg-secondary");
+    expect(badge.className).toContain("bg-secondary-container");
   });
 
   it("renders with tradition variant", () => {
     render(<Badge variant="tradition">Zen</Badge>);
     const badge = screen.getByText("Zen");
-    expect(badge.className).toContain("bg-warm-gray-light");
+    expect(badge.className).toContain("bg-surface-container-low");
   });
 
   it("renders with family variant", () => {
     render(<Badge variant="family">Buddhist</Badge>);
     const badge = screen.getByText("Buddhist");
-    expect(badge.className).toContain("bg-terracotta-light");
+    expect(badge.className).toContain("bg-primary/10");
+  });
+
+  it("renders with pill shape per Stitch", () => {
+    render(<Badge>Pill</Badge>);
+    const badge = screen.getByText("Pill");
+    expect(badge.className).toContain("rounded-full");
   });
 });
 

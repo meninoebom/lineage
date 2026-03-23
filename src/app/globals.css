@@ -8,7 +8,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-serif: "Georgia", "Times New Roman", serif;
+  --font-serif: "Noto Serif", "Georgia", "Times New Roman", serif;
   --font-mono: ui-monospace, monospace;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -46,48 +46,63 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
-  /* Custom editorial palette colors for direct use */
-  --color-cream: #f6f1eb;
-  --color-terracotta: #9e4a3a;
-  --color-terracotta-light: #f3e8e5;
-  --color-warm-gray: #e2dbd3;
-  --color-warm-gray-light: #ece6df;
+  /* Stitch surface hierarchy */
+  --color-surface: #fcf9f3;
+  --color-surface-container-low: #f6f3ed;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container: #f0eee8;
+  --color-surface-dim: #dcdad4;
+  --color-on-surface: #1c1c18;
+  --color-primary-earth: #8b4b2c;
+  --color-primary-container: #a96242;
+  --color-outline-variant: #d9c2b9;
+  --color-secondary-container: #e4dfdd;
+  --color-on-secondary-container: #656261;
+  --color-surface-container-highest: #e5e2dc;
+  /* Ambient shadow per Stitch (4-6% opacity, soft glow) */
+  --shadow-ambient: 0px 12px 32px rgba(28, 28, 24, 0.05);
+  /* Legacy aliases for existing components */
+  --color-cream: #fcf9f3;
+  --color-terracotta: #8b4b2c;
+  --color-terracotta-light: rgba(139, 75, 44, 0.1);
+  --color-warm-gray: #dcdad4;
+  --color-warm-gray-light: #f6f3ed;
 }
 
 :root {
-  /* Lapham's Editorial Palette */
-  --background: #f6f1eb;
-  --foreground: #1a1a1a;
+  /* Stitch Design System — "The Digital Archivist" */
+  --background: #fcf9f3;
+  --foreground: #1c1c18;
   --card: #ffffff;
-  --card-foreground: #1a1a1a;
+  --card-foreground: #1c1c18;
   --popover: #ffffff;
-  --popover-foreground: #1a1a1a;
-  --primary: #9e4a3a;
-  --primary-foreground: #faf5f0;
-  --secondary: #ece6df;
-  --secondary-foreground: #4a4540;
-  --muted: #ece6df;
-  --muted-foreground: #8a8279;
-  --accent: #f3e8e5;
-  --accent-foreground: #9e4a3a;
+  --popover-foreground: #1c1c18;
+  --primary: #8b4b2c;
+  --primary-foreground: #fcf9f3;
+  --secondary: #e4dfdd;
+  --secondary-foreground: #656261;
+  --muted: #f0eee8;
+  --muted-foreground: #656261;
+  --accent: #f6f3ed;
+  --accent-foreground: #8b4b2c;
   --destructive: #c84b31;
-  --border: #e2dbd3;
-  --input: #e2dbd3;
-  --ring: #9e4a3a;
-  --chart-1: #9e4a3a;
+  --border: #d9c2b9;
+  --input: #e5e2dc;
+  --ring: #8b4b2c;
+  --chart-1: #8b4b2c;
   --chart-2: #3d6b3d;
-  --chart-3: #8a8279;
-  --chart-4: #4a4540;
-  --chart-5: #b5ada5;
-  --radius: 0.25rem;
-  --sidebar: #f6f1eb;
-  --sidebar-foreground: #1a1a1a;
-  --sidebar-primary: #9e4a3a;
-  --sidebar-primary-foreground: #faf5f0;
-  --sidebar-accent: #ece6df;
-  --sidebar-accent-foreground: #4a4540;
-  --sidebar-border: #e2dbd3;
-  --sidebar-ring: #9e4a3a;
+  --chart-3: #656261;
+  --chart-4: #1c1c18;
+  --chart-5: #d9c2b9;
+  --radius: 0.375rem;
+  --sidebar: #fcf9f3;
+  --sidebar-foreground: #1c1c18;
+  --sidebar-primary: #8b4b2c;
+  --sidebar-primary-foreground: #fcf9f3;
+  --sidebar-accent: #f6f3ed;
+  --sidebar-accent-foreground: #656261;
+  --sidebar-border: #d9c2b9;
+  --sidebar-ring: #8b4b2c;
 }
 
 @layer base {
@@ -95,7 +110,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground font-serif;
+    @apply bg-background text-foreground font-sans;
   }
   html {
     @apply scroll-smooth;
