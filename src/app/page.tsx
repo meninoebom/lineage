@@ -59,7 +59,7 @@ const sections = [
     title: "Explore Traditions",
     description:
       "How contemplative paths connect, diverge, and speak to one another.",
-    href: "/map",
+    href: "/traditions",
     icon: (
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
         <rect x="4" y="4" width="10" height="14" rx="1" stroke="currentColor" strokeWidth="1.5" />
@@ -91,7 +91,7 @@ export default function Home() {
       </section>
 
       {/* Feature cards */}
-      <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-20">
+      <section className="grid gap-6 sm:grid-cols-2 mb-20">
         {sections.map((section) => (
           <Link key={section.href} href={section.href} className="group">
             <div className="h-full rounded bg-card p-6 shadow-ambient transition-shadow group-hover:shadow-md">
