@@ -279,6 +279,9 @@ export function TeachersClient({ teachers, traditionNames }: TeachersClientProps
                         <img
                           src={teacher.photo}
                           alt={teacher.name}
+                          width={64}
+                          height={64}
+                          loading="lazy"
                           className="w-16 h-16 rounded-full object-cover"
                         />
                       ) : (
