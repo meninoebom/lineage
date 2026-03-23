@@ -74,21 +74,29 @@ export default function Home() {
   return (
     <PageLayout>
       {/* Hero */}
-      <header className="mt-6 mb-12 text-center">
-        <h1 className="mb-4">The Contemplative Landscape</h1>
-        <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+      <section className="relative -mx-6 px-6 py-20 mb-20 bg-gradient-to-b from-surface-container-low to-background text-center">
+        <h1 className="text-5xl sm:text-6xl font-serif tracking-tight mb-6">
+          The Contemplative Landscape
+        </h1>
+        <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8">
           Explore how the world&apos;s great contemplative traditions connect,
           diverge, and speak to one another across time.
         </p>
-      </header>
+        <Link
+          href="/map"
+          className="inline-flex items-center gap-2 bg-gradient-to-br from-primary to-primary-container text-primary-foreground px-6 py-3 rounded font-sans text-sm hover:opacity-90 transition-opacity"
+        >
+          Explore the Map &rarr;
+        </Link>
+      </section>
 
-      {/* Navigation cards — primary CTA */}
-      <section className="grid gap-6 sm:grid-cols-2 mb-16">
+      {/* Feature cards */}
+      <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-20">
         {sections.map((section) => (
           <Link key={section.href} href={section.href} className="group">
-            <div className="h-full rounded-lg bg-card p-6 shadow-ambient transition-shadow group-hover:shadow-md">
+            <div className="h-full rounded bg-card p-6 shadow-ambient transition-shadow group-hover:shadow-md">
               <div className="text-primary mb-4">{section.icon}</div>
-              <h3 className="text-xl mb-2 group-hover:text-primary transition-colors">
+              <h3 className="text-lg mb-2 group-hover:text-primary transition-colors">
                 {section.title}
               </h3>
               <p className="font-sans text-sm text-muted-foreground leading-relaxed mb-4">
@@ -103,92 +111,104 @@ export default function Home() {
       </section>
 
       {/* Map teaser */}
-      <section className="py-16 -mx-6 px-6 bg-surface-container-low/30">
-        <div className="max-w-2xl mx-auto">
-          <Link href="/map" className="group block">
-            <div className="rounded-lg bg-card shadow-ambient overflow-hidden transition-shadow group-hover:shadow-md">
-              {/* Static decorative SVG */}
-              <div className="px-8 pt-8 pb-4">
-                <svg
-                  viewBox="0 0 500 280"
-                  className="w-full h-auto"
-                  aria-hidden="true"
-                >
-                  {/* Connecting lines */}
-                  <line x1="200" y1="120" x2="120" y2="60" stroke="#e2dbd3" strokeWidth="1.5" />
-                  <line x1="200" y1="120" x2="310" y2="70" stroke="#d4a899" strokeWidth="1.5" />
-                  <line x1="200" y1="120" x2="160" y2="210" stroke="#d4a899" strokeWidth="1" strokeDasharray="4 2" />
-                  <line x1="200" y1="120" x2="260" y2="220" stroke="#e2dbd3" strokeWidth="1" strokeDasharray="4 2" />
-                  <line x1="310" y1="70" x2="400" y2="100" stroke="#d4a899" strokeWidth="1.5" />
-                  <line x1="310" y1="70" x2="340" y2="170" stroke="#e2dbd3" strokeWidth="1" strokeDasharray="4 2" />
-                  <line x1="340" y1="170" x2="400" y2="100" stroke="#e2dbd3" strokeWidth="1" />
-                  <line x1="160" y1="210" x2="260" y2="220" stroke="#e2dbd3" strokeWidth="1" strokeDasharray="1 3" />
-
-                  {/* Nodes */}
-                  <circle cx="120" cy="60" r="6" fill="#8a8279" />
-                  <text x="120" y="46" textAnchor="middle" fontSize="12" fill="#8a8279" fontFamily="Georgia, serif">Vedanta</text>
-
-                  <circle cx="200" cy="120" r="8" fill="#6b6560" />
-                  <text x="200" y="106" textAnchor="middle" fontSize="13" fill="#4a4540" fontFamily="Georgia, serif">Buddhism</text>
-
-                  <circle cx="310" cy="70" r="7" fill="#6b6560" />
-                  <text x="310" y="56" textAnchor="middle" fontSize="12" fill="#8a8279" fontFamily="Georgia, serif">Chan</text>
-
-                  <circle cx="400" cy="100" r="7" fill="#6b6560" />
-                  <text x="400" y="86" textAnchor="middle" fontSize="12" fill="#8a8279" fontFamily="Georgia, serif">Zen</text>
-
-                  <circle cx="340" cy="170" r="6" fill="#b5ada5" />
-                  <text x="340" y="156" textAnchor="middle" fontSize="12" fill="#8a8279" fontFamily="Georgia, serif">Tibetan</text>
-
-                  <circle cx="160" cy="210" r="6" fill="#b5ada5" />
-                  <text x="160" y="196" textAnchor="middle" fontSize="12" fill="#8a8279" fontFamily="Georgia, serif">Tantra</text>
-
-                  <circle cx="260" cy="220" r="6" fill="#b5ada5" />
-                  <text x="260" y="206" textAnchor="middle" fontSize="12" fill="#8a8279" fontFamily="Georgia, serif">Vajrayana</text>
-                </svg>
-              </div>
-
-              {/* CTA row */}
-              <div className="px-8 pb-6 flex items-center justify-between">
-                <div>
-                  <h2 className="text-2xl mb-1 group-hover:text-primary transition-colors">
-                    Explore the Interactive Map
-                  </h2>
-                  <p className="font-sans text-sm text-muted-foreground">
-                    See how traditions connect across history
-                  </p>
-                </div>
-                <span className="text-primary text-2xl shrink-0 ml-4 group-hover:translate-x-1 transition-transform">
-                  &rarr;
-                </span>
-              </div>
+      <section className="py-20 -mx-6 px-6 bg-surface-container-low/40 mb-20">
+        <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-10">
+          {/* Map preview */}
+          <div className="flex-1 w-full">
+            <div className="rounded bg-card shadow-ambient overflow-hidden p-6">
+              <svg
+                viewBox="0 0 500 280"
+                className="w-full h-auto"
+                aria-hidden="true"
+              >
+                <line x1="200" y1="120" x2="120" y2="60" stroke="#d9c2b9" strokeWidth="1.5" />
+                <line x1="200" y1="120" x2="310" y2="70" stroke="#a96242" strokeWidth="1.5" />
+                <line x1="200" y1="120" x2="160" y2="210" stroke="#a96242" strokeWidth="1" strokeDasharray="4 2" />
+                <line x1="200" y1="120" x2="260" y2="220" stroke="#d9c2b9" strokeWidth="1" strokeDasharray="4 2" />
+                <line x1="310" y1="70" x2="400" y2="100" stroke="#a96242" strokeWidth="1.5" />
+                <line x1="310" y1="70" x2="340" y2="170" stroke="#d9c2b9" strokeWidth="1" strokeDasharray="4 2" />
+                <line x1="340" y1="170" x2="400" y2="100" stroke="#d9c2b9" strokeWidth="1" />
+                <line x1="160" y1="210" x2="260" y2="220" stroke="#d9c2b9" strokeWidth="1" strokeDasharray="1 3" />
+                <circle cx="120" cy="60" r="6" fill="#656261" />
+                <text x="120" y="46" textAnchor="middle" fontSize="12" fill="#656261" fontFamily="'Noto Serif', Georgia, serif">Vedanta</text>
+                <circle cx="200" cy="120" r="8" fill="#1c1c18" />
+                <text x="200" y="106" textAnchor="middle" fontSize="13" fill="#1c1c18" fontFamily="'Noto Serif', Georgia, serif">Buddhism</text>
+                <circle cx="310" cy="70" r="7" fill="#1c1c18" />
+                <text x="310" y="56" textAnchor="middle" fontSize="12" fill="#656261" fontFamily="'Noto Serif', Georgia, serif">Chan</text>
+                <circle cx="400" cy="100" r="7" fill="#1c1c18" />
+                <text x="400" y="86" textAnchor="middle" fontSize="12" fill="#656261" fontFamily="'Noto Serif', Georgia, serif">Zen</text>
+                <circle cx="340" cy="170" r="6" fill="#d9c2b9" />
+                <text x="340" y="156" textAnchor="middle" fontSize="12" fill="#656261" fontFamily="'Noto Serif', Georgia, serif">Tibetan</text>
+                <circle cx="160" cy="210" r="6" fill="#d9c2b9" />
+                <text x="160" y="196" textAnchor="middle" fontSize="12" fill="#656261" fontFamily="'Noto Serif', Georgia, serif">Tantra</text>
+                <circle cx="260" cy="220" r="6" fill="#d9c2b9" />
+                <text x="260" y="206" textAnchor="middle" fontSize="12" fill="#656261" fontFamily="'Noto Serif', Georgia, serif">Vajrayana</text>
+              </svg>
             </div>
-          </Link>
+          </div>
+
+          {/* CTA */}
+          <div className="flex-1">
+            <h2 className="text-3xl mb-4">Explore the Interactive Map</h2>
+            <p className="font-sans text-muted-foreground leading-relaxed mb-6">
+              See how 27 contemplative traditions connect across history — from ancient
+              Vedic roots to modern secular mindfulness.
+            </p>
+            <Link
+              href="/map"
+              className="inline-flex items-center gap-2 bg-gradient-to-br from-primary to-primary-container text-primary-foreground px-6 py-3 rounded font-sans text-sm hover:opacity-90 transition-opacity"
+            >
+              Open the Map &rarr;
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* About blurb */}
-      <section className="py-16 max-w-2xl mx-auto">
-        <blockquote className="border-l-3 border-primary/40 pl-6 space-y-4">
-          <p className="text-secondary-foreground leading-relaxed">
-            <em>Lineage</em> is a first attempt at mapping the world&apos;s contemplative
-            traditions — their historical connections, living teachers, and practice
-            communities. It&apos;s a community project, and we know we&apos;re just getting started.
+      {/* Help Us Grow */}
+      <section className="py-16 max-w-2xl mx-auto mb-20">
+        <h2 className="text-3xl text-center mb-6">Help Us Grow</h2>
+        <p className="text-center text-muted-foreground leading-relaxed mb-4">
+          <em>Lineage</em> is a community project mapping the world&apos;s contemplative
+          traditions — their historical connections, living teachers, and practice
+          communities. We know we&apos;re just getting started.
+        </p>
+        <p className="text-center text-muted-foreground leading-relaxed">
+          If you see something missing or wrong, we&apos;d love your help.{" "}
+          <a
+            href="https://github.com/meninoebom/lineage/issues"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
+          >
+            Suggest an edit &rarr;
+          </a>
+        </p>
+      </section>
+
+      {/* Newsletter signup (layout only) */}
+      <section className="py-16 -mx-6 px-6 bg-surface-container-low/40">
+        <div className="max-w-md mx-auto text-center">
+          <h2 className="text-2xl mb-3">Stay Connected</h2>
+          <p className="font-sans text-sm text-muted-foreground mb-6">
+            Get updates as we add new traditions, teachers, and resources.
           </p>
-          <p className="text-secondary-foreground leading-relaxed">
-            If you see something missing or wrong, we&apos;d love your help.
-            This resource grows with input from practitioners, scholars, and curious
-            people like you.{" "}
-            <a
-              href="https://github.com/meninoebom/lineage/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
+          <form
+            action="#"
+            className="flex gap-3"
+          >
+            <input
+              type="email"
+              placeholder="Your email address"
+              className="flex-1 h-10 rounded border border-transparent bg-surface-container-highest px-3 py-2 font-sans text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:bg-white focus-visible:border-outline-variant/20 focus-visible:ring-2 focus-visible:ring-ring/30 transition-colors"
+            />
+            <button
+              type="submit"
+              className="bg-gradient-to-br from-primary to-primary-container text-primary-foreground px-5 py-2 rounded font-sans text-sm hover:opacity-90 transition-opacity"
             >
-              Suggest an edit &rarr;
-            </a>
-          </p>
-        </blockquote>
+              Subscribe
+            </button>
+          </form>
+        </div>
       </section>
     </PageLayout>
   );
