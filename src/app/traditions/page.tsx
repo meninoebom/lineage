@@ -255,6 +255,19 @@ export default function TraditionsPage() {
             </p>
           </header>
 
+          {/* Mobile family nav -- horizontal scrollable pills */}
+          <nav className="lg:hidden flex overflow-x-auto gap-2 pb-2 -mx-2 px-2 mb-8">
+            {groups.map(({ family }) => (
+              <a
+                key={family}
+                href={`#${familySlug(family)}`}
+                className="shrink-0 px-3 py-1.5 text-sm border border-border/50 rounded-full text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors whitespace-nowrap"
+              >
+                {family}
+              </a>
+            ))}
+          </nav>
+
           {/* Family sections */}
           {groups.map(({ family, traditions: familyTraditions }, index) => (
             <section key={family} id={familySlug(family)} className="mb-12 scroll-mt-24">
