@@ -1,8 +1,9 @@
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 const footerColumns = [
   {
-    heading: "Lineage",
+    heading: "Lineage.guide",
     links: [
       { label: "Home", href: "/" },
       { label: "About", href: "/about" },
@@ -48,7 +49,7 @@ export function SiteFooter() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {footerColumns.map((column) => (
             <div key={column.heading}>
-              <h3 className="font-serif text-sm font-medium text-foreground">
+              <h3 className={cn("text-sm font-medium text-foreground", column.heading === "Lineage.guide" ? "font-serif italic" : "font-serif")}>
                 {column.heading}
               </h3>
               <ul className="mt-3 space-y-2">
@@ -79,7 +80,8 @@ export function SiteFooter() {
         </div>
         <div className="pt-8 pb-6">
           <p className="font-sans text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Lineage. An editorial directory of
+            &copy; {new Date().getFullYear()}{" "}
+            <span className="font-serif italic">Lineage.guide</span>. An editorial directory of
             contemplative traditions.
           </p>
         </div>
