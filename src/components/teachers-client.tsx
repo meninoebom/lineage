@@ -9,7 +9,7 @@ import { geocodeLocation, sortByDistance } from "@/lib/geo";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 
 interface TeachersClientProps {
   teachers: Teacher[];
@@ -160,7 +160,7 @@ export function TeachersClient({ teachers, traditionNames }: TeachersClientProps
         </div>
 
         {/* Proximity search */}
-        <div className="border-t border-border pt-4">
+        <div className="pt-4 mt-2 bg-surface-container-low/30 -mx-4 px-4 rounded">
           <label className="block font-sans text-sm text-muted-foreground mb-2">
             Sort by distance from...
           </label>
@@ -178,7 +178,7 @@ export function TeachersClient({ teachers, traditionNames }: TeachersClientProps
             <button
               onClick={handleLocationSearch}
               disabled={locationLoading || !locationQuery.trim()}
-              className="px-4 py-2 font-sans text-sm bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-4 py-2 font-sans text-sm bg-gradient-to-br from-primary to-primary-container text-primary-foreground rounded hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {locationLoading ? (
                 <span className="inline-flex items-center gap-1.5">
@@ -266,36 +266,55 @@ export function TeachersClient({ teachers, traditionNames }: TeachersClientProps
           </p>
         </div>
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {results.map((teacher) => {
             const distance = getDistance(teacher);
             return (
               <Link key={teacher.slug} href={`/teachers/${teacher.slug}`} className="group">
-                <Card accent="terracotta" className="h-full group-hover:shadow-md">
-                  <CardHeader>
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <CardTitle className="group-hover:text-primary transition-colors">
-                          {teacher.name}
-                        </CardTitle>
-                        <CardDescription>
-                          {teacher.city}, {teacher.state}
-                          {teacher.country !== "US" && ` · ${teacher.country}`}
-                        </CardDescription>
-                      </div>
-                      {distance != null && (
-                        <span className="font-sans text-sm text-muted-foreground whitespace-nowrap">
-                          {Math.round(distance)} mi
-                        </span>
+                <Card className="h-full group-hover:shadow-md">
+                  <div className="flex items-start gap-4">
+                    {/* Photo or fallback avatar */}
+                    <div className="shrink-0">
+                      {teacher.photo ? (
+                        <img
+                          src={teacher.photo}
+                          alt={teacher.name}
+                          className="w-16 h-16 rounded-full object-cover"
+                        />
+                      ) : (
+                        <div className="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <circle cx="12" cy="8" r="4" stroke="currentColor" strokeWidth="1.5" className="text-muted-foreground" />
+                            <path d="M4 20c0-3.314 3.582-6 8-6s8 2.686 8 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-muted-foreground" />
+                          </svg>
+                        </div>
                       )}
                     </div>
-                  </CardHeader>
-                  <div className="flex flex-wrap gap-1.5 px-5 pb-5">
-                    {teacher.traditions.map((slug) => (
-                      <Badge key={slug} variant="tradition">
-                        {traditionNames[slug] ?? slug}
-                      </Badge>
-                    ))}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-start justify-between gap-2">
+                        <div>
+                          <h3 className="font-serif text-base font-medium tracking-tight group-hover:text-primary transition-colors">
+                            {teacher.name}
+                          </h3>
+                          <p className="font-sans text-sm text-muted-foreground">
+                            {teacher.city}, {teacher.state}
+                            {teacher.country !== "US" && ` · ${teacher.country}`}
+                          </p>
+                        </div>
+                        {distance != null && (
+                          <span className="font-sans text-xs text-muted-foreground whitespace-nowrap">
+                            {Math.round(distance)} mi
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex flex-wrap gap-1 mt-2">
+                        {teacher.traditions.map((slug) => (
+                          <Badge key={slug} variant="tradition">
+                            {traditionNames[slug] ?? slug}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </Card>
               </Link>
