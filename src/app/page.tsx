@@ -103,18 +103,18 @@ export default function Home() {
       </section>
 
       {/* Feature cards */}
-      <section className="grid gap-6 sm:grid-cols-2 mb-20">
+      <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-20">
         {sections.map((section) => (
           <Link key={section.href} href={section.href} className="group">
-            <div className="h-full rounded bg-card p-6 border border-border/50 transition-colors group-hover:bg-accent/50">
-              <div className="text-primary mb-4">{section.icon}</div>
-              <h3 className="text-lg mb-2 group-hover:text-primary transition-colors">
+            <div className="h-full rounded bg-card p-6 border border-border/50 transition-colors group-hover:bg-accent/50 text-center">
+              <div className="text-muted-foreground mb-4 flex justify-center">{section.icon}</div>
+              <h3 className="font-serif text-lg font-medium mb-2 group-hover:text-primary transition-colors">
                 {section.title}
               </h3>
-              <p className="font-sans text-sm text-muted-foreground leading-relaxed mb-4">
+              <p className="font-sans text-sm text-muted-foreground leading-relaxed mb-5">
                 {section.description}
               </p>
-              <span className="font-sans text-sm text-primary">
+              <span className="inline-flex items-center gap-1 bg-gradient-to-br from-primary to-primary-container text-primary-foreground px-4 py-2 rounded font-sans text-sm hover:opacity-90 transition-opacity">
                 Explore &rarr;
               </span>
             </div>
