@@ -52,7 +52,7 @@ export default function TeachersPage() {
             href={`/teachers/${teacher.slug}`}
             className="group"
           >
-            <Card className="h-full group-hover:shadow-md transition-shadow">
+            <Card className="h-full group-hover:bg-accent/50">
               <div className="flex items-start gap-4">
                 <div className="shrink-0">
                   {teacher.photo ? (

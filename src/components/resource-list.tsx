@@ -42,7 +42,7 @@ export function ResourceList({ resources }: ResourceListProps) {
                 href={resource.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block rounded-lg bg-card p-4 shadow-ambient transition-shadow hover:shadow-md"
+                className="block rounded-lg bg-card p-4 border border-border/50 transition-colors hover:bg-accent/50"
               >
                 <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-3">
                   <span className="font-serif text-base font-medium text-foreground">

@@ -139,7 +139,7 @@ export function CentersClient({ centers, traditionNames }: CentersClientProps) {
         <div className="grid gap-4 sm:grid-cols-2">
           {results.map((center) => (
             <Link key={center.slug} href={`/centers/${center.slug}`} className="group">
-              <Card accent="green" className="h-full group-hover:shadow-md">
+              <Card accent="green" className="h-full group-hover:bg-accent/50">
                 <CardHeader>
                   <CardTitle className="group-hover:text-primary transition-colors">
                     {center.name}

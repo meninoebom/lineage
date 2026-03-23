@@ -70,7 +70,7 @@ export default async function StateTeachersPage({
             href={`/teachers/${teacher.slug}`}
             className="group"
           >
-            <Card accent="terracotta" className="h-full group-hover:shadow-md">
+            <Card accent="terracotta" className="h-full group-hover:bg-accent/50">
               <CardHeader>
                 <CardTitle className="group-hover:text-primary transition-colors">
                   {teacher.name}

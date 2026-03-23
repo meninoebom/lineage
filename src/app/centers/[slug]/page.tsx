@@ -98,7 +98,7 @@ export default async function CenterPage({ params }: { params: Promise<{ slug: s
             <div className="grid gap-4 sm:grid-cols-2">
               {teachers.map((teacher) => (
                 <Link key={teacher.slug} href={`/teachers/${teacher.slug}`} className="group">
-                  <Card className="h-full group-hover:shadow-md">
+                  <Card className="h-full group-hover:bg-accent/50">
                     <CardHeader>
                       <CardTitle className="group-hover:text-primary transition-colors">
                         {teacher.name}

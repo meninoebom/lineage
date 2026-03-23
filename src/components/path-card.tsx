@@ -8,7 +8,7 @@ interface PathCardProps {
 export function PathCard({ path }: PathCardProps) {
   return (
     <Link href={`/library/${path.slug}`} className="group">
-      <div className="h-full bg-card shadow-ambient rounded transition-shadow hover:shadow-md">
+      <div className="h-full bg-card border border-border/50 rounded transition-colors hover:bg-accent/50">
         <div className="h-32 rounded-t bg-gradient-to-br from-surface-container-low to-surface-dim flex items-end p-4">
           <h3 className="font-serif text-lg text-foreground/90 leading-snug">
             {path.title}

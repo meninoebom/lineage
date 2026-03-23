@@ -323,7 +323,7 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
                 {filteredResources.map((r) => (
                   <div
                     key={r.slug}
-                    className="bg-white border border-[#e8e4df] rounded-lg p-3 hover:shadow-md transition-all duration-200"
+                    className="bg-white border border-[#e8e4df] rounded-lg p-3 hover:bg-accent/50 transition-all duration-200"
                   >
                     <a
                       href={r.url}
