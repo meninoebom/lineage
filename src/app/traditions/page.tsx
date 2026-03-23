@@ -19,17 +19,6 @@ export const metadata: Metadata = {
 
 const familyOrder = ["Buddhist", "Vedic-Yogic", "Taoist", "Christian Contemplative", "Islamic Contemplative", "Modern Secular", "Other"];
 
-/** Map family names to short emoji-style icons for sidebar nav */
-const familyIcons: Record<string, string> = {
-  "Buddhist": "\u{1F4FF}",
-  "Vedic-Yogic": "\u{1F549}\uFE0F",
-  "Taoist": "\u{2622}\uFE0F",
-  "Christian Contemplative": "\u{271E}",
-  "Islamic Contemplative": "\u{2B50}",
-  "Modern Secular": "\u{1F52C}",
-  "Other": "\u{1F30D}",
-};
-
 /** Earth-tone gradients for tradition card placeholders */
 const gradientPalette = [
   "from-amber-800/60 to-amber-600/40",
@@ -224,11 +213,8 @@ export default function TraditionsPage() {
                 <li key={family}>
                   <a
                     href={`#${familySlug(family)}`}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2"
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    <span className="text-base" aria-hidden="true">
-                      {familyIcons[family] ?? "\u{1F4D6}"}
-                    </span>
                     {family}
                   </a>
                 </li>
