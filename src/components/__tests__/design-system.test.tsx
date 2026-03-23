@@ -2,6 +2,8 @@ import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { Card, CardTitle, CardDescription, CardFooter } from "../ui/card";
 import { Badge } from "../ui/badge";
+import { Input } from "../ui/input";
+import { Select } from "../ui/select";
 import { Breadcrumbs } from "../breadcrumbs";
 
 // Mock next/link for test environment
@@ -65,6 +67,48 @@ describe("Badge", () => {
     render(<Badge>Pill</Badge>);
     const badge = screen.getByText("Pill");
     expect(badge.className).toContain("rounded-full");
+  });
+});
+
+describe("Button", () => {
+  it("primary variant uses gradient background", async () => {
+    const { Button } = await import("../ui/button");
+    render(<Button>Click me</Button>);
+    const button = screen.getByText("Click me");
+    // Primary should use gradient from primary to primary-container
+    expect(button.className).toContain("bg-gradient-to-br");
+    expect(button.className).toContain("from-primary");
+    expect(button.className).toContain("to-primary-container");
+  });
+
+  it("tertiary variant is text-only with hover underline", async () => {
+    const { Button } = await import("../ui/button");
+    render(<Button variant="tertiary">Learn more</Button>);
+    const button = screen.getByText("Learn more");
+    expect(button.className).toContain("hover:underline");
+  });
+});
+
+describe("Input", () => {
+  it("uses surface-container-highest background", () => {
+    render(<Input data-testid="input" />);
+    const input = screen.getByTestId("input");
+    expect(input.className).toContain("bg-surface-container-highest");
+  });
+
+  it("has no border by default, ghost border on focus", () => {
+    render(<Input data-testid="input" />);
+    const input = screen.getByTestId("input");
+    expect(input.className).not.toContain("border-input");
+    expect(input.className).toContain("focus-visible:border-outline-variant/20");
+  });
+});
+
+describe("Select", () => {
+  it("uses surface-container-highest background", () => {
+    render(<Select data-testid="select"><option>A</option></Select>);
+    const select = screen.getByTestId("select");
+    expect(select.className).toContain("bg-surface-container-highest");
   });
 });
 

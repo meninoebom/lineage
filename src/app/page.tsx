@@ -86,7 +86,7 @@ export default function Home() {
       <section className="grid gap-6 sm:grid-cols-2 mb-16">
         {sections.map((section) => (
           <Link key={section.href} href={section.href} className="group">
-            <div className="h-full rounded-lg border border-border bg-card p-6 transition-shadow group-hover:shadow-md">
+            <div className="h-full rounded-lg bg-card p-6 shadow-ambient transition-shadow group-hover:shadow-md">
               <div className="text-primary mb-4">{section.icon}</div>
               <h3 className="text-xl mb-2 group-hover:text-primary transition-colors">
                 {section.title}
