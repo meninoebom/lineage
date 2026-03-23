@@ -34,8 +34,10 @@ export default function TeachersPage() {
     <PageLayout>
       <Breadcrumbs items={[{ label: "Teachers" }]} />
 
-      <header className="mb-12">
-        <h1 className="mb-3">Find a Teacher</h1>
+      <header className="mb-16">
+        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-6">
+          Find a Teacher
+        </h1>
         <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
           Living teachers you can study with across contemplative traditions.
         </p>

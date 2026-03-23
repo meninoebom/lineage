@@ -30,8 +30,10 @@ export default function CentersPage() {
     <PageLayout>
       <Breadcrumbs items={[{ label: "Centers" }]} />
 
-      <header className="mb-10">
-        <h1 className="mb-3">Where to Practice</h1>
+      <header className="mb-16">
+        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-6">
+          Where to Practice
+        </h1>
         <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
           Find centers and communities across contemplative traditions.
           Filter by tradition or location to find a place near you.

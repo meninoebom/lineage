@@ -46,8 +46,10 @@ export default function MastersPage() {
     <PageLayout>
       <Breadcrumbs items={[{ label: "Historical Masters" }]} />
 
-      <header className="mb-12">
-        <h1 className="mb-3">Historical Masters</h1>
+      <header className="mb-16">
+        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-6">
+          Historical Masters
+        </h1>
         <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
           The great teachers whose wisdom shaped the contemplative traditions.
         </p>

@@ -27,8 +27,10 @@ export default function MapPage() {
 
   return (
     <PageLayout>
-      <header className="mb-4 text-center">
-        <h1 className="mb-3">The Contemplative Landscape</h1>
+      <header className="mb-8 text-center">
+        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-6">
+          The Contemplative Landscape
+        </h1>
         <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
           How the great contemplative traditions connect, diverge, and speak to
           one another — an interactive guide to the paths of practice.
