@@ -96,10 +96,12 @@ export default function TeachersPage() {
                   <h3 className="font-serif text-base font-medium tracking-tight group-hover:text-primary transition-colors">
                     {teacher.name}
                   </h3>
-                  <p className="font-sans text-sm text-muted-foreground">
-                    {teacher.city}, {teacher.state}
-                    {teacher.country !== "US" && ` · ${teacher.country}`}
-                  </p>
+                  {(teacher.city || teacher.state || teacher.country) && (
+                    <p className="font-sans text-sm text-muted-foreground">
+                      {[teacher.city, teacher.state].filter(Boolean).join(", ")}
+                      {teacher.country && teacher.country !== "US" && ` · ${teacher.country}`}
+                    </p>
+                  )}
                   <div className="flex flex-wrap gap-1 mt-2">
                     {teacher.traditions.map((slug) => (
                       <Badge key={slug} variant="tradition">
