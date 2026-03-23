@@ -26,7 +26,7 @@ export default function LibraryPage() {
     <PageLayout>
       <Breadcrumbs items={[{ label: "Library" }]} />
 
-      <header className="mb-10">
+      <header className="mb-16">
         <h1 className="mb-3">Library</h1>
         <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
           Curated reading paths through the contemplative traditions — each a
@@ -42,18 +42,18 @@ export default function LibraryPage() {
         </p>
       </header>
 
-      <section className="mb-12">
-        <h2 className="mb-4">Tradition Paths</h2>
-        <div className="grid gap-4 sm:grid-cols-2">
+      <section className="mb-20">
+        <h2 className="mb-6">Tradition Paths</h2>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {traditionPaths.map((path) => (
             <PathCard key={path.slug} path={path} />
           ))}
         </div>
       </section>
 
-      <section className="mb-12">
-        <h2 className="mb-4">Thematic Paths</h2>
-        <div className="grid gap-4 sm:grid-cols-2">
+      <section className="mb-20">
+        <h2 className="mb-6">Thematic Paths</h2>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {thematicPaths.map((path) => (
             <PathCard key={path.slug} path={path} />
           ))}
