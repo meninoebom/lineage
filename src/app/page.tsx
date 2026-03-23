@@ -196,7 +196,9 @@ export default function Home() {
             action="#"
             className="flex gap-3"
           >
+            <label htmlFor="newsletter-email" className="sr-only">Email address</label>
             <input
+              id="newsletter-email"
               type="email"
               placeholder="Your email address"
               className="flex-1 h-10 rounded border border-transparent bg-surface-container-highest px-3 py-2 font-sans text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:bg-white focus-visible:border-outline-variant/20 focus-visible:ring-2 focus-visible:ring-ring/30 transition-colors"
