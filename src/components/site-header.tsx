@@ -29,7 +29,7 @@ export function SiteHeader() {
           href="/"
           className="font-serif text-xl italic tracking-tight text-foreground hover:text-primary transition-colors"
         >
-          Lineage
+          Lineage.guide
         </Link>
 
         {/* Desktop nav */}

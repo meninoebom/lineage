@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
-import { Noto_Serif, Inter } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import { defaultMetadata } from "@/lib/seo";
 import "./globals.css";
 
-const notoSerif = Noto_Serif({
+const cormorantGaramond = Cormorant_Garamond({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
   variable: "--font-serif",
   display: "swap",
 });
@@ -33,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${notoSerif.variable} ${inter.variable}`}>
+    <html lang="en" className={`${cormorantGaramond.variable} ${inter.variable}`}>
       <body className="antialiased">{children}</body>
     </html>
   );
