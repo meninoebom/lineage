@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -16,6 +16,11 @@ const navLinks = [
 export function SiteHeader() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  // Close mobile menu on navigation
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
 
   return (
     <header className="sticky top-0 z-50 bg-surface/70 backdrop-blur-xl">
@@ -51,6 +56,7 @@ export function SiteHeader() {
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
           aria-expanded={mobileOpen}
+          aria-controls="mobile-nav"
         >
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5">
             {mobileOpen ? (
@@ -64,7 +70,7 @@ export function SiteHeader() {
 
       {/* Mobile nav */}
       {mobileOpen && (
-        <nav className="sm:hidden bg-surface/95 backdrop-blur-xl px-6 pb-4">
+        <nav id="mobile-nav" aria-label="Mobile navigation" className="sm:hidden bg-surface/95 backdrop-blur-xl px-6 pb-4">
           {navLinks.map(({ href, label }) => (
             <Link
               key={href}
