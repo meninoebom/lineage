@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useCallback } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import type { Teacher } from "@/lib/types";
 import { filterTeachers } from "@/lib/search";
 import { Input } from "@/components/ui/input";
@@ -22,10 +23,10 @@ interface MastersClientProps {
 function formatYears(birth: number | null, death: number | null): string {
   const b = birth ?? "?";
   const d = death ?? "?";
-  return `(${b}\u2013${d})`;
+  return `${b}\u2013${d}`;
 }
 
-function truncateBio(bio: string, maxLength = 120): string {
+function truncateBio(bio: string, maxLength = 160): string {
   if (bio.length <= maxLength) return bio;
   return bio.slice(0, maxLength).replace(/\s+\S*$/, "") + "\u2026";
 }
@@ -84,7 +85,7 @@ export function MastersClient({ masters, traditionNames, families }: MastersClie
 
   return (
     <div>
-      <div className="mb-8 space-y-4">
+      <div className="mb-10 space-y-4">
         <Input
           placeholder="Search masters by name..."
           value={query}
@@ -137,7 +138,7 @@ export function MastersClient({ masters, traditionNames, families }: MastersClie
         </div>
       </div>
 
-      <p className="font-sans text-sm text-muted-foreground mb-4">
+      <p className="font-sans text-sm text-muted-foreground mb-6">
         {results.length} {results.length === 1 ? "master" : "masters"}
       </p>
 
@@ -158,44 +159,70 @@ export function MastersClient({ masters, traditionNames, families }: MastersClie
           </p>
         </div>
       ) : (
-        <div className="space-y-12">
+        <div className="space-y-14">
           {grouped.map(({ family, members }) => (
             <section key={family}>
-              <h2 className="font-serif text-2xl font-normal text-[#9e4a3a] mb-6 pb-2 border-b border-[#9e4a3a]/20">
+              <h2 className="font-serif text-2xl font-normal text-[#9e4a3a] mb-8">
                 {family}
               </h2>
 
-              <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-0">
                 {members.map((master) => (
                   <div
                     key={master.slug}
-                    className="flex flex-col sm:flex-row sm:items-baseline gap-x-4 gap-y-1 py-2 border-b border-border/40 last:border-b-0"
+                    className="flex gap-4 py-6"
                   >
-                    <div className="flex items-baseline gap-2 shrink-0">
-                      <Link
-                        href={`/teachers/${master.slug}`}
-                        className="font-serif text-lg font-medium text-foreground hover:text-[#9e4a3a] transition-colors"
-                      >
-                        {master.name}
+                    {/* Photo */}
+                    {master.photo ? (
+                      <Link href={`/teachers/${master.slug}`} className="shrink-0">
+                        <div className="relative w-14 h-14 rounded-full overflow-hidden bg-surface-container-highest">
+                          <Image
+                            src={master.photo}
+                            alt={master.name}
+                            fill
+                            className="object-cover"
+                            sizes="56px"
+                          />
+                        </div>
                       </Link>
-                      <span className="text-sm text-muted-foreground whitespace-nowrap">
-                        {formatYears(master.birth_year, master.death_year)}
-                      </span>
-                    </div>
+                    ) : (
+                      <Link href={`/teachers/${master.slug}`} className="shrink-0">
+                        <div className="w-14 h-14 rounded-full bg-surface-container-highest flex items-center justify-center">
+                          <span className="font-serif text-lg text-muted-foreground/60">
+                            {master.name.charAt(0)}
+                          </span>
+                        </div>
+                      </Link>
+                    )}
 
-                    <div className="flex items-center gap-2 shrink-0">
-                      {master.traditionNameMap.map(({ slug, name }) => (
-                        <Link key={slug} href={`/traditions/${slug}`}>
-                          <Badge variant="tradition" className="text-xs hover:bg-[#9e4a3a]/20 transition-colors">
-                            {name}
-                          </Badge>
+                    {/* Content */}
+                    <div className="min-w-0">
+                      <div className="flex items-baseline gap-2 flex-wrap">
+                        <Link
+                          href={`/teachers/${master.slug}`}
+                          className="font-serif text-2xl font-normal text-foreground hover:text-[#9e4a3a] transition-colors"
+                        >
+                          {master.name}
                         </Link>
-                      ))}
-                    </div>
+                        <span className="font-sans text-sm font-light text-muted-foreground whitespace-nowrap">
+                          {formatYears(master.birth_year, master.death_year)}
+                        </span>
+                      </div>
 
-                    <p className="text-sm text-muted-foreground leading-relaxed line-clamp-1">
-                      {truncateBio(master.bio)}
-                    </p>
+                      <p className="font-sans text-sm text-muted-foreground leading-relaxed mt-1">
+                        {truncateBio(master.bio)}
+                      </p>
+
+                      <div className="flex flex-wrap gap-1.5 mt-2">
+                        {master.traditionNameMap.map(({ slug, name }) => (
+                          <Link key={slug} href={`/traditions/${slug}`}>
+                            <Badge variant="tradition" className="text-xs hover:bg-[#9e4a3a]/20 transition-colors">
+                              {name}
+                            </Badge>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
