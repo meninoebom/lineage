@@ -1,8 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { PageLayout } from "@/components/page-layout";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { getAllTraditions } from "@/lib/data";
 import type { ParsedTradition } from "@/lib/data";
 import { SITE_URL } from "@/lib/seo";
@@ -32,6 +30,30 @@ const familyIcons: Record<string, string> = {
   "Other": "\u{1F30D}",
 };
 
+/** Earth-tone gradients for tradition card placeholders */
+const gradientPalette = [
+  "from-amber-800/60 to-amber-600/40",
+  "from-stone-700/60 to-stone-500/40",
+  "from-emerald-900/60 to-emerald-700/40",
+  "from-orange-800/60 to-orange-600/40",
+  "from-yellow-900/60 to-yellow-700/40",
+  "from-lime-900/60 to-lime-700/40",
+  "from-teal-800/60 to-teal-600/40",
+  "from-rose-900/60 to-rose-700/40",
+  "from-cyan-900/60 to-cyan-700/40",
+  "from-amber-900/60 to-stone-600/40",
+  "from-stone-800/60 to-amber-500/40",
+  "from-emerald-800/60 to-stone-500/40",
+];
+
+function getGradient(slug: string): string {
+  let hash = 0;
+  for (let i = 0; i < slug.length; i++) {
+    hash = ((hash << 5) - hash + slug.charCodeAt(i)) | 0;
+  }
+  return gradientPalette[Math.abs(hash) % gradientPalette.length];
+}
+
 function familySlug(family: string): string {
   return family.toLowerCase().replace(/\s+/g, "-");
 }
@@ -49,6 +71,132 @@ function groupByFamily(traditions: ParsedTradition[]) {
     .map((f) => ({ family: f, traditions: grouped.get(f)! }));
 }
 
+/* ---------- Layout components (inline) ---------- */
+
+function SectionHeader({ index, family }: { index: number; family: string }) {
+  return (
+    <div className="flex items-baseline gap-3 mb-6">
+      <span className="font-serif italic text-2xl text-muted-foreground">
+        {String(index + 1).padStart(2, "0")}.
+      </span>
+      <h2 className="font-serif text-3xl md:text-4xl font-semibold tracking-tight">
+        {family}
+      </h2>
+    </div>
+  );
+}
+
+function ImageCard({ t }: { t: ParsedTradition }) {
+  const gradient = getGradient(t.slug);
+  return (
+    <Link href={`/traditions/${t.slug}`} className="group block">
+      <div className="border border-border/50 rounded overflow-hidden">
+        <div className={`h-40 bg-gradient-to-br ${gradient}`} />
+        <div className="p-4">
+          <p className="uppercase tracking-wider text-xs text-muted-foreground mb-1">
+            {t.family}
+          </p>
+          <h3 className="font-serif text-lg font-medium mb-2 group-hover:text-primary transition-colors">
+            {t.name}
+          </h3>
+          <p className="text-sm text-muted-foreground line-clamp-3">{t.summary}</p>
+          <p className="text-sm text-primary mt-3">Explore Archive &rarr;</p>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+function ThreeColumnImageGrid({ traditions }: { traditions: ParsedTradition[] }) {
+  return (
+    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {traditions.map((t) => (
+        <ImageCard key={t.slug} t={t} />
+      ))}
+    </div>
+  );
+}
+
+function QuoteCalloutWithGrid({ traditions }: { traditions: ParsedTradition[] }) {
+  return (
+    <div className="grid md:grid-cols-2 gap-8">
+      <div>
+        <blockquote className="border-l-2 border-primary pl-4 mb-4 font-serif italic text-lg">
+          &ldquo;Truth is one, though the sages speak of it by many names.&rdquo; &mdash; Rig Veda
+        </blockquote>
+        <p className="text-muted-foreground mb-6">
+          The ancient sub-continental systems of yoga and the Vedas represent some of
+          humanity&apos;s earliest systematic inquiries into the nature of the self (Atman)
+          and the ultimate reality (Brahman).
+        </p>
+        <Link
+          href={traditions[0] ? `/traditions/${traditions[0].slug}` : "/traditions"}
+          className="inline-block bg-primary text-primary-foreground px-5 py-2 rounded text-sm font-medium"
+        >
+          Browse Vedic Library
+        </Link>
+      </div>
+      <div className="grid grid-cols-2 gap-3">
+        {traditions.map((t) => (
+          <Link
+            key={t.slug}
+            href={`/traditions/${t.slug}`}
+            className="group block border border-border/50 rounded p-4"
+          >
+            <h3 className="font-serif font-medium mb-1 group-hover:text-primary transition-colors">
+              {t.name}
+            </h3>
+            <p className="text-xs text-muted-foreground line-clamp-2">{t.summary}</p>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function HeroImageWithCards({ traditions }: { traditions: ParsedTradition[] }) {
+  const hero = traditions[0];
+  const rest = traditions.slice(1);
+  return (
+    <div className="grid md:grid-cols-2 gap-6">
+      {hero && (
+        <Link
+          href={`/traditions/${hero.slug}`}
+          className="group block relative rounded overflow-hidden"
+        >
+          <div className="h-64 md:h-full bg-gradient-to-br from-stone-800 to-stone-600 min-h-[280px]">
+            <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+              <h3 className="font-serif text-2xl font-semibold mb-1">
+                Lao Tzu&apos;s Legacy
+              </h3>
+              <p className="text-sm text-white/80 mb-2">
+                The philosophy of &apos;Wu Wei&apos; or non-action...
+              </p>
+              <span className="uppercase tracking-wider text-xs">Enter the Tao</span>
+            </div>
+          </div>
+        </Link>
+      )}
+      <div className="space-y-3">
+        {rest.map((t) => (
+          <Link
+            key={t.slug}
+            href={`/traditions/${t.slug}`}
+            className="group block border border-border/50 rounded p-4"
+          >
+            <h3 className="font-serif font-medium mb-1 group-hover:text-primary transition-colors">
+              {t.name}
+            </h3>
+            <p className="text-sm text-muted-foreground line-clamp-2">{t.summary}</p>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ---------- Main page ---------- */
+
 export default function TraditionsPage() {
   const traditions = getAllTraditions();
   const groups = groupByFamily(traditions);
@@ -56,7 +204,7 @@ export default function TraditionsPage() {
   return (
     <PageLayout>
       <div className="flex gap-12">
-        {/* Sidebar — hidden on mobile, sticky on desktop */}
+        {/* Sidebar -- hidden on mobile, sticky on desktop */}
         <aside className="hidden lg:block w-56 shrink-0">
           <nav className="sticky top-24">
             <h2 className="font-serif text-lg font-semibold mb-1">Traditions</h2>
@@ -103,27 +251,19 @@ export default function TraditionsPage() {
             </p>
           </header>
 
-          {/* Family sections — kept intact for #160 to restyle */}
-          {groups.map(({ family, traditions }) => (
+          {/* Family sections */}
+          {groups.map(({ family, traditions: familyTraditions }, index) => (
             <section key={family} id={familySlug(family)} className="mb-12 scroll-mt-24">
-              <h2 className="mb-4 flex items-center gap-3">
-                {family}
-                <Badge variant="family">{traditions.length}</Badge>
-              </h2>
-              <div className="grid gap-4 sm:grid-cols-2">
-                {traditions.map((t) => (
-                  <Link key={t.slug} href={`/traditions/${t.slug}`} className="group">
-                    <Card accent="terracotta" className="h-full group-hover:bg-accent/50">
-                      <CardHeader>
-                        <CardTitle className="group-hover:text-primary transition-colors">
-                          {t.name}
-                        </CardTitle>
-                        <CardDescription>{t.summary}</CardDescription>
-                      </CardHeader>
-                    </Card>
-                  </Link>
-                ))}
-              </div>
+              <SectionHeader index={index} family={family} />
+              {index === 0 ? (
+                <ThreeColumnImageGrid traditions={familyTraditions} />
+              ) : index === 1 ? (
+                <QuoteCalloutWithGrid traditions={familyTraditions} />
+              ) : index === 2 ? (
+                <HeroImageWithCards traditions={familyTraditions} />
+              ) : (
+                <ThreeColumnImageGrid traditions={familyTraditions} />
+              )}
             </section>
           ))}
         </div>
