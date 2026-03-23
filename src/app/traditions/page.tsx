@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { PageLayout } from "@/components/page-layout";
 import { getAllTraditions } from "@/lib/data";
@@ -80,7 +81,15 @@ function ImageCard({ t }: { t: ParsedTradition }) {
   return (
     <Link href={`/traditions/${t.slug}`} className="group block">
       <div className="border border-border/50 rounded overflow-hidden">
-        <div className={`h-40 bg-gradient-to-br ${gradient}`} />
+        <div className="relative h-40 overflow-hidden">
+          <Image
+            src={`/images/traditions/${t.slug}.jpg`}
+            alt={t.name}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+        </div>
         <div className="p-4">
           <p className="uppercase tracking-wider text-xs text-muted-foreground mb-1">
             {t.family}
@@ -153,7 +162,15 @@ function HeroImageWithCards({ traditions }: { traditions: ParsedTradition[] }) {
           href={`/traditions/${hero.slug}`}
           className="group block relative rounded overflow-hidden"
         >
-          <div className="h-64 md:h-full bg-gradient-to-br from-stone-800 to-stone-600 min-h-[280px]">
+          <div className="relative h-64 md:h-full min-h-[280px]">
+            <Image
+              src={`/images/traditions/${hero.slug}.jpg`}
+              alt={hero.name}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
               <h3 className="font-serif text-2xl font-semibold mb-1">
                 Lao Tzu&apos;s Legacy
