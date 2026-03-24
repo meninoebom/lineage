@@ -1,0 +1,16 @@
+{
+  "title": "Pali Text Society",
+  "type": "website",
+  "url": "https://www.palitext.com",
+  "author": null,
+  "year": null,
+  "description": "Publisher and archive of Pali Canon texts, translations, and scholarly works on early Buddhism since 1881.",
+  "traditions": [
+    "early-buddhism",
+    "theravada"
+  ],
+  "teachers": [],
+  "centers": [],
+  "category": "web_resource",
+  "slug": "pali-text-society"
+}

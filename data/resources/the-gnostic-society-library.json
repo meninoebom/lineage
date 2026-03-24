@@ -1,0 +1,15 @@
+{
+  "title": "The Gnostic Society Library",
+  "type": "website",
+  "url": "http://www.gnosis.org/library.html",
+  "author": null,
+  "year": null,
+  "description": "Free archive of Gnostic texts including Nag Hammadi translations, Valentinian writings, and encyclopedic articles on Gnostic traditions.",
+  "traditions": [
+    "gnosticism"
+  ],
+  "teachers": [],
+  "centers": [],
+  "category": "web_resource",
+  "slug": "the-gnostic-society-library"
+}

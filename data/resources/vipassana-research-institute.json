@@ -1,0 +1,16 @@
+{
+  "title": "Vipassana Research Institute",
+  "type": "website",
+  "url": "https://www.vridhamma.org",
+  "author": null,
+  "year": null,
+  "description": "Official resource for S.N. Goenka's vipassana meditation tradition, with access to discourses, course schedules, and Pali text research.",
+  "traditions": [
+    "vipassana-movement",
+    "theravada"
+  ],
+  "teachers": [],
+  "centers": [],
+  "category": "web_resource",
+  "slug": "vipassana-research-institute"
+}

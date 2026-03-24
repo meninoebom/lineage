@@ -1,0 +1,17 @@
+{
+  "title": "Lotsawa House",
+  "type": "website",
+  "url": "https://www.lotsawahouse.org",
+  "author": null,
+  "year": null,
+  "description": "Free library of Tibetan Buddhist texts and translations covering all schools — prayers, practice texts, philosophical works, and biographies.",
+  "traditions": [
+    "vajrayana",
+    "tibetan-buddhism-gelug",
+    "dzogchen"
+  ],
+  "teachers": [],
+  "centers": [],
+  "category": "web_resource",
+  "slug": "lotsawa-house"
+}

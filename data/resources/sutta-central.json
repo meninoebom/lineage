@@ -1,0 +1,16 @@
+{
+  "title": "Sutta Central",
+  "type": "website",
+  "url": "https://suttacentral.net",
+  "author": null,
+  "year": 2005,
+  "description": "Free multilingual repository of early Buddhist texts with translations of the Pali Canon and parallels in Chinese, Sanskrit, and Tibetan.",
+  "traditions": [
+    "theravada",
+    "early-buddhism"
+  ],
+  "teachers": [],
+  "centers": [],
+  "category": "web_resource",
+  "slug": "sutta-central"
+}

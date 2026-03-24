@@ -1,0 +1,16 @@
+{
+  "title": "Christian Classics Ethereal Library",
+  "type": "website",
+  "url": "https://www.ccel.org",
+  "author": null,
+  "year": null,
+  "description": "Free digital library of classic Christian texts including works by Meister Eckhart, John of the Cross, Teresa of Avila, and the Desert Fathers.",
+  "traditions": [
+    "christian-mysticism",
+    "hesychasm"
+  ],
+  "teachers": [],
+  "centers": [],
+  "category": "web_resource",
+  "slug": "christian-classics-ethereal-library"
+}

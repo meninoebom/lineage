@@ -1,0 +1,15 @@
+{
+  "title": "BDK Tripitaka Digital Archives",
+  "type": "website",
+  "url": "https://www.bdkamerica.org/tripitaka/",
+  "author": null,
+  "year": null,
+  "description": "Free digital collection of Mahayana Buddhist texts translated into English by the Bukkyō Dendō Kyōkai (Society for the Promotion of Buddhism).",
+  "traditions": [
+    "mahayana"
+  ],
+  "teachers": [],
+  "centers": [],
+  "category": "web_resource",
+  "slug": "bdk-tripitaka-digital-archives"
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Sacred Texts: Islam",
+  "type": "website",
+  "url": "https://sacred-texts.com/isl/index.htm",
+  "author": null,
+  "year": null,
+  "description": "Free online collection of classic Islamic and Sufi texts including works by Rumi, al-Ghazali, and other mystics.",
+  "traditions": [
+    "sufism"
+  ],
+  "teachers": [],
+  "centers": [],
+  "category": "web_resource",
+  "slug": "sacred-texts-islam"
+}

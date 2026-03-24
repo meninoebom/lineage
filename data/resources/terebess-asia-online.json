@@ -1,0 +1,16 @@
+{
+  "title": "Terebess Asia Online",
+  "type": "website",
+  "url": "https://terebess.hu/english/",
+  "author": null,
+  "year": null,
+  "description": "Extensive free archive of Zen and Chan Buddhist texts, translations, and resources in multiple languages.",
+  "traditions": [
+    "zen",
+    "chan-buddhism"
+  ],
+  "teachers": [],
+  "centers": [],
+  "category": "web_resource",
+  "slug": "terebess-asia-online"
+}

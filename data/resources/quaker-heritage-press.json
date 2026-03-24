@@ -1,0 +1,15 @@
+{
+  "title": "Quaker Heritage Press",
+  "type": "website",
+  "url": "https://www.qhpress.org",
+  "author": null,
+  "year": null,
+  "description": "Free digital archive of classic Quaker texts including journals, epistles, and theological works from the 17th century onward.",
+  "traditions": [
+    "quaker-inner-light"
+  ],
+  "teachers": [],
+  "centers": [],
+  "category": "web_resource",
+  "slug": "quaker-heritage-press"
+}
