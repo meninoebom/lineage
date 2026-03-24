@@ -17,6 +17,10 @@ Editorial, magazine-like aesthetic inspired by Lapham's Quarterly — warm cream
 
 Use the `frontend-design` and `ui-ux-pro-max` skills when building UI components. Reference the Lapham's editorial palette in `~/.claude/projects/-Users-brandon-dev/memory/design-palette-laphams.md`.
 
+## Auto-merge
+
+PRs in this repo use auto-merge. After creating a PR, run `gh pr merge --auto --squash`.
+
 ## Development Workflow
 
 Use judgment to plan appropriately for the task:
