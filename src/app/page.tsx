@@ -75,7 +75,7 @@ export default function Home() {
   return (
     <PageLayout
       heroContent={
-        <section className="relative min-h-[100dvh] flex items-center justify-center text-center overflow-hidden">
+        <section className="relative min-h-[100dvh] flex flex-col items-center justify-center text-center overflow-hidden pb-40">
           <Image
             src="/images/hero-bg.jpg"
             alt=""
@@ -100,28 +100,30 @@ export default function Home() {
               Explore the Map &rarr;
             </Link>
           </div>
+          {/* Feature cards — overlapping the hero */}
+          <div className="relative z-10 w-full max-w-5xl mx-auto px-6 mt-auto -mb-20">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {sections.map((section) => (
+                <Link key={section.href} href={section.href} className="group">
+                  <div className="h-full rounded-lg bg-card p-6 border border-border/50 shadow-lg transition-colors group-hover:bg-accent/50 text-center">
+                    <div className="text-muted-foreground mb-4 flex justify-center">{section.icon}</div>
+                    <h3 className="font-serif text-lg font-medium mb-2 group-hover:text-primary transition-colors">
+                      {section.title}
+                    </h3>
+                    <p className="font-sans text-sm text-muted-foreground leading-relaxed mb-5">
+                      {section.description}
+                    </p>
+                    <span className="inline-flex items-center gap-1 bg-gradient-to-br from-primary to-primary-container text-primary-foreground px-4 py-2 rounded font-sans text-sm hover:opacity-90 transition-opacity">
+                      Explore &rarr;
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
         </section>
       }
     >
-      {/* Feature cards */}
-      <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-20">
-        {sections.map((section) => (
-          <Link key={section.href} href={section.href} className="group">
-            <div className="h-full rounded bg-card p-6 border border-border/50 transition-colors group-hover:bg-accent/50 text-center">
-              <div className="text-muted-foreground mb-4 flex justify-center">{section.icon}</div>
-              <h3 className="font-serif text-lg font-medium mb-2 group-hover:text-primary transition-colors">
-                {section.title}
-              </h3>
-              <p className="font-sans text-sm text-muted-foreground leading-relaxed mb-5">
-                {section.description}
-              </p>
-              <span className="inline-flex items-center gap-1 bg-gradient-to-br from-primary to-primary-container text-primary-foreground px-4 py-2 rounded font-sans text-sm hover:opacity-90 transition-opacity">
-                Explore &rarr;
-              </span>
-            </div>
-          </Link>
-        ))}
-      </section>
 
       {/* Map teaser */}
       <section className="py-20 -mx-6 px-6 bg-surface-container-low/40 mb-20">
