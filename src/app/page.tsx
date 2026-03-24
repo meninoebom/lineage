@@ -73,35 +73,36 @@ const sections = [
 
 export default function Home() {
   return (
-    <PageLayout>
-      {/* Hero */}
-      <section className="relative -mx-6 px-6 py-28 md:py-36 mb-20 text-center overflow-hidden">
-        <Image
-          src="/images/hero-bg.jpg"
-          alt=""
-          fill
-          className="object-cover object-center"
-          sizes="100vw"
-          priority
-        />
-        <div className="absolute inset-0 bg-background/60" />
-        <div className="relative z-10">
-          <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-tight mb-6">
-            The Contemplative Landscape
-          </h1>
-          <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8">
-            Explore how the world&apos;s great contemplative traditions connect,
-            diverge, and speak to one another across time.
-          </p>
-          <Link
-            href="/map"
-            className="inline-flex items-center gap-2 bg-gradient-to-br from-primary to-primary-container text-primary-foreground px-6 py-3 rounded font-sans text-sm hover:opacity-90 transition-opacity"
-          >
-            Explore the Map &rarr;
-          </Link>
-        </div>
-      </section>
-
+    <PageLayout
+      heroContent={
+        <section className="relative min-h-[100dvh] flex items-center justify-center text-center overflow-hidden">
+          <Image
+            src="/images/hero-bg.jpg"
+            alt=""
+            fill
+            className="object-cover object-center"
+            sizes="100vw"
+            priority
+          />
+          <div className="absolute inset-0 bg-background/40" />
+          <div className="relative z-10 px-6">
+            <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-tight mb-6">
+              The Contemplative Landscape
+            </h1>
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8">
+              Explore how the world&apos;s great contemplative traditions connect,
+              diverge, and speak to one another across time.
+            </p>
+            <Link
+              href="/map"
+              className="inline-flex items-center gap-2 bg-gradient-to-br from-primary to-primary-container text-primary-foreground px-6 py-3 rounded font-sans text-sm hover:opacity-90 transition-opacity"
+            >
+              Explore the Map &rarr;
+            </Link>
+          </div>
+        </section>
+      }
+    >
       {/* Feature cards */}
       <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-20">
         {sections.map((section) => (
