@@ -1,0 +1,15 @@
+{
+  "title": "Sacred Texts: Taoism",
+  "type": "website",
+  "url": "https://sacred-texts.com/tao/index.htm",
+  "author": null,
+  "year": null,
+  "description": "Free online collection of Taoist texts including the Tao Te Ching, Zhuangzi, and other classic works.",
+  "traditions": [
+    "taoism"
+  ],
+  "teachers": [],
+  "centers": [],
+  "category": "web_resource",
+  "slug": "sacred-texts-taoism"
+}

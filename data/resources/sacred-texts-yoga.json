@@ -1,0 +1,15 @@
+{
+  "title": "Sacred Texts: Yoga",
+  "type": "website",
+  "url": "https://sacred-texts.com/hin/yoga/index.htm",
+  "author": null,
+  "year": null,
+  "description": "Free online collection of classic yoga texts including the Yoga Sutras, Hatha Yoga Pradipika, and related works.",
+  "traditions": [
+    "classical-yoga"
+  ],
+  "teachers": [],
+  "centers": [],
+  "category": "web_resource",
+  "slug": "sacred-texts-yoga"
+}

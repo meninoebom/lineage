@@ -1,0 +1,15 @@
+{
+  "title": "Sefaria",
+  "type": "website",
+  "url": "https://www.sefaria.org",
+  "author": null,
+  "year": null,
+  "description": "Free online library of Jewish texts including the Torah, Talmud, Zohar, and Kabbalistic works with translations and commentary.",
+  "traditions": [
+    "kabbalah"
+  ],
+  "teachers": [],
+  "centers": [],
+  "category": "web_resource",
+  "slug": "sefaria"
+}

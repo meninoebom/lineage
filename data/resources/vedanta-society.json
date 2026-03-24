@@ -1,0 +1,17 @@
+{
+  "title": "Vedanta Society",
+  "type": "website",
+  "url": "https://www.vedantasociety.org",
+  "author": null,
+  "year": null,
+  "description": "Online home of the Vedanta Society of New York, with free texts, lectures, and resources on Vedantic philosophy and practice.",
+  "traditions": [
+    "vedanta",
+    "advaita-vedanta",
+    "bhakti"
+  ],
+  "teachers": [],
+  "centers": [],
+  "category": "web_resource",
+  "slug": "vedanta-society"
+}

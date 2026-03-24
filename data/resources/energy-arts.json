@@ -1,0 +1,16 @@
+{
+  "title": "Energy Arts",
+  "type": "website",
+  "url": "https://www.energyarts.com",
+  "author": null,
+  "year": null,
+  "description": "Comprehensive resource for tai chi, qigong, and Taoist meditation instruction from lineage holder Bruce Frantzis.",
+  "traditions": [
+    "tai-chi-qigong",
+    "taoism"
+  ],
+  "teachers": [],
+  "centers": [],
+  "category": "web_resource",
+  "slug": "energy-arts"
+}

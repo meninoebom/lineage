@@ -1,0 +1,19 @@
+{
+  "title": "Sacred Texts: Hinduism",
+  "type": "website",
+  "url": "https://sacred-texts.com/hin/index.htm",
+  "author": null,
+  "year": null,
+  "description": "Free online library of Hindu sacred texts including Upanishads, Vedas, the Gita, and Vedantic philosophical works.",
+  "traditions": [
+    "advaita-vedanta",
+    "vedanta",
+    "bhakti",
+    "classical-yoga",
+    "kashmir-shaivism"
+  ],
+  "teachers": [],
+  "centers": [],
+  "category": "web_resource",
+  "slug": "sacred-texts-hinduism"
+}
