@@ -34,7 +34,9 @@ export function MapNode({
 }: MapNodeProps) {
   const colors = FAMILY_COLORS[node.family];
   const inverseScale = 1 / zoomScale;
-  const radius = highlighted ? 7 : 5;
+  // Scale font with zoom so labels stay proportional to circles
+  const fontSize = Math.round(12 * Math.max(1, Math.pow(zoomScale, 0.65)));
+  const radius = highlighted ? 8 : 6;
   const opacity = dimmed ? 0.2 : 1;
 
   return (
@@ -58,12 +60,14 @@ export function MapNode({
         }
       }}
     >
-      {/* Colored circle */}
+      {/* Colored circle with stroke for contrast */}
       <circle
         cx={position.x}
         cy={position.y}
         r={radius}
         fill={colors.fill}
+        stroke={colors.stroke}
+        strokeWidth={1.5}
         style={{ transition: "r 0.2s ease" }}
       />
 
@@ -74,10 +78,10 @@ export function MapNode({
           y={4}
           textAnchor="start"
           className="select-none"
-          fill={highlighted ? "#333" : dimmed ? "rgba(51,51,51,0.2)" : "#333"}
-          fontSize={12}
+          fill={highlighted ? colors.text : dimmed ? "rgba(51,51,51,0.2)" : colors.text}
+          fontSize={fontSize}
           fontFamily="system-ui, sans-serif"
-          fontWeight={highlighted ? 600 : 400}
+          fontWeight={highlighted ? 600 : 500}
           style={{ transition: "fill 0.2s ease, font-weight 0.2s ease" }}
         >
           {node.name}

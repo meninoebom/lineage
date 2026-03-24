@@ -57,7 +57,7 @@ export function MapTimeAxis({
               y1={y}
               x2={xMax}
               y2={y}
-              stroke="#e5e5e5"
+              stroke="#d8d4ce"
               strokeWidth={1}
             />
             {/* Era label */}
@@ -65,8 +65,9 @@ export function MapTimeAxis({
               x={x}
               y={y + 4}
               textAnchor="start"
-              fill="#999"
-              fontSize={12}
+              fill="#777"
+              fontSize={13}
+              fontWeight={500}
               fontFamily="system-ui, sans-serif"
             >
               {era.label}
