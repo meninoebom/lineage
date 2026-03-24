@@ -2,11 +2,17 @@
   "title": "Hongzhi — Wisdom of the Masters",
   "slug": "wisdom-masters-hongzhi",
   "type": "video",
+  "category": "web_resource",
   "url": "https://www.youtube.com/@SamaneriJayasara/search?query=Hongzhi",
   "author": "Samaneri Jayasāra",
   "year": null,
   "description": "Audio teachings and readings from Hongzhi, curated by Samaneri Jayasāra on the Wisdom of the Masters channel.",
-  "traditions": ["zen", "chan-buddhism"],
-  "teachers": ["hongzhi"],
+  "traditions": [
+    "zen",
+    "chan-buddhism"
+  ],
+  "teachers": [
+    "hongzhi"
+  ],
   "centers": []
 }

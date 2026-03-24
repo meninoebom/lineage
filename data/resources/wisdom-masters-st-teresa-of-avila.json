@@ -2,11 +2,16 @@
   "title": "St. Teresa of Avila — Wisdom of the Masters",
   "slug": "wisdom-masters-st-teresa-of-avila",
   "type": "video",
+  "category": "web_resource",
   "url": "https://www.youtube.com/@SamaneriJayasara/search?query=St.+Teresa+of+Avila",
   "author": "Samaneri Jayasāra",
   "year": null,
   "description": "Audio teachings and readings from St. Teresa of Avila, curated by Samaneri Jayasāra on the Wisdom of the Masters channel.",
-  "traditions": ["christian-mysticism"],
-  "teachers": ["st-teresa-of-avila"],
+  "traditions": [
+    "christian-mysticism"
+  ],
+  "teachers": [
+    "st-teresa-of-avila"
+  ],
   "centers": []
 }

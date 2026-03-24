@@ -2,11 +2,17 @@
   "title": "Know Yourself: An Explanation of the Oneness of Being",
   "slug": "know-yourself-balyani",
   "type": "book",
+  "category": "primary_text",
   "url": "https://bookshop.org/a/122188/9780904975659",
   "author": "Awhad al-Din Balyani",
   "year": 2011,
   "description": "A concise 13th-century Sufi treatise on the unity of being, exploring the principle 'Whosoever knows their self, knows their Lord.' Translated by Cecilia Twinch, with commentary drawing on Ibn Arabi's tradition. Frequently referenced by Rupert Spira in his non-dual teachings.",
-  "traditions": ["sufism", "modern-non-dual"],
-  "teachers": ["rupert-spira"],
+  "traditions": [
+    "sufism",
+    "modern-non-dual"
+  ],
+  "teachers": [
+    "rupert-spira"
+  ],
   "centers": []
 }

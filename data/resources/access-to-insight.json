@@ -2,11 +2,14 @@
   "title": "Access to Insight",
   "slug": "access-to-insight",
   "type": "website",
+  "category": "web_resource",
   "url": "https://accesstoinsight.org",
   "author": null,
   "year": 1993,
   "description": "Comprehensive online library of Theravada Buddhist texts including suttas, commentaries, and practice guides translated from Pali.",
-  "traditions": ["theravada"],
+  "traditions": [
+    "theravada"
+  ],
   "teachers": [],
   "centers": []
 }

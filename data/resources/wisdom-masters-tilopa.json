@@ -2,11 +2,16 @@
   "title": "Tilopa — Wisdom of the Masters",
   "slug": "wisdom-masters-tilopa",
   "type": "video",
+  "category": "web_resource",
   "url": "https://www.youtube.com/@SamaneriJayasara/search?query=Tilopa",
   "author": "Samaneri Jayasāra",
   "year": null,
   "description": "Audio teachings and readings from Tilopa, curated by Samaneri Jayasāra on the Wisdom of the Masters channel.",
-  "traditions": ["vajrayana"],
-  "teachers": ["tilopa"],
+  "traditions": [
+    "vajrayana"
+  ],
+  "teachers": [
+    "tilopa"
+  ],
   "centers": []
 }

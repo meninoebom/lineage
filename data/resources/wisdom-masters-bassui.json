@@ -2,11 +2,16 @@
   "title": "Bassui — Wisdom of the Masters",
   "slug": "wisdom-masters-bassui",
   "type": "video",
+  "category": "web_resource",
   "url": "https://www.youtube.com/@SamaneriJayasara/search?query=Bassui",
   "author": "Samaneri Jayasāra",
   "year": null,
   "description": "Audio teachings and readings from Bassui, curated by Samaneri Jayasāra on the Wisdom of the Masters channel.",
-  "traditions": ["zen"],
-  "teachers": ["bassui"],
+  "traditions": [
+    "zen"
+  ],
+  "teachers": [
+    "bassui"
+  ],
   "centers": []
 }

@@ -44,10 +44,18 @@ export interface Teacher {
 
 export type ResourceType = "book" | "podcast" | "video" | "article" | "website";
 
+export type ResourceCategory =
+  | "primary_text"
+  | "academic"
+  | "popular"
+  | "encyclopedia"
+  | "web_resource";
+
 export interface Resource {
   title: string;
   slug: string;
   type: ResourceType;
+  category: ResourceCategory;
   url: string;
   author: string | null;
   year: number | null;

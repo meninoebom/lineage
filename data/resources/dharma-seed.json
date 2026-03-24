@@ -2,11 +2,20 @@
   "title": "Dharma Seed",
   "slug": "dharma-seed",
   "type": "podcast",
+  "category": "web_resource",
   "url": "https://dharmaseed.org",
   "author": null,
   "year": 1983,
   "description": "Vast archive of dharma talks from Theravada and Insight Meditation teachers including Joseph Goldstein, Jack Kornfield, and Gil Fronsdal.",
-  "traditions": ["theravada", "vipassana-movement"],
-  "teachers": ["gil-fronsdal"],
-  "centers": ["spirit-rock", "insight-meditation-center"]
+  "traditions": [
+    "theravada",
+    "vipassana-movement"
+  ],
+  "teachers": [
+    "gil-fronsdal"
+  ],
+  "centers": [
+    "spirit-rock",
+    "insight-meditation-center"
+  ]
 }

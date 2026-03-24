@@ -2,11 +2,16 @@
   "title": "Ajahn Chah — Wisdom of the Masters",
   "slug": "wisdom-masters-ajahn-chah",
   "type": "video",
+  "category": "web_resource",
   "url": "https://www.youtube.com/@SamaneriJayasara/search?query=Ajahn+Chah",
   "author": "Samaneri Jayasāra",
   "year": null,
   "description": "Audio teachings and readings from Ajahn Chah, curated by Samaneri Jayasāra on the Wisdom of the Masters channel.",
-  "traditions": ["theravada"],
-  "teachers": ["ajahn-chah"],
+  "traditions": [
+    "theravada"
+  ],
+  "teachers": [
+    "ajahn-chah"
+  ],
   "centers": []
 }

@@ -2,11 +2,17 @@
   "title": "Dilgo Khyentse Rinpoche — Wisdom of the Masters",
   "slug": "wisdom-masters-dilgo-khyentse-rinpoche",
   "type": "video",
+  "category": "web_resource",
   "url": "https://www.youtube.com/@SamaneriJayasara/search?query=Dilgo+Khyentse+Rinpoche",
   "author": "Samaneri Jayasāra",
   "year": null,
   "description": "Audio teachings and readings from Dilgo Khyentse Rinpoche, curated by Samaneri Jayasāra on the Wisdom of the Masters channel.",
-  "traditions": ["vajrayana", "dzogchen"],
-  "teachers": ["dilgo-khyentse-rinpoche"],
+  "traditions": [
+    "vajrayana",
+    "dzogchen"
+  ],
+  "teachers": [
+    "dilgo-khyentse-rinpoche"
+  ],
   "centers": []
 }
