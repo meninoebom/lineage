@@ -20,6 +20,7 @@ export function getTeachersByState(): StateGroup[] {
   const byState = new Map<string, Teacher[]>();
 
   for (const t of teachers) {
+    if (!t.state) continue;
     const group = byState.get(t.state) ?? [];
     group.push(t);
     byState.set(t.state, group);

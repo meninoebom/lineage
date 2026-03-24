@@ -37,6 +37,11 @@ const mixedEdgeGraph: TraditionGraph = {
 describe("useMapInteraction", () => {
   beforeEach(() => {
     mockPush.mockClear();
+    vi.useFakeTimers();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
   });
 
   it("starts with no hovered or selected slug", () => {
@@ -93,6 +98,7 @@ describe("useMapInteraction", () => {
     expect(result.current.isNodeDimmed("advaita")).toBe(true);
 
     act(() => result.current.handleNodeHover(null));
+    act(() => { vi.advanceTimersByTime(300); });
     expect(result.current.isNodeDimmed("advaita")).toBe(false);
   });
 
@@ -123,6 +129,7 @@ describe("useMapInteraction", () => {
       const { result } = renderHook(() => useMapInteraction(mixedEdgeGraph));
       act(() => result.current.handleNodeHover("zen"));
       act(() => result.current.handleNodeHover(null));
+      act(() => { vi.advanceTimersByTime(300); });
       expect(result.current.isEdgeHidden("zen", "advaita", "related_to")).toBe(true);
     });
   });
@@ -138,6 +145,7 @@ describe("useMapInteraction", () => {
       const { result } = renderHook(() => useMapInteraction(mixedEdgeGraph));
       act(() => result.current.handleEdgeHover("zen", "theravada"));
       act(() => result.current.handleEdgeHover(null, null));
+      act(() => { vi.advanceTimersByTime(300); });
       expect(result.current.hoveredEdgeKey).toBeNull();
     });
   });

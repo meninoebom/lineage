@@ -17,22 +17,22 @@ vi.mock("next/link", () => ({
 describe("SiteHeader", () => {
   it("renders logo in serif font", () => {
     render(<SiteHeader />);
-    const logo = screen.getByText("Lineage");
+    const logo = screen.getByText("Lineage.guide");
     expect(logo.className).toContain("font-serif");
   });
 
-  it("renders nav links: Map, Library, Teachers, Masters, Centers", () => {
+  it("renders nav links: Traditions, Teachers, Masters, Centers, Map", () => {
     render(<SiteHeader />);
-    expect(screen.getByText("Map")).toBeDefined();
-    expect(screen.getByText("Library")).toBeDefined();
+    expect(screen.getByText("Traditions")).toBeDefined();
     expect(screen.getByText("Teachers")).toBeDefined();
     expect(screen.getByText("Masters")).toBeDefined();
     expect(screen.getByText("Centers")).toBeDefined();
+    expect(screen.getByText("Map")).toBeDefined();
   });
 
-  it("does not render Resources in nav", () => {
+  it("does not render Library in nav", () => {
     render(<SiteHeader />);
-    expect(screen.queryByText("Resources")).toBeNull();
+    expect(screen.queryByText("Library")).toBeNull();
   });
 
   it("highlights active page", () => {

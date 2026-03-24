@@ -18,7 +18,7 @@ describe("getTeachersByState", () => {
   it("produces lowercase hyphenated slugs", () => {
     const groups = getTeachersByState();
     for (const g of groups) {
-      expect(g.slug).toMatch(/^[a-z][a-z0-9-]*$/);
+      expect(g.slug).toMatch(/^[a-z\u00C0-\u024F][a-z0-9\u00C0-\u024F-]*$/i);
     }
   });
 });

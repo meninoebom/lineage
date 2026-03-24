@@ -19,6 +19,19 @@ vi.mock("@/generated/map-layout.json", () => ({
   },
 }));
 
+// Mock window.matchMedia (not available in jsdom)
+Object.defineProperty(window, "matchMedia", {
+  writable: true,
+  value: vi.fn().mockImplementation((query: string) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+  })),
+});
+
 // Mock d3-zoom and d3-selection to avoid DOM measurement issues in tests
 vi.mock("d3-zoom", () => ({
   zoom: () => {
@@ -99,7 +112,6 @@ describe("TraditionMap", () => {
 
   it("renders connection legend", () => {
     render(<TraditionMap traditions={sampleTraditions} />);
-    expect(screen.getByText("Related")).toBeInTheDocument();
     expect(screen.getByText("Influenced by")).toBeInTheDocument();
     expect(screen.getByText("Branch of")).toBeInTheDocument();
   });
