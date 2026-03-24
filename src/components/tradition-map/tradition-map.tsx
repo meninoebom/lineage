@@ -51,11 +51,11 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
   const layout = layoutData as LayoutMap;
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
-  // Detect touch device on mount
+  // Detect touch device on mount — subscribe pattern satisfies react-hooks/set-state-in-effect
   useEffect(() => {
     const mq = window.matchMedia("(pointer: coarse)");
-    setIsTouchDevice(mq.matches);
     const handler = (e: MediaQueryListEvent) => setIsTouchDevice(e.matches);
+    handler({ matches: mq.matches } as MediaQueryListEvent);
     mq.addEventListener("change", handler);
     return () => mq.removeEventListener("change", handler);
   }, []);
