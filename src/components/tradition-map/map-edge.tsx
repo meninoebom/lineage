@@ -30,14 +30,14 @@ export function MapEdge({
   if (hidden) return null;
 
   const isBranch = edge.connectionType === "branch_of";
-  const strokeColor = isBranch ? "rgb(180, 140, 100)" : "rgb(140, 140, 160)";
-  const strokeWidth = highlighted ? 2.5 : 1.5;
+  const strokeColor = isBranch ? "rgb(160, 115, 70)" : "rgb(110, 110, 135)";
+  const strokeWidth = highlighted ? 3 : 2;
   const dashArray = isBranch ? undefined : "6 4";
 
   const midY = (sourcePos.y + targetPos.y) / 2;
   const pathD = `M ${sourcePos.x} ${sourcePos.y} C ${sourcePos.x} ${midY}, ${targetPos.x} ${midY}, ${targetPos.x} ${targetPos.y}`;
 
-  const opacity = dimmed ? 0.12 : highlighted ? 1 : 0.5;
+  const opacity = dimmed ? 0.15 : highlighted ? 1 : 0.65;
 
   return (
     <g
