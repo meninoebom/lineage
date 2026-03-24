@@ -47,6 +47,7 @@ function isCenter(obj: unknown): obj is Center {
 }
 
 const VALID_RESOURCE_TYPES = ["book", "podcast", "video", "article", "website"];
+const VALID_RESOURCE_CATEGORIES = ["primary_text", "academic", "popular", "encyclopedia", "web_resource"];
 
 function isResource(obj: unknown): obj is Resource {
   const r = obj as Record<string, unknown>;
@@ -55,6 +56,8 @@ function isResource(obj: unknown): obj is Resource {
     typeof r.slug === "string" &&
     typeof r.type === "string" &&
     VALID_RESOURCE_TYPES.includes(r.type as string) &&
+    typeof r.category === "string" &&
+    VALID_RESOURCE_CATEGORIES.includes(r.category as string) &&
     typeof r.url === "string" &&
     (r.author === null || typeof r.author === "string") &&
     (r.year === null || typeof r.year === "number") &&

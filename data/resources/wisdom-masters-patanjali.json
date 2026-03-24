@@ -2,11 +2,16 @@
   "title": "Patanjali — Wisdom of the Masters",
   "slug": "wisdom-masters-patanjali",
   "type": "video",
+  "category": "web_resource",
   "url": "https://www.youtube.com/results?search_query=wisdom+of+the+masters+patanjali",
   "author": "Samaneri Jayasāra",
   "year": null,
   "description": "Audio teachings on Patanjali's Yoga Sutras from the Wisdom of the Masters YouTube channel by Samaneri Jayasāra.",
-  "traditions": ["classical-yoga"],
-  "teachers": ["patanjali"],
+  "traditions": [
+    "classical-yoga"
+  ],
+  "teachers": [
+    "patanjali"
+  ],
   "centers": []
 }

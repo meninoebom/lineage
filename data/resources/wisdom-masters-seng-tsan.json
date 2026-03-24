@@ -2,11 +2,17 @@
   "title": "Seng T'san — Wisdom of the Masters",
   "slug": "wisdom-masters-seng-tsan",
   "type": "video",
+  "category": "web_resource",
   "url": "https://www.youtube.com/@SamaneriJayasara/search?query=Seng+T'san",
   "author": "Samaneri Jayasāra",
   "year": null,
   "description": "Audio teachings and readings from Seng T'san, curated by Samaneri Jayasāra on the Wisdom of the Masters channel.",
-  "traditions": ["zen", "chan-buddhism"],
-  "teachers": ["seng-tsan"],
+  "traditions": [
+    "zen",
+    "chan-buddhism"
+  ],
+  "teachers": [
+    "seng-tsan"
+  ],
   "centers": []
 }

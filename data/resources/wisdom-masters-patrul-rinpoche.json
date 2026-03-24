@@ -2,11 +2,17 @@
   "title": "Patrul Rinpoche — Wisdom of the Masters",
   "slug": "wisdom-masters-patrul-rinpoche",
   "type": "video",
+  "category": "web_resource",
   "url": "https://www.youtube.com/@SamaneriJayasara/search?query=Patrul+Rinpoche",
   "author": "Samaneri Jayasāra",
   "year": null,
   "description": "Audio teachings and readings from Patrul Rinpoche, curated by Samaneri Jayasāra on the Wisdom of the Masters channel.",
-  "traditions": ["vajrayana", "dzogchen"],
-  "teachers": ["patrul-rinpoche"],
+  "traditions": [
+    "vajrayana",
+    "dzogchen"
+  ],
+  "teachers": [
+    "patrul-rinpoche"
+  ],
   "centers": []
 }

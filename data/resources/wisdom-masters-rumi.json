@@ -2,11 +2,16 @@
   "title": "Rumi — Wisdom of the Masters",
   "slug": "wisdom-masters-rumi",
   "type": "video",
+  "category": "web_resource",
   "url": "https://www.youtube.com/@SamaneriJayasara/search?query=Rumi",
   "author": "Samaneri Jayasāra",
   "year": null,
   "description": "Audio teachings and readings from Rumi, curated by Samaneri Jayasāra on the Wisdom of the Masters channel.",
-  "traditions": ["sufism"],
-  "teachers": ["rumi"],
+  "traditions": [
+    "sufism"
+  ],
+  "teachers": [
+    "rumi"
+  ],
   "centers": []
 }

@@ -2,11 +2,16 @@
   "title": "Ramana Maharshi — Wisdom of the Masters",
   "slug": "wisdom-masters-ramana-maharshi",
   "type": "video",
+  "category": "web_resource",
   "url": "https://www.youtube.com/@SamaneriJayasara/search?query=Ramana+Maharshi",
   "author": "Samaneri Jayasāra",
   "year": null,
   "description": "Audio teachings and readings from Ramana Maharshi, curated by Samaneri Jayasāra on the Wisdom of the Masters channel.",
-  "traditions": ["advaita-vedanta"],
-  "teachers": ["ramana-maharshi"],
+  "traditions": [
+    "advaita-vedanta"
+  ],
+  "teachers": [
+    "ramana-maharshi"
+  ],
   "centers": []
 }

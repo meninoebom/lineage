@@ -2,11 +2,16 @@
   "title": "Liberation: A Spiritual Autobiography",
   "slug": "liberation-av-neryah",
   "type": "book",
+  "category": "popular",
   "url": "https://bookshop.org/a/122188/9789893515716",
   "author": "Av Neryah",
   "year": 2023,
   "description": "A comprehensive account of a journey toward spiritual liberation, weaving together mystical experiences, personal struggles, and an exposition of the highest teachings of nonduality.",
-  "traditions": ["modern-non-dual"],
-  "teachers": ["av-neryah"],
+  "traditions": [
+    "modern-non-dual"
+  ],
+  "teachers": [
+    "av-neryah"
+  ],
   "centers": []
 }

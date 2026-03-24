@@ -2,11 +2,17 @@
   "title": "Swami Vivekananda — Wisdom of the Masters",
   "slug": "wisdom-masters-vivekananda",
   "type": "video",
+  "category": "web_resource",
   "url": "https://www.youtube.com/results?search_query=wisdom+of+the+masters+swami+vivekananda",
   "author": "Samaneri Jayasāra",
   "year": null,
   "description": "Audio teachings on Swami Vivekananda from the Wisdom of the Masters YouTube channel by Samaneri Jayasāra.",
-  "traditions": ["vedanta", "classical-yoga"],
-  "teachers": ["swami-vivekananda"],
+  "traditions": [
+    "vedanta",
+    "classical-yoga"
+  ],
+  "teachers": [
+    "swami-vivekananda"
+  ],
   "centers": []
 }

@@ -2,11 +2,16 @@
   "title": "Thomas Keating — Wisdom of the Masters",
   "slug": "wisdom-masters-father-thomas-keating",
   "type": "video",
+  "category": "web_resource",
   "url": "https://www.youtube.com/@SamaneriJayasara/search?query=Thomas+Keating",
   "author": "Samaneri Jayasāra",
   "year": null,
   "description": "Audio teachings and readings from Thomas Keating, curated by Samaneri Jayasāra on the Wisdom of the Masters channel.",
-  "traditions": ["christian-mysticism"],
-  "teachers": ["father-thomas-keating"],
+  "traditions": [
+    "christian-mysticism"
+  ],
+  "teachers": [
+    "father-thomas-keating"
+  ],
   "centers": []
 }

@@ -2,11 +2,17 @@
   "title": "Waking Up with Sam Harris",
   "slug": "waking-up-app",
   "type": "podcast",
+  "category": "web_resource",
   "url": "https://www.wakingup.com",
   "author": "Sam Harris",
   "year": 2018,
   "description": "Meditation app and podcast exploring mindfulness, consciousness, and non-dual awareness from a secular, science-informed perspective.",
-  "traditions": ["secular-mindfulness", "advaita-vedanta"],
-  "teachers": ["rupert-spira"],
+  "traditions": [
+    "secular-mindfulness",
+    "advaita-vedanta"
+  ],
+  "teachers": [
+    "rupert-spira"
+  ],
   "centers": []
 }
