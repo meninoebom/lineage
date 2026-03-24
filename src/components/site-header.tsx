@@ -19,7 +19,8 @@ export function SiteHeader() {
 
   // Close mobile menu on navigation
   useEffect(() => {
-    setMobileOpen(false);
+    const close = () => setMobileOpen(false);
+    close();
   }, [pathname]);
 
   return (

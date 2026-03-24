@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import Link from "next/link";
 
 const RESOURCE_TYPES = ["book", "podcast", "video", "article", "website"] as const;
 
@@ -123,12 +124,12 @@ export function ResourcesClient({ resources, traditionNames }: ResourcesClientPr
           </p>
           <p className="text-sm text-muted-foreground">
             Try adjusting your filters, or{" "}
-            <a
+            <Link
               href="/library"
               className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
             >
               explore our curated reading paths
-            </a>
+            </Link>
             .
           </p>
         </div>

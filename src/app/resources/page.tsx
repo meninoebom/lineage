@@ -4,6 +4,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { getAllResources, getAllTraditions } from "@/lib/data";
 import { ResourcesClient } from "@/components/resources-client";
 import { SITE_URL } from "@/lib/seo";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Resources",
@@ -37,12 +38,12 @@ export default function ResourcesPage() {
         <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
           Books, podcasts, videos, articles, and websites across contemplative
           traditions. Want a guided journey? Try our{" "}
-          <a
+          <Link
             href="/library"
             className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
           >
             curated reading paths
-          </a>
+          </Link>
           .
         </p>
       </header>
