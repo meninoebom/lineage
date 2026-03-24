@@ -80,7 +80,7 @@ function ImageCard({ t }: { t: ParsedTradition }) {
   const gradient = getGradient(t.slug);
   return (
     <Link href={`/traditions/${t.slug}`} className="group block">
-      <div className="border border-border/50 rounded overflow-hidden">
+      <div className="border border-border bg-white rounded overflow-hidden">
         <div className="relative h-40 overflow-hidden">
           <Image
             src={`/images/traditions/${t.slug}.jpg`}
@@ -139,7 +139,7 @@ function QuoteCalloutWithGrid({ traditions }: { traditions: ParsedTradition[] })
           <Link
             key={t.slug}
             href={`/traditions/${t.slug}`}
-            className="group block border border-border/50 rounded p-4"
+            className="group block border border-border bg-white rounded p-4"
           >
             <h3 className="font-serif font-medium mb-1 group-hover:text-primary transition-colors">
               {t.name}
@@ -189,7 +189,7 @@ function HeroImageWithCards({ traditions }: { traditions: ParsedTradition[] }) {
           <Link
             key={t.slug}
             href={`/traditions/${t.slug}`}
-            className="group block border border-border/50 rounded p-4"
+            className="group block border border-border bg-white rounded p-4"
           >
             <h3 className="font-serif font-medium mb-1 group-hover:text-primary transition-colors">
               {t.name}

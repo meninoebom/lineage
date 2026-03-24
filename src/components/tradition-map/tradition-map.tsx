@@ -222,7 +222,7 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Map column */}
         <div className="flex-1 min-w-0">
-          <div className="bg-[#faf8f5] rounded-lg border border-[#e8e4df]">
+          <div className="bg-[#faf8f5] rounded-lg border-2 border-[#c0956c]">
             <svg
               ref={svgRef}
               className="w-full h-auto"
