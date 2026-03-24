@@ -77,7 +77,7 @@ export default function Home() {
       heroContent={
         <>
           {/* Hero image + headline */}
-          <section className="relative flex items-center justify-center text-center overflow-hidden py-32 md:py-44 pb-48 md:pb-56">
+          <section className="relative flex items-center justify-center text-center overflow-hidden pt-24 md:pt-32 pb-36 md:pb-40">
             <Image
               src="/images/hero-bg.jpg"
               alt=""
