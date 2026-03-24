@@ -112,7 +112,7 @@ export function TeachersClient({ teachers, traditionNames }: TeachersClientProps
               href={`/teachers/${teacher.slug}`}
               className="group"
             >
-              <div className="h-full rounded-lg border border-border/50 p-4 group-hover:bg-accent/50 transition-colors">
+              <div className="h-full rounded-lg border border-border bg-white p-4 group-hover:bg-accent/50 transition-colors">
                 <div className="flex items-start gap-4">
                   <div className="shrink-0">
                     {teacher.photo ? (

@@ -166,11 +166,11 @@ export function MastersClient({ masters, traditionNames, families }: MastersClie
                 {family}
               </h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-0">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                 {members.map((master) => (
                   <div
                     key={master.slug}
-                    className="flex gap-4 py-6"
+                    className="flex gap-4 rounded-lg border border-border bg-white p-4"
                   >
                     {/* Photo */}
                     {master.photo ? (
