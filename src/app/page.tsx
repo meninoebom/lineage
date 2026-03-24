@@ -75,33 +75,36 @@ export default function Home() {
   return (
     <PageLayout
       heroContent={
-        <section className="relative min-h-[100dvh] flex flex-col items-center justify-center text-center overflow-hidden pb-40">
-          <Image
-            src="/images/hero-bg.jpg"
-            alt=""
-            fill
-            className="object-cover object-center"
-            sizes="100vw"
-            priority
-          />
-          <div className="absolute inset-0 bg-background/40" />
-          <div className="relative z-10 px-6">
-            <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-tight mb-6">
-              The Contemplative Landscape
-            </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8">
-              Explore how the world&apos;s great contemplative traditions connect,
-              diverge, and speak to one another across time.
-            </p>
-            <Link
-              href="/map"
-              className="inline-flex items-center gap-2 bg-gradient-to-br from-primary to-primary-container text-primary-foreground px-6 py-3 rounded font-sans text-sm hover:opacity-90 transition-opacity"
-            >
-              Explore the Map &rarr;
-            </Link>
-          </div>
-          {/* Feature cards — overlapping the hero */}
-          <div className="relative z-10 w-full max-w-5xl mx-auto px-6 mt-auto -mb-20">
+        <>
+          {/* Hero image + headline */}
+          <section className="relative flex items-center justify-center text-center overflow-hidden py-32 md:py-44 pb-48 md:pb-56">
+            <Image
+              src="/images/hero-bg.jpg"
+              alt=""
+              fill
+              className="object-cover object-center"
+              sizes="100vw"
+              priority
+            />
+            <div className="absolute inset-0 bg-background/40" />
+            <div className="relative z-10 px-6">
+              <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-tight mb-6">
+                The Contemplative Landscape
+              </h1>
+              <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8">
+                Explore how the world&apos;s great contemplative traditions connect,
+                diverge, and speak to one another across time.
+              </p>
+              <Link
+                href="/map"
+                className="inline-flex items-center gap-2 bg-gradient-to-br from-primary to-primary-container text-primary-foreground px-6 py-3 rounded font-sans text-sm hover:opacity-90 transition-opacity"
+              >
+                Explore the Map &rarr;
+              </Link>
+            </div>
+          </section>
+          {/* Feature cards — pulled up to overlap the hero */}
+          <div className="relative z-10 w-full max-w-5xl mx-auto px-6 -mt-24">
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {sections.map((section) => (
                 <Link key={section.href} href={section.href} className="group">
@@ -121,7 +124,7 @@ export default function Home() {
               ))}
             </div>
           </div>
-        </section>
+        </>
       }
     >
 
