@@ -115,93 +115,6 @@ function ThreeColumnImageGrid({ traditions }: { traditions: ParsedTradition[] })
   );
 }
 
-function QuoteCalloutWithGrid({ traditions }: { traditions: ParsedTradition[] }) {
-  return (
-    <div className="grid md:grid-cols-2 gap-8">
-      <div>
-        <blockquote className="border-l-2 border-primary pl-4 mb-4 font-serif italic text-lg">
-          &ldquo;Truth is one, though the sages speak of it by many names.&rdquo; &mdash; Rig Veda
-        </blockquote>
-        <p className="text-muted-foreground mb-6">
-          The ancient sub-continental systems of yoga and the Vedas represent some of
-          humanity&apos;s earliest systematic inquiries into the nature of the self (Atman)
-          and the ultimate reality (Brahman).
-        </p>
-        <Link
-          href={traditions[0] ? `/traditions/${traditions[0].slug}` : "/traditions"}
-          className="inline-block bg-primary text-primary-foreground px-5 py-2 rounded text-sm font-medium"
-        >
-          Browse Vedic Library
-        </Link>
-      </div>
-      <div className="grid grid-cols-2 gap-3">
-        {traditions.map((t) => (
-          <Link
-            key={t.slug}
-            href={`/traditions/${t.slug}`}
-            className="group block border border-border bg-white rounded p-4"
-          >
-            <h3 className="font-serif font-medium mb-1 group-hover:text-primary transition-colors">
-              {t.name}
-            </h3>
-            <p className="text-xs text-muted-foreground line-clamp-2">{t.summary}</p>
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function HeroImageWithCards({ traditions }: { traditions: ParsedTradition[] }) {
-  const taoismIndex = traditions.findIndex((t) => t.slug === "taoism");
-  const hero = taoismIndex >= 0 ? traditions[taoismIndex] : traditions[0];
-  const rest = traditions.filter((t) => t.slug !== hero.slug);
-  return (
-    <div className="grid md:grid-cols-2 gap-6">
-      {hero && (
-        <Link
-          href={`/traditions/${hero.slug}`}
-          className="group block relative rounded overflow-hidden"
-        >
-          <div className="relative h-64 md:h-full min-h-[280px]">
-            <Image
-              src={`/images/traditions/${hero.slug}.jpg`}
-              alt={hero.name}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-              <h3 className="font-serif text-2xl font-semibold mb-1">
-                Lao Tzu&apos;s Legacy
-              </h3>
-              <p className="text-sm text-white/80 mb-2">
-                The philosophy of &apos;Wu Wei&apos; or non-action...
-              </p>
-              <span className="uppercase tracking-wider text-xs">Enter the Tao</span>
-            </div>
-          </div>
-        </Link>
-      )}
-      <div className="space-y-3">
-        {rest.map((t) => (
-          <Link
-            key={t.slug}
-            href={`/traditions/${t.slug}`}
-            className="group block border border-border bg-white rounded p-4"
-          >
-            <h3 className="font-serif font-medium mb-1 group-hover:text-primary transition-colors">
-              {t.name}
-            </h3>
-            <p className="text-sm text-muted-foreground line-clamp-2">{t.summary}</p>
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 /* ---------- Main page ---------- */
 
 export default function TraditionsPage() {
@@ -272,15 +185,7 @@ export default function TraditionsPage() {
           {groups.map(({ family, traditions: familyTraditions }, index) => (
             <section key={family} id={familySlug(family)} className="mb-12 scroll-mt-24">
               <SectionHeader index={index} family={family} />
-              {index === 0 ? (
-                <ThreeColumnImageGrid traditions={familyTraditions} />
-              ) : index === 1 ? (
-                <QuoteCalloutWithGrid traditions={familyTraditions} />
-              ) : index === 2 ? (
-                <HeroImageWithCards traditions={familyTraditions} />
-              ) : (
-                <ThreeColumnImageGrid traditions={familyTraditions} />
-              )}
+              <ThreeColumnImageGrid traditions={familyTraditions} />
             </section>
           ))}
         </div>
