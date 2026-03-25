@@ -7,6 +7,7 @@ const makeResource = (overrides: Partial<Resource> = {}): Resource => ({
   title: "Test Resource",
   slug: "test-resource",
   type: "book",
+  category: "primary_text",
   url: "https://example.com/book",
   author: "Test Author",
   year: 2020,
@@ -28,19 +29,16 @@ describe("ResourceList", () => {
     expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Resources");
   });
 
-  it("groups resources by type with correct headings", () => {
+  it("groups resources by category with correct headings", () => {
     const resources = [
-      makeResource({ title: "Book One", type: "book", slug: "book-one" }),
-      makeResource({ title: "Video One", type: "video", slug: "video-one" }),
-      makeResource({ title: "Book Two", type: "book", slug: "book-two" }),
+      makeResource({ title: "Book One", category: "primary_text", slug: "book-one" }),
+      makeResource({ title: "Video One", category: "academic", type: "video", slug: "video-one" }),
     ];
     render(<ResourceList resources={resources} />);
 
-    expect(screen.getByText("Books")).toBeDefined();
-    expect(screen.getByText("Videos")).toBeDefined();
-    expect(screen.queryByText("Podcasts")).toBeNull();
-    expect(screen.queryByText("Articles")).toBeNull();
-    expect(screen.queryByText("Websites")).toBeNull();
+    expect(screen.getByText("Primary Texts")).toBeDefined();
+    expect(screen.getByText("Academic Works")).toBeDefined();
+    expect(screen.queryByText("Encyclopedias")).toBeNull();
   });
 
   it("renders title, author, and description for each resource", () => {
@@ -59,7 +57,6 @@ describe("ResourceList", () => {
       <ResourceList resources={[makeResource({ author: null })]} />
     );
     expect(screen.getByText("Test Resource")).toBeDefined();
-    // Should not crash or show "null"
     expect(screen.queryByText("null")).toBeNull();
   });
 
@@ -75,20 +72,14 @@ describe("ResourceList", () => {
     expect(link.getAttribute("rel")).toBe("noopener noreferrer");
   });
 
-  it("renders all five type categories when present", () => {
+  it("renders type subheadings within categories", () => {
     const resources: Resource[] = [
-      makeResource({ type: "book", slug: "b1", title: "B1" }),
-      makeResource({ type: "video", slug: "v1", title: "V1" }),
-      makeResource({ type: "podcast", slug: "p1", title: "P1" }),
-      makeResource({ type: "article", slug: "a1", title: "A1" }),
-      makeResource({ type: "website", slug: "w1", title: "W1" }),
+      makeResource({ type: "book", category: "primary_text", slug: "b1", title: "B1" }),
+      makeResource({ type: "video", category: "primary_text", slug: "v1", title: "V1" }),
     ];
     render(<ResourceList resources={resources} />);
 
     expect(screen.getByText("Books")).toBeDefined();
     expect(screen.getByText("Videos")).toBeDefined();
-    expect(screen.getByText("Podcasts")).toBeDefined();
-    expect(screen.getByText("Articles")).toBeDefined();
-    expect(screen.getByText("Websites")).toBeDefined();
   });
 });
