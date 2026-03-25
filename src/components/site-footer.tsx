@@ -29,7 +29,7 @@ export function SiteFooter() {
         </nav>
 
         <p className="uppercase tracking-wider text-xs text-muted-foreground text-center lg:text-right">
-          &copy; 2024 Lineage.guide. Preserving the light of history.
+          &copy; 2024 Lineage.guide.
         </p>
       </div>
     </footer>

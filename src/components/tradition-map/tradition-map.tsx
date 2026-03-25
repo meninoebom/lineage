@@ -222,7 +222,7 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Map column */}
         <div className="flex-1 min-w-0">
-          <div className="bg-[#faf8f5] rounded-lg border-2 border-[#c0956c]">
+          <div className="bg-[#e8e3dc] rounded-lg">
             <svg
               ref={svgRef}
               className="w-full h-auto"
@@ -329,14 +329,14 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
                       href={r.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[14px] leading-snug hover:text-primary transition-colors"
-                      style={{ color: "#2a2a2a" }}
+                      className="text-[14px] font-semibold leading-snug hover:text-primary transition-colors"
+                      style={{ color: "#1a1a1a" }}
                     >
                       {r.title}{" "}
                       <span className="text-[#aaa] text-xs">↗</span>
                     </a>
                     {r.author && (
-                      <p className="text-[13px] mt-0.5" style={{ color: "#c0553a" }}>
+                      <p className="text-[13px] mt-0.5" style={{ color: "#9e4a3a" }}>
                         {r.author}
                       </p>
                     )}
@@ -350,7 +350,7 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
                             aria-pressed={t.slug === selectedSlug}
                             className="hover:underline transition-colors cursor-pointer"
                             style={{
-                              color: t.slug === selectedSlug ? "#c0553a" : "#999",
+                              color: t.slug === selectedSlug ? "#9e4a3a" : "#777",
                             }}
                           >
                             {t.name}
