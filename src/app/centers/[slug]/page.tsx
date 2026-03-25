@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { JsonLd } from "@/components/json-ld";
 import { ResourceList } from "@/components/resource-list";
+import { Comments } from "@/components/comments";
 import { getAllCenters, getCenter, getTeacher, getTradition, getResourcesByCenter } from "@/lib/data";
 import { centerJsonLd, SITE_URL } from "@/lib/seo";
 
@@ -113,6 +114,8 @@ export default async function CenterPage({ params }: { params: Promise<{ slug: s
             </div>
           </section>
         )}
+        {/* Community Notes */}
+        <Comments pageId={`center/${slug}`} pageTitle={center.name} />
       </article>
     </PageLayout>
   );

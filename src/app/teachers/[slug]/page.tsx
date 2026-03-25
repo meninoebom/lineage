@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { JsonLd } from "@/components/json-ld";
 import { ResourceList } from "@/components/resource-list";
+import { Comments } from "@/components/comments";
 import { getAllTeachers, getTeacher, getCenter, getTradition, getResourcesByTeacher } from "@/lib/data";
 import { teacherJsonLd, SITE_URL } from "@/lib/seo";
 import type { Teacher } from "@/lib/types";
@@ -141,6 +142,8 @@ export default async function TeacherPage({ params }: { params: Promise<{ slug: 
             </div>
           </section>
         )}
+        {/* Community Notes */}
+        <Comments pageId={`teacher/${slug}`} pageTitle={teacher.name} />
       </article>
     </PageLayout>
   );
