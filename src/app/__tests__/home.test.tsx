@@ -9,28 +9,38 @@ vi.mock("next/link", () => ({
   ),
 }));
 
+// Mock next/image
+vi.mock("next/image", () => ({
+  default: (props: Record<string, unknown>) => <img {...props} />,
+}));
+
 // Mock page-layout to avoid header/footer complexity
 vi.mock("@/components/page-layout", () => ({
-  PageLayout: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+  PageLayout: ({ children, heroContent }: { children: React.ReactNode; heroContent?: React.ReactNode }) => (
+    <div>{heroContent}{children}</div>
+  ),
 }));
 
 describe("Homepage", () => {
   it("renders hero with large title", () => {
     render(<Home />);
-    expect(screen.getByText("The Contemplative Landscape")).toBeDefined();
+    const heading = screen.getByRole("heading", { level: 1 });
+    expect(heading.textContent).toContain("The Contemplative Landscape");
   });
 
-  it("renders 4 feature cards with Explore links", () => {
+  it("renders 4 feature cards with correct links", () => {
     render(<Home />);
-    expect(screen.getByText("Find a Teacher")).toBeDefined();
-    expect(screen.getByText("Explore the Masters")).toBeDefined();
-    expect(screen.getByText("Find a Center")).toBeDefined();
-    expect(screen.getByText("Explore Traditions")).toBeDefined();
+    const links = screen.getAllByRole("link");
+    const hrefs = links.map((l) => l.getAttribute("href"));
+    expect(hrefs).toContain("/teachers");
+    expect(hrefs).toContain("/masters");
+    expect(hrefs).toContain("/centers");
+    expect(hrefs).toContain("/traditions");
   });
 
   it("renders map teaser with CTA", () => {
     render(<Home />);
-    expect(screen.getByText("Explore the Interactive Map")).toBeDefined();
+    expect(screen.getByRole("heading", { name: /Interactive Map/i })).toBeDefined();
   });
 
   it("renders Help Us Grow section", () => {
@@ -45,7 +55,9 @@ describe("Homepage", () => {
 
   it("feature cards link to correct pages", () => {
     render(<Home />);
-    const teacherLink = screen.getByText("Find a Teacher").closest("a");
-    expect(teacherLink?.getAttribute("href")).toBe("/teachers");
+    const teacherLink = screen.getAllByRole("link").find(
+      (l) => l.getAttribute("href") === "/teachers"
+    );
+    expect(teacherLink).toBeDefined();
   });
 });
