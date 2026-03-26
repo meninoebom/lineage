@@ -328,15 +328,9 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
                     <p className="text-sm text-[#999] mb-2">
                       No sources yet for {selectedTraditionName}.
                     </p>
-                    <a
-                      href="https://github.com/meninoebom/lineage/issues"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm hover:underline"
-                      style={{ color: "#c0553a" }}
-                    >
-                      Help us add some
-                    </a>
+                    <p className="text-sm" style={{ color: "#c0553a" }}>
+                      Use the feedback button to suggest sources
+                    </p>
                   </div>
                 )}
                 {filteredResources.map((r) => (
@@ -381,20 +375,10 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
                 ))}
               </div>
               <div className="text-center pt-4 mt-4 border-t border-[#e8e4df]">
-                <p className="text-sm text-[#999] mb-2">
-                  This map is a living document. We&apos;re building it in the open
-                  and inviting anyone to contribute sources, corrections, or new
-                  connections.
+                <p className="text-sm text-[#999]">
+                  This map is a living document. Use the feedback button to
+                  suggest sources, corrections, or new connections.
                 </p>
-                <a
-                  href="https://github.com/meninoebom/lineage/issues"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm hover:underline"
-                  style={{ color: "#c0553a" }}
-                >
-                  Suggest an Edit
-                </a>
               </div>
             </div>
           </aside>
