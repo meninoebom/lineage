@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useMemo, useState, useCallback, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import {
   buildTraditionGraph,
   getFamilies,
@@ -13,6 +14,7 @@ import { FamilyFilter } from "./family-filter";
 import { MapCanvas } from "./map-canvas";
 import { useMapZoom } from "./use-map-zoom";
 import { useMapInteraction } from "./use-map-interaction";
+import { TraditionListMobile } from "./tradition-list-mobile";
 
 // Import pre-computed layout (generated at build time by `npm run prebuild`)
 import layoutData from "@/generated/map-layout.json";
@@ -47,6 +49,7 @@ function computeViewBox(layout: LayoutMap) {
 }
 
 export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps) {
+  const router = useRouter();
   const svgRef = useRef<SVGSVGElement>(null);
   const layout = layoutData as LayoutMap;
   const [isTouchDevice, setIsTouchDevice] = useState(false);
@@ -122,6 +125,14 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
       }
     },
     [isTouchDevice, selectedSlug, handleNodeClick, handleNodeSelect]
+  );
+
+  // Mobile list: tap tradition → navigate to its page
+  const handleMobileNodeClick = useCallback(
+    (slug: string) => {
+      router.push(`/traditions/${slug}`);
+    },
+    [router]
   );
 
   // Background click deselects on all devices
@@ -202,8 +213,8 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
         />
       </div>
 
-      {/* Legend — between filters and map */}
-      <div className="mb-6 flex items-center justify-center gap-6 text-sm text-[#888] font-sans">
+      {/* Legend — desktop only, between filters and map */}
+      <div className="mb-6 hidden lg:flex items-center justify-center gap-6 text-sm text-[#888] font-sans">
         <span className="flex items-center gap-2">
           <svg width="40" height="2">
             <line x1="0" y1="1" x2="40" y2="1" stroke="#b48c64" strokeWidth="2" />
@@ -220,9 +231,10 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
 
       {/* Two-column layout: map + sources sidebar */}
       <div className="flex flex-col lg:flex-row gap-6">
-        {/* Map column */}
+        {/* Map column — desktop: SVG map, mobile: accordion list */}
         <div className="flex-1 min-w-0">
-          <div className="bg-white rounded-lg shadow-sm">
+          {/* Desktop SVG map */}
+          <div className="hidden lg:block bg-white rounded-lg shadow-sm">
             <svg
               ref={svgRef}
               className="w-full h-auto"
@@ -259,7 +271,14 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
             </svg>
           </div>
 
-          {/* Summary now shown in the node popover (Layer 5 in MapCanvas) */}
+          {/* Mobile accordion list */}
+          <div className="lg:hidden">
+            <TraditionListMobile
+              graph={graph}
+              activeFamilies={activeFamilies}
+              onNodeClick={handleMobileNodeClick}
+            />
+          </div>
         </div>
 
         {/* Sources sidebar */}
