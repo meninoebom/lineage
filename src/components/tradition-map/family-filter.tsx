@@ -22,7 +22,7 @@ export function FamilyFilter({
 }: FamilyFilterProps) {
   return (
     <div
-      className="flex gap-2 justify-center overflow-x-auto pb-2 sm:flex-wrap sm:overflow-x-visible sm:pb-0 scrollbar-thin"
+      className="flex gap-2 justify-start px-4 overflow-x-auto pb-2 snap-x snap-mandatory sm:justify-center sm:px-0 sm:flex-wrap sm:overflow-x-visible sm:pb-0 sm:snap-none scrollbar-thin [-webkit-overflow-scrolling:touch] [mask-image:linear-gradient(to_right,transparent,black_16px,black_calc(100%-16px),transparent)] sm:[mask-image:none]"
       role="group"
       aria-label="Filter by tradition family"
     >
@@ -34,7 +34,7 @@ export function FamilyFilter({
             key={family}
             onClick={() => onToggle(family)}
             className={`
-              inline-flex items-center gap-1.5 px-3 py-1 shrink-0
+              inline-flex items-center gap-1.5 px-3 py-1 shrink-0 snap-start
               font-sans text-sm whitespace-nowrap
               border rounded-full transition-all duration-200
               ${

@@ -26,7 +26,7 @@ export function useMapZoom(
   svgRef: React.RefObject<SVGSVGElement | null>,
   options: { minZoom?: number; maxZoom?: number } = {}
 ) {
-  const { minZoom = 1, maxZoom = 3 } = options;
+  const { minZoom = 0.8, maxZoom = 4 } = options;
   const [transform, setTransform] = useState<MapTransform>(INITIAL_TRANSFORM);
   const zoomBehaviorRef = useRef<ZoomBehavior<SVGSVGElement, unknown> | null>(null);
 
@@ -43,6 +43,13 @@ export function useMapZoom(
 
     zoomBehaviorRef.current = zoomBehavior;
     select(svg).call(zoomBehavior);
+
+    // On mobile, start zoomed in so labels are readable
+    const isMobile = typeof window !== "undefined"
+      && window.matchMedia?.("(max-width: 640px)").matches;
+    if (isMobile) {
+      select(svg).call(zoomBehavior.transform, zoomIdentity.scale(1.8));
+    }
 
     return () => {
       select(svg).on(".zoom", null);
