@@ -25,9 +25,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const teacher = getTeacher(slug);
   if (!teacher) return {};
+  const location = [teacher.city, teacher.state].filter(Boolean).join(", ");
+  const locationSuffix = location ? ` in ${location}` : "";
   const description = teacher.traditions.length > 0
-    ? `${teacher.name} — ${teacher.traditions.join(", ")} teacher in ${teacher.city}, ${teacher.state}.`
-    : `${teacher.name} — contemplative teacher in ${teacher.city}, ${teacher.state}.`;
+    ? `${teacher.name} — ${teacher.traditions.join(", ")} teacher${locationSuffix}.`
+    : `${teacher.name} — contemplative teacher${locationSuffix}.`;
   return {
     title: teacher.name,
     description,
@@ -86,10 +88,12 @@ export default async function TeacherPage({ params }: { params: Promise<{ slug: 
               </span>
             )}
           </h1>
-          <p className="font-sans text-sm text-muted-foreground mb-4">
-            {teacher.city}, {teacher.state}
-            {teacher.country !== "US" && ` · ${teacher.country}`}
-          </p>
+          {(teacher.city || teacher.state) && (
+            <p className="font-sans text-sm text-muted-foreground mb-4">
+              {[teacher.city, teacher.state].filter(Boolean).join(", ")}
+              {teacher.country && teacher.country !== "US" && ` · ${teacher.country}`}
+            </p>
+          )}
           <div className="flex flex-wrap gap-2 mb-6">
             {traditions.map((t) => (
               <Link key={t.slug} href={`/traditions/${t.slug}`}>
