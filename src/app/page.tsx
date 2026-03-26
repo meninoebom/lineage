@@ -191,15 +191,7 @@ export default function Home() {
           communities. We know we&apos;re just getting started.
         </p>
         <p className="text-center text-muted-foreground leading-relaxed">
-          If you see something missing or wrong, we&apos;d love your help.{" "}
-          <a
-            href="https://github.com/meninoebom/lineage/issues"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
-          >
-            Suggest an edit &rarr;
-          </a>
+          See something missing? Hit the feedback button to let us know.
         </p>
       </section>
 
