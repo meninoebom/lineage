@@ -93,10 +93,10 @@ const sampleTraditions: TraditionInput[] = [
 describe("TraditionMap", () => {
   it("renders all tradition nodes", () => {
     render(<TraditionMap traditions={sampleTraditions} />);
-    // Single SVG now (no dual desktop/mobile)
-    expect(screen.getByText("Zen")).toBeInTheDocument();
-    expect(screen.getByText("Theravada")).toBeInTheDocument();
-    expect(screen.getByText("Advaita Vedanta")).toBeInTheDocument();
+    // Traditions appear in both desktop SVG map and mobile accordion list
+    expect(screen.getAllByText("Zen").length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText("Theravada").length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText("Advaita Vedanta").length).toBeGreaterThanOrEqual(1);
   });
 
   it("renders family filter buttons", () => {
@@ -133,6 +133,16 @@ describe("TraditionMap", () => {
       name: /interactive map of contemplative traditions/i,
     });
     expect(map).toBeInTheDocument();
+  });
+
+  it("renders both desktop SVG map and mobile accordion list", () => {
+    const { container } = render(<TraditionMap traditions={sampleTraditions} />);
+    // Desktop SVG map (hidden on mobile via CSS)
+    const svgMap = container.querySelector("[role='img'][aria-label='Interactive map of contemplative traditions']");
+    expect(svgMap).toBeInTheDocument();
+    // Mobile accordion list (hidden on desktop via CSS)
+    const mobileList = container.querySelector(".lg\\:hidden");
+    expect(mobileList).toBeInTheDocument();
   });
 
   it("renders nodes as keyboard-accessible links", () => {
