@@ -44,13 +44,13 @@ describe("MapNodePopover", () => {
     ).toBeTruthy();
   });
 
-  it("renders a 'Read more' link to the tradition page", () => {
+  it("renders an 'Explore this tradition' link to the tradition page", () => {
     render(
       <svg>
         <MapNodePopover {...defaultProps} />
       </svg>
     );
-    const link = screen.getByText("Read more →");
+    const link = screen.getByText("Explore this tradition →");
     expect(link.getAttribute("href")).toBe("/traditions/zen");
   });
 

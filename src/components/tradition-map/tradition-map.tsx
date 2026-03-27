@@ -291,12 +291,12 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
               <div className="mb-4 min-h-[3.5rem]">
                 {selectedSlug ? (
                   <p className="text-sm text-muted-foreground">
-                    Showing sources related to {selectedTraditionName}. Click another tradition or &ldquo;Show all&rdquo; to change.
+                    Sources related to {selectedTraditionName}. Select another tradition or click &ldquo;Show all&rdquo; to browse everything.
                   </p>
                 ) : (
                   <p className="text-sm text-muted-foreground">
-                    These are the texts, teachings, and references we drew on to build
-                    this map. Click a tradition to filter.
+                    The texts, teachings, and scholarship behind the map.
+                    Click a tradition to filter.
                   </p>
                 )}
               </div>
@@ -305,10 +305,7 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
                 {filteredResources.length === 0 && selectedSlug && (
                   <div className="text-center py-8">
                     <p className="text-sm text-[#999] mb-2">
-                      No sources yet for {selectedTraditionName}.
-                    </p>
-                    <p className="text-sm" style={{ color: "#c0553a" }}>
-                      Use the feedback button to suggest sources
+                      We&apos;re still building this section — know a good source? <a href="#" onClick={(e) => { e.preventDefault(); }} className="hover:underline" style={{ color: "#c0553a" }}>Let us know.</a>
                     </p>
                   </div>
                 )}
@@ -355,8 +352,7 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
               </div>
               <div className="text-center pt-4 mt-4 border-t border-[#e8e4df]">
                 <p className="text-sm text-[#999]">
-                  This map is a living document. Use the feedback button to
-                  suggest sources, corrections, or new connections.
+                  A living document — suggest a source, correction, or new connection.
                 </p>
               </div>
             </div>
