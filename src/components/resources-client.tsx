@@ -7,7 +7,6 @@ import { filterResources } from "@/lib/search";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import Link from "next/link";
 
 const RESOURCE_TYPES = ["book", "podcast", "video", "article", "website"] as const;
@@ -134,39 +133,32 @@ export function ResourcesClient({ resources, traditionNames }: ResourcesClientPr
           </p>
         </div>
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
           {results.map((resource) => (
             <a
               key={resource.slug}
               href={resource.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group"
+              className="group flex items-baseline gap-3 rounded border border-border/50 bg-card px-4 py-2.5 transition-colors hover:bg-accent/50"
             >
-              <Card className="h-full flex flex-col">
-                <CardHeader>
-                  <div className="flex items-start justify-between gap-2">
-                    <CardTitle className="group-hover:text-primary transition-colors">
-                      {resource.title}
-                    </CardTitle>
-                    <Badge variant="default" className="shrink-0">
-                      {typeLabel(resource.type)}
-                    </Badge>
-                  </div>
-                  <CardDescription>
-                    {resource.author && <span>{resource.author}</span>}
-                    {resource.author && resource.year && <span> · </span>}
-                    {resource.year && <span>{resource.year}</span>}
-                  </CardDescription>
-                </CardHeader>
-                <div className="mt-auto flex flex-wrap gap-1.5 px-5 pb-5">
-                  {resource.traditions.map((slug) => (
-                    <Badge key={slug} variant="tradition">
-                      {traditionNames[slug] ?? slug}
-                    </Badge>
-                  ))}
-                </div>
-              </Card>
+              <div className="min-w-0 flex-1">
+                <span className="font-sans text-sm font-medium group-hover:text-primary transition-colors">
+                  {resource.title}
+                </span>
+                {resource.author && (
+                  <span className="font-sans text-xs text-muted-foreground ml-2">
+                    {resource.author}
+                  </span>
+                )}
+              </div>
+              <div className="flex items-center gap-2 shrink-0">
+                {resource.traditions.slice(0, 2).map((slug) => (
+                  <span key={slug} className="font-sans text-[10px] text-muted-foreground/60">
+                    {traditionNames[slug] ?? slug}
+                  </span>
+                ))}
+              </div>
             </a>
           ))}
         </div>
