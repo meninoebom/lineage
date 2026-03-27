@@ -234,12 +234,12 @@ export default function Home() {
           <p className="font-sans text-sm text-muted-foreground mb-6">
             Get updates as we add new traditions, teachers, and resources.
           </p>
-          <form action="#" className="flex gap-3">
+          <form action="https://formspree.io/f/xwvwvvzw" method="POST" className="flex gap-3">
             <label htmlFor="newsletter-email" className="sr-only">Email address</label>
             <input
               id="newsletter-email"
               type="email"
-              placeholder="Your email address"
+              placeholder="Your email address" name="email"
               className="flex-1 h-10 rounded border border-transparent bg-surface-container-highest px-3 py-2 font-sans text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:bg-white focus-visible:border-outline-variant/20 focus-visible:ring-2 focus-visible:ring-ring/30 transition-colors"
             />
             <button
