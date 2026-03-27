@@ -2,54 +2,67 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { PageLayout } from "@/components/page-layout";
+import { HomeSearch } from "@/components/home-search";
+import {
+  getAllTeachers,
+  getAllCenters,
+  getAllResources,
+  getAllTraditions,
+} from "@/lib/data";
 import { SITE_URL } from "@/lib/seo";
 
 const description =
-  "An editorial guide to contemplative traditions, teachers, and meditation centers. Explore how Buddhist, Vedic-Yogic, Christian, Sufi, and secular paths connect.";
+  "Discover meditation teachers, books, practice centers, and contemplative traditions from Buddhist, Vedic, Christian, Sufi, and secular lineages.";
 
 export const metadata: Metadata = {
-  title: { absolute: "Lineage — A Map of Contemplative Traditions" },
+  title: { absolute: "Lineage — Contemplative Traditions, Teachers, Books & Centers" },
   description,
   openGraph: {
-    title: "Lineage — A Map of Contemplative Traditions",
+    title: "Lineage — Contemplative Traditions, Teachers, Books & Centers",
     description,
     url: SITE_URL,
   },
 };
 
+const quickLinks = [
+  { label: "Zen", href: "/traditions/zen" },
+  { label: "Vipassana", href: "/traditions/vipassana-movement" },
+  { label: "Advaita Vedanta", href: "/traditions/advaita-vedanta" },
+  { label: "Sufism", href: "/traditions/sufism" },
+  { label: "Contemplative Prayer", href: "/traditions/christian-mysticism" },
+  { label: "Secular Mindfulness", href: "/traditions/secular-mindfulness" },
+];
+
 const sections = [
   {
     title: "Find a Teacher",
-    description:
-      "Discover living teachers you can study with across traditions.",
+    description: "Living teachers you can study with, across traditions.",
     href: "/teachers",
     icon: (
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
         <circle cx="16" cy="10" r="5" stroke="currentColor" strokeWidth="1.5" />
         <path d="M6 28c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
       </svg>
     ),
   },
   {
-    title: "Explore the Masters",
-    description:
-      "The great teachers whose wisdom shaped the contemplative paths.",
-    href: "/masters",
+    title: "Browse Books",
+    description: "Books on meditation, philosophy, and inner life.",
+    href: "/resources",
     icon: (
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <circle cx="16" cy="8" r="4" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M8 28c0-4.418 3.582-8 8-8s8 3.582 8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        <path d="M10 6l6-3 6 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect x="4" y="4" width="10" height="14" rx="1" stroke="currentColor" strokeWidth="1.5" />
+        <rect x="18" y="4" width="10" height="14" rx="1" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M9 22v6M23 22v6M9 28h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
       </svg>
     ),
   },
   {
     title: "Find a Center",
-    description:
-      "Meditation centers and practice communities near you.",
+    description: "Meditation centers and practice communities you can visit.",
     href: "/centers",
     icon: (
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
         <rect x="6" y="12" width="20" height="16" rx="1" stroke="currentColor" strokeWidth="1.5" />
         <path d="M6 12l10-8 10 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         <rect x="13" y="20" width="6" height="8" rx="0.5" stroke="currentColor" strokeWidth="1.5" />
@@ -58,26 +71,37 @@ const sections = [
   },
   {
     title: "Explore Traditions",
-    description:
-      "How contemplative paths connect, diverge, and speak to one another.",
+    description: "How contemplative traditions connect and diverge across time.",
     href: "/traditions",
     icon: (
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <rect x="4" y="4" width="10" height="14" rx="1" stroke="currentColor" strokeWidth="1.5" />
-        <rect x="18" y="4" width="10" height="14" rx="1" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M9 22v6M23 22v6M9 28h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <circle cx="10" cy="10" r="4" stroke="currentColor" strokeWidth="1.5" />
+        <circle cx="22" cy="10" r="4" stroke="currentColor" strokeWidth="1.5" />
+        <circle cx="16" cy="22" r="4" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="13" y1="12" x2="14" y2="19" stroke="currentColor" strokeWidth="1" />
+        <line x1="19" y1="12" x2="18" y2="19" stroke="currentColor" strokeWidth="1" />
+        <line x1="14" y1="10" x2="18" y2="10" stroke="currentColor" strokeWidth="1" />
       </svg>
     ),
   },
 ];
 
 export default function Home() {
+  const teachers = getAllTeachers();
+  const centers = getAllCenters();
+  const resources = getAllResources();
+  const traditions = getAllTraditions();
+
+  const traditionNames: Record<string, string> = {};
+  for (const t of traditions) {
+    traditionNames[t.slug] = t.name;
+  }
+
   return (
     <PageLayout
       heroContent={
         <>
-          {/* Hero image + headline */}
-          <section className="relative flex items-center justify-center text-center overflow-hidden pt-24 md:pt-32 pb-36 md:pb-40">
+          <section className="relative flex items-center justify-center text-center overflow-hidden pt-20 md:pt-28 pb-32 md:pb-36">
             <Image
               src="/images/hero-bg.jpg"
               alt=""
@@ -86,39 +110,52 @@ export default function Home() {
               sizes="100vw"
               priority
             />
-            <div className="absolute inset-0 bg-background/40" />
-            <div className="relative z-10 px-6">
-              <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-tight mb-6">
-                The Contemplative Landscape
+            <div className="absolute inset-0 bg-background/50" />
+            <div className="relative z-20 px-6 w-full">
+              <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl italic tracking-tight text-foreground mb-8">
+                Wherever you are is the entry point.
               </h1>
-              <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8">
-                Explore how the world&apos;s great contemplative traditions connect,
-                diverge, and speak to one another across time.
+              <p className="font-sans text-sm text-muted-foreground/80 mb-8">
+                — Kabir
               </p>
-              <Link
-                href="/map"
-                className="inline-flex items-center gap-2 bg-gradient-to-br from-primary to-primary-container text-primary-foreground px-6 py-3 rounded font-sans text-sm hover:opacity-90 transition-opacity"
-              >
-                Explore the Map &rarr;
-              </Link>
+
+              <HomeSearch
+                teachers={teachers}
+                centers={centers}
+                resources={resources}
+                traditionNames={traditionNames}
+              />
+
+              <div className="mt-6 flex flex-wrap justify-center gap-2">
+                {quickLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="font-sans text-xs px-3 py-1.5 rounded-full bg-white/60 backdrop-blur text-muted-foreground hover:text-foreground hover:bg-white/80 transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
             </div>
           </section>
-          {/* Feature cards — pulled up to overlap the hero */}
-          <div className="relative z-10 w-full max-w-5xl mx-auto px-6 -mt-24">
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+
+          <div className="relative z-10 w-full max-w-5xl mx-auto px-6 -mt-20">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {sections.map((section) => (
                 <Link key={section.href} href={section.href} className="group">
-                  <div className="h-full rounded-lg bg-card p-6 border border-border/50 shadow-lg transition-colors group-hover:bg-accent text-center">
-                    <div className="text-muted-foreground mb-4 flex justify-center">{section.icon}</div>
-                    <h3 className="font-serif text-lg font-medium mb-2 group-hover:text-primary transition-colors">
+                  <div className="h-full rounded-lg bg-card p-5 border border-border/50 shadow-lg transition-colors group-hover:bg-accent">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="text-muted-foreground">
+                        {section.icon}
+                      </div>
+                    </div>
+                    <h3 className="font-serif text-base font-medium mb-1.5 group-hover:text-primary transition-colors">
                       {section.title}
                     </h3>
-                    <p className="font-sans text-sm text-muted-foreground leading-relaxed mb-5">
+                    <p className="font-sans text-sm text-muted-foreground leading-relaxed">
                       {section.description}
                     </p>
-                    <span className="inline-flex items-center gap-1 bg-gradient-to-br from-primary to-primary-container text-primary-foreground px-4 py-2 rounded font-sans text-sm hover:opacity-90 transition-opacity">
-                      Explore &rarr;
-                    </span>
                   </div>
                 </Link>
               ))}
@@ -127,18 +164,12 @@ export default function Home() {
         </>
       }
     >
-
       {/* Map teaser */}
       <section className="py-20 -mx-6 px-6 bg-surface-container-low/40 mb-20">
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-10">
-          {/* Map preview */}
           <div className="flex-1 w-full">
             <div className="rounded bg-card border border-border/50 overflow-hidden p-6">
-              <svg
-                viewBox="0 0 500 280"
-                className="w-full h-auto"
-                aria-hidden="true"
-              >
+              <svg viewBox="0 0 500 280" className="w-full h-auto" aria-hidden="true">
                 <line x1="200" y1="120" x2="120" y2="60" stroke="#d9c2b9" strokeWidth="1.5" />
                 <line x1="200" y1="120" x2="310" y2="70" stroke="#a96242" strokeWidth="1.5" />
                 <line x1="200" y1="120" x2="160" y2="210" stroke="#a96242" strokeWidth="1" strokeDasharray="4 2" />
@@ -165,47 +196,45 @@ export default function Home() {
             </div>
           </div>
 
-          {/* CTA */}
           <div className="flex-1">
-            <h2 className="text-3xl mb-4">Explore the Interactive Map</h2>
+            <h2 className="text-3xl mb-4">See How Traditions Connect</h2>
             <p className="font-sans text-muted-foreground leading-relaxed mb-6">
-              See how 27 contemplative traditions connect across history — from ancient
-              Vedic roots to modern secular mindfulness.
+              An interactive map showing how contemplative traditions have
+              shaped, challenged, and built on one another across centuries.
             </p>
             <Link
               href="/map"
               className="inline-flex items-center gap-2 bg-gradient-to-br from-primary to-primary-container text-primary-foreground px-6 py-3 rounded font-sans text-sm hover:opacity-90 transition-opacity"
             >
-              Open the Map &rarr;
+              Explore the Map &rarr;
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Help Us Grow */}
-      <section className="py-16 max-w-2xl mx-auto mb-20">
-        <h2 className="text-3xl text-center mb-6">Help Us Grow</h2>
-        <p className="text-center text-muted-foreground leading-relaxed mb-4">
-          <em>Lineage</em> is a community project mapping the world&apos;s contemplative
-          traditions — their historical connections, living teachers, and practice
-          communities. We know we&apos;re just getting started.
+      {/* Reading paths teaser */}
+      <section className="py-16 max-w-2xl mx-auto mb-20 text-center">
+        <h2 className="text-3xl mb-4">Not sure where to start?</h2>
+        <p className="text-muted-foreground leading-relaxed mb-6">
+          We&apos;ve curated reading paths through traditions and themes,
+          each 3-5 books deep.
         </p>
-        <p className="text-center text-muted-foreground leading-relaxed">
-          See something missing? Hit the feedback button to let us know.
-        </p>
+        <Link
+          href="/library"
+          className="inline-flex items-center gap-2 bg-gradient-to-br from-primary to-primary-container text-primary-foreground px-6 py-3 rounded font-sans text-sm hover:opacity-90 transition-opacity"
+        >
+          Browse Reading Paths &rarr;
+        </Link>
       </section>
 
-      {/* Newsletter signup (layout only) */}
+      {/* Newsletter */}
       <section className="py-16 -mx-6 px-6 bg-surface-container-low/40">
         <div className="max-w-md mx-auto text-center">
           <h2 className="text-2xl mb-3">Stay Connected</h2>
           <p className="font-sans text-sm text-muted-foreground mb-6">
             Get updates as we add new traditions, teachers, and resources.
           </p>
-          <form
-            action="#"
-            className="flex gap-3"
-          >
+          <form action="#" className="flex gap-3">
             <label htmlFor="newsletter-email" className="sr-only">Email address</label>
             <input
               id="newsletter-email"

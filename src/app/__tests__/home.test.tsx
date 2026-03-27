@@ -21,11 +21,16 @@ vi.mock("@/components/page-layout", () => ({
   ),
 }));
 
+// Mock home-search to avoid portal complexity in tests
+vi.mock("@/components/home-search", () => ({
+  HomeSearch: () => <div data-testid="home-search" />,
+}));
+
 describe("Homepage", () => {
-  it("renders hero with large title", () => {
+  it("renders Kabir quote as heading", () => {
     render(<Home />);
     const heading = screen.getByRole("heading", { level: 1 });
-    expect(heading.textContent).toContain("The Contemplative Landscape");
+    expect(heading.textContent).toContain("Wherever you are is the entry point");
   });
 
   it("renders 4 feature cards with correct links", () => {
@@ -33,19 +38,19 @@ describe("Homepage", () => {
     const links = screen.getAllByRole("link");
     const hrefs = links.map((l) => l.getAttribute("href"));
     expect(hrefs).toContain("/teachers");
-    expect(hrefs).toContain("/masters");
+    expect(hrefs).toContain("/resources");
     expect(hrefs).toContain("/centers");
     expect(hrefs).toContain("/traditions");
   });
 
   it("renders map teaser with CTA", () => {
     render(<Home />);
-    expect(screen.getByRole("heading", { name: /Interactive Map/i })).toBeDefined();
+    expect(screen.getByText("See How Traditions Connect")).toBeDefined();
   });
 
-  it("renders Help Us Grow section", () => {
+  it("renders reading paths section", () => {
     render(<Home />);
-    expect(screen.getByText("Help Us Grow")).toBeDefined();
+    expect(screen.getByText("Not sure where to start?")).toBeDefined();
   });
 
   it("renders newsletter signup section", () => {
@@ -53,11 +58,10 @@ describe("Homepage", () => {
     expect(screen.getByPlaceholderText(/email/i)).toBeDefined();
   });
 
-  it("feature cards link to correct pages", () => {
+  it("renders tradition quick-link pills", () => {
     render(<Home />);
-    const teacherLink = screen.getAllByRole("link").find(
-      (l) => l.getAttribute("href") === "/teachers"
-    );
-    expect(teacherLink).toBeDefined();
+    expect(screen.getAllByText("Zen").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Vipassana").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Sufism").length).toBeGreaterThan(0);
   });
 });
