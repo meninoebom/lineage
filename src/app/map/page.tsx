@@ -35,8 +35,8 @@ export default function MapPage() {
           The Contemplative Landscape
         </h1>
         <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-          How the great contemplative traditions connect, diverge, and speak to
-          one another — an interactive guide to the paths of practice.
+          How contemplative traditions connect, diverge, and speak to one
+          another across centuries — traced on a single interactive map.
         </p>
       </header>
 

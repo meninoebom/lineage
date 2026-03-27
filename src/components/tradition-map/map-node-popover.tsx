@@ -130,7 +130,7 @@ export function MapNodePopover({
             textDecoration: "none",
           }}
         >
-          Read more →
+          Explore this tradition →
         </a>
       </div>
     </foreignObject>
