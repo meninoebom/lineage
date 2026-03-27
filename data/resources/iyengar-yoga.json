@@ -1,0 +1,17 @@
+{
+  "title": "Yoga",
+  "slug": "iyengar-yoga",
+  "type": "book",
+  "category": "popular",
+  "url": "https://bookshop.org/a/LINEAGE/9780789471659",
+  "author": "BKS Iyengar",
+  "year": 2001,
+  "description": "A step-by-step guide to the postures of yoga includes a section on stress, breathing, and meditation techniques that alleviate the pressures of modern living and enhance one's physical, emotional, and mental well-being.",
+  "traditions": [
+    "classical-yoga"
+  ],
+  "teachers": [
+    "bks-iyengar"
+  ],
+  "centers": []
+}

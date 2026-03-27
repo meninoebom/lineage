@@ -6,11 +6,13 @@
   "website": "https://avneryah.com",
   "birth_year": null,
   "death_year": null,
-  "city": null,
-  "state": null,
-  "country": null,
+  "city": "Unknown",
+  "state": "Unknown",
+  "country": "US",
   "latitude": null,
   "longitude": null,
-  "traditions": ["modern-non-dual"],
+  "traditions": [
+    "modern-non-dual"
+  ],
   "centers": []
 }
