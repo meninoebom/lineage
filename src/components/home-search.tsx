@@ -28,12 +28,9 @@ export function HomeSearch({
 }: HomeSearchProps) {
   const [query, setQuery] = useState("");
   const [focused, setFocused] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [dropdownStyle, setDropdownStyle] = useState<React.CSSProperties>({});
-
-  useEffect(() => setMounted(true), []);
 
   // Position the dropdown relative to the input
   const updatePosition = useCallback(() => {
@@ -215,7 +212,7 @@ export function HomeSearch({
         />
       </div>
 
-      {mounted && dropdown && createPortal(dropdown, document.body)}
+      {typeof window !== "undefined" && dropdown && createPortal(dropdown, document.body)}
     </div>
   );
 }
