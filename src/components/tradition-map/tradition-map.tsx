@@ -301,7 +301,7 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
                 )}
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-1">
                 {filteredResources.length === 0 && selectedSlug && (
                   <div className="text-center py-8">
                     <p className="text-sm text-[#999] mb-2">
@@ -312,25 +312,27 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
                 {filteredResources.map((r) => (
                   <div
                     key={r.slug}
-                    className="bg-white border border-[#e8e4df] rounded-lg p-3 hover:bg-accent/50 transition-all duration-200"
+                    className="bg-white border border-[#e8e4df] rounded-lg px-3 py-2 hover:bg-accent/50 transition-all duration-200"
                   >
-                    <a
-                      href={r.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[14px] font-semibold leading-snug hover:text-primary transition-colors"
-                      style={{ color: "#1a1a1a" }}
-                    >
-                      {r.title}{" "}
-                      <span className="text-[#aaa] text-xs">↗</span>
-                    </a>
-                    {r.author && (
-                      <p className="text-[13px] mt-0.5" style={{ color: "#9e4a3a" }}>
-                        {r.author}
-                      </p>
-                    )}
+                    <div className="flex items-baseline gap-2">
+                      <a
+                        href={r.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[13px] font-semibold leading-snug hover:text-primary transition-colors"
+                        style={{ color: "#1a1a1a" }}
+                      >
+                        {r.title}
+                        <span className="text-[#aaa] text-xs ml-1">↗</span>
+                      </a>
+                      {r.author && (
+                        <span className="text-[12px] shrink-0" style={{ color: "#9e4a3a" }}>
+                          {r.author}
+                        </span>
+                      )}
+                    </div>
                     {r.traditions.length > 0 && (
-                      <p className="text-xs mt-1.5 flex flex-wrap gap-x-1.5 gap-y-0.5">
+                      <p className="text-[10px] mt-0.5 flex flex-wrap gap-x-1.5 gap-y-0.5">
                         {r.traditions.map((t) => (
                           <button
                             key={t.slug}
