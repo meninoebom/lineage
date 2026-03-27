@@ -21,11 +21,11 @@ describe("SiteHeader", () => {
     expect(logo.className).toContain("font-serif");
   });
 
-  it("renders nav links: Traditions, Teachers, Masters, Centers, Map", () => {
+  it("renders nav links: Traditions, Teachers, Historical, Centers, Map", () => {
     render(<SiteHeader />);
     expect(screen.getByText("Traditions")).toBeDefined();
     expect(screen.getByText("Teachers")).toBeDefined();
-    expect(screen.getByText("Masters")).toBeDefined();
+    expect(screen.getByText("Historical")).toBeDefined();
     expect(screen.getByText("Centers")).toBeDefined();
     expect(screen.getByText("Map")).toBeDefined();
   });
