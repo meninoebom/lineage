@@ -99,32 +99,31 @@ describe("TraditionMap", () => {
     expect(screen.getAllByText("Advaita Vedanta").length).toBeGreaterThanOrEqual(1);
   });
 
-  it("renders family filter buttons", () => {
+  it("renders MapLegend inside the map container", () => {
     render(<TraditionMap traditions={sampleTraditions} />);
-    const filterGroup = screen.getByRole("group", {
-      name: /filter by tradition family/i,
+    const legendGroup = screen.getByRole("group", {
+      name: /map legend and filter/i,
     });
-    const buttons = filterGroup.querySelectorAll("button");
-    expect(buttons).toHaveLength(2);
-    expect(buttons[0]).toHaveTextContent("Buddhist");
-    expect(buttons[1]).toHaveTextContent("Vedic-Yogic");
+    expect(legendGroup).toBeInTheDocument();
+    // Legend should contain family buttons
+    const buttons = legendGroup.querySelectorAll("button");
+    expect(buttons.length).toBeGreaterThanOrEqual(2);
   });
 
-  it("renders connection legend", () => {
+  it("renders connection legend inside MapLegend", () => {
     render(<TraditionMap traditions={sampleTraditions} />);
-    expect(screen.getByText("Influenced by")).toBeInTheDocument();
-    expect(screen.getByText("Branch of")).toBeInTheDocument();
+    expect(screen.getAllByText("Influenced by").length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText("Branch of").length).toBeGreaterThanOrEqual(1);
   });
 
   it("filters traditions when family toggle is clicked", () => {
-    render(<TraditionMap traditions={sampleTraditions} />);
-    const filterGroup = screen.getByRole("group", {
-      name: /filter by tradition family/i,
-    });
-    const vedicYogicButton = filterGroup.querySelector("button:last-child")!;
-    expect(vedicYogicButton).toHaveAttribute("aria-pressed", "true");
-    fireEvent.click(vedicYogicButton);
-    expect(vedicYogicButton).toHaveAttribute("aria-pressed", "false");
+    const { container } = render(<TraditionMap traditions={sampleTraditions} />);
+    // Find the desktop panel's Vedic-Yogic button
+    const desktopPanel = container.querySelector(".hidden.md\\:block");
+    const vedicBtn = desktopPanel!.querySelector("button[aria-label='Vedic-Yogic']")!;
+    expect(vedicBtn).toHaveAttribute("aria-pressed", "true");
+    fireEvent.click(vedicBtn);
+    expect(vedicBtn).toHaveAttribute("aria-pressed", "false");
   });
 
   it("has accessible SVG label", () => {

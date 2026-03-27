@@ -9,7 +9,7 @@ import {
 } from "@/lib/tradition-graph";
 import type { TraditionFamily } from "@/lib/types";
 import type { LayoutMap } from "@/lib/compute-layout";
-import { FamilyFilter } from "./family-filter";
+import { MapLegend } from "./map-legend";
 import { MapCanvas } from "./map-canvas";
 import { useMapZoom } from "./use-map-zoom";
 import { useMapInteraction } from "./use-map-interaction";
@@ -200,31 +200,6 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
         }
       `}</style>
 
-      {/* Filters */}
-      <div className="mb-6">
-        <FamilyFilter
-          families={allFamilies}
-          activeFamilies={activeFamilies}
-          onToggle={handleToggleFamily}
-        />
-      </div>
-
-      {/* Legend */}
-      <div className="mb-6 flex items-center justify-center gap-6 text-sm text-[#888] font-sans">
-        <span className="flex items-center gap-2">
-          <svg width="40" height="2">
-            <line x1="0" y1="1" x2="40" y2="1" stroke="#b48c64" strokeWidth="2" />
-          </svg>
-          Branch of
-        </span>
-        <span className="flex items-center gap-2">
-          <svg width="40" height="2">
-            <line x1="0" y1="1" x2="40" y2="1" stroke="#8c8ca0" strokeWidth="2" strokeDasharray="6 4" />
-          </svg>
-          Influenced by
-        </span>
-      </div>
-
       {/* Two-column layout: map + sources sidebar */}
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Map column */}
@@ -264,6 +239,14 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
                 />
               </g>
             </svg>
+            {/* Floating map legend / filter */}
+            <div className="absolute bottom-3 left-3 z-10">
+              <MapLegend
+                families={allFamilies}
+                activeFamilies={activeFamilies}
+                onToggle={handleToggleFamily}
+              />
+            </div>
             {/* Mobile hint — fades out after first interaction */}
             {isTouchDevice && (
               <div
