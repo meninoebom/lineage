@@ -135,14 +135,10 @@ describe("TraditionMap", () => {
     expect(map).toBeInTheDocument();
   });
 
-  it("renders both desktop SVG map and mobile accordion list", () => {
+  it("renders SVG map on all screen sizes", () => {
     const { container } = render(<TraditionMap traditions={sampleTraditions} />);
-    // Desktop SVG map (hidden on mobile via CSS)
     const svgMap = container.querySelector("[role='img'][aria-label='Interactive map of contemplative traditions']");
     expect(svgMap).toBeInTheDocument();
-    // Mobile accordion list (hidden on desktop via CSS)
-    const mobileList = container.querySelector(".lg\\:hidden");
-    expect(mobileList).toBeInTheDocument();
   });
 
   it("renders nodes as keyboard-accessible links", () => {

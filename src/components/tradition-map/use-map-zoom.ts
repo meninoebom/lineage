@@ -26,7 +26,7 @@ export function useMapZoom(
   svgRef: React.RefObject<SVGSVGElement | null>,
   options: { minZoom?: number; maxZoom?: number } = {}
 ) {
-  const { minZoom = 1, maxZoom = 4 } = options;
+  const { minZoom = 0.5, maxZoom = 5 } = options;
   const [transform, setTransform] = useState<MapTransform>(INITIAL_TRANSFORM);
   const zoomBehaviorRef = useRef<ZoomBehavior<SVGSVGElement, unknown> | null>(null);
 
@@ -43,6 +43,21 @@ export function useMapZoom(
 
     zoomBehaviorRef.current = zoomBehavior;
     select(svg).call(zoomBehavior);
+
+    // On mobile, start zoomed into the center of the map so labels are readable.
+    // Center point is roughly where Buddhist/Vedic traditions cluster (~500 CE).
+    const isMobile = typeof window !== "undefined"
+      && window.matchMedia?.("(max-width: 768px)").matches;
+    if (isMobile) {
+      const rect = svg.getBoundingClientRect();
+      const scale = 2.2;
+      // Center on the middle of the map (x~450, y~500 in SVG coords)
+      // Transform formula: translate = screenCenter - svgCenter * scale
+      const tx = rect.width / 2 - 450 * scale;
+      const ty = rect.height / 2 - 500 * scale;
+      const initialTransform = zoomIdentity.translate(tx, ty).scale(scale);
+      select(svg).call(zoomBehavior.transform, initialTransform);
+    }
 
     return () => {
       select(svg).on(".zoom", null);
