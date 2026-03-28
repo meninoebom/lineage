@@ -153,26 +153,6 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
     }
   }, [selectedSlug, activeFamilies, slugToFamily, handleBackgroundTap]);
 
-  // Filter sidebar resources by active families AND selected tradition
-  const filteredResources = useMemo(() => {
-    let resources = mapResources.filter((r) =>
-      r.traditions.some((t) => {
-        const family = slugToFamily.get(t.slug);
-        return family && activeFamilies.has(family);
-      })
-    );
-    if (selectedSlug) {
-      resources = resources.filter((r) =>
-        r.traditions.some((t) => t.slug === selectedSlug)
-      );
-    }
-    return resources;
-  }, [mapResources, selectedSlug, activeFamilies, slugToFamily]);
-
-  const selectedTraditionName = selectedSlug
-    ? graph.nodes.find((n) => n.slug === selectedSlug)?.name
-    : null;
-
   return (
     <div className="w-full">
       {/* Entrance animation keyframes */}
@@ -200,10 +180,8 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
         }
       `}</style>
 
-      {/* Two-column layout: map + sources sidebar */}
-      <div className="flex flex-col lg:flex-row gap-6">
-        {/* Map column */}
-        <div className="flex-1 min-w-0">
+      <div>
+        <div>
           <div className="relative bg-white rounded-lg shadow-sm">
             <svg
               ref={svgRef}
@@ -260,107 +238,42 @@ export function TraditionMap({ traditions, resourceMap = {} }: TraditionMapProps
           </div>
         </div>
 
-        {/* Sources sidebar */}
-        {mapResources.length > 0 && (
-          <aside className="w-full lg:w-[320px] lg:shrink-0">
-            <div className="lg:sticky lg:top-20 overflow-y-auto max-h-[800px]">
-              {/* Header with optional filter label and count */}
-              <div className="flex items-baseline justify-between mb-2">
-                <h2 className="font-serif text-xl font-normal">
-                  {selectedTraditionName
-                    ? `Sources for ${selectedTraditionName}`
-                    : "Sources"}
-                  {filteredResources.length !== mapResources.length && (
-                    <span className="text-sm font-sans font-normal text-[#999] ml-2">
-                      ({filteredResources.length} of {mapResources.length})
-                    </span>
-                  )}
-                </h2>
-                {selectedSlug && (
-                  <button
-                    onClick={() => handleBackgroundTap()}
-                    className="text-xs hover:underline"
-                    style={{ color: "#c0553a" }}
-                  >
-                    Show all
-                  </button>
-                )}
-              </div>
-
-              {/* Fixed-height intro area — content swaps but height stays stable */}
-              <div className="mb-4 min-h-[3.5rem]">
-                {selectedSlug ? (
-                  <p className="text-sm text-muted-foreground">
-                    Sources related to {selectedTraditionName}. Select another tradition or click &ldquo;Show all&rdquo; to browse everything.
-                  </p>
-                ) : (
-                  <p className="text-sm text-muted-foreground">
-                    The texts, teachings, and scholarship behind the map.
-                    Click a tradition to filter.
-                  </p>
-                )}
-              </div>
-
-              <div className="space-y-1">
-                {filteredResources.length === 0 && selectedSlug && (
-                  <div className="text-center py-8">
-                    <p className="text-sm text-[#999] mb-2">
-                      We&apos;re still building this section — know a good source? <a href="#" onClick={(e) => { e.preventDefault(); }} className="hover:underline" style={{ color: "#c0553a" }}>Let us know.</a>
-                    </p>
-                  </div>
-                )}
-                {filteredResources.map((r) => (
-                  <div
-                    key={r.slug}
-                    className="bg-white border border-[#e8e4df] rounded-lg px-3 py-2 hover:bg-accent/50 transition-all duration-200"
-                  >
-                    <div className="flex items-baseline gap-2">
-                      <a
-                        href={r.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[13px] font-semibold leading-snug hover:text-primary transition-colors"
-                        style={{ color: "#1a1a1a" }}
-                      >
-                        {r.title}
-                        <span className="text-[#aaa] text-xs ml-1">↗</span>
-                      </a>
-                      {r.author && (
-                        <span className="text-[12px] shrink-0" style={{ color: "#9e4a3a" }}>
-                          {r.author}
-                        </span>
-                      )}
-                    </div>
-                    {r.traditions.length > 0 && (
-                      <p className="text-[10px] mt-0.5 flex flex-wrap gap-x-1.5 gap-y-0.5">
-                        {r.traditions.map((t) => (
-                          <button
-                            key={t.slug}
-                            onClick={() => handleNodeSelect(t.slug)}
-                            aria-label={`Filter by ${t.name}`}
-                            aria-pressed={t.slug === selectedSlug}
-                            className="hover:underline transition-colors cursor-pointer"
-                            style={{
-                              color: t.slug === selectedSlug ? "#9e4a3a" : "#777",
-                            }}
-                          >
-                            {t.name}
-                          </button>
-                        ))}
-                      </p>
-                    )}
-                  </div>
-                ))}
-              </div>
-              <div className="text-center pt-4 mt-4 border-t border-[#e8e4df]">
-                <p className="text-sm text-[#999]">
-                  A living document — suggest a source, correction, or new connection.
-                </p>
-              </div>
-            </div>
-          </aside>
-        )}
       </div>
+
+      {/* Further Reading — quiet bibliography below the map */}
+      {mapResources.length > 0 && (
+        <details className="mt-12 border-t border-border/50 pt-8">
+          <summary className="font-serif text-lg font-normal cursor-pointer text-muted-foreground hover:text-foreground transition-colors list-none">
+            <span>Further Reading</span>
+            <span className="text-xs text-muted-foreground/50 ml-2">
+              ({mapResources.length})
+            </span>
+          </summary>
+          <p className="text-sm text-muted-foreground/70 mt-3 mb-6 max-w-xl">
+            Texts, teachings, and scholarship related to the traditions on this map.
+          </p>
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-x-8">
+            {mapResources.map((r) => (
+              <a
+                key={r.slug}
+                href={r.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block mb-3 break-inside-avoid group"
+              >
+                <span className="font-serif text-[13px] italic text-foreground/80 group-hover:text-primary transition-colors">
+                  {r.title}
+                </span>
+                {r.author && (
+                  <span className="font-sans text-[12px] text-muted-foreground/60 ml-1">
+                    · {r.author}
+                  </span>
+                )}
+              </a>
+            ))}
+          </div>
+        </details>
+      )}
     </div>
   );
 }
