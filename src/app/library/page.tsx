@@ -6,13 +6,13 @@ import { getAllPaths } from "@/lib/data";
 import { SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Library",
+  title: "Reading Paths",
   description:
-    "Curated reading paths through contemplative traditions — books, articles, and resources grouped by tradition and theme.",
+    "Curated reading paths through the contemplative traditions.",
   openGraph: {
-    title: "Library",
+    title: "Reading Paths",
     description:
-      "Curated reading paths through contemplative traditions — books, articles, and resources grouped by tradition and theme.",
+      "Curated reading paths through the contemplative traditions.",
     url: `${SITE_URL}/library`,
   },
 };
@@ -24,14 +24,12 @@ export default function LibraryPage() {
 
   return (
     <PageLayout>
-      <Breadcrumbs items={[{ label: "Library" }]} />
+      <Breadcrumbs items={[{ label: "Reading Paths" }]} />
 
       <header className="mb-16">
-        <h1 className="mb-3">Library</h1>
+        <h1 className="mb-3">Reading Paths</h1>
         <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
-          Curated reading paths through the contemplative traditions — each a
-          sequence of 3–5 resources chosen to guide exploration of a tradition
-          or theme. Looking for individual resources?{" "}
+          Curated reading paths through the contemplative traditions.{" "}
           <a
             href="/resources"
             className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"

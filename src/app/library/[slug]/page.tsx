@@ -73,7 +73,7 @@ export default async function PathDetailPage({ params }: PageProps) {
       <JsonLd data={pathJsonLd(path)} />
       <Breadcrumbs
         items={[
-          { label: "Library", href: "/library" },
+          { label: "Reading Paths", href: "/library" },
           { label: path.title },
         ]}
       />
@@ -146,7 +146,7 @@ export default async function PathDetailPage({ params }: PageProps) {
           href="/library"
           className="inline-block text-sm text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
         >
-          ← Back to Library
+          ← Back to Reading Paths
         </Link>
       </article>
     </PageLayout>
