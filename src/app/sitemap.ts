@@ -15,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/teachers`, changeFrequency: "weekly", priority: 0.9 },
     { url: `${SITE_URL}/centers`, changeFrequency: "weekly", priority: 0.9 },
     { url: `${SITE_URL}/masters`, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${SITE_URL}/library`, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${SITE_URL}/paths`, changeFrequency: "weekly", priority: 0.9 },
   ];
 
   const traditionPages: MetadataRoute.Sitemap = getAllTraditions().map((t) => ({
@@ -37,7 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const pathPages: MetadataRoute.Sitemap = getAllPaths().map((p) => ({
-    url: `${SITE_URL}/library/${p.slug}`,
+    url: `${SITE_URL}/paths/${p.slug}`,
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));

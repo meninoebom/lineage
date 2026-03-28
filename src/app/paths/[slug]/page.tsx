@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title: path.title,
       description: path.description,
-      url: `${SITE_URL}/library/${path.slug}`,
+      url: `${SITE_URL}/paths/${path.slug}`,
       images: [{ url: "/og.png", width: 1200, height: 630 }],
     },
   };
@@ -40,7 +40,7 @@ function pathJsonLd(path: ResolvedPath): Record<string, unknown> {
     "@type": "ItemList",
     name: path.title,
     description: path.description,
-    url: `${SITE_URL}/library/${path.slug}`,
+    url: `${SITE_URL}/paths/${path.slug}`,
     numberOfItems: path.resources.length,
     itemListElement: path.resources.map((r, i) => ({
       "@type": "ListItem",
@@ -73,7 +73,7 @@ export default async function PathDetailPage({ params }: PageProps) {
       <JsonLd data={pathJsonLd(path)} />
       <Breadcrumbs
         items={[
-          { label: "Reading Paths", href: "/library" },
+          { label: "Reading Paths", href: "/paths" },
           { label: path.title },
         ]}
       />
@@ -143,7 +143,7 @@ export default async function PathDetailPage({ params }: PageProps) {
         </section>
 
         <Link
-          href="/library"
+          href="/paths"
           className="inline-block text-sm text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
         >
           ← Back to Reading Paths

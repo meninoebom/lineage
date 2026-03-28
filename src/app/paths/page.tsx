@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "Reading Paths",
     description:
       "Curated reading paths through the contemplative traditions.",
-    url: `${SITE_URL}/library`,
+    url: `${SITE_URL}/paths`,
   },
 };
 

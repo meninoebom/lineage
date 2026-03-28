@@ -124,7 +124,7 @@ export function ResourcesClient({ resources, traditionNames }: ResourcesClientPr
           <p className="text-sm text-muted-foreground">
             Try adjusting your filters, or{" "}
             <Link
-              href="/library"
+              href="/paths"
               className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
             >
               explore our curated reading paths

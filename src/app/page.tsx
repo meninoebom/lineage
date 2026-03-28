@@ -220,7 +220,7 @@ export default function Home() {
           each 3-5 books deep.
         </p>
         <Link
-          href="/library"
+          href="/paths"
           className="inline-flex items-center gap-2 bg-gradient-to-br from-primary to-primary-container text-primary-foreground px-6 py-3 rounded font-sans text-sm hover:opacity-90 transition-opacity"
         >
           Browse Reading Paths &rarr;

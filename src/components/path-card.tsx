@@ -27,7 +27,7 @@ export function PathCard({ path }: PathCardProps) {
   const imageSrc = PATH_IMAGES[path.slug];
 
   return (
-    <Link href={`/library/${path.slug}`} className="group">
+    <Link href={`/paths/${path.slug}`} className="group">
       <div className="h-full bg-card border border-border/50 rounded overflow-hidden transition-colors hover:bg-accent/50">
         <div className="relative h-36">
           {imageSrc ? (
