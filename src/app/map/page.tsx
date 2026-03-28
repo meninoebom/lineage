@@ -38,6 +38,9 @@ export default function MapPage() {
           How contemplative traditions connect, diverge, and speak to one
           another across centuries — traced on a single interactive map.
         </p>
+        <p className="mt-3 text-sm text-muted-foreground/70">
+          Scroll to zoom · Drag to pan · Click a tradition to explore
+        </p>
       </header>
 
       <TraditionMap traditions={traditions} resourceMap={resourceMap} />
