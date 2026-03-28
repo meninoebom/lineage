@@ -5,7 +5,6 @@ import { getAllResources, getAllTraditions } from "@/lib/data";
 import { ResourcesClient } from "@/components/resources-client";
 import { SITE_URL } from "@/lib/seo";
 
-
 export const metadata: Metadata = {
   title: "Resources",
   description:
