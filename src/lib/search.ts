@@ -13,9 +13,13 @@ export type SearchResult =
 /**
  * Case-insensitive substring match on name.
  */
+function normalize(s: string): string {
+  return s.toLowerCase().replace(/-/g, " ").replace(/\s+/g, " ").trim();
+}
+
 function matchesQuery(name: string, query: string): boolean {
   if (!query.trim()) return true;
-  return name.toLowerCase().includes(query.toLowerCase().trim());
+  return normalize(name).includes(normalize(query));
 }
 
 /**

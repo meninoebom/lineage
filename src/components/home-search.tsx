@@ -104,13 +104,15 @@ export function HomeSearch({
   }, [teachers, centers, resources, traditionNames]);
 
   const results = useMemo(() => {
-    const q = query.toLowerCase().trim();
+    const normalize = (s: string) =>
+      s.toLowerCase().replace(/-/g, " ").replace(/\s+/g, " ").trim();
+    const q = normalize(query);
     if (!q || q.length < 2) return [];
     return items
       .filter(
         (item) =>
-          item.name.toLowerCase().includes(q) ||
-          item.detail.toLowerCase().includes(q),
+          normalize(item.name).includes(q) ||
+          normalize(item.detail).includes(q),
       )
       .slice(0, 8);
   }, [query, items]);
