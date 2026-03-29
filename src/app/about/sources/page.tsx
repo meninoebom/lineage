@@ -66,22 +66,20 @@ export default function AboutSourcesPage() {
 
           <p>
             If you are a practitioner, scholar, or simply a careful reader who
-            notices something wrong — a mischaracterized teaching, a missing
-            lineage, a broken connection — we genuinely want to hear from you.
+            notices something wrong (a mischaracterized teaching, a missing
+            lineage, a broken connection), we genuinely want to hear from you.
             This project improves through the knowledge of its readers, not in
             spite of it.
           </p>
 
           <p>
             <Link
-              href="https://formspree.io/f/mbdpjqyb"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="mailto:contact@lineage.guide"
               className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
             >
               Suggest an edit
-            </Link>{" "}
-            — every correction makes this resource more trustworthy for the
+            </Link>
+            . Every correction makes this resource more trustworthy for the
             next person who finds it.
           </p>
         </div>
