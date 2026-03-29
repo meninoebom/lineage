@@ -47,7 +47,7 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
   /* Stitch surface hierarchy */
-  --color-surface: #fcf9f3;
+  --color-surface: #f5efe6;
   --color-surface-container-low: #f6f3ed;
   --color-surface-container-lowest: #ffffff;
   --color-surface-container: #f0eee8;
@@ -62,7 +62,7 @@
   /* Ambient shadow per Stitch (4-6% opacity, soft glow) */
   --shadow-ambient: 0px 12px 32px rgba(28, 28, 24, 0.05);
   /* Legacy aliases for existing components */
-  --color-cream: #fcf9f3;
+  --color-cream: #f5efe6;
   --color-terracotta: #8b4b2c;
   --color-terracotta-light: rgba(139, 75, 44, 0.1);
   --color-warm-gray: #dcdad4;
@@ -71,11 +71,11 @@
 
 :root {
   /* Stitch Design System — "The Digital Archivist" */
-  --background: #fcf9f3;
+  --background: #f5efe6;
   --foreground: #1c1c18;
-  --card: #ffffff;
+  --card: #faf8f4;
   --card-foreground: #1c1c18;
-  --popover: #ffffff;
+  --popover: #faf8f4;
   --popover-foreground: #1c1c18;
   --primary: #8b4b2c;
   --primary-foreground: #fcf9f3;
@@ -86,7 +86,7 @@
   --accent: #f6f3ed;
   --accent-foreground: #8b4b2c;
   --destructive: #c84b31;
-  --border: #d9c2b9;
+  --border: #c9ad9e;
   --input: #e5e2dc;
   --ring: #8b4b2c;
   --chart-1: #8b4b2c;
