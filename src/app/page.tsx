@@ -44,8 +44,8 @@ const sections = [
     icon: <Users size={22} strokeWidth={1.5} />,
   },
   {
-    title: "Browse Books",
-    description: "Books on meditation, philosophy, and inner life.",
+    title: "Browse Resources",
+    description: "Resources on meditation, philosophy, and inner life.",
     href: "/resources",
     icon: <BookOpen size={22} strokeWidth={1.5} />,
   },
@@ -192,12 +192,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Reading paths */}
+      {/* Learning paths */}
       <section className="py-16 mb-20">
         <div className="text-center mb-10">
           <h2 className="text-3xl mb-4">Not sure where to start?</h2>
           <p className="text-muted-foreground leading-relaxed max-w-lg mx-auto">
-            Curated reading paths through traditions and themes, each 3-5 books deep.
+            Curated learning paths through traditions and themes, each 3-5 resources deep.
           </p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-8">
@@ -210,7 +210,7 @@ export default function Home() {
             href="/paths"
             className="font-sans text-sm text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
           >
-            View all reading paths &rarr;
+            View all learning paths &rarr;
           </Link>
         </div>
       </section>

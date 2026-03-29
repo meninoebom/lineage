@@ -127,7 +127,7 @@ export function ResourcesClient({ resources, traditionNames }: ResourcesClientPr
               href="/paths"
               className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
             >
-              explore our curated reading paths
+              explore our curated learning paths
             </Link>
             .
           </p>

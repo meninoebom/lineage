@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const footerLinks = [
-  { label: "Reading Paths", href: "/paths" },
+  { label: "Learning Paths", href: "/paths" },
   { label: "Sources", href: "/about/sources" },
   { label: "Contact", href: "mailto:contact@lineage.guide" },
 ] as const;
