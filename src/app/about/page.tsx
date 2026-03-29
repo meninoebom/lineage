@@ -63,13 +63,12 @@ export default function AboutPage() {
           <ul>
             <li>
               <a
-                href="https://github.com/meninoebom/lineage/issues"
+                href="https://formspree.io/f/mbdpjqyb"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Suggest an edit or report an issue
-              </a>{" "}
-              on GitHub
+              </a>
             </li>
             <li>
               Add a teacher or center that&apos;s missing from the directory

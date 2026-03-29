@@ -3,9 +3,7 @@ import Link from "next/link";
 const footerLinks = [
   { label: "Reading Paths", href: "/paths" },
   { label: "Sources", href: "/about/sources" },
-  { label: "Terms of Service", href: "#" },
-  { label: "Privacy Policy", href: "#" },
-  { label: "Contact", href: "#" },
+  { label: "Feedback", href: "https://formspree.io/f/mbdpjqyb" },
 ] as const;
 
 export function SiteFooter() {

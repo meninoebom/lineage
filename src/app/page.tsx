@@ -9,7 +9,9 @@ import {
   getAllCenters,
   getAllResources,
   getAllTraditions,
+  getAllPaths,
 } from "@/lib/data";
+import { PathCard } from "@/components/path-card";
 import { SITE_URL } from "@/lib/seo";
 
 const description =
@@ -66,6 +68,9 @@ export default function Home() {
   const centers = getAllCenters();
   const resources = getAllResources();
   const traditions = getAllTraditions();
+
+  const paths = getAllPaths();
+  const featuredPaths = paths.slice(0, 4);
 
   const traditionNames: Record<string, string> = {};
   for (const t of traditions) {
@@ -187,19 +192,27 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Reading paths teaser */}
-      <section className="py-16 max-w-2xl mx-auto mb-20 text-center">
-        <h2 className="text-3xl mb-4">Not sure where to start?</h2>
-        <p className="text-muted-foreground leading-relaxed mb-6">
-          We&apos;ve curated reading paths through traditions and themes,
-          each 3-5 books deep.
-        </p>
-        <Link
-          href="/paths"
-          className="inline-flex items-center gap-2 bg-gradient-to-br from-primary to-primary-container text-primary-foreground px-6 py-3 rounded font-sans text-sm hover:opacity-90 transition-opacity"
-        >
-          Browse Reading Paths &rarr;
-        </Link>
+      {/* Reading paths */}
+      <section className="py-16 mb-20">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl mb-4">Not sure where to start?</h2>
+          <p className="text-muted-foreground leading-relaxed max-w-lg mx-auto">
+            Curated reading paths through traditions and themes, each 3-5 books deep.
+          </p>
+        </div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-8">
+          {featuredPaths.map((path) => (
+            <PathCard key={path.slug} path={path} compact />
+          ))}
+        </div>
+        <div className="text-center">
+          <Link
+            href="/paths"
+            className="font-sans text-sm text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
+          >
+            View all reading paths &rarr;
+          </Link>
+        </div>
       </section>
 
       {/* Newsletter */}

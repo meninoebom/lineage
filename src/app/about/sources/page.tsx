@@ -74,12 +74,12 @@ export default function AboutSourcesPage() {
 
           <p>
             <Link
-              href="https://github.com/meninoebom/lineage/issues"
+              href="https://formspree.io/f/mbdpjqyb"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
             >
-              Suggest an edit on GitHub
+              Suggest an edit
             </Link>{" "}
             — every correction makes this resource more trustworthy for the
             next person who finds it.

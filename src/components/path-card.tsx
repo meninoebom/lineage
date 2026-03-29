@@ -21,15 +21,16 @@ const PATH_IMAGES: Record<string, string> = {
 
 interface PathCardProps {
   path: ResolvedPath;
+  compact?: boolean;
 }
 
-export function PathCard({ path }: PathCardProps) {
+export function PathCard({ path, compact = false }: PathCardProps) {
   const imageSrc = PATH_IMAGES[path.slug];
 
   return (
     <Link href={`/paths/${path.slug}`} className="group">
       <div className="h-full bg-card border border-border/50 rounded overflow-hidden transition-colors hover:bg-accent/50">
-        <div className="relative h-36">
+        <div className={`relative ${compact ? "h-28" : "h-36"}`}>
           {imageSrc ? (
             <Image
               src={imageSrc}
@@ -42,25 +43,27 @@ export function PathCard({ path }: PathCardProps) {
             <div className="h-full bg-gradient-to-br from-surface-container-low to-surface-dim" />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-          <h3 className="absolute bottom-3 left-4 right-4 font-serif text-lg text-white leading-snug">
+          <h3 className={`absolute bottom-3 left-4 right-4 font-serif text-white leading-snug ${compact ? "text-base" : "text-lg"}`}>
             {path.title}
           </h3>
         </div>
-        <div className="p-5 pt-4">
-          <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-            {path.description}
-          </p>
-          <ul className="space-y-1 text-sm text-muted-foreground">
-            {path.resources.map((r) => (
-              <li key={r.slug} className="truncate">
-                <span className="font-medium text-foreground/80">{r.title}</span>
-                {r.author && (
-                  <span className="text-muted-foreground"> — {r.author}</span>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
+        {!compact && (
+          <div className="p-5 pt-4">
+            <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+              {path.description}
+            </p>
+            <ul className="space-y-1 text-sm text-muted-foreground">
+              {path.resources.map((r) => (
+                <li key={r.slug} className="truncate">
+                  <span className="font-medium text-foreground/80">{r.title}</span>
+                  {r.author && (
+                    <span className="text-muted-foreground"> — {r.author}</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </Link>
   );
