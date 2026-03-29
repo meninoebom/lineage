@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { PageLayout } from "@/components/page-layout";
 import { HomeSearch } from "@/components/home-search";
+import { Users, BookOpen, MapPin, Network } from "lucide-react";
 import {
   getAllTeachers,
   getAllCenters,
@@ -38,51 +39,25 @@ const sections = [
     title: "Find a Teacher",
     description: "Living teachers you can study with, across traditions.",
     href: "/teachers",
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <circle cx="16" cy="10" r="5" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M6 28c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
-    ),
+    icon: <Users size={22} strokeWidth={1.5} />,
   },
   {
     title: "Browse Books",
     description: "Books on meditation, philosophy, and inner life.",
     href: "/resources",
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <rect x="4" y="4" width="10" height="14" rx="1" stroke="currentColor" strokeWidth="1.5" />
-        <rect x="18" y="4" width="10" height="14" rx="1" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M9 22v6M23 22v6M9 28h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
-    ),
+    icon: <BookOpen size={22} strokeWidth={1.5} />,
   },
   {
     title: "Find a Center",
     description: "Meditation centers and practice communities you can visit.",
     href: "/centers",
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <rect x="6" y="12" width="20" height="16" rx="1" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M6 12l10-8 10 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        <rect x="13" y="20" width="6" height="8" rx="0.5" stroke="currentColor" strokeWidth="1.5" />
-      </svg>
-    ),
+    icon: <MapPin size={22} strokeWidth={1.5} />,
   },
   {
     title: "Explore Traditions",
     description: "How contemplative traditions connect and diverge across time.",
     href: "/traditions",
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <circle cx="10" cy="10" r="4" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="22" cy="10" r="4" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="16" cy="22" r="4" stroke="currentColor" strokeWidth="1.5" />
-        <line x1="13" y1="12" x2="14" y2="19" stroke="currentColor" strokeWidth="1" />
-        <line x1="19" y1="12" x2="18" y2="19" stroke="currentColor" strokeWidth="1" />
-        <line x1="14" y1="10" x2="18" y2="10" stroke="currentColor" strokeWidth="1" />
-      </svg>
-    ),
+    icon: <Network size={22} strokeWidth={1.5} />,
   },
 ];
 
@@ -145,8 +120,8 @@ export default function Home() {
               {sections.map((section) => (
                 <Link key={section.href} href={section.href} className="group">
                   <div className="h-full rounded-lg bg-card p-5 border border-border/50 shadow-lg transition-colors group-hover:bg-accent">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="text-muted-foreground">
+                    <div className="mb-4">
+                      <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 text-primary">
                         {section.icon}
                       </div>
                     </div>
