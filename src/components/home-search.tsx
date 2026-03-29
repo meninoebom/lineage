@@ -208,7 +208,7 @@ export function HomeSearch({
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => setFocused(true)}
-          placeholder="Search teachers, traditions, books, centers..."
+          placeholder="Search teachers, traditions, videos, books..."
           aria-label="Search Lineage"
           className="w-full h-12 pl-11 pr-4 rounded-lg bg-white/90 backdrop-blur border border-border/30 font-sans text-base text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/20 shadow-lg transition-all"
         />
