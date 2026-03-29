@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { Teacher } from "@/lib/types";
 import { filterTeachers } from "@/lib/search";
 import { Input } from "@/components/ui/input";
+import { Select } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 
 interface TeachersClientProps {
@@ -15,6 +16,7 @@ interface TeachersClientProps {
 export function TeachersClient({ teachers, traditionNames }: TeachersClientProps) {
   const [query, setQuery] = useState("");
   const [selectedTraditions, setSelectedTraditions] = useState<string[]>([]);
+  const [selectedState, setSelectedState] = useState("");
 
   const traditions = useMemo(() => {
     const t = new Set<string>();
@@ -22,13 +24,21 @@ export function TeachersClient({ teachers, traditionNames }: TeachersClientProps
     return Array.from(t).sort();
   }, [teachers]);
 
+  const states = useMemo(() => {
+    const s = new Set<string>();
+    for (const teacher of teachers) {
+      if (teacher.state && teacher.state !== "Unknown") s.add(teacher.state);
+    }
+    return Array.from(s).sort();
+  }, [teachers]);
+
   const results = useMemo(() => {
     return filterTeachers(teachers, {
       query,
       traditions: selectedTraditions,
-      state: "",
+      state: selectedState,
     });
-  }, [teachers, query, selectedTraditions]);
+  }, [teachers, query, selectedTraditions, selectedState]);
 
   const toggleTradition = useCallback((slug: string) => {
     setSelectedTraditions((prev) =>
@@ -39,19 +49,36 @@ export function TeachersClient({ teachers, traditionNames }: TeachersClientProps
   const clearFilters = useCallback(() => {
     setQuery("");
     setSelectedTraditions([]);
+    setSelectedState("");
   }, []);
 
-  const hasActiveFilters = query !== "" || selectedTraditions.length > 0;
+  const hasActiveFilters = query !== "" || selectedTraditions.length > 0 || selectedState !== "";
 
   return (
     <div>
       <div className="mb-10 space-y-4">
-        <Input
-          placeholder="Search teachers by name..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          aria-label="Search teachers by name"
-        />
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <Input
+            placeholder="Search teachers by name..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            aria-label="Search teachers by name"
+            className="flex-1"
+          />
+          <Select
+            value={selectedState}
+            onChange={(e) => setSelectedState(e.target.value)}
+            aria-label="Filter by location"
+            className="sm:max-w-[200px]"
+          >
+            <option value="">All locations</option>
+            {states.map((state) => (
+              <option key={state} value={state}>
+                {state}
+              </option>
+            ))}
+          </Select>
+        </div>
 
         <div className="flex flex-wrap items-center gap-2">
           <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by tradition">
