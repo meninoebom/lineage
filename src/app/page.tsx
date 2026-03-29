@@ -3,7 +3,6 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { PageLayout } from "@/components/page-layout";
 import { HomeSearch } from "@/components/home-search";
-import { Users, BookOpen, MapPin, Network } from "lucide-react";
 import {
   getAllTeachers,
   getAllCenters,
@@ -41,25 +40,25 @@ const sections = [
     title: "Find a Teacher",
     description: "Living teachers you can study with, across traditions.",
     href: "/teachers",
-    icon: <Users size={22} strokeWidth={1.5} />,
+    image: "/images/cards/teacher.jpg",
   },
   {
     title: "Browse Resources",
     description: "Resources on meditation, philosophy, and inner life.",
     href: "/resources",
-    icon: <BookOpen size={22} strokeWidth={1.5} />,
+    image: "/images/cards/books.jpg",
   },
   {
     title: "Find a Center",
     description: "Meditation centers and practice communities you can visit.",
     href: "/centers",
-    icon: <MapPin size={22} strokeWidth={1.5} />,
+    image: "/images/traditions/tibetan-buddhism-gelug.jpg",
   },
   {
     title: "Explore Traditions",
     description: "How contemplative traditions connect and diverge across time.",
     href: "/traditions",
-    icon: <Network size={22} strokeWidth={1.5} />,
+    image: "/images/cards/bell.jpg",
   },
 ];
 
@@ -120,17 +119,23 @@ export default function Home() {
             </div>
           </section>
 
-          <div className="relative z-10 w-full max-w-5xl mx-auto px-6 -mt-20">
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="relative z-10 w-full max-w-5xl mx-auto px-6 -mt-16">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {sections.map((section) => (
                 <Link key={section.href} href={section.href} className="group">
-                  <div className="h-full rounded-lg bg-card p-5 border border-border/50 shadow-lg transition-colors group-hover:bg-accent">
-                    <div className="mb-4">
-                      <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 text-primary">
-                        {section.icon}
-                      </div>
+                  <div className="overflow-hidden rounded-xl">
+                    <div className="relative h-40">
+                      <Image
+                        src={section.image}
+                        alt=""
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      />
                     </div>
-                    <h3 className="font-serif text-base font-medium mb-1.5 group-hover:text-primary transition-colors">
+                  </div>
+                  <div className="pt-3">
+                    <h3 className="font-serif text-base font-medium group-hover:text-primary transition-colors">
                       {section.title}
                     </h3>
                     <p className="font-sans text-sm text-muted-foreground leading-relaxed">
@@ -145,7 +150,7 @@ export default function Home() {
       }
     >
       {/* Map teaser */}
-      <section className="py-20 -mx-6 px-6 bg-surface-container-low/40 mb-20">
+      <section className="py-20 -mx-6 px-6 bg-surface-container mb-12">
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-10">
           <div className="flex-1 w-full">
             <div className="rounded bg-card border border-border/50 overflow-hidden p-6">
@@ -193,7 +198,7 @@ export default function Home() {
       </section>
 
       {/* Learning paths */}
-      <section className="py-16 mb-20">
+      <section className="pt-4 pb-6 mb-12">
         <div className="text-center mb-10">
           <h2 className="text-3xl mb-4">Not sure where to start?</h2>
           <p className="text-muted-foreground leading-relaxed max-w-lg mx-auto">
@@ -216,7 +221,7 @@ export default function Home() {
       </section>
 
       {/* Newsletter */}
-      <section className="py-16 -mx-6 px-6 bg-surface-container-low/40">
+      <section className="py-16 -mx-6 px-6 bg-surface-container-low">
         <div className="max-w-md mx-auto text-center">
           <h2 className="text-2xl mb-3">Stay Connected</h2>
           <p className="font-sans text-sm text-muted-foreground mb-6">
