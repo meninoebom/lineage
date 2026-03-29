@@ -3,7 +3,7 @@ import Link from "next/link";
 const footerLinks = [
   { label: "Reading Paths", href: "/paths" },
   { label: "Sources", href: "/about/sources" },
-  { label: "Feedback", href: "https://formspree.io/f/mbdpjqyb" },
+  { label: "Contact", href: "mailto:contact@lineage.guide" },
 ] as const;
 
 export function SiteFooter() {
