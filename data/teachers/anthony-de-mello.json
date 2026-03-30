@@ -1,0 +1,16 @@
+{
+  "name": "Anthony de Mello",
+  "slug": "anthony-de-mello",
+  "bio": "Anthony de Mello was an Indian Jesuit priest, psychotherapist, and spiritual teacher whose retreats and writings synthesized Christian mysticism, Zen, Sufism, and Hindu Advaita into a universal contemplative practice. Based at the Sadhana Institute in Pune, India, he taught and led retreats worldwide until his sudden death in 1987. His posthumously published talks, particularly Awareness, brought his teachings to a global audience.",
+  "photo": null,
+  "website": null,
+  "birth_year": 1931,
+  "death_year": 1987,
+  "city": "Pune",
+  "state": "Maharashtra",
+  "country": "India",
+  "latitude": 18.5204,
+  "longitude": 73.8567,
+  "traditions": ["christian-mysticism"],
+  "centers": []
+}
