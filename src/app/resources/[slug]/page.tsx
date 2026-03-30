@@ -97,7 +97,7 @@ export default async function ResourcePage({ params }: { params: Promise<{ slug:
           <div className="mb-10 flex flex-wrap gap-2">
             {traditions.map((t) => (
               <Link key={t!.slug} href={`/traditions/${t!.slug}`}>
-                <Badge variant="secondary" className="hover:bg-accent transition-colors">
+                <Badge variant="tradition" className="hover:bg-accent transition-colors">
                   {t!.name}
                 </Badge>
               </Link>
