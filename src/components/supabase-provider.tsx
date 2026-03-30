@@ -9,7 +9,6 @@ interface SupabaseContextValue {
   loading: boolean;
   signInWithMagicLink: (email: string) => Promise<{ error: Error | null }>;
   signInWithGoogle: () => Promise<void>;
-  signInWithApple: () => Promise<void>;
   signOut: () => Promise<void>;
 }
 
@@ -60,15 +59,6 @@ export function SupabaseProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
-  const signInWithApple = useCallback(async () => {
-    const client = getSupabaseClient();
-    if (!client) return;
-    await client.auth.signInWithOAuth({
-      provider: "apple",
-      options: { redirectTo: window.location.origin + window.location.pathname },
-    });
-  }, []);
-
   const signOut = useCallback(async () => {
     const client = getSupabaseClient();
     if (!client) return;
@@ -78,7 +68,7 @@ export function SupabaseProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <SupabaseContext.Provider
-      value={{ user, loading, signInWithMagicLink, signInWithGoogle, signInWithApple, signOut }}
+      value={{ user, loading, signInWithMagicLink, signInWithGoogle, signOut }}
     >
       {children}
     </SupabaseContext.Provider>

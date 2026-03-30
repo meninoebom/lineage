@@ -3,7 +3,6 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 
 const mockSignInWithMagicLink = vi.fn();
 const mockSignInWithGoogle = vi.fn();
-const mockSignInWithApple = vi.fn();
 
 vi.mock("../supabase-provider", () => ({
   useSupabase: () => ({
@@ -11,7 +10,6 @@ vi.mock("../supabase-provider", () => ({
     loading: false,
     signInWithMagicLink: mockSignInWithMagicLink,
     signInWithGoogle: mockSignInWithGoogle,
-    signInWithApple: mockSignInWithApple,
     signOut: vi.fn(),
   }),
 }));
@@ -30,10 +28,9 @@ describe("AuthPanel", () => {
     expect(screen.getByPlaceholderText("your@email.com")).toBeInTheDocument();
   });
 
-  it("renders Google and Apple sign-in buttons", () => {
+  it("renders Google sign-in button", () => {
     render(<AuthPanel />);
     expect(screen.getByText("Google")).toBeInTheDocument();
-    expect(screen.getByText("Apple")).toBeInTheDocument();
   });
 
   it("sends magic link on form submit", async () => {
@@ -82,9 +79,4 @@ describe("AuthPanel", () => {
     expect(mockSignInWithGoogle).toHaveBeenCalled();
   });
 
-  it("calls signInWithApple on Apple button click", () => {
-    render(<AuthPanel />);
-    fireEvent.click(screen.getByText("Apple"));
-    expect(mockSignInWithApple).toHaveBeenCalled();
-  });
 });
