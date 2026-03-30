@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, useCallback } from "react";
-import { supabase } from "@/lib/supabase";
+import { getSupabaseClient } from "@/lib/supabase";
 import type { User } from "@supabase/supabase-js";
 
 interface SupabaseContextValue {
@@ -20,14 +20,20 @@ export function SupabaseProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
+    const client = getSupabaseClient();
+    if (!client) {
+      setLoading(false);
+      return;
+    }
+
+    client.auth.getUser().then(({ data }) => {
       setUser(data.user);
       setLoading(false);
     });
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
+    } = client.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
       setLoading(false);
     });
@@ -36,7 +42,9 @@ export function SupabaseProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const signInWithMagicLink = useCallback(async (email: string) => {
-    const { error } = await supabase.auth.signInWithOtp({
+    const client = getSupabaseClient();
+    if (!client) return { error: new Error("Supabase not configured") };
+    const { error } = await client.auth.signInWithOtp({
       email,
       options: { emailRedirectTo: window.location.origin + window.location.pathname },
     });
@@ -44,21 +52,27 @@ export function SupabaseProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const signInWithGoogle = useCallback(async () => {
-    await supabase.auth.signInWithOAuth({
+    const client = getSupabaseClient();
+    if (!client) return;
+    await client.auth.signInWithOAuth({
       provider: "google",
       options: { redirectTo: window.location.origin + window.location.pathname },
     });
   }, []);
 
   const signInWithApple = useCallback(async () => {
-    await supabase.auth.signInWithOAuth({
+    const client = getSupabaseClient();
+    if (!client) return;
+    await client.auth.signInWithOAuth({
       provider: "apple",
       options: { redirectTo: window.location.origin + window.location.pathname },
     });
   }, []);
 
   const signOut = useCallback(async () => {
-    await supabase.auth.signOut();
+    const client = getSupabaseClient();
+    if (!client) return;
+    await client.auth.signOut();
     setUser(null);
   }, []);
 
