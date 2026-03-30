@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import { defaultMetadata } from "@/lib/seo";
 import { FeedbackWidget } from "@/components/feedback-widget";
+import { SupabaseProvider } from "@/components/supabase-provider";
 import "./globals.css";
 
 const cormorantGaramond = Cormorant_Garamond({
@@ -38,8 +39,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${cormorantGaramond.variable} ${inter.variable}`}>
       <body className="antialiased">
-        {children}
-        <FeedbackWidget />
+        <SupabaseProvider>
+          {children}
+          <FeedbackWidget />
+        </SupabaseProvider>
       </body>
     </html>
   );
