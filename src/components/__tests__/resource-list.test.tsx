@@ -1,7 +1,20 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { ResourceList } from "../resource-list";
 import type { Resource } from "@/lib/types";
+
+// Mock the client-side testimony counts wrapper
+vi.mock("../resource-list-testimony-counts", () => ({
+  ResourceListTestimonyCounts: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+}));
+
+// Mock next/link
+vi.mock("next/link", () => ({
+  default: ({ children, href, ...props }: { children: React.ReactNode; href: string }) => (
+    <a href={href} {...props}>{children}</a>
+  ),
+}));
+
+import { ResourceList } from "../resource-list";
 
 const makeResource = (overrides: Partial<Resource> = {}): Resource => ({
   title: "Test Resource",
@@ -60,16 +73,14 @@ describe("ResourceList", () => {
     expect(screen.queryByText("null")).toBeNull();
   });
 
-  it("renders external links with target and rel attributes", () => {
+  it("links to internal resource detail pages", () => {
     render(
       <ResourceList
-        resources={[makeResource({ title: "Linked Book", url: "https://example.com/linked" })]}
+        resources={[makeResource({ title: "Linked Book", slug: "linked-book" })]}
       />
     );
     const link = screen.getByRole("link", { name: /Linked Book/ });
-    expect(link.getAttribute("href")).toBe("https://example.com/linked");
-    expect(link.getAttribute("target")).toBe("_blank");
-    expect(link.getAttribute("rel")).toBe("noopener noreferrer");
+    expect(link.getAttribute("href")).toBe("/resources/linked-book");
   });
 
   it("renders type subheadings within categories", () => {

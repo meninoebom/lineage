@@ -135,31 +135,31 @@ export function ResourcesClient({ resources, traditionNames }: ResourcesClientPr
       ) : (
         <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
           {results.map((resource) => (
-            <a
+            <Link
               key={resource.slug}
-              href={resource.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-baseline gap-3 rounded border border-border/50 bg-card px-4 py-2.5 transition-colors hover:bg-accent/50"
+              href={`/resources/${resource.slug}`}
+              className="group flex flex-col gap-1 rounded border border-border/50 bg-card px-4 py-2.5 transition-colors hover:bg-accent/50"
             >
-              <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-baseline gap-x-2">
                 <span className="font-sans text-sm font-medium group-hover:text-primary transition-colors">
                   {resource.title}
                 </span>
                 {resource.author && (
-                  <span className="font-sans text-xs text-muted-foreground ml-2">
+                  <span className="font-sans text-xs text-muted-foreground">
                     {resource.author}
                   </span>
                 )}
               </div>
-              <div className="flex items-center gap-2 shrink-0">
-                {resource.traditions.slice(0, 2).map((slug) => (
-                  <span key={slug} className="font-sans text-[10px] text-muted-foreground/60">
-                    {traditionNames[slug] ?? slug}
-                  </span>
-                ))}
-              </div>
-            </a>
+              {resource.traditions.length > 0 && (
+                <div className="flex flex-wrap items-center gap-2">
+                  {resource.traditions.slice(0, 2).map((slug) => (
+                    <span key={slug} className="font-sans text-[10px] text-muted-foreground/60">
+                      {traditionNames[slug] ?? slug}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </Link>
           ))}
         </div>
       )}

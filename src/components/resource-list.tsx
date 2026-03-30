@@ -1,4 +1,6 @@
+import Link from "next/link";
 import type { Resource, ResourceCategory, ResourceType } from "@/lib/types";
+import { ResourceListTestimonyCounts } from "./resource-list-testimony-counts";
 
 const CATEGORY_ORDER: ResourceCategory[] = [
   "primary_text",
@@ -53,54 +55,56 @@ export function ResourceList({ resources }: ResourceListProps) {
     return acc;
   }, {});
 
+  const allSlugs = resources.map((r) => r.slug);
+
   return (
     <section className="mb-12">
       <h2 className="mb-6">Resources</h2>
 
-      {CATEGORY_ORDER.filter((category) => groupedByCategory[category]).map(
-        (category) => (
-          <div key={category} className="mb-10 last:mb-0">
-            <h3 className="font-serif text-lg font-semibold text-foreground mb-4 border-b border-border/50 pb-2">
-              {CATEGORY_LABELS[category]}
-            </h3>
+      <ResourceListTestimonyCounts slugs={allSlugs}>
+        {CATEGORY_ORDER.filter((category) => groupedByCategory[category]).map(
+          (category) => (
+            <div key={category} className="mb-10 last:mb-0">
+              <h3 className="font-serif text-lg font-semibold text-foreground mb-4 border-b border-border/50 pb-2">
+                {CATEGORY_LABELS[category]}
+              </h3>
 
-            {TYPE_ORDER.filter(
-              (type) => groupedByCategory[category]?.[type]
-            ).map((type) => (
-              <div key={type} className="mb-6 last:mb-0">
-                <h4 className="font-sans text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-3">
-                  {TYPE_LABELS[type]}
-                </h4>
-                <div className="space-y-4">
-                  {groupedByCategory[category]![type]!.map((resource) => (
-                    <a
-                      key={resource.slug}
-                      href={resource.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block rounded-lg bg-card p-4 border border-border/50 transition-colors hover:bg-accent/50"
-                    >
-                      <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-3">
-                        <span className="font-serif text-base font-medium text-foreground">
-                          {resource.title}
-                        </span>
-                        {resource.author && (
-                          <span className="font-sans text-sm text-muted-foreground">
-                            {resource.author}
+              {TYPE_ORDER.filter(
+                (type) => groupedByCategory[category]?.[type]
+              ).map((type) => (
+                <div key={type} className="mb-6 last:mb-0">
+                  <h4 className="font-sans text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-3">
+                    {TYPE_LABELS[type]}
+                  </h4>
+                  <div className="space-y-4">
+                    {groupedByCategory[category]![type]!.map((resource) => (
+                      <Link
+                        key={resource.slug}
+                        href={`/resources/${resource.slug}`}
+                        className="block rounded-lg bg-card p-4 border border-border/50 transition-colors hover:bg-accent/50"
+                      >
+                        <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-3">
+                          <span className="font-serif text-base font-medium text-foreground">
+                            {resource.title}
                           </span>
-                        )}
-                      </div>
-                      <p className="mt-1 font-sans text-sm leading-relaxed text-muted-foreground">
-                        {resource.description}
-                      </p>
-                    </a>
-                  ))}
+                          {resource.author && (
+                            <span className="font-sans text-sm text-muted-foreground">
+                              {resource.author}
+                            </span>
+                          )}
+                        </div>
+                        <p className="mt-1 font-sans text-sm leading-relaxed text-muted-foreground">
+                          {resource.description}
+                        </p>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        )
-      )}
+              ))}
+            </div>
+          )
+        )}
+      </ResourceListTestimonyCounts>
     </section>
   );
 }
