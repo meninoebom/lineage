@@ -35,6 +35,7 @@ export function ProfileCompletion({ userId, onComplete }: ProfileCompletionProps
   const [traditions, setTraditions] = useState<string[]>([]);
   const [years, setYears] = useState<YearsOfPractice | null>(null);
   const [saving, setSaving] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   function toggleTradition(t: string) {
     setTraditions((prev) =>
@@ -44,13 +45,19 @@ export function ProfileCompletion({ userId, onComplete }: ProfileCompletionProps
 
   async function handleSave() {
     setSaving(true);
-    await updateProfile(userId, {
-      display_name: displayName || null,
-      traditions,
-      years_of_practice: years,
-    });
-    setSaving(false);
-    onComplete();
+    setErrorMsg(null);
+    try {
+      await updateProfile(userId, {
+        display_name: displayName || null,
+        traditions,
+        years_of_practice: years,
+      });
+      onComplete();
+    } catch {
+      setErrorMsg("Something went wrong saving your profile. Please try again.");
+    } finally {
+      setSaving(false);
+    }
   }
 
   return (
@@ -115,6 +122,8 @@ export function ProfileCompletion({ userId, onComplete }: ProfileCompletionProps
           ))}
         </div>
       </div>
+
+      {errorMsg && <p className="text-sm text-destructive">{errorMsg}</p>}
 
       <div className="flex gap-3">
         <button

@@ -4,7 +4,7 @@
 -- Practitioner profiles (extends Supabase auth.users)
 create table public.profiles (
   id uuid references auth.users on delete cascade primary key,
-  display_name text,
+  display_name text check (char_length(display_name) <= 100),
   traditions text[] default '{}',
   years_of_practice text check (years_of_practice in ('<1', '1-3', '3-10', '10+')),
   banned boolean default false,
@@ -15,11 +15,11 @@ create table public.profiles (
 create table public.testimonies (
   id uuid default gen_random_uuid() primary key,
   user_id uuid references public.profiles on delete cascade not null,
-  resource_slug text not null,
-  impact text,
-  context text,
-  who_for text,
-  freeform text,
+  resource_slug text not null check (char_length(resource_slug) <= 200),
+  impact text check (char_length(impact) <= 2000),
+  context text check (char_length(context) <= 2000),
+  who_for text check (char_length(who_for) <= 2000),
+  freeform text check (char_length(freeform) <= 2000),
   created_at timestamptz default now(),
   unique(user_id, resource_slug)
 );
@@ -80,3 +80,5 @@ create or replace view public.testimony_counts as
 select resource_slug, count(*)::int as count
 from public.testimonies
 group by resource_slug;
+
+grant select on public.testimony_counts to anon, authenticated;

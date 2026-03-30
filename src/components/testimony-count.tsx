@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { getTestimonyCounts } from "@/lib/testimonies";
 
 interface TestimonyCountContextValue {
@@ -22,6 +22,8 @@ export function TestimonyCountProvider({ slugs, children }: TestimonyCountProvid
   const [counts, setCounts] = useState<Map<string, number>>(new Map());
   const [loading, setLoading] = useState(true);
 
+  const slugsKey = useMemo(() => JSON.stringify(slugs), [slugs]);
+
   useEffect(() => {
     if (slugs.length === 0) {
       setLoading(false);
@@ -32,7 +34,7 @@ export function TestimonyCountProvider({ slugs, children }: TestimonyCountProvid
       .then(setCounts)
       .catch(() => {}) // Fail silently
       .finally(() => setLoading(false));
-  }, [slugs]);
+  }, [slugsKey]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <TestimonyCountContext.Provider value={{ counts, loading }}>

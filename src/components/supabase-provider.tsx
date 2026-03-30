@@ -38,7 +38,7 @@ export function SupabaseProvider({ children }: { children: React.ReactNode }) {
   const signInWithMagicLink = useCallback(async (email: string) => {
     const { error } = await supabase.auth.signInWithOtp({
       email,
-      options: { emailRedirectTo: window.location.href },
+      options: { emailRedirectTo: window.location.origin + window.location.pathname },
     });
     return { error: error ? new Error(error.message) : null };
   }, []);
@@ -46,14 +46,14 @@ export function SupabaseProvider({ children }: { children: React.ReactNode }) {
   const signInWithGoogle = useCallback(async () => {
     await supabase.auth.signInWithOAuth({
       provider: "google",
-      options: { redirectTo: window.location.href },
+      options: { redirectTo: window.location.origin + window.location.pathname },
     });
   }, []);
 
   const signInWithApple = useCallback(async () => {
     await supabase.auth.signInWithOAuth({
       provider: "apple",
-      options: { redirectTo: window.location.href },
+      options: { redirectTo: window.location.origin + window.location.pathname },
     });
   }, []);
 
