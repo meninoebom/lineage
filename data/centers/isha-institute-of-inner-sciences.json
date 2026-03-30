@@ -1,0 +1,14 @@
+{
+  "name": "Isha Institute of Inner-Sciences",
+  "slug": "isha-institute-of-inner-sciences",
+  "description": "The Isha Institute of Inner-Sciences is a mountain retreat center in McMinnville, Tennessee, serving as the North American home of the Isha Foundation, founded by Sadhguru. Set on over 1,300 acres, the campus offers residential yoga and meditation programs including Inner Engineering and Hatha Yoga intensives. It is one of the largest yoga centers in North America and houses the consecrated Adiyogi Alayam.",
+  "photo": null,
+  "website": "https://isha.sadhguru.org/us/en",
+  "city": "McMinnville",
+  "state": "Tennessee",
+  "country": "US",
+  "latitude": 35.5654,
+  "longitude": -85.5744,
+  "traditions": ["classical-yoga"],
+  "teachers": ["sadhguru"]
+}
