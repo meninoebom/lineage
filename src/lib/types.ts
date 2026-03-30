@@ -80,6 +80,34 @@ export interface ResolvedPath extends Omit<Path, "resources"> {
   resources: Resource[];
 }
 
+export type YearsOfPractice = "<1" | "1-3" | "3-10" | "10+";
+
+export interface Profile {
+  id: string;
+  display_name: string | null;
+  traditions: string[];
+  years_of_practice: YearsOfPractice | null;
+  banned: boolean;
+  created_at: string;
+}
+
+export interface Testimony {
+  id: string;
+  user_id: string;
+  resource_slug: string;
+  impact: string | null;
+  context: string | null;
+  who_for: string | null;
+  freeform: string | null;
+  created_at: string;
+  profiles?: Pick<Profile, "display_name" | "traditions" | "years_of_practice">;
+}
+
+export interface TestimonyCount {
+  resource_slug: string;
+  count: number;
+}
+
 export interface Center {
   name: string;
   slug: string;
