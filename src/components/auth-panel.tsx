@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useSupabase } from "./supabase-provider";
 
 export function AuthPanel() {
-  const { signInWithMagicLink, signInWithGoogle, signInWithApple } = useSupabase();
+  const { signInWithMagicLink, signInWithGoogle } = useSupabase();
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -70,20 +70,12 @@ export function AuthPanel() {
         </div>
       </div>
 
-      <div className="flex gap-2">
-        <button
-          onClick={signInWithGoogle}
-          className="flex-1 rounded-md border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-accent/50 transition-colors"
-        >
-          Google
-        </button>
-        <button
-          onClick={signInWithApple}
-          className="flex-1 rounded-md border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-accent/50 transition-colors"
-        >
-          Apple
-        </button>
-      </div>
+      <button
+        onClick={signInWithGoogle}
+        className="w-full rounded-md border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-accent/50 transition-colors"
+      >
+        Google
+      </button>
     </div>
   );
 }
