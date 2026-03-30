@@ -135,11 +135,9 @@ export function ResourcesClient({ resources, traditionNames }: ResourcesClientPr
       ) : (
         <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
           {results.map((resource) => (
-            <a
+            <Link
               key={resource.slug}
-              href={resource.url}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={`/resources/${resource.slug}`}
               className="group flex items-baseline gap-3 rounded border border-border/50 bg-card px-4 py-2.5 transition-colors hover:bg-accent/50"
             >
               <div className="min-w-0 flex-1">
@@ -159,7 +157,7 @@ export function ResourcesClient({ resources, traditionNames }: ResourcesClientPr
                   </span>
                 ))}
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       )}
