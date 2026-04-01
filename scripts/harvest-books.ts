@@ -326,8 +326,7 @@ async function main() {
         author: teacher.name,
         year: extractYear(book.volumeInfo.publishedDate),
         description:
-          book.volumeInfo.description?.slice(0, 300).replace(/\s+/g, " ").trim() ??
-          "",
+          book.volumeInfo.description?.replace(/\s+/g, " ").trim() ?? "",
         traditions: [...teacher.traditions],
         teachers: [teacher.slug],
         centers: [],
