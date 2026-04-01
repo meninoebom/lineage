@@ -341,7 +341,7 @@ async function main() {
         url: `https://www.youtube.com/watch?v=${video.videoId}`,
         author: teacher.name,
         year,
-        description: video.description.slice(0, 300).replace(/\s+/g, " ").trim(),
+        description: video.description.replace(/\s+/g, " ").trim(),
         traditions: [...teacher.traditions],
         teachers: [teacher.slug],
         centers: [],
