@@ -139,7 +139,7 @@ export function RecommendationFlow({ resourceSlug, resourceTitle }: Recommendati
     return (
       <div className="rounded-lg border border-border bg-card p-6 text-center">
         <p className="font-serif text-lg font-medium text-foreground">
-          You've already recommended this resource
+          You&apos;ve already recommended this resource
         </p>
         <p className="mt-1 text-sm text-muted-foreground">
           Thank you for sharing your experience

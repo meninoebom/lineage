@@ -26,7 +26,7 @@ export function TestimonyCountProvider({ slugs, children }: TestimonyCountProvid
 
   useEffect(() => {
     if (slugs.length === 0) {
-      setLoading(false);
+      queueMicrotask(() => setLoading(false));
       return;
     }
 

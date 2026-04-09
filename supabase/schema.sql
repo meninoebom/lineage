@@ -5,6 +5,8 @@
 create table public.profiles (
   id uuid references auth.users on delete cascade primary key,
   display_name text check (char_length(display_name) <= 100),
+  bio text check (char_length(bio) <= 500),
+  practice_background text check (char_length(practice_background) <= 1000),
   traditions text[] default '{}',
   years_of_practice text check (years_of_practice in ('<1', '1-3', '3-10', '10+')),
   banned boolean default false,

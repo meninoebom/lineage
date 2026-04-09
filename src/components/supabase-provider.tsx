@@ -21,7 +21,8 @@ export function SupabaseProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const client = getSupabaseClient();
     if (!client) {
-      setLoading(false);
+      // Use a microtask to avoid synchronous setState in effect body
+      queueMicrotask(() => setLoading(false));
       return;
     }
 
