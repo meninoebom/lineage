@@ -3,6 +3,7 @@ import { PageLayout } from "@/components/page-layout";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { PathCard } from "@/components/path-card";
 import { getAllPaths } from "@/lib/data";
+import Link from "next/link";
 import { SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -30,12 +31,12 @@ export default function LibraryPage() {
         <h1 className="mb-3">Learning Paths</h1>
         <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
           Curated learning paths through the contemplative traditions.{" "}
-          <a
+          <Link
             href="/resources"
             className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
           >
             Browse the full collection
-          </a>
+          </Link>
           .
         </p>
       </header>
