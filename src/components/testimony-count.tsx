@@ -20,13 +20,12 @@ interface TestimonyCountProviderProps {
 
 export function TestimonyCountProvider({ slugs, children }: TestimonyCountProviderProps) {
   const [counts, setCounts] = useState<Map<string, number>>(new Map());
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(slugs.length > 0);
 
   const slugsKey = useMemo(() => JSON.stringify(slugs), [slugs]);
 
   useEffect(() => {
     if (slugs.length === 0) {
-      setLoading(false);
       return;
     }
 
