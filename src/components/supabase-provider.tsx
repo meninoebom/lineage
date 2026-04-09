@@ -15,14 +15,12 @@ interface SupabaseContextValue {
 const SupabaseContext = createContext<SupabaseContextValue | null>(null);
 
 export function SupabaseProvider({ children }: { children: React.ReactNode }) {
+  const client = getSupabaseClient();
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(client !== null);
 
   useEffect(() => {
-    const client = getSupabaseClient();
     if (!client) {
-      // Use a microtask to avoid synchronous setState in effect body
-      queueMicrotask(() => setLoading(false));
       return;
     }
 

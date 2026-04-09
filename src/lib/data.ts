@@ -64,7 +64,10 @@ function isResource(obj: unknown): obj is Resource {
     typeof r.description === "string" &&
     Array.isArray(r.traditions) &&
     Array.isArray(r.teachers) &&
-    Array.isArray(r.centers)
+    Array.isArray(r.centers) &&
+    (r.experience_level === undefined || ["beginner", "intermediate", "advanced"].includes(r.experience_level as string)) &&
+    (r.topics === undefined || (Array.isArray(r.topics) && r.topics.every((t: unknown) => typeof t === "string"))) &&
+    (r.practice_context === undefined || (Array.isArray(r.practice_context) && r.practice_context.every((t: unknown) => typeof t === "string")))
   );
 }
 

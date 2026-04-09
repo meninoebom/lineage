@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageLayout } from "@/components/page-layout";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { PathCard } from "@/components/path-card";
 import { getAllPaths } from "@/lib/data";
-import Link from "next/link";
 import { SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
