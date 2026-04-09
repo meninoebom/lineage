@@ -1,0 +1,36 @@
+{
+  "experience_level": {
+    "type": "single",
+    "description": "Prevents 'wrong book at wrong time'",
+    "values": ["beginner", "intermediate", "advanced"]
+  },
+  "topics": {
+    "type": "multi",
+    "description": "What is this resource about?",
+    "values": [
+      "meditation-technique",
+      "philosophy",
+      "daily-life",
+      "grief-loss",
+      "embodiment",
+      "ethics",
+      "devotion",
+      "nature-of-mind",
+      "teacher-student",
+      "monasticism"
+    ]
+  },
+  "practice_context": {
+    "type": "multi",
+    "description": "Who or when is this resource for?",
+    "values": [
+      "new-to-practice",
+      "deepening",
+      "life-transition",
+      "cross-tradition",
+      "retreat-prep",
+      "academic",
+      "secular"
+    ]
+  }
+}

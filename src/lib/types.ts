@@ -63,6 +63,25 @@ export interface Resource {
   traditions: string[];
   teachers: string[];
   centers: string[];
+  experience_level?: ExperienceLevel;
+  topics?: string[];
+  practice_context?: string[];
+}
+
+// -- Taxonomy types --
+
+export type ExperienceLevel = "beginner" | "intermediate" | "advanced";
+
+export interface TaxonomyDimension {
+  type: "single" | "multi";
+  description: string;
+  values: string[];
+}
+
+export interface Taxonomy {
+  experience_level: TaxonomyDimension;
+  topics: TaxonomyDimension;
+  practice_context: TaxonomyDimension;
 }
 
 export type PathType = "tradition" | "thematic";
