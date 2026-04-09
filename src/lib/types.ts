@@ -104,6 +104,8 @@ export type YearsOfPractice = "<1" | "1-3" | "3-10" | "10+";
 export interface Profile {
   id: string;
   display_name: string | null;
+  bio: string | null;
+  practice_background: string | null;
   traditions: string[];
   years_of_practice: YearsOfPractice | null;
   banned: boolean;

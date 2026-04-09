@@ -66,6 +66,8 @@ export async function updateProfile(
   userId: string,
   updates: {
     display_name?: string | null;
+    bio?: string | null;
+    practice_background?: string | null;
     traditions?: string[];
     years_of_practice?: YearsOfPractice | null;
   }

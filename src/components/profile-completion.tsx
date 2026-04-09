@@ -32,6 +32,8 @@ interface ProfileCompletionProps {
 
 export function ProfileCompletion({ userId, onComplete }: ProfileCompletionProps) {
   const [displayName, setDisplayName] = useState("");
+  const [bio, setBio] = useState("");
+  const [practiceBackground, setPracticeBackground] = useState("");
   const [traditions, setTraditions] = useState<string[]>([]);
   const [years, setYears] = useState<YearsOfPractice | null>(null);
   const [saving, setSaving] = useState(false);
@@ -49,6 +51,8 @@ export function ProfileCompletion({ userId, onComplete }: ProfileCompletionProps
     try {
       await updateProfile(userId, {
         display_name: displayName || null,
+        bio: bio || null,
+        practice_background: practiceBackground || null,
         traditions,
         years_of_practice: years,
       });
@@ -79,6 +83,32 @@ export function ProfileCompletion({ userId, onComplete }: ProfileCompletionProps
           placeholder="How you'd like to be known"
           className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-terracotta/40"
         />
+      </div>
+
+      <div>
+        <label className="text-sm font-medium text-foreground">Bio</label>
+        <textarea
+          value={bio}
+          onChange={(e) => setBio(e.target.value)}
+          placeholder="A sentence or two about yourself"
+          maxLength={500}
+          rows={2}
+          className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-terracotta/40 resize-none"
+        />
+        <p className="mt-1 text-xs text-muted-foreground">{bio.length}/500</p>
+      </div>
+
+      <div>
+        <label className="text-sm font-medium text-foreground">Practice background</label>
+        <textarea
+          value={practiceBackground}
+          onChange={(e) => setPracticeBackground(e.target.value)}
+          placeholder="How did you come to contemplative practice?"
+          maxLength={1000}
+          rows={3}
+          className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-terracotta/40 resize-none"
+        />
+        <p className="mt-1 text-xs text-muted-foreground">{practiceBackground.length}/1000</p>
       </div>
 
       <div>
