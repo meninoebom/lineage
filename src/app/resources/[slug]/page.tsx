@@ -85,7 +85,7 @@ export default async function ResourcePage({ params }: { params: Promise<{ slug:
           {resource.description}
         </p>
 
-        {(resource.topics?.length || resource.practice_context?.length) && (
+        {(resource.topics?.length ?? 0) + (resource.practice_context?.length ?? 0) > 0 && (
           <div className="mb-8">
             <TaxonomyBadges
               topics={resource.topics}
