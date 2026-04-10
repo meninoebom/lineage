@@ -13,5 +13,8 @@
   "teachers": [
     "rumi"
   ],
-  "centers": []
+  "centers": [],
+  "experience_level": "beginner",
+  "topics": ["devotion", "nature-of-mind", "daily-life"],
+  "practice_context": ["new-to-practice", "cross-tradition"]
 }

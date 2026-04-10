@@ -11,5 +11,8 @@
   "teachers": [],
   "centers": [],
   "category": "primary_text",
-  "slug": "dark-night-of-the-soul"
+  "slug": "dark-night-of-the-soul",
+  "experience_level": "advanced",
+  "topics": ["nature-of-mind", "meditation-technique"],
+  "practice_context": ["deepening", "life-transition"]
 }

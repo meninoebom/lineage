@@ -11,5 +11,8 @@
     "taoism"
   ],
   "teachers": [],
-  "centers": []
+  "centers": [],
+  "experience_level": "beginner",
+  "topics": ["philosophy", "daily-life"],
+  "practice_context": ["new-to-practice", "secular"]
 }

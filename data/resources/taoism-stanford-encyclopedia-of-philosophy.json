@@ -11,5 +11,8 @@
   "teachers": [],
   "centers": [],
   "category": "encyclopedia",
-  "slug": "taoism-stanford-encyclopedia-of-philosophy"
+  "slug": "taoism-stanford-encyclopedia-of-philosophy",
+  "experience_level": "intermediate",
+  "topics": ["philosophy"],
+  "practice_context": ["academic"]
 }

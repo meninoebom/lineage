@@ -11,5 +11,8 @@
   "teachers": [],
   "centers": [],
   "category": "web_resource",
-  "slug": "sacred-texts-taoism"
+  "slug": "sacred-texts-taoism",
+  "experience_level": "intermediate",
+  "topics": ["philosophy"],
+  "practice_context": ["deepening", "academic"]
 }

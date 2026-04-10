@@ -11,5 +11,8 @@
   "teachers": [],
   "centers": [],
   "category": "encyclopedia",
-  "slug": "zen-buddhism-stanford-encyclopedia-of-philosophy"
+  "slug": "zen-buddhism-stanford-encyclopedia-of-philosophy",
+  "experience_level": "intermediate",
+  "topics": ["philosophy"],
+  "practice_context": ["academic"]
 }

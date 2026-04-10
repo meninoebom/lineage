@@ -15,5 +15,8 @@
   "teachers": [
     "ram-dass"
   ],
-  "centers": []
+  "centers": [],
+  "experience_level": "beginner",
+  "topics": ["devotion", "daily-life", "philosophy"],
+  "practice_context": ["new-to-practice", "cross-tradition"]
 }

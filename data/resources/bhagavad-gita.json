@@ -13,5 +13,8 @@
     "classical-yoga"
   ],
   "teachers": [],
-  "centers": []
+  "centers": [],
+  "experience_level": "intermediate",
+  "topics": ["philosophy", "devotion", "ethics", "daily-life"],
+  "practice_context": ["deepening", "cross-tradition"]
 }

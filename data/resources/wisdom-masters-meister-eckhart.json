@@ -13,5 +13,8 @@
   "teachers": [
     "meister-eckhart"
   ],
-  "centers": []
+  "centers": [],
+  "experience_level": "intermediate",
+  "topics": ["nature-of-mind", "philosophy"],
+  "practice_context": ["deepening", "cross-tradition"]
 }

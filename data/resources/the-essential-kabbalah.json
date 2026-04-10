@@ -11,5 +11,8 @@
     "kabbalah"
   ],
   "teachers": [],
-  "centers": []
+  "centers": [],
+  "experience_level": "beginner",
+  "topics": ["philosophy", "nature-of-mind"],
+  "practice_context": ["new-to-practice", "academic"]
 }
