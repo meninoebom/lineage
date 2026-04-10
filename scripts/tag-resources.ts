@@ -175,7 +175,17 @@ async function tagBatch(
     return [];
   }
 
-  const parsed = JSON.parse(jsonMatch[0]);
+  let parsed;
+  try {
+    parsed = JSON.parse(jsonMatch[0]);
+  } catch {
+    console.error("Invalid JSON in response:", jsonMatch[0].slice(0, 200));
+    return [];
+  }
+  if (!Array.isArray(parsed.results)) {
+    console.error("Response missing 'results' array:", Object.keys(parsed));
+    return [];
+  }
   return parsed.results.map(
     (r: {
       slug: string;

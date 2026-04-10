@@ -49,14 +49,14 @@ describe("taxonomy.json schema", () => {
 });
 
 describe("Resource type backward compatibility", () => {
-  it("existing resources load without taxonomy fields", () => {
+  it("resources load whether or not they have taxonomy fields", () => {
     const resources = getAllResources();
     expect(resources.length).toBeGreaterThan(0);
-    const first = resources[0];
-    // Taxonomy fields are optional — undefined on untagged resources
-    expect(first.experience_level).toBeUndefined();
-    expect(first.topics).toBeUndefined();
-    expect(first.practice_context).toBeUndefined();
+    // Some may be tagged, some may not — all should load
+    const tagged = resources.filter((r) => r.experience_level);
+    const untagged = resources.filter((r) => !r.experience_level);
+    expect(tagged.length + untagged.length).toBe(resources.length);
+    expect(tagged.length).toBeGreaterThan(0); // we have exemplars
   });
 
   it("a resource with taxonomy fields satisfies the Resource type", () => {
