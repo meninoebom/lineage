@@ -15,5 +15,8 @@
   "teachers": [
     "ah-almaas"
   ],
-  "centers": []
+  "centers": [],
+  "experience_level": "intermediate",
+  "topics": ["meditation-technique", "nature-of-mind"],
+  "practice_context": ["deepening", "cross-tradition"]
 }

@@ -12,5 +12,8 @@
   "teachers": [],
   "centers": [],
   "category": "web_resource",
-  "slug": "vipassana-research-institute"
+  "slug": "vipassana-research-institute",
+  "experience_level": "beginner",
+  "topics": ["meditation-technique"],
+  "practice_context": ["new-to-practice", "retreat-prep"]
 }

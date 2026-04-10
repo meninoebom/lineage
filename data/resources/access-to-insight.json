@@ -11,5 +11,8 @@
     "theravada"
   ],
   "teachers": [],
-  "centers": []
+  "centers": [],
+  "experience_level": "beginner",
+  "topics": ["meditation-technique", "philosophy", "ethics"],
+  "practice_context": ["new-to-practice", "deepening"]
 }

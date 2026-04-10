@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { getAllResources, getResource, getAllTraditions, getAllTeachers } from "@/lib/data";
 import { bookshopAffiliateUrl } from "@/lib/affiliate";
 import { ResourceTestimonies } from "@/components/resource-testimonies";
+import { TaxonomyBadges } from "@/components/taxonomy-badges";
 import { SITE_URL } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -73,11 +74,25 @@ export default async function ResourcePage({ params }: { params: Promise<{ slug:
           {resource.year && (
             <p className="text-sm text-muted-foreground mt-1">{resource.year}</p>
           )}
+          {resource.experience_level && (
+            <div className="mt-3">
+              <TaxonomyBadges experienceLevel={resource.experience_level} />
+            </div>
+          )}
         </header>
 
-        <p className="text-foreground/80 leading-relaxed mb-8">
+        <p className="text-foreground/80 leading-relaxed mb-6">
           {resource.description}
         </p>
+
+        {(resource.topics?.length ?? 0) + (resource.practice_context?.length ?? 0) > 0 && (
+          <div className="mb-8">
+            <TaxonomyBadges
+              topics={resource.topics}
+              practiceContext={resource.practice_context}
+            />
+          </div>
+        )}
 
         {/* External link */}
         <div className="mb-10">

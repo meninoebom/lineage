@@ -14,5 +14,8 @@
   "teachers": [
     "rupert-spira"
   ],
-  "centers": []
+  "centers": [],
+  "experience_level": "advanced",
+  "topics": ["nature-of-mind", "philosophy"],
+  "practice_context": ["deepening", "cross-tradition"]
 }

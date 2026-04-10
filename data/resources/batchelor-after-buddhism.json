@@ -14,5 +14,8 @@
   "teachers": [
     "stephen-batchelor"
   ],
-  "centers": []
+  "centers": [],
+  "experience_level": "intermediate",
+  "topics": ["philosophy", "ethics"],
+  "practice_context": ["academic", "secular", "cross-tradition"]
 }
