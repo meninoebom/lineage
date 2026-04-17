@@ -6,6 +6,8 @@
   "year": null,
   "description": "Stanford Encyclopedia entry on Tibetan Buddhist philosophy covering the four major schools, their doctrines, and contemplative methods.",
   "traditions": [
+    "tibetan-buddhism-nyingma",
+    "tibetan-buddhism-kagyu",
     "tibetan-buddhism-gelug",
     "vajrayana",
     "dzogchen"

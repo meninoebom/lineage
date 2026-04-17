@@ -47,6 +47,7 @@ const CURATED_POSITIONS: Record<string, { column: number; year: number }> = {
   "vajrayana":            { column: 2.5, year: 550 },
   "tantra":               { column: 4, year: 550 },
   "dzogchen":             { column: 3, year: 700 },
+  "tibetan-buddhism-nyingma": { column: 2.5, year: 800 },
   "advaita-vedanta":      { column: 4, year: 700 },
   "sufism":               { column: 6, year: 700 },
   "kashmir-shaivism":     { column: 5, year: 750 },
@@ -56,6 +57,9 @@ const CURATED_POSITIONS: Record<string, { column: number; year: number }> = {
   "bhakti":               { column: 5, year: 1100 },
   "kabbalah":             { column: 6, year: 1100 },
   "hesychasm":            { column: 7, year: 1200 },
+
+  // ~1000 CE (Kagyu emerged via Tilopa/Naropa/Marpa/Milarepa)
+  "tibetan-buddhism-kagyu":  { column: 2, year: 1050 },
 
   // ~1500 CE
   "tibetan-buddhism-gelug": { column: 3, year: 1400 },
