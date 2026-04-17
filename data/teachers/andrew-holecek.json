@@ -11,6 +11,6 @@
   "country": "US",
   "latitude": null,
   "longitude": null,
-  "traditions": ["vajrayana", "tibetan-buddhism-gelug"],
+  "traditions": ["vajrayana", "tibetan-buddhism-kagyu", "tibetan-buddhism-nyingma"],
   "centers": []
 }

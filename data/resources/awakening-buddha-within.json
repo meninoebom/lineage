@@ -8,7 +8,8 @@
   "year": 1997,
   "description": "Accessible guide to Tibetan Buddhist practice by an American-born lama, integrating Dzogchen teachings with Western sensibilities.",
   "traditions": [
-    "tibetan-buddhism-gelug",
+    "tibetan-buddhism-kagyu",
+    "tibetan-buddhism-nyingma",
     "dzogchen"
   ],
   "teachers": [

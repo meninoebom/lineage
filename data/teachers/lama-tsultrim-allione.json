@@ -12,7 +12,8 @@
   "latitude": null,
   "longitude": null,
   "traditions": [
-    "tibetan-buddhism-gelug",
+    "tibetan-buddhism-nyingma",
+    "tibetan-buddhism-kagyu",
     "vajrayana"
   ],
   "centers": [

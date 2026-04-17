@@ -48,7 +48,7 @@ describe("classifyCandidate", () => {
     expect(["self-help", "no-tradition-match"]).toContain(result.reject_reason);
   });
 
-  it("accepts Pema Chödrön as vajrayana/tibetan-buddhism-gelug", () => {
+  it("accepts Pema Chödrön as vajrayana/tibetan-buddhism-kagyu", () => {
     const result = classifyCandidate(
       {
         name: "Pema Chödrön",
@@ -60,7 +60,7 @@ describe("classifyCandidate", () => {
     expect(result.status).toBe("accepted");
     expect(
       result.traditions.some((t) =>
-        ["vajrayana", "tibetan-buddhism-gelug"].includes(t),
+        ["vajrayana", "tibetan-buddhism-kagyu"].includes(t),
       ),
     ).toBe(true);
   });

@@ -844,7 +844,13 @@ const SOURCES_DB: Record<string, Omit<ResourceFile, "slug">[]> = {
       year: null,
       description:
         "Free library of Tibetan Buddhist texts and translations covering all schools — prayers, practice texts, philosophical works, and biographies.",
-      traditions: ["vajrayana", "tibetan-buddhism-gelug", "dzogchen"],
+      traditions: [
+        "vajrayana",
+        "tibetan-buddhism-nyingma",
+        "tibetan-buddhism-kagyu",
+        "tibetan-buddhism-gelug",
+        "dzogchen",
+      ],
       teachers: [],
       centers: [],
       category: "web_resource",
@@ -872,7 +878,13 @@ const SOURCES_DB: Record<string, Omit<ResourceFile, "slug">[]> = {
       year: null,
       description:
         "Stanford Encyclopedia entry on Tibetan Buddhist philosophy covering the four major schools, their doctrines, and contemplative methods.",
-      traditions: ["tibetan-buddhism-gelug", "vajrayana", "dzogchen"],
+      traditions: [
+        "tibetan-buddhism-nyingma",
+        "tibetan-buddhism-kagyu",
+        "tibetan-buddhism-gelug",
+        "vajrayana",
+        "dzogchen",
+      ],
       teachers: [],
       centers: [],
       category: "encyclopedia",
