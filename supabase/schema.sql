@@ -22,9 +22,19 @@ create table public.testimonies (
   context text check (char_length(context) <= 2000),
   who_for text check (char_length(who_for) <= 2000),
   freeform text check (char_length(freeform) <= 2000),
+  recommended_at timestamptz not null default now(),
   created_at timestamptz default now(),
   unique(user_id, resource_slug)
 );
+
+-- Backfill migration for existing rows:
+-- Run this against a live database that already has the testimonies table:
+--
+--   ALTER TABLE testimonies ADD COLUMN recommended_at timestamptz;
+--   UPDATE testimonies SET recommended_at = created_at WHERE recommended_at IS NULL;
+--   ALTER TABLE testimonies ALTER COLUMN recommended_at SET NOT NULL;
+--   ALTER TABLE testimonies ALTER COLUMN recommended_at SET DEFAULT now();
+--
 
 -- Indexes
 create index testimonies_resource_slug_idx on public.testimonies (resource_slug);
