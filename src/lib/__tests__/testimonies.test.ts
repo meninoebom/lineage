@@ -202,7 +202,7 @@ describe("testimonies", () => {
   });
 
   describe("createTestimony", () => {
-    it("updates an existing recommendation row with testimony text", async () => {
+    it("updates an existing recommendation row with testimony content", async () => {
       const testimony = {
         id: "t1",
         user_id: "u1",
@@ -217,11 +217,11 @@ describe("testimonies", () => {
       const result = await createTestimony({
         user_id: "u1",
         resource_slug: "zen-mind",
-        impact: "Life-changing",
+        content: "Life-changing",
       });
 
       expect(mockFrom).toHaveBeenCalledWith("testimonies");
-      expect(chain.update).toHaveBeenCalledWith({ impact: "Life-changing" });
+      expect(chain.update).toHaveBeenCalledWith({ impact: "Life-changing", context: null, who_for: null, freeform: null });
       expect(chain.eq).toHaveBeenCalledWith("user_id", "u1");
       expect(chain.eq).toHaveBeenCalledWith("resource_slug", "zen-mind");
       expect(result).toEqual(testimony);
@@ -232,7 +232,7 @@ describe("testimonies", () => {
       mockFrom.mockReturnValue(chain);
 
       await expect(
-        createTestimony({ user_id: "u1", resource_slug: "zen-mind", impact: "test" })
+        createTestimony({ user_id: "u1", resource_slug: "zen-mind", content: "test" })
       ).rejects.toEqual({ message: "No rows found" });
     });
   });
