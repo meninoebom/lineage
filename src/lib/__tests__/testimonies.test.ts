@@ -43,6 +43,9 @@ import { supabase } from "../supabase";
 import {
   getTestimonies,
   getTestimonyCounts,
+  createRecommendation,
+  getUserRecommendation,
+  getRecommendationCount,
   createTestimony,
   getUserTestimony,
   updateProfile,
@@ -119,13 +122,93 @@ describe("testimonies", () => {
     });
   });
 
+  describe("createRecommendation", () => {
+    it("inserts a bare recommendation and returns it", async () => {
+      const recommendation = {
+        id: "t1",
+        user_id: "u1",
+        resource_slug: "zen-mind",
+        recommended_at: "2026-04-21T00:00:00.000Z",
+      };
+
+      const chain = chainable({ single: vi.fn().mockResolvedValue({ data: recommendation, error: null }) });
+      mockFrom.mockReturnValue(chain);
+
+      const result = await createRecommendation("u1", "zen-mind");
+
+      expect(mockFrom).toHaveBeenCalledWith("testimonies");
+      expect(chain.insert).toHaveBeenCalled();
+      expect(result).toEqual(recommendation);
+    });
+
+    it("throws on supabase error", async () => {
+      const chain = chainable({ single: vi.fn().mockResolvedValue({ data: null, error: { message: "duplicate" } }) });
+      mockFrom.mockReturnValue(chain);
+
+      await expect(createRecommendation("u1", "zen-mind")).rejects.toEqual({ message: "duplicate" });
+    });
+  });
+
+  describe("getUserRecommendation", () => {
+    it("returns true when user has recommended", async () => {
+      const chain = chainable({ maybeSingle: vi.fn().mockResolvedValue({ data: { id: "t1" }, error: null }) });
+      mockFrom.mockReturnValue(chain);
+
+      const result = await getUserRecommendation("u1", "zen-mind");
+      expect(result).toBe(true);
+    });
+
+    it("returns false when user has not recommended", async () => {
+      const chain = chainable({ maybeSingle: vi.fn().mockResolvedValue({ data: null, error: null }) });
+      mockFrom.mockReturnValue(chain);
+
+      const result = await getUserRecommendation("u1", "zen-mind");
+      expect(result).toBe(false);
+    });
+
+    it("throws on supabase error", async () => {
+      const chain = chainable({ maybeSingle: vi.fn().mockResolvedValue({ data: null, error: { message: "fail" } }) });
+      mockFrom.mockReturnValue(chain);
+
+      await expect(getUserRecommendation("u1", "zen-mind")).rejects.toEqual({ message: "fail" });
+    });
+  });
+
+  describe("getRecommendationCount", () => {
+    it("returns count for a resource", async () => {
+      const chain = chainable({ maybeSingle: vi.fn().mockResolvedValue({ data: { count: 7 }, error: null }) });
+      mockFrom.mockReturnValue(chain);
+
+      const result = await getRecommendationCount("zen-mind");
+      expect(mockFrom).toHaveBeenCalledWith("testimony_counts");
+      expect(chain.eq).toHaveBeenCalledWith("resource_slug", "zen-mind");
+      expect(result).toBe(7);
+    });
+
+    it("returns 0 when no recommendations exist", async () => {
+      const chain = chainable({ maybeSingle: vi.fn().mockResolvedValue({ data: null, error: null }) });
+      mockFrom.mockReturnValue(chain);
+
+      const result = await getRecommendationCount("unknown-book");
+      expect(result).toBe(0);
+    });
+
+    it("throws on supabase error", async () => {
+      const chain = chainable({ maybeSingle: vi.fn().mockResolvedValue({ data: null, error: { message: "fail" } }) });
+      mockFrom.mockReturnValue(chain);
+
+      await expect(getRecommendationCount("zen-mind")).rejects.toEqual({ message: "fail" });
+    });
+  });
+
   describe("createTestimony", () => {
-    it("inserts a testimony and returns it", async () => {
+    it("updates an existing recommendation row with testimony text", async () => {
       const testimony = {
         id: "t1",
         user_id: "u1",
         resource_slug: "zen-mind",
         impact: "Life-changing",
+        recommended_at: "2026-04-21T00:00:00.000Z",
       };
 
       const chain = chainable({ single: vi.fn().mockResolvedValue({ data: testimony, error: null }) });
@@ -138,8 +221,19 @@ describe("testimonies", () => {
       });
 
       expect(mockFrom).toHaveBeenCalledWith("testimonies");
-      expect(chain.insert).toHaveBeenCalled();
+      expect(chain.update).toHaveBeenCalledWith({ impact: "Life-changing" });
+      expect(chain.eq).toHaveBeenCalledWith("user_id", "u1");
+      expect(chain.eq).toHaveBeenCalledWith("resource_slug", "zen-mind");
       expect(result).toEqual(testimony);
+    });
+
+    it("throws when no recommendation exists to update", async () => {
+      const chain = chainable({ single: vi.fn().mockResolvedValue({ data: null, error: { message: "No rows found" } }) });
+      mockFrom.mockReturnValue(chain);
+
+      await expect(
+        createTestimony({ user_id: "u1", resource_slug: "zen-mind", impact: "test" })
+      ).rejects.toEqual({ message: "No rows found" });
     });
   });
 
