@@ -44,7 +44,7 @@ export function SupabaseProvider({ children }: { children: React.ReactNode }) {
     if (!client) return { error: new Error("Supabase not configured") };
     const { error } = await client.auth.signInWithOtp({
       email,
-      options: { emailRedirectTo: window.location.origin + window.location.pathname },
+      options: { emailRedirectTo: window.location.origin + window.location.pathname + window.location.search },
     });
     return { error: error ? new Error(error.message) : null };
   }, []);
@@ -54,7 +54,7 @@ export function SupabaseProvider({ children }: { children: React.ReactNode }) {
     if (!client) return;
     await client.auth.signInWithOAuth({
       provider: "google",
-      options: { redirectTo: window.location.origin + window.location.pathname },
+      options: { redirectTo: window.location.origin + window.location.pathname + window.location.search },
     });
   }, []);
 

@@ -57,6 +57,15 @@ export function RecommendationFlow({ resourceSlug, resourceTitle }: Recommendati
     }
   }, [user, resourceSlug]);
 
+  // Check for pending-action URL param on mount/auth change
+  useEffect(() => {
+    if (authLoading) return;
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("action") === "recommend" && user) {
+      checkExisting();
+    }
+  }, [user, authLoading, checkExisting]);
+
   // When user signs in (from auth step), advance to form
   useEffect(() => {
     if (user && step === "auth") {
@@ -64,11 +73,22 @@ export function RecommendationFlow({ resourceSlug, resourceTitle }: Recommendati
     }
   }, [user, step, checkExisting]);
 
+  /** Remove ?action=recommend from URL without triggering navigation */
+  function clearActionParam() {
+    const url = new URL(window.location.href);
+    url.searchParams.delete("action");
+    window.history.replaceState({}, "", url.pathname + url.search);
+  }
+
   function handleCta() {
     if (authLoading) return;
     if (user) {
       checkExisting();
     } else {
+      // Set pending-action param so intent survives the auth flow
+      const url = new URL(window.location.href);
+      url.searchParams.set("action", "recommend");
+      window.history.replaceState({}, "", url.pathname + url.search);
       setStep("auth");
     }
   }
@@ -102,6 +122,7 @@ export function RecommendationFlow({ resourceSlug, resourceTitle }: Recommendati
         who_for: values.who_for || null,
         freeform: values.freeform || null,
       });
+      clearActionParam();
       setStep(needsProfile ? "profile" : "success");
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : String(err);
