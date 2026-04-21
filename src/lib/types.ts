@@ -120,6 +120,7 @@ export interface Testimony {
   context: string | null;
   who_for: string | null;
   freeform: string | null;
+  recommended_at: string;
   created_at: string;
   profiles?: Pick<Profile, "display_name" | "traditions" | "years_of_practice">;
 }
