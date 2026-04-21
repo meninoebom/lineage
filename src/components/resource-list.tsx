@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Resource, ResourceCategory, ResourceType } from "@/lib/types";
 import { ResourceListTestimonyCounts } from "./resource-list-testimony-counts";
+import { TestimonyCountBadge } from "./testimony-count";
 
 const CATEGORY_ORDER: ResourceCategory[] = [
   "primary_text",
@@ -93,9 +94,12 @@ export function ResourceList({ resources }: ResourceListProps) {
                             </span>
                           )}
                         </div>
-                        <p className="mt-1 font-sans text-sm leading-relaxed text-muted-foreground">
-                          {resource.description}
-                        </p>
+                        <div className="mt-1 flex items-center gap-3">
+                          <p className="font-sans text-sm leading-relaxed text-muted-foreground flex-1">
+                            {resource.description}
+                          </p>
+                          <TestimonyCountBadge slug={resource.slug} />
+                        </div>
                       </Link>
                     ))}
                   </div>
