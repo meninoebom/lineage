@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 
 const mockUser = { id: "u1", email: "test@example.com" };
@@ -26,14 +26,24 @@ vi.mock("@/lib/testimonies", () => ({
 import { createTestimony, getUserTestimony, getProfile } from "@/lib/testimonies";
 import { RecommendationFlow } from "../recommendation-flow";
 
+/** Set the URL search params for testing */
+function setUrlParams(params: string) {
+  window.history.replaceState({}, "", params ? `/?${params}` : "/");
+}
+
 describe("RecommendationFlow", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     currentUser = null;
+    setUrlParams("");
     // Restore default mock implementations after clearAllMocks
     (getUserTestimony as ReturnType<typeof vi.fn>).mockResolvedValue(null);
     (getProfile as ReturnType<typeof vi.fn>).mockResolvedValue({ traditions: [] });
     (createTestimony as ReturnType<typeof vi.fn>).mockResolvedValue({ id: "t1" });
+  });
+
+  afterEach(() => {
+    setUrlParams("");
   });
 
   it("renders CTA when not signed in", () => {
@@ -160,6 +170,86 @@ describe("RecommendationFlow", () => {
 
     await waitFor(() => {
       expect(screen.getByText("A little about you")).toBeInTheDocument();
+    });
+  });
+
+  describe("pending-action URL param", () => {
+    it("sets ?action=recommend in URL when unauthenticated user clicks CTA", () => {
+      render(<RecommendationFlow resourceSlug="zen-mind" resourceTitle="Zen Mind" />);
+      fireEvent.click(screen.getByText(/Have you read Zen Mind/));
+
+      expect(window.location.search).toContain("action=recommend");
+    });
+
+    it("auto-advances to form when user is authenticated and ?action=recommend is present", async () => {
+      setUrlParams("action=recommend");
+      currentUser = mockUser;
+      (getProfile as ReturnType<typeof vi.fn>).mockResolvedValue({ traditions: ["Zen"] });
+
+      render(<RecommendationFlow resourceSlug="zen-mind" resourceTitle="Zen Mind" />);
+
+      await waitFor(() => {
+        expect(screen.getByText("Recommend Zen Mind")).toBeInTheDocument();
+      });
+    });
+
+    it("shows already-recommended when param present but user has existing testimony", async () => {
+      setUrlParams("action=recommend");
+      currentUser = mockUser;
+      (getUserTestimony as ReturnType<typeof vi.fn>).mockResolvedValue({ id: "t1" });
+
+      render(<RecommendationFlow resourceSlug="zen-mind" resourceTitle="Zen Mind" />);
+
+      await waitFor(() => {
+        expect(screen.getByText("You've already recommended this resource")).toBeInTheDocument();
+      });
+    });
+
+    it("clears ?action=recommend from URL after successful submission", async () => {
+      setUrlParams("action=recommend");
+      currentUser = mockUser;
+      (getProfile as ReturnType<typeof vi.fn>).mockResolvedValue({ traditions: ["Zen"] });
+
+      render(<RecommendationFlow resourceSlug="zen-mind" resourceTitle="Zen Mind" />);
+
+      await waitFor(() => {
+        expect(screen.getByText("Recommend this resource")).toBeInTheDocument();
+      });
+
+      fireEvent.click(screen.getByText("Recommend this resource"));
+
+      await waitFor(() => {
+        expect(screen.getByText("Thank you for your recommendation")).toBeInTheDocument();
+      });
+
+      expect(window.location.search).not.toContain("action=recommend");
+    });
+
+    it("shows error when auto-recommend fails (not silent failure)", async () => {
+      setUrlParams("action=recommend");
+      currentUser = mockUser;
+      (getProfile as ReturnType<typeof vi.fn>).mockResolvedValue({ traditions: ["Zen"] });
+      (createTestimony as ReturnType<typeof vi.fn>).mockRejectedValue(new Error("Network error"));
+
+      render(<RecommendationFlow resourceSlug="zen-mind" resourceTitle="Zen Mind" />);
+
+      await waitFor(() => {
+        expect(screen.getByText("Recommend this resource")).toBeInTheDocument();
+      });
+
+      fireEvent.click(screen.getByText("Recommend this resource"));
+
+      await waitFor(() => {
+        expect(screen.getByText("Something went wrong. Please try again.")).toBeInTheDocument();
+      });
+    });
+
+    it("does not auto-advance when param is absent even if user is authenticated", () => {
+      currentUser = mockUser;
+      render(<RecommendationFlow resourceSlug="zen-mind" resourceTitle="Zen Mind" />);
+
+      // Should stay on CTA step
+      expect(screen.getByText(/Have you read Zen Mind/)).toBeInTheDocument();
     });
   });
 });
