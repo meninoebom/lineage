@@ -305,7 +305,7 @@ describe("RecommendationFlow", () => {
   });
 
   describe("testimony form", () => {
-    it("allows submitting testimony after recommending", async () => {
+    async function openTestimonyForm() {
       currentUser = mockUser;
 
       render(
@@ -329,8 +329,78 @@ describe("RecommendationFlow", () => {
       });
 
       expect(screen.getByText("Want to say why?")).toBeInTheDocument();
+    }
 
-      // Submit testimony without filling prompts
+    it("shows single textarea with placeholder", async () => {
+      await openTestimonyForm();
+
+      const textarea = screen.getByPlaceholderText(
+        "What impact has this had on your practice?"
+      );
+      expect(textarea).toBeInTheDocument();
+      expect(textarea).toHaveAttribute("maxLength", "2000");
+    });
+
+    it("shows character count", async () => {
+      await openTestimonyForm();
+
+      expect(screen.getByText("0/2000")).toBeInTheDocument();
+
+      const textarea = screen.getByPlaceholderText(
+        "What impact has this had on your practice?"
+      );
+      fireEvent.change(textarea, { target: { value: "Great book" } });
+
+      expect(screen.getByText("10/2000")).toBeInTheDocument();
+    });
+
+    it("toggles scaffolding prompts on 'Need help getting started?' click", async () => {
+      await openTestimonyForm();
+
+      // Prompts not visible initially
+      expect(
+        screen.queryByText("How did this resource impact your practice?")
+      ).not.toBeInTheDocument();
+
+      // Click to show
+      fireEvent.click(screen.getByText("Need help getting started?"));
+      expect(
+        screen.getByText("How did this resource impact your practice?")
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText("What were you going through when you found it?")
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText("Who would benefit most from this?")
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText("Anything else you'd like to share?")
+      ).toBeInTheDocument();
+
+      // Click again to hide
+      fireEvent.click(screen.getByText("Need help getting started?"));
+      expect(
+        screen.queryByText("How did this resource impact your practice?")
+      ).not.toBeInTheDocument();
+    });
+
+    it("disables submit button when textarea is empty", async () => {
+      await openTestimonyForm();
+
+      const submitButton = screen.getByText("Share your experience");
+      expect(submitButton).toBeDisabled();
+    });
+
+    it("submits testimony with single content field", async () => {
+      await openTestimonyForm();
+
+      const textarea = screen.getByPlaceholderText(
+        "What impact has this had on your practice?"
+      );
+      fireEvent.change(textarea, {
+        target: { value: "This book changed my practice deeply." },
+      });
+
       await act(async () => {
         fireEvent.click(screen.getByText("Share your experience"));
       });
@@ -339,10 +409,7 @@ describe("RecommendationFlow", () => {
         expect(createTestimony).toHaveBeenCalledWith({
           user_id: "u1",
           resource_slug: "zen-mind",
-          impact: null,
-          context: null,
-          who_for: null,
-          freeform: null,
+          content: "This book changed my practice deeply.",
         });
       });
 
@@ -377,6 +444,13 @@ describe("RecommendationFlow", () => {
 
       await act(async () => {
         vi.advanceTimersByTime(300);
+      });
+
+      const textarea = screen.getByPlaceholderText(
+        "What impact has this had on your practice?"
+      );
+      fireEvent.change(textarea, {
+        target: { value: "Meaningful experience" },
       });
 
       await act(async () => {

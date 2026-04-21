@@ -14,29 +14,14 @@ import {
 
 type Step = "idle" | "auth" | "testimony" | "profile" | "success";
 
-const PROMPTS = [
-  {
-    key: "impact" as const,
-    label: "How did this resource impact you?",
-    placeholder: "What shifted for you? What did you understand differently?",
-  },
-  {
-    key: "context" as const,
-    label: "What were you going through at the time?",
-    placeholder: "Helps others in similar situations find this",
-  },
-  {
-    key: "who_for" as const,
-    label: "Who would benefit most from this?",
-    placeholder:
-      'e.g. "Anyone starting a sitting practice" or "People dealing with grief"',
-  },
-  {
-    key: "freeform" as const,
-    label: "Anything else you'd like to share?",
-    placeholder: "An open space for whatever feels relevant",
-  },
+const SCAFFOLD_PROMPTS = [
+  "How did this resource impact your practice?",
+  "What were you going through when you found it?",
+  "Who would benefit most from this?",
+  "Anything else you'd like to share?",
 ];
+
+const MAX_CHARS = 2000;
 
 interface RecommendationFlowProps {
   resourceSlug: string;
@@ -53,8 +38,8 @@ export function RecommendationFlow({
   const [count, setCount] = useState(0);
   const [recommending, setRecommending] = useState(false);
   const [showTestimonyPrompt, setShowTestimonyPrompt] = useState(false);
-  const [activePrompts, setActivePrompts] = useState<Set<string>>(new Set());
-  const [values, setValues] = useState<Record<string, string>>({});
+  const [showScaffolding, setShowScaffolding] = useState(false);
+  const [content, setContent] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [needsProfile, setNeedsProfile] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -167,38 +152,15 @@ export function RecommendationFlow({
     doRecommend();
   }
 
-  function togglePrompt(key: string) {
-    setActivePrompts((prev) => {
-      const next = new Set(prev);
-      if (next.has(key)) {
-        next.delete(key);
-        setValues((v) => {
-          const copy = { ...v };
-          delete copy[key];
-          return copy;
-        });
-      } else {
-        next.add(key);
-      }
-      return next;
-    });
-  }
-
-  function updateValue(key: string, value: string) {
-    setValues((prev) => ({ ...prev, [key]: value }));
-  }
-
   async function handleTestimonySubmit() {
+    if (!content.trim()) return;
     setSubmitting(true);
     setErrorMsg(null);
     try {
       await createTestimony({
         user_id: user!.id,
         resource_slug: resourceSlug,
-        impact: values.impact || null,
-        context: values.context || null,
-        who_for: values.who_for || null,
-        freeform: values.freeform || null,
+        content: content.trim(),
       });
       clearActionParam();
       setStep(needsProfile ? "profile" : "success");
@@ -298,47 +260,42 @@ export function RecommendationFlow({
             </p>
           </div>
 
-          <div className="space-y-3">
-            {PROMPTS.map(({ key, label, placeholder }) => (
-              <div key={key}>
-                <button
-                  type="button"
-                  onClick={() => togglePrompt(key)}
-                  className={`w-full text-left rounded-md border px-4 py-3 text-sm transition-colors ${
-                    activePrompts.has(key)
-                      ? "border-terracotta/50 bg-terracotta-light"
-                      : "border-border hover:border-foreground/30"
-                  }`}
-                >
-                  <span
-                    className={
-                      activePrompts.has(key)
-                        ? "text-foreground font-medium"
-                        : "text-muted-foreground"
-                    }
-                  >
-                    {label}
-                  </span>
-                </button>
-                {activePrompts.has(key) && (
-                  <textarea
-                    value={values[key] ?? ""}
-                    onChange={(e) => updateValue(key, e.target.value)}
-                    placeholder={placeholder}
-                    rows={3}
-                    maxLength={2000}
-                    className="mt-2 w-full rounded-md border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-terracotta/40"
-                  />
-                )}
-              </div>
-            ))}
+          <div className="space-y-2">
+            <textarea
+              value={content}
+              onChange={(e) => setContent(e.target.value.slice(0, MAX_CHARS))}
+              placeholder="What impact has this had on your practice?"
+              rows={5}
+              maxLength={MAX_CHARS}
+              className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-terracotta/40 resize-y"
+            />
+            <div className="flex items-center justify-between">
+              <button
+                type="button"
+                onClick={() => setShowScaffolding((prev) => !prev)}
+                className="text-xs text-muted-foreground/70 hover:text-muted-foreground transition-colors underline decoration-dotted underline-offset-2"
+              >
+                Need help getting started?
+              </button>
+              <span className="text-xs text-muted-foreground/60 tabular-nums">
+                {content.length}/{MAX_CHARS}
+              </span>
+            </div>
           </div>
+
+          {showScaffolding && (
+            <ul className="space-y-1 pl-4 text-xs text-muted-foreground/70 italic list-disc animate-in fade-in duration-200">
+              {SCAFFOLD_PROMPTS.map((prompt) => (
+                <li key={prompt}>{prompt}</li>
+              ))}
+            </ul>
+          )}
 
           {errorMsg && <p className="text-sm text-destructive">{errorMsg}</p>}
 
           <button
             onClick={handleTestimonySubmit}
-            disabled={submitting}
+            disabled={submitting || !content.trim()}
             className="rounded-md bg-terracotta px-5 py-2 text-sm font-medium text-white hover:bg-terracotta/90 disabled:opacity-50 transition-colors"
           >
             {submitting ? "Submitting..." : "Share your experience"}

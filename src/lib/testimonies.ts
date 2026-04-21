@@ -78,15 +78,12 @@ export async function getRecommendationCount(
 export async function createTestimony(testimony: {
   user_id: string;
   resource_slug: string;
-  impact?: string | null;
-  context?: string | null;
-  who_for?: string | null;
-  freeform?: string | null;
+  content: string;
 }): Promise<Testimony> {
-  const { user_id, resource_slug, ...fields } = testimony;
+  const { user_id, resource_slug, content } = testimony;
   const { data, error } = await supabase
     .from("testimonies")
-    .update(fields)
+    .update({ impact: content, context: null, who_for: null, freeform: null })
     .eq("user_id", user_id)
     .eq("resource_slug", resource_slug)
     .select()
