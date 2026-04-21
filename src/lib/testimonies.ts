@@ -29,6 +29,52 @@ export async function getTestimonyCounts(slugs: string[]): Promise<Map<string, n
   return counts;
 }
 
+export async function createRecommendation(
+  userId: string,
+  resourceSlug: string
+): Promise<Testimony> {
+  const { data, error } = await supabase
+    .from("testimonies")
+    .insert({
+      user_id: userId,
+      resource_slug: resourceSlug,
+      recommended_at: new Date().toISOString(),
+    })
+    .select()
+    .single();
+
+  if (error) throw error;
+  return data as Testimony;
+}
+
+export async function getUserRecommendation(
+  userId: string,
+  resourceSlug: string
+): Promise<boolean> {
+  const { data, error } = await supabase
+    .from("testimonies")
+    .select("id")
+    .eq("user_id", userId)
+    .eq("resource_slug", resourceSlug)
+    .maybeSingle();
+
+  if (error) throw error;
+  return data !== null;
+}
+
+export async function getRecommendationCount(
+  resourceSlug: string
+): Promise<number> {
+  const { data, error } = await supabase
+    .from("testimony_counts")
+    .select("count")
+    .eq("resource_slug", resourceSlug)
+    .maybeSingle();
+
+  if (error) throw error;
+  return (data as { count: number } | null)?.count ?? 0;
+}
+
 export async function createTestimony(testimony: {
   user_id: string;
   resource_slug: string;
@@ -37,9 +83,12 @@ export async function createTestimony(testimony: {
   who_for?: string | null;
   freeform?: string | null;
 }): Promise<Testimony> {
+  const { user_id, resource_slug, ...fields } = testimony;
   const { data, error } = await supabase
     .from("testimonies")
-    .insert(testimony)
+    .update(fields)
+    .eq("user_id", user_id)
+    .eq("resource_slug", resource_slug)
     .select()
     .single();
 
