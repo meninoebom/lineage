@@ -1,0 +1,20 @@
+{
+  "name": "Mahasi Sayadaw",
+  "slug": "mahasi-sayadaw",
+  "bio": "Mahasi Sayadaw (1904–1982) was a Burmese Theravada monk and one of the most influential meditation teachers of the twentieth century. He systematized the Satipatthana Vipassana technique, emphasizing noting practice, and trained thousands of students at his Thathana Yeiktha center in Rangoon. Western dharma teachers including Joseph Goldstein, Sharon Salzberg, and Jack Kornfield trained in his tradition, bringing vipassana practice to the West.",
+  "photo": null,
+  "website": null,
+  "birth_year": 1904,
+  "death_year": 1982,
+  "city": "Rangoon",
+  "state": "",
+  "country": "MM",
+  "latitude": null,
+  "longitude": null,
+  "traditions": [
+    "theravada",
+    "vipassana-movement"
+  ],
+  "centers": [],
+  "teachers": []
+}

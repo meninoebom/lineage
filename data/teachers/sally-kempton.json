@@ -11,6 +11,9 @@
   "country": "US",
   "latitude": 36.4166,
   "longitude": -121.7327,
-  "traditions": ["kashmir-shaivism"],
-  "centers": []
+  "traditions": [
+    "kashmir-shaivism"
+  ],
+  "centers": [],
+  "teachers": []
 }

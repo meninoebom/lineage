@@ -11,6 +11,11 @@
   "country": "US",
   "latitude": 42.3736,
   "longitude": -71.1097,
-  "traditions": ["dzogchen"],
-  "centers": ["dzogchen-center"]
+  "traditions": [
+    "dzogchen"
+  ],
+  "centers": [
+    "dzogchen-center"
+  ],
+  "teachers": []
 }

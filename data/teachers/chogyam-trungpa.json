@@ -1,0 +1,20 @@
+{
+  "name": "Chögyam Trungpa",
+  "slug": "chogyam-trungpa",
+  "bio": "Chögyam Trungpa Rinpoche (1939–1987) was a Tibetan Buddhist master in the Kagyu and Nyingma lineages who became one of the most influential figures in bringing Vajrayana Buddhism to the West. He founded Shambhala International and Naropa University in Boulder, Colorado. His students include Pema Chödrön, Sakyong Mipham, David Nichtern, and many others who became important teachers in their own right. He developed the secular framework of Shambhala Training alongside traditional dharma teachings.",
+  "photo": null,
+  "website": null,
+  "birth_year": 1939,
+  "death_year": 1987,
+  "city": "Boulder",
+  "state": "Colorado",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": [
+    "tibetan-buddhism-kagyu",
+    "tibetan-buddhism-nyingma"
+  ],
+  "centers": [],
+  "teachers": []
+}

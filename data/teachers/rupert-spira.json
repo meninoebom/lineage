@@ -11,6 +11,10 @@
   "country": "UK",
   "latitude": 51.752,
   "longitude": -1.2577,
-  "traditions": ["advaita-vedanta", "modern-non-dual"],
-  "centers": []
+  "traditions": [
+    "advaita-vedanta",
+    "modern-non-dual"
+  ],
+  "centers": [],
+  "teachers": []
 }

@@ -11,6 +11,12 @@
   "country": "US",
   "latitude": 37.4852,
   "longitude": -122.2364,
-  "traditions": ["theravada", "zen"],
-  "centers": ["insight-meditation-center"]
+  "traditions": [
+    "theravada",
+    "zen"
+  ],
+  "centers": [
+    "insight-meditation-center"
+  ],
+  "teachers": []
 }

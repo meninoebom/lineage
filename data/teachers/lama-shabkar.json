@@ -11,6 +11,10 @@
   "country": "CN",
   "latitude": null,
   "longitude": null,
-  "traditions": ["vajrayana", "dzogchen"],
-  "centers": []
+  "traditions": [
+    "vajrayana",
+    "dzogchen"
+  ],
+  "centers": [],
+  "teachers": []
 }

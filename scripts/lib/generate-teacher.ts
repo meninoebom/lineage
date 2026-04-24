@@ -35,5 +35,6 @@ export function generateTeacherJson(candidate: AcceptedCandidate): Teacher {
     longitude: null,
     traditions: candidate.traditions,
     centers: [],
+    teachers: [],
   };
 }

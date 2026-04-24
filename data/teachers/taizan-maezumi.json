@@ -1,0 +1,21 @@
+{
+  "name": "Taizan Maezumi",
+  "slug": "taizan-maezumi",
+  "bio": "Taizan Maezumi Roshi (1931–1995) was a Japanese Zen master who became one of the most influential figures in bringing Zen to the West. He founded the Zen Center of Los Angeles and transmitted the dharma to twelve successors, including Bernie Glassman and Jan Chozen Bays. He held transmission in three Zen lineages: Soto, Rinzai, and Sanbo Kyodan. His students went on to found numerous Zen centers across North America and Europe.",
+  "photo": null,
+  "website": null,
+  "birth_year": 1931,
+  "death_year": 1995,
+  "city": "Los Angeles",
+  "state": "California",
+  "country": "US",
+  "latitude": null,
+  "longitude": null,
+  "traditions": [
+    "zen"
+  ],
+  "centers": [],
+  "teachers": [
+    "hakuun-yasutani"
+  ]
+}

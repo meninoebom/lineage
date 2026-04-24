@@ -1,7 +1,7 @@
 {
   "name": "Sadhguru",
   "slug": "sadhguru",
-  "bio": "Jaggi Vasudev, known as Sadhguru, is an Indian yogi, author, and founder of the Isha Foundation. He teaches classical yoga practices including kriya yoga, meditation, and inner engineering \u2014 a program that has reached millions worldwide. A prominent public figure, he advocates for environmental causes, particularly soil conservation, alongside his spiritual teaching. His approach draws on yogic and Shaivite traditions while emphasizing direct experience over scriptural authority.",
+  "bio": "Jaggi Vasudev, known as Sadhguru, is an Indian yogi, author, and founder of the Isha Foundation. He teaches classical yoga practices including kriya yoga, meditation, and inner engineering — a program that has reached millions worldwide. A prominent public figure, he advocates for environmental causes, particularly soil conservation, alongside his spiritual teaching. His approach draws on yogic and Shaivite traditions while emphasizing direct experience over scriptural authority.",
   "photo": null,
   "website": "https://isha.sadhguru.org",
   "birth_year": 1957,
@@ -16,5 +16,6 @@
   ],
   "centers": [
     "isha-institute-of-inner-sciences"
-  ]
+  ],
+  "teachers": []
 }

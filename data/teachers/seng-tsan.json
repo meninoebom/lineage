@@ -11,6 +11,10 @@
   "country": "CN",
   "latitude": null,
   "longitude": null,
-  "traditions": ["zen", "chan-buddhism"],
-  "centers": []
+  "traditions": [
+    "zen",
+    "chan-buddhism"
+  ],
+  "centers": [],
+  "teachers": []
 }
