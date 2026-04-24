@@ -15,12 +15,16 @@ const mockTeacher: Teacher = {
   longitude: -122.4194,
   traditions: ["zen"],
   centers: [],
+  birth_year: null,
+  death_year: null,
+  teachers: [],
 };
 
 const mockCenter: Center = {
   name: "Test Center",
   slug: "test-center",
   description: "A test center.",
+  photo: null,
   website: "https://example.com",
   city: "Oakland",
   state: "California",
@@ -36,6 +40,7 @@ const mockTradition: ParsedTradition = {
   slug: "zen",
   family: "Buddhist",
   summary: "A school of Mahayana Buddhism.",
+  origin_century: 500,
   connections: [],
   content: "# Zen\nContent here.",
 };
