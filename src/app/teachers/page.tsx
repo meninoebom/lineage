@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { PageLayout } from "@/components/page-layout";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { getAllTeachers, getAllTraditions } from "@/lib/data";
@@ -40,11 +39,7 @@ export default function TeachersPage() {
         <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
           Living teachers you can study with across contemplative traditions.
         </p>
-        <p className="mt-4 font-sans text-sm text-muted-foreground">
-          <Link href="/teachers/map" className="text-primary underline underline-offset-2 hover:text-primary/80">
-            View the lineage map →
-          </Link>
-        </p>
+
       </header>
 
       <TeachersClient teachers={teachers} traditionNames={traditionNames} />
