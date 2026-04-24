@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-04-24T08:22:00.985Z",
+  "generated_at": "2026-04-24T08:21:23.589Z",
   "counts": {
-    "traditions": 30,
-    "teachers": 142,
+    "traditions": 29,
+    "teachers": 149,
     "centers": 80,
     "resources": 1156,
     "paths": 11
@@ -74,41 +74,6 @@
       "connected_traditions": [
         "advaita-vedanta",
         "sufism"
-      ]
-    },
-    {
-      "slug": "bon",
-      "name": "Bön",
-      "family": "Buddhist",
-      "alternate_names": [
-        "Yungdrung Bön",
-        "Eternal Bön",
-        "Bon"
-      ],
-      "key_figures": [
-        "Tönpa Shenrab Miwoche (legendary founder)",
-        "Drenpa Namkha (8th c.)",
-        "Shardza Tashi Gyaltsen (1859–1934)",
-        "Lopon Tenzin Namdak (b. 1926)",
-        "Tenzin Wangyal Rinpoche (b. 1961)"
-      ],
-      "key_texts": [
-        "Zhang Zhung Nyengyud (Oral Transmission of Zhang Zhung)",
-        "Ziji (The Glorious)",
-        "Mother Tantra (Ma Gyud)"
-      ],
-      "related_practices": [
-        "Bön Dzogchen",
-        "Chöd (cutting through fear and attachment)",
-        "tsa lung (channels and winds)",
-        "dream yoga and sleep yoga",
-        "sound healing (five warrior syllables)"
-      ],
-      "connected_traditions": [
-        "dzogchen",
-        "tibetan-buddhism-nyingma",
-        "vajrayana",
-        "tibetan-buddhism-kagyu"
       ]
     },
     {
@@ -233,8 +198,7 @@
         "tantra",
         "tibetan-buddhism-nyingma",
         "tibetan-buddhism-kagyu",
-        "tibetan-buddhism-gelug",
-        "bon"
+        "tibetan-buddhism-gelug"
       ]
     },
     {
@@ -740,7 +704,6 @@
         "Naropa (1016–1100)",
         "Marpa (1012–1097)",
         "Milarepa (1052–1135)",
-        "Machig Labdrön (1055–1149)",
         "Gampopa (1079–1153)",
         "First Karmapa, Düsum Khyenpa (1110–1193)"
       ],
@@ -752,7 +715,6 @@
       "related_practices": [
         "Mahamudra",
         "Six Yogas of Naropa (tummo, illusory body, dream yoga, clear light, bardo, phowa)",
-        "Chöd (cutting through ego-clinging)",
         "guru yoga",
         "ngöndro (preliminary practices)"
       ],
@@ -789,7 +751,6 @@
       ],
       "related_practices": [
         "Dzogchen (trekchö and tögal)",
-        "Chöd (cutting through ego-clinging)",
         "deity yoga",
         "terma (treasure-teaching) revelation",
         "ngöndro (preliminary practices)",
@@ -801,8 +762,7 @@
         "dzogchen",
         "tibetan-buddhism-kagyu",
         "tibetan-buddhism-gelug",
-        "tantra",
-        "bon"
+        "tantra"
       ]
     },
     {
@@ -1020,6 +980,17 @@
       ],
       "living": true,
       "location": "Hemel Hempstead, England, UK"
+    },
+    {
+      "slug": "anagarika-munindra",
+      "name": "Anagarika Munindra",
+      "traditions": [
+        "theravada",
+        "vipassana-movement"
+      ],
+      "centers": [],
+      "living": false,
+      "location": "IN"
     },
     {
       "slug": "anam-thubten",
@@ -1410,6 +1381,16 @@
       "location": ""
     },
     {
+      "slug": "francis-lucille",
+      "name": "Francis Lucille",
+      "traditions": [
+        "advaita-vedanta"
+      ],
+      "centers": [],
+      "living": true,
+      "location": "FR"
+    },
+    {
       "slug": "gabor-mate",
       "name": "Gabor Maté",
       "traditions": [
@@ -1487,6 +1468,16 @@
       "centers": [],
       "living": false,
       "location": "JP"
+    },
+    {
+      "slug": "hariwansh-poonja",
+      "name": "H.W.L. Poonja (Papaji)",
+      "traditions": [
+        "advaita-vedanta"
+      ],
+      "centers": [],
+      "living": false,
+      "location": "IN"
     },
     {
       "slug": "hazrat-inayat-khan",
@@ -1593,6 +1584,16 @@
       ],
       "living": true,
       "location": "Mt Tremper, New York, US"
+    },
+    {
+      "slug": "john-daido-loori",
+      "name": "John Daido Loori",
+      "traditions": [
+        "zen"
+      ],
+      "centers": [],
+      "living": false,
+      "location": "Mt. Tremper, New York, US"
     },
     {
       "slug": "jon-kabat-zinn",
@@ -1718,6 +1719,20 @@
       ],
       "living": true,
       "location": "Cambridge, Massachusetts, US"
+    },
+    {
+      "slug": "lama-tsultrim-allione",
+      "name": "Lama Tsultrim Allione",
+      "traditions": [
+        "tibetan-buddhism-nyingma",
+        "tibetan-buddhism-kagyu",
+        "vajrayana"
+      ],
+      "centers": [
+        "tara-mandala"
+      ],
+      "living": true,
+      "location": ""
     },
     {
       "slug": "larry-rosenberg",
@@ -2048,6 +2063,16 @@
       "centers": [],
       "living": false,
       "location": "Maui, Hawaii, US"
+    },
+    {
+      "slug": "ramakrishna",
+      "name": "Ramakrishna",
+      "traditions": [
+        "vedanta"
+      ],
+      "centers": [],
+      "living": false,
+      "location": "IN"
     },
     {
       "slug": "ramana-maharshi",
@@ -2417,7 +2442,6 @@
       "slug": "tenzin-wangyal-rinpoche",
       "name": "Tenzin Wangyal Rinpoche",
       "traditions": [
-        "bon",
         "dzogchen",
         "vajrayana"
       ],
@@ -2451,6 +2475,16 @@
       "centers": [],
       "living": true,
       "location": ""
+    },
+    {
+      "slug": "thomas-merton",
+      "name": "Thomas Merton",
+      "traditions": [
+        "christian-mysticism"
+      ],
+      "centers": [],
+      "living": false,
+      "location": "Bardstown, Kentucky, US"
     },
     {
       "slug": "tilopa",
@@ -2507,8 +2541,6 @@
       "slug": "tsultrim-allione",
       "name": "Tsultrim Allione",
       "traditions": [
-        "tibetan-buddhism-nyingma",
-        "tibetan-buddhism-kagyu",
         "vajrayana"
       ],
       "centers": [
@@ -3671,7 +3703,7 @@
         "vajrayana"
       ],
       "teachers": [
-        "tsultrim-allione"
+        "lama-tsultrim-allione"
       ]
     },
     {
