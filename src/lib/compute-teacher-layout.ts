@@ -1,4 +1,3 @@
-import type { TraditionFamily } from "./types";
 import { buildTeacherGraph } from "./teacher-graph";
 import type { Teacher } from "./types";
 import type { LayoutPosition } from "./compute-layout";
@@ -23,17 +22,6 @@ export function yearToY(year: number): number {
   const ratio = (year - ANCIENT_END) / (2020 - ANCIENT_END);
   return ANCIENT_Y_END + ratio * (MODERN_Y_END - ANCIENT_Y_END);
 }
-
-// Column assignments per family — spreads traditions horizontally
-const FAMILY_BASE_COLUMN: Record<TraditionFamily, number> = {
-  "Buddhist":               2.0,
-  "Vedic-Yogic":            5.5,
-  "Taoist":                 0.5,
-  "Christian Contemplative": 7.5,
-  "Islamic Contemplative":   7.0,
-  "Modern Secular":         6.5,
-  "Other":                  4.0,
-};
 
 // Fine-grained sub-columns for Buddhist traditions to separate lineages
 const TRADITION_COLUMN: Record<string, number> = {

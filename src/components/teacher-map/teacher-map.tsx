@@ -89,7 +89,8 @@ export function TeacherMap({ teachers }: TeacherMapProps) {
   // Clear selection when active slug's node is no longer in graph
   useEffect(() => {
     if (selectedSlug && !graph.nodes.find((n) => n.slug === selectedSlug)) {
-      setSelectedSlug(null);
+      const t = setTimeout(() => setSelectedSlug(null), 0);
+      return () => clearTimeout(t);
     }
   }, [graph, selectedSlug]);
 
