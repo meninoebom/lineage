@@ -1,0 +1,19 @@
+{
+  "name": "Ajahn Mun",
+  "slug": "ajahn-mun",
+  "bio": "Ajahn Mun Bhuridatta (1870–1949) was a Thai Theravada monk who revived the forest-dwelling ascetic tradition in Southeast Asia and founded the Thai Forest Tradition. He is considered one of the most revered Buddhist masters of the twentieth century. His students included Ajahn Chah, Ajahn Lee, and Ajahn Fun, whose own students spread the forest tradition to the West.",
+  "photo": null,
+  "website": null,
+  "birth_year": 1870,
+  "death_year": 1949,
+  "city": "",
+  "state": "",
+  "country": "TH",
+  "latitude": null,
+  "longitude": null,
+  "traditions": [
+    "theravada"
+  ],
+  "centers": [],
+  "teachers": []
+}

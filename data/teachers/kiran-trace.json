@@ -11,6 +11,9 @@
   "country": "US",
   "latitude": null,
   "longitude": null,
-  "traditions": ["modern-non-dual"],
-  "centers": []
+  "traditions": [
+    "modern-non-dual"
+  ],
+  "centers": [],
+  "teachers": []
 }

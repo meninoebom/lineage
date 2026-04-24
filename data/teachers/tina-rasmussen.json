@@ -11,6 +11,13 @@
   "country": "US",
   "latitude": null,
   "longitude": null,
-  "traditions": ["theravada", "vipassana-movement", "dzogchen"],
-  "centers": ["spirit-rock"]
+  "traditions": [
+    "theravada",
+    "vipassana-movement",
+    "dzogchen"
+  ],
+  "centers": [
+    "spirit-rock"
+  ],
+  "teachers": []
 }

@@ -11,6 +11,9 @@
   "country": "India",
   "latitude": 18.5204,
   "longitude": 73.8567,
-  "traditions": ["christian-mysticism"],
-  "centers": []
+  "traditions": [
+    "christian-mysticism"
+  ],
+  "centers": [],
+  "teachers": []
 }
