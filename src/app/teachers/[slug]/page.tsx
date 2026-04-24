@@ -7,8 +7,9 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { JsonLd } from "@/components/json-ld";
 import { ResourceList } from "@/components/resource-list";
-import { getAllTeachers, getTeacher, getCenter, getTradition, getResourcesByTeacher } from "@/lib/data";
+import { getAllTeachers, getTeacher, getCenter, getTradition, getResourcesByTeacher, getStudentsOf } from "@/lib/data";
 import { teacherJsonLd, SITE_URL } from "@/lib/seo";
+import { TeacherLineageCard } from "@/components/teacher-lineage-card";
 import type { Teacher } from "@/lib/types";
 
 function formatYears(teacher: Teacher): string | null {
@@ -54,6 +55,10 @@ export default async function TeacherPage({ params }: { params: Promise<{ slug: 
   const centers = teacher.centers
     .map((s) => getCenter(s))
     .filter((c): c is NonNullable<typeof c> => c != null);
+  const studiedUnder = (teacher.teachers ?? [])
+    .map((s) => getTeacher(s))
+    .filter((t): t is NonNullable<typeof t> => t != null);
+  const students = getStudentsOf(slug);
 
   return (
     <PageLayout>
@@ -119,6 +124,29 @@ export default async function TeacherPage({ params }: { params: Promise<{ slug: 
           <h2 className="mb-4">About</h2>
           <p className="leading-relaxed text-secondary-foreground">{teacher.bio}</p>
         </section>
+
+        {/* Lineage */}
+        {studiedUnder.length > 0 && (
+          <section className="mb-12">
+            <h2 className="mb-4">Studied under</h2>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {studiedUnder.map((t) => (
+                <TeacherLineageCard key={t.slug} teacher={t} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {students.length > 0 && (
+          <section className="mb-12">
+            <h2 className="mb-4">Students</h2>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {students.map((t) => (
+                <TeacherLineageCard key={t.slug} teacher={t} />
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* Resources */}
         <ResourceList resources={resources} />
