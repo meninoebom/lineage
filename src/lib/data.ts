@@ -280,6 +280,10 @@ export function getPathBySlug(slug: string): ResolvedPath | undefined {
 
 // -- Cross-reference queries --
 
+export function getStudentsOf(teacherSlug: string): Teacher[] {
+  return getAllTeachers().filter((t) => t.teachers.includes(teacherSlug));
+}
+
 export function getTeachersByTradition(traditionSlug: string): Teacher[] {
   return getAllTeachers().filter((t) => t.traditions.includes(traditionSlug));
 }
