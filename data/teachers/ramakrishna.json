@@ -1,0 +1,19 @@
+{
+  "photo": null,
+  "website": null,
+  "city": "",
+  "state": "",
+  "latitude": null,
+  "longitude": null,
+  "centers": [],
+  "slug": "ramakrishna",
+  "name": "Ramakrishna",
+  "bio": "Ramakrishna Paramahamsa (1836–1886) was a Bengali Hindu mystic and saint whose direct experience of the divine across multiple traditions — Vaishnavism, Tantra, Islam, and Christianity — made him one of the seminal religious figures of modern India. He was a priest at the Dakshineswar Kali temple near Calcutta. His chief disciple, Swami Vivekananda, carried his teachings to the West and founded the Ramakrishna Mission.",
+  "birth_year": 1836,
+  "death_year": 1886,
+  "country": "IN",
+  "traditions": [
+    "vedanta"
+  ],
+  "teachers": []
+}

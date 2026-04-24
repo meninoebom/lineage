@@ -1,0 +1,21 @@
+{
+  "photo": null,
+  "website": null,
+  "city": "Mt. Tremper",
+  "state": "New York",
+  "latitude": null,
+  "longitude": null,
+  "centers": [],
+  "slug": "john-daido-loori",
+  "name": "John Daido Loori",
+  "bio": "John Daido Loori (1931–2009) was an American Zen master who founded the Mountains and Rivers Order and Zen Mountain Monastery in Mount Tremper, New York. He received dharma transmission from Taizan Maezumi Roshi and later independently from Soen Nakagawa Roshi. A photographer and artist, he integrated Zen aesthetics and arts practice into his teaching. He transmitted the dharma to Geoffrey Shugen Arnold, who succeeded him as abbot.",
+  "birth_year": 1931,
+  "death_year": 2009,
+  "country": "US",
+  "traditions": [
+    "zen"
+  ],
+  "teachers": [
+    "taizan-maezumi"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "photo": null,
+  "website": null,
+  "city": "",
+  "state": "",
+  "latitude": null,
+  "longitude": null,
+  "centers": [],
+  "slug": "anagarika-munindra",
+  "name": "Anagarika Munindra",
+  "bio": "Anagarika Munindra (1915–2003) was a Bengali lay Buddhist teacher who studied in Burma under Mahasi Sayadaw and became one of the principal transmitters of vipassana meditation to the West. Teaching at the Bodh Gaya Meditation Center in India, he taught Joseph Goldstein, Sharon Salzberg, Larry Rosenberg, and many other Western practitioners who went on to found the Insight Meditation Society and spread Theravada practice in America.",
+  "birth_year": 1915,
+  "death_year": 2003,
+  "country": "IN",
+  "traditions": [
+    "theravada",
+    "vipassana-movement"
+  ],
+  "teachers": [
+    "mahasi-sayadaw"
+  ]
+}

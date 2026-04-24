@@ -1,0 +1,21 @@
+{
+  "photo": null,
+  "website": null,
+  "city": "",
+  "state": "",
+  "latitude": null,
+  "longitude": null,
+  "centers": [],
+  "slug": "francis-lucille",
+  "name": "Francis Lucille",
+  "bio": "Francis Lucille is a French spiritual teacher of Advaita Vedanta who studied with Jean Klein for many years before beginning to teach in his own right. He is primarily known as the teacher of Rupert Spira, to whom he transmitted the Direct Path approach. He teaches and gives retreats internationally, emphasizing the recognition of awareness as one's true nature.",
+  "birth_year": null,
+  "death_year": null,
+  "country": "FR",
+  "traditions": [
+    "advaita-vedanta"
+  ],
+  "teachers": [
+    "jean-klein"
+  ]
+}

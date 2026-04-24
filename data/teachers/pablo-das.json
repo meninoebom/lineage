@@ -17,5 +17,8 @@
   "centers": [
     "insightla"
   ],
-  "teachers": []
+  "teachers": [
+    "jack-kornfield",
+    "trudy-goodman"
+  ]
 }
