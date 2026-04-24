@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-04-24T08:18:35.810Z",
+  "generated_at": "2026-04-24T08:22:00.985Z",
   "counts": {
-    "traditions": 29,
-    "teachers": 143,
+    "traditions": 30,
+    "teachers": 142,
     "centers": 80,
     "resources": 1156,
     "paths": 11
@@ -74,6 +74,41 @@
       "connected_traditions": [
         "advaita-vedanta",
         "sufism"
+      ]
+    },
+    {
+      "slug": "bon",
+      "name": "Bön",
+      "family": "Buddhist",
+      "alternate_names": [
+        "Yungdrung Bön",
+        "Eternal Bön",
+        "Bon"
+      ],
+      "key_figures": [
+        "Tönpa Shenrab Miwoche (legendary founder)",
+        "Drenpa Namkha (8th c.)",
+        "Shardza Tashi Gyaltsen (1859–1934)",
+        "Lopon Tenzin Namdak (b. 1926)",
+        "Tenzin Wangyal Rinpoche (b. 1961)"
+      ],
+      "key_texts": [
+        "Zhang Zhung Nyengyud (Oral Transmission of Zhang Zhung)",
+        "Ziji (The Glorious)",
+        "Mother Tantra (Ma Gyud)"
+      ],
+      "related_practices": [
+        "Bön Dzogchen",
+        "Chöd (cutting through fear and attachment)",
+        "tsa lung (channels and winds)",
+        "dream yoga and sleep yoga",
+        "sound healing (five warrior syllables)"
+      ],
+      "connected_traditions": [
+        "dzogchen",
+        "tibetan-buddhism-nyingma",
+        "vajrayana",
+        "tibetan-buddhism-kagyu"
       ]
     },
     {
@@ -198,7 +233,8 @@
         "tantra",
         "tibetan-buddhism-nyingma",
         "tibetan-buddhism-kagyu",
-        "tibetan-buddhism-gelug"
+        "tibetan-buddhism-gelug",
+        "bon"
       ]
     },
     {
@@ -704,6 +740,7 @@
         "Naropa (1016–1100)",
         "Marpa (1012–1097)",
         "Milarepa (1052–1135)",
+        "Machig Labdrön (1055–1149)",
         "Gampopa (1079–1153)",
         "First Karmapa, Düsum Khyenpa (1110–1193)"
       ],
@@ -715,6 +752,7 @@
       "related_practices": [
         "Mahamudra",
         "Six Yogas of Naropa (tummo, illusory body, dream yoga, clear light, bardo, phowa)",
+        "Chöd (cutting through ego-clinging)",
         "guru yoga",
         "ngöndro (preliminary practices)"
       ],
@@ -751,6 +789,7 @@
       ],
       "related_practices": [
         "Dzogchen (trekchö and tögal)",
+        "Chöd (cutting through ego-clinging)",
         "deity yoga",
         "terma (treasure-teaching) revelation",
         "ngöndro (preliminary practices)",
@@ -762,7 +801,8 @@
         "dzogchen",
         "tibetan-buddhism-kagyu",
         "tibetan-buddhism-gelug",
-        "tantra"
+        "tantra",
+        "bon"
       ]
     },
     {
@@ -1680,20 +1720,6 @@
       "location": "Cambridge, Massachusetts, US"
     },
     {
-      "slug": "lama-tsultrim-allione",
-      "name": "Lama Tsultrim Allione",
-      "traditions": [
-        "tibetan-buddhism-nyingma",
-        "tibetan-buddhism-kagyu",
-        "vajrayana"
-      ],
-      "centers": [
-        "tara-mandala"
-      ],
-      "living": true,
-      "location": ""
-    },
-    {
       "slug": "larry-rosenberg",
       "name": "Larry Rosenberg",
       "traditions": [
@@ -2391,6 +2417,7 @@
       "slug": "tenzin-wangyal-rinpoche",
       "name": "Tenzin Wangyal Rinpoche",
       "traditions": [
+        "bon",
         "dzogchen",
         "vajrayana"
       ],
@@ -2480,6 +2507,8 @@
       "slug": "tsultrim-allione",
       "name": "Tsultrim Allione",
       "traditions": [
+        "tibetan-buddhism-nyingma",
+        "tibetan-buddhism-kagyu",
         "vajrayana"
       ],
       "centers": [
@@ -3642,7 +3671,7 @@
         "vajrayana"
       ],
       "teachers": [
-        "lama-tsultrim-allione"
+        "tsultrim-allione"
       ]
     },
     {
