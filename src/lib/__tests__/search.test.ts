@@ -22,6 +22,9 @@ const mockTeachers: Teacher[] = [
     longitude: -122.24,
     traditions: ["theravada", "zen"],
     centers: ["insight-meditation-center"],
+    birth_year: null,
+    death_year: null,
+    teachers: [],
   },
   {
     name: "Rupert Spira",
@@ -36,6 +39,9 @@ const mockTeachers: Teacher[] = [
     longitude: -1.25,
     traditions: ["advaita-vedanta"],
     centers: [],
+    birth_year: null,
+    death_year: null,
+    teachers: [],
   },
   {
     name: "Sally Kempton",
@@ -50,6 +56,9 @@ const mockTeachers: Teacher[] = [
     longitude: -121.81,
     traditions: ["kashmir-shaivism"],
     centers: [],
+    birth_year: null,
+    death_year: null,
+    teachers: [],
   },
 ];
 
@@ -58,6 +67,7 @@ const mockCenters: Center[] = [
     name: "Spirit Rock Meditation Center",
     slug: "spirit-rock",
     description: "Retreat center in Marin County",
+    photo: null,
     website: null,
     city: "Woodacre",
     state: "California",
@@ -71,6 +81,7 @@ const mockCenters: Center[] = [
     name: "Dzogchen Center",
     slug: "dzogchen-center",
     description: "Tibetan Buddhist center",
+    photo: null,
     website: null,
     city: "Cambridge",
     state: "Massachusetts",
