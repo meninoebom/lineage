@@ -1,0 +1,19 @@
+{
+  "photo": null,
+  "website": null,
+  "city": "Bardstown",
+  "state": "Kentucky",
+  "latitude": null,
+  "longitude": null,
+  "centers": [],
+  "slug": "thomas-merton",
+  "name": "Thomas Merton",
+  "bio": "Thomas Merton (1915–1968) was an American Trappist monk, theologian, and writer at the Abbey of Gethsemani in Kentucky. One of the most influential Catholic writers of the twentieth century, his books — including 'The Seven Storey Mountain,' 'New Seeds of Contemplation,' and 'Zen and the Birds of Appetite' — introduced contemplative Christianity to millions. He engaged seriously with Zen, Taoism, and Tibetan Buddhism, pioneering Christian-Buddhist dialogue.",
+  "birth_year": 1915,
+  "death_year": 1968,
+  "country": "US",
+  "traditions": [
+    "christian-mysticism"
+  ],
+  "teachers": []
+}

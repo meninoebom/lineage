@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-04-24T08:18:35.810Z",
+  "generated_at": "2026-04-24T08:21:23.589Z",
   "counts": {
     "traditions": 29,
-    "teachers": 143,
+    "teachers": 149,
     "centers": 80,
     "resources": 1156,
     "paths": 11
@@ -982,6 +982,17 @@
       "location": "Hemel Hempstead, England, UK"
     },
     {
+      "slug": "anagarika-munindra",
+      "name": "Anagarika Munindra",
+      "traditions": [
+        "theravada",
+        "vipassana-movement"
+      ],
+      "centers": [],
+      "living": false,
+      "location": "IN"
+    },
+    {
       "slug": "anam-thubten",
       "name": "Anam Thubten",
       "traditions": [
@@ -1370,6 +1381,16 @@
       "location": ""
     },
     {
+      "slug": "francis-lucille",
+      "name": "Francis Lucille",
+      "traditions": [
+        "advaita-vedanta"
+      ],
+      "centers": [],
+      "living": true,
+      "location": "FR"
+    },
+    {
       "slug": "gabor-mate",
       "name": "Gabor Maté",
       "traditions": [
@@ -1447,6 +1468,16 @@
       "centers": [],
       "living": false,
       "location": "JP"
+    },
+    {
+      "slug": "hariwansh-poonja",
+      "name": "H.W.L. Poonja (Papaji)",
+      "traditions": [
+        "advaita-vedanta"
+      ],
+      "centers": [],
+      "living": false,
+      "location": "IN"
     },
     {
       "slug": "hazrat-inayat-khan",
@@ -1553,6 +1584,16 @@
       ],
       "living": true,
       "location": "Mt Tremper, New York, US"
+    },
+    {
+      "slug": "john-daido-loori",
+      "name": "John Daido Loori",
+      "traditions": [
+        "zen"
+      ],
+      "centers": [],
+      "living": false,
+      "location": "Mt. Tremper, New York, US"
     },
     {
       "slug": "jon-kabat-zinn",
@@ -2024,6 +2065,16 @@
       "location": "Maui, Hawaii, US"
     },
     {
+      "slug": "ramakrishna",
+      "name": "Ramakrishna",
+      "traditions": [
+        "vedanta"
+      ],
+      "centers": [],
+      "living": false,
+      "location": "IN"
+    },
+    {
       "slug": "ramana-maharshi",
       "name": "Ramana Maharshi",
       "traditions": [
@@ -2424,6 +2475,16 @@
       "centers": [],
       "living": true,
       "location": ""
+    },
+    {
+      "slug": "thomas-merton",
+      "name": "Thomas Merton",
+      "traditions": [
+        "christian-mysticism"
+      ],
+      "centers": [],
+      "living": false,
+      "location": "Bardstown, Kentucky, US"
     },
     {
       "slug": "tilopa",

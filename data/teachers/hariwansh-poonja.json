@@ -1,0 +1,21 @@
+{
+  "photo": null,
+  "website": null,
+  "city": "",
+  "state": "",
+  "latitude": null,
+  "longitude": null,
+  "centers": [],
+  "slug": "hariwansh-poonja",
+  "name": "H.W.L. Poonja (Papaji)",
+  "bio": "Hariwansh Lal Poonja (1910–1997), universally known as Papaji, was a direct disciple of Ramana Maharshi and one of the most influential Advaita Vedanta teachers of the twentieth century. He lived in Lucknow, India, and gave satsang to thousands of Western seekers, many of whom had permanent awakenings in his presence. Among his students who went on to teach are Gangaji and Mooji.",
+  "birth_year": 1910,
+  "death_year": 1997,
+  "country": "IN",
+  "traditions": [
+    "advaita-vedanta"
+  ],
+  "teachers": [
+    "ramana-maharshi"
+  ]
+}
