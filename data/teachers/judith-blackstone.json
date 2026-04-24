@@ -11,6 +11,12 @@
   "country": "US",
   "latitude": null,
   "longitude": null,
-  "traditions": ["modern-non-dual", "advaita-vedanta", "kashmir-shaivism", "zen"],
-  "centers": []
+  "traditions": [
+    "modern-non-dual",
+    "advaita-vedanta",
+    "kashmir-shaivism",
+    "zen"
+  ],
+  "centers": [],
+  "teachers": []
 }

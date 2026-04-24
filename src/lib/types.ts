@@ -40,6 +40,7 @@ export interface Teacher {
   longitude: number | null;
   traditions: string[];
   centers: string[];
+  teachers: string[];
 }
 
 export type ResourceType = "book" | "podcast" | "video" | "article" | "website";

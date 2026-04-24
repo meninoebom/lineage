@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-04-22T21:30:25.028Z",
+  "generated_at": "2026-04-24T08:18:35.810Z",
   "counts": {
     "traditions": 29,
-    "teachers": 137,
+    "teachers": 143,
     "centers": 80,
     "resources": 1156,
     "paths": 11
@@ -948,6 +948,16 @@
       "location": "Bangkok, Bangkok, TH"
     },
     {
+      "slug": "ajahn-mun",
+      "name": "Ajahn Mun",
+      "traditions": [
+        "theravada"
+      ],
+      "centers": [],
+      "living": false,
+      "location": "TH"
+    },
+    {
       "slug": "ajahn-pasanno",
       "name": "Ajahn Pasanno",
       "traditions": [
@@ -1048,6 +1058,16 @@
       "centers": [],
       "living": true,
       "location": "US"
+    },
+    {
+      "slug": "arvis-joen-justi",
+      "name": "Arvis Joen Justi",
+      "traditions": [
+        "zen"
+      ],
+      "centers": [],
+      "living": true,
+      "location": "Los Gatos, California, US"
     },
     {
       "slug": "av-neryah",
@@ -1166,6 +1186,17 @@
       "centers": [],
       "living": true,
       "location": "Portland, Oregon, US"
+    },
+    {
+      "slug": "chogyam-trungpa",
+      "name": "Chögyam Trungpa",
+      "traditions": [
+        "tibetan-buddhism-kagyu",
+        "tibetan-buddhism-nyingma"
+      ],
+      "centers": [],
+      "living": false,
+      "location": "Boulder, Colorado, US"
     },
     {
       "slug": "christiane-wolf",
@@ -1406,6 +1437,16 @@
       "centers": [],
       "living": false,
       "location": "Shiraz, Fars, IR"
+    },
+    {
+      "slug": "hakuun-yasutani",
+      "name": "Hakuun Yasutani",
+      "traditions": [
+        "zen"
+      ],
+      "centers": [],
+      "living": false,
+      "location": "JP"
     },
     {
       "slug": "hazrat-inayat-khan",
@@ -1712,6 +1753,17 @@
       ],
       "living": true,
       "location": "Cambridge, Massachusetts, US"
+    },
+    {
+      "slug": "mahasi-sayadaw",
+      "name": "Mahasi Sayadaw",
+      "traditions": [
+        "theravada",
+        "vipassana-movement"
+      ],
+      "centers": [],
+      "living": false,
+      "location": "Rangoon, MM"
     },
     {
       "slug": "matthew-fox",
@@ -2299,6 +2351,16 @@
       "centers": [],
       "living": false,
       "location": "Mysore, Karnataka, IN"
+    },
+    {
+      "slug": "taizan-maezumi",
+      "name": "Taizan Maezumi",
+      "traditions": [
+        "zen"
+      ],
+      "centers": [],
+      "living": false,
+      "location": "Los Angeles, California, US"
     },
     {
       "slug": "tara-brach",
