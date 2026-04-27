@@ -7,7 +7,17 @@
   "author": "Anthony de Mello",
   "year": 1990,
   "description": "A transcription of de Mello's final retreat, Awareness is a bracing call to wake up from the sleepwalking of everyday life. Blending Christian mysticism with Eastern insight, de Mello challenges readers to see through their illusions, attachments, and conditioned thinking with humor, directness, and radical honesty.",
-  "traditions": ["christian-mysticism"],
-  "teachers": ["anthony-de-mello"],
-  "centers": []
+  "traditions": [
+    "christian-mysticism"
+  ],
+  "teachers": [
+    "anthony-de-mello"
+  ],
+  "centers": [],
+  "related_resources": [
+    "adyashanti-emptiness-dancing",
+    "adyashanti-true-meditation",
+    "be-as-you-are",
+    "i-am-that"
+  ]
 }
