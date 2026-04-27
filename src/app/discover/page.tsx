@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { PageLayout } from "@/components/page-layout";
 import { getAllTraditions, getAllTeachers } from "@/lib/data";
@@ -28,7 +29,9 @@ export default function DiscoverPage() {
 
   return (
     <PageLayout>
-      <DiscoverClient traditionNames={traditionNames} teacherNames={teacherNames} />
+      <Suspense fallback={<div className="h-8 w-full animate-pulse bg-muted rounded" />}>
+        <DiscoverClient traditionNames={traditionNames} teacherNames={teacherNames} />
+      </Suspense>
     </PageLayout>
   );
 }
