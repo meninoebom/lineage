@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo, useEffect, useCallback } from "react";
+import { useState, useMemo, useEffect, useCallback, useRef } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 
@@ -91,6 +92,41 @@ const ALL_PRACTICE_CONTEXTS = [
   "academic",
   "secular",
 ];
+
+// --- URL sync helpers ---
+
+const VALID_EXPERIENCE_LEVELS = new Set(["beginner", "intermediate", "advanced"]);
+const VALID_TYPES = new Set(["book", "video", "podcast", "article", "website", "app"]);
+const VALID_TOPICS = new Set(ALL_TOPICS);
+const VALID_CONTEXTS = new Set(ALL_PRACTICE_CONTEXTS);
+
+function paramsToFilters(params: URLSearchParams): FilterState {
+  const split = (key: string) =>
+    (params.get(key) ?? "").split(",").filter(Boolean);
+
+  const experienceLevel = params.get("experience_level") ?? "";
+  const type = params.get("type") ?? "";
+
+  return {
+    type: VALID_TYPES.has(type) ? type : "",
+    experienceLevel: VALID_EXPERIENCE_LEVELS.has(experienceLevel) ? experienceLevel : "",
+    topics: split("topics").filter((v) => VALID_TOPICS.has(v)),
+    practiceContext: split("practice_context").filter((v) => VALID_CONTEXTS.has(v)),
+    traditions: split("tradition"),
+    teachers: split("teacher"),
+  };
+}
+
+function filtersToParams(f: FilterState): URLSearchParams {
+  const p = new URLSearchParams();
+  if (f.type) p.set("type", f.type);
+  if (f.experienceLevel) p.set("experience_level", f.experienceLevel);
+  if (f.topics.length) p.set("topics", f.topics.join(","));
+  if (f.practiceContext.length) p.set("practice_context", f.practiceContext.join(","));
+  if (f.traditions.length) p.set("tradition", f.traditions.join(","));
+  if (f.teachers.length) p.set("teacher", f.teachers.join(","));
+  return p;
+}
 
 // --- Helpers ---
 
@@ -281,10 +317,25 @@ interface DiscoverClientProps {
 }
 
 export function DiscoverClient({ traditionNames, teacherNames }: DiscoverClientProps) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const isMounted = useRef(false);
+
   const [resources, setResources] = useState<ResourceIndexItem[] | null>(null);
   const [fetchError, setFetchError] = useState(false);
-  const [filters, setFilters] = useState<FilterState>(EMPTY_FILTERS);
+  const [filters, setFilters] = useState<FilterState>(() => paramsToFilters(searchParams));
   const [showAllTeachers, setShowAllTeachers] = useState(false);
+
+  // Sync filters → URL after every filter change (skip initial mount)
+  useEffect(() => {
+    if (!isMounted.current) {
+      isMounted.current = true;
+      return;
+    }
+    const params = filtersToParams(filters);
+    const query = params.toString();
+    router.push(query ? `/discover?${query}` : "/discover");
+  }, [filters, router]);
 
   useEffect(() => {
     fetch("/resources-index.json")
