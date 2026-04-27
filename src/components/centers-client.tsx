@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import type { Center } from "@/lib/types";
 import type { SearchFilters } from "@/lib/search";
@@ -10,12 +11,18 @@ import { Select } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
+const CentersMap = dynamic(
+  () => import("@/components/centers-map").then((m) => m.CentersMap),
+  { ssr: false, loading: () => <div className="h-[560px] bg-muted rounded-lg animate-pulse" /> }
+);
+
 interface CentersClientProps {
   centers: Center[];
   traditionNames: Record<string, string>;
 }
 
 export function CentersClient({ centers, traditionNames }: CentersClientProps) {
+  const [view, setView] = useState<"list" | "map">("list");
   const [query, setQuery] = useState("");
   const [selectedTraditions, setSelectedTraditions] = useState<string[]>([]);
   const [selectedState, setSelectedState] = useState("");
@@ -59,6 +66,26 @@ export function CentersClient({ centers, traditionNames }: CentersClientProps) {
 
   return (
     <div>
+      {/* View toggle */}
+      <div className="flex justify-center mb-6">
+        <div className="inline-flex rounded-lg border border-border overflow-hidden">
+          {(["list", "map"] as const).map((v) => (
+            <button
+              key={v}
+              onClick={() => setView(v)}
+              className={`px-5 py-2 text-sm font-sans font-medium transition-colors capitalize ${
+                view === v
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-background text-muted-foreground hover:bg-muted"
+              }`}
+              aria-pressed={view === v}
+            >
+              {v === "list" ? "List View" : "Map View"}
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* Filters */}
       <div className="mb-8 space-y-4">
         <Input
@@ -119,7 +146,9 @@ export function CentersClient({ centers, traditionNames }: CentersClientProps) {
       </p>
 
       {/* Results */}
-      {results.length === 0 ? (
+      {view === "map" ? (
+        <CentersMap centers={results} traditionNames={traditionNames} />
+      ) : results.length === 0 ? (
         <div className="text-center py-16">
           <p className="text-lg text-muted-foreground mb-2">
             No centers found.
