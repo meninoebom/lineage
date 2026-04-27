@@ -85,7 +85,7 @@ export function HomeSearch({
         type: "book",
         name: r.title,
         slug: r.slug,
-        href: `/resources#${r.slug}`,
+        href: `/resources/${r.slug}`,
         detail: r.author ?? "",
       });
     }
