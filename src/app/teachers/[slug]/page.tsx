@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { JsonLd } from "@/components/json-ld";
 import { TeachingsList } from "@/components/teachings-list";
+import { SuggestResourceForm } from "@/components/suggest-resource-form";
 import { getAllTeachers, getTeacher, getCenter, getTradition, getResourcesByTeacher, getStudentsOf } from "@/lib/data";
 import { teacherJsonLd, SITE_URL } from "@/lib/seo";
 import { TeacherLineageCard } from "@/components/teacher-lineage-card";
@@ -150,6 +151,9 @@ export default async function TeacherPage({ params }: { params: Promise<{ slug: 
 
         {/* Teachings */}
         <TeachingsList resources={resources} teacherName={teacher.name} teacherSlug={slug} />
+
+        {/* Suggest a resource */}
+        <SuggestResourceForm contextType="teacher" contextName={teacher.name} prefilledValue={teacher.name} />
 
         {/* Centers */}
         {centers.length > 0 && (

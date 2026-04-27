@@ -16,7 +16,7 @@ import {
 } from "@/lib/data";
 import { CitationLinks } from "@/components/citation-links";
 import { ResourceList } from "@/components/resource-list";
-import { SuggestEditLink } from "@/components/suggest-edit-link";
+import { SuggestResourceForm } from "@/components/suggest-resource-form";
 import { traditionJsonLd, SITE_URL } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -152,7 +152,7 @@ export default async function TraditionPage({ params }: { params: Promise<{ slug
 
       <ResourceList resources={resources} />
 
-      <SuggestEditLink traditionName={tradition.name} />
+      <SuggestResourceForm contextType="tradition" contextName={tradition.name} prefilledValue={tradition.name} />
     </PageLayout>
   );
 }
