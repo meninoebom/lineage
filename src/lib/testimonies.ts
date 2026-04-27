@@ -1,6 +1,17 @@
 import { supabase } from "./supabase";
 import type { Testimony, TestimonyCount, Profile, YearsOfPractice } from "./types";
 
+export async function getPractitionerTestimonies(userId: string): Promise<Testimony[]> {
+  const { data, error } = await supabase
+    .from("testimonies")
+    .select("*")
+    .eq("user_id", userId)
+    .order("created_at", { ascending: false });
+
+  if (error) throw error;
+  return (data ?? []) as Testimony[];
+}
+
 export async function getTestimonies(resourceSlug: string): Promise<Testimony[]> {
   const { data, error } = await supabase
     .from("testimonies")
