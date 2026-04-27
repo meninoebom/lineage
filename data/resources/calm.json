@@ -1,0 +1,13 @@
+{
+  "title": "Calm",
+  "slug": "calm",
+  "type": "app",
+  "category": "popular",
+  "url": "https://www.calm.com",
+  "author": null,
+  "year": 2012,
+  "description": "A widely used wellness app featuring guided meditations, sleep stories, breathwork, and relaxation music. Accessible entry point for secular mindfulness without strong tradition affiliation.",
+  "traditions": ["secular-mindfulness"],
+  "teachers": [],
+  "centers": []
+}

@@ -48,6 +48,7 @@ const RESOURCE_TYPES = [
   { value: "podcast", label: "Podcast" },
   { value: "article", label: "Article" },
   { value: "website", label: "Website" },
+  { value: "app", label: "App" },
 ];
 
 const EXPERIENCE_LEVELS = [
@@ -65,6 +66,7 @@ const LEVEL_STYLES: Record<string, string> = {
 const TYPE_ICONS: Record<string, string> = {
   video: "▶",
   podcast: "◉",
+  app: "◈",
 };
 
 const ALL_TOPICS = [

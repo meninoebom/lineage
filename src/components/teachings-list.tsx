@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getTradition } from "@/lib/data";
 import type { Resource, ResourceType } from "@/lib/types";
 
-const TYPE_ORDER: ResourceType[] = ["video", "podcast", "book", "article", "website"];
+const TYPE_ORDER: ResourceType[] = ["video", "podcast", "book", "article", "website", "app"];
 
 const TYPE_LABELS: Record<ResourceType, string> = {
   video: "Videos",
@@ -10,6 +10,7 @@ const TYPE_LABELS: Record<ResourceType, string> = {
   book: "Books",
   article: "Articles",
   website: "Websites",
+  app: "Apps",
 };
 
 const TYPE_BADGE: Record<ResourceType, string> = {
@@ -18,6 +19,7 @@ const TYPE_BADGE: Record<ResourceType, string> = {
   book: "Book",
   article: "Article",
   website: "Website",
+  app: "App",
 };
 
 interface Props {

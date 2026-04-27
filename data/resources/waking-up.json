@@ -1,0 +1,13 @@
+{
+  "title": "Waking Up",
+  "slug": "waking-up",
+  "type": "app",
+  "category": "popular",
+  "url": "https://www.wakingup.com",
+  "author": "Sam Harris",
+  "year": 2018,
+  "description": "A secular meditation app offering guided meditations, courses, and conversations on mindfulness and consciousness. Covers Dzogchen, Advaita Vedanta, and secular mindfulness traditions. Known for its intellectual rigor and lack of spiritual jargon.",
+  "traditions": ["secular-mindfulness", "dzogchen", "advaita-vedanta"],
+  "teachers": ["sam-harris"],
+  "centers": []
+}

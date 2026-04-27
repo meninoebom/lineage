@@ -9,7 +9,7 @@ import { Select } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 
-const RESOURCE_TYPES = ["book", "podcast", "video", "article", "website"] as const;
+const RESOURCE_TYPES = ["book", "podcast", "video", "article", "website", "app"] as const;
 
 function typeLabel(type: string): string {
   return type.charAt(0).toUpperCase() + type.slice(1);

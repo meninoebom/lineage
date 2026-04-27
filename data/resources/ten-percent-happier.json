@@ -1,0 +1,13 @@
+{
+  "title": "Ten Percent Happier",
+  "slug": "ten-percent-happier",
+  "type": "app",
+  "category": "popular",
+  "url": "https://www.tenpercent.com",
+  "author": "Dan Harris",
+  "year": 2017,
+  "description": "A meditation app for skeptics, founded by ABC journalist Dan Harris after a panic attack on live TV. Features courses from Vipassana and secular mindfulness teachers, with an emphasis on pragmatic, no-fluff instruction.",
+  "traditions": ["vipassana-movement", "secular-mindfulness"],
+  "teachers": [],
+  "centers": []
+}

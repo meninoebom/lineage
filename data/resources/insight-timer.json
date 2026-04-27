@@ -1,0 +1,13 @@
+{
+  "title": "Insight Timer",
+  "slug": "insight-timer",
+  "type": "app",
+  "category": "web_resource",
+  "url": "https://insighttimer.com",
+  "author": null,
+  "year": 2009,
+  "description": "The world's largest free meditation app with over 150,000 guided meditations from teachers across traditions including Theravada, Vipassana, and secular mindfulness. Features a community timer and live events.",
+  "traditions": ["secular-mindfulness", "theravada", "vipassana-movement"],
+  "teachers": [],
+  "centers": []
+}
