@@ -1,0 +1,13 @@
+{
+  "title": "Medito",
+  "slug": "medito",
+  "type": "app",
+  "category": "popular",
+  "url": "https://meditofoundation.org",
+  "author": null,
+  "year": 2019,
+  "description": "A completely free, open-source meditation app with no ads or subscriptions, run by a nonprofit. Offers beginner courses, sleep meditations, and breathing exercises rooted in secular mindfulness and Theravada tradition.",
+  "traditions": ["secular-mindfulness", "theravada"],
+  "teachers": [],
+  "centers": []
+}

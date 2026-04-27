@@ -19,7 +19,7 @@ const CATEGORY_LABELS: Record<ResourceCategory, string> = {
   web_resource: "Web Resources",
 };
 
-const TYPE_ORDER: ResourceType[] = ["book", "video", "podcast", "article", "website"];
+const TYPE_ORDER: ResourceType[] = ["book", "video", "podcast", "article", "website", "app"];
 
 const TYPE_LABELS: Record<ResourceType, string> = {
   book: "Books",
@@ -27,6 +27,7 @@ const TYPE_LABELS: Record<ResourceType, string> = {
   podcast: "Podcasts",
   article: "Articles",
   website: "Websites",
+  app: "Apps",
 };
 
 interface ResourceListProps {

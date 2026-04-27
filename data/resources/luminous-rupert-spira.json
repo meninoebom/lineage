@@ -1,0 +1,13 @@
+{
+  "title": "Luminous",
+  "slug": "luminous-rupert-spira",
+  "type": "app",
+  "category": "popular",
+  "url": "https://rupertspira.com/luminous",
+  "author": "Rupert Spira",
+  "year": 2022,
+  "description": "A meditation and inquiry app by Rupert Spira featuring guided meditations, contemplative music, and teachings on the nature of awareness in the Advaita Vedanta and Modern Non-Dual tradition.",
+  "traditions": ["advaita-vedanta", "modern-non-dual"],
+  "teachers": ["rupert-spira"],
+  "centers": []
+}

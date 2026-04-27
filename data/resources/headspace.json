@@ -1,0 +1,13 @@
+{
+  "title": "Headspace",
+  "slug": "headspace",
+  "type": "app",
+  "category": "popular",
+  "url": "https://www.headspace.com",
+  "author": null,
+  "year": 2010,
+  "description": "One of the most widely used meditation apps, founded by former Buddhist monk Andy Puddicombe. Offers structured beginner courses and themed sessions on stress, sleep, and focus, with a playful animated style.",
+  "traditions": ["secular-mindfulness"],
+  "teachers": [],
+  "centers": []
+}

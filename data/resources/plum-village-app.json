@@ -1,0 +1,13 @@
+{
+  "title": "Plum Village",
+  "slug": "plum-village-app",
+  "type": "app",
+  "category": "popular",
+  "url": "https://plumvillage.app",
+  "author": "Thich Nhat Hanh",
+  "year": 2020,
+  "description": "The official meditation app of Thich Nhat Hanh's Plum Village community, offering guided meditations, dharma talks, and mindfulness bells in the Zen and Engaged Buddhism tradition. Available in multiple languages.",
+  "traditions": ["zen", "mahayana"],
+  "teachers": ["thich-nhat-hanh"],
+  "centers": []
+}

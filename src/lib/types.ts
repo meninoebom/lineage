@@ -43,7 +43,7 @@ export interface Teacher {
   teachers: string[];
 }
 
-export type ResourceType = "book" | "podcast" | "video" | "article" | "website";
+export type ResourceType = "book" | "podcast" | "video" | "article" | "website" | "app";
 
 export type ResourceCategory =
   | "primary_text"
