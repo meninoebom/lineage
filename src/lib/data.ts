@@ -162,6 +162,40 @@ export function getResourcesByCenter(centerSlug: string): Resource[] {
   return getAllResources().filter((r) => r.centers.includes(centerSlug));
 }
 
+export function getSimilarResources(
+  resource: Resource,
+  allResources: Resource[],
+  { topN = 5, minScore = 0.1 }: { topN?: number; minScore?: number } = {}
+): Resource[] {
+  const tags = new Set([
+    ...(resource.topics ?? []),
+    ...(resource.practice_context ?? []),
+    ...resource.traditions,
+  ]);
+  if (tags.size === 0) return [];
+
+  return allResources
+    .filter((r) => r.slug !== resource.slug)
+    .map((r) => {
+      const otherTags = new Set([
+        ...(r.topics ?? []),
+        ...(r.practice_context ?? []),
+        ...r.traditions,
+      ]);
+      if (otherTags.size === 0) return { resource: r, score: 0 };
+      let intersection = 0;
+      for (const t of tags) if (otherTags.has(t)) intersection++;
+      const union = tags.size + otherTags.size - intersection;
+      const jaccard = intersection / union;
+      const boost = resource.experience_level && r.experience_level === resource.experience_level ? 0.1 : 0;
+      return { resource: r, score: jaccard + boost };
+    })
+    .filter(({ score }) => score >= minScore)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, topN)
+    .map(({ resource: r }) => r);
+}
+
 // -- Traditions --
 
 export interface ParsedTradition {

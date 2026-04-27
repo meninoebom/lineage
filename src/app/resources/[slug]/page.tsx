@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { PageLayout } from "@/components/page-layout";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Badge } from "@/components/ui/badge";
-import { getAllResources, getResource, getAllTraditions, getAllTeachers } from "@/lib/data";
+import { getAllResources, getResource, getAllTraditions, getAllTeachers, getSimilarResources } from "@/lib/data";
 import { bookshopAffiliateUrl } from "@/lib/affiliate";
 import { ResourceTestimonies } from "@/components/resource-testimonies";
 import { TaxonomyBadges } from "@/components/taxonomy-badges";
@@ -59,6 +59,8 @@ export default async function ResourcePage({ params }: { params: Promise<{ slug:
   const relatedResources = (resource.related_resources ?? [])
     .map((s) => allResources.find((r) => r.slug === s))
     .filter(Boolean);
+
+  const similarResources = getSimilarResources(resource, allResources);
 
   return (
     <PageLayout>
@@ -156,6 +158,42 @@ export default async function ResourcePage({ params }: { params: Promise<{ slug:
                       <p className="font-sans text-xs text-muted-foreground mt-0.5">{r!.author}</p>
                     )}
                   </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Similar resources — taxonomy-driven, computed at build time */}
+        {similarResources.length > 0 && (
+          <div className="mb-10">
+            <h2 className="font-serif text-xl font-semibold mb-4">You might also explore</h2>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {similarResources.map((r) => (
+                <Link
+                  key={r.slug}
+                  href={`/resources/${r.slug}`}
+                  className="group rounded-lg border border-border/50 bg-card p-4 hover:bg-accent/50 transition-colors"
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <Badge variant="outline" className="text-[10px]">
+                      {TYPE_LABELS[r.type] ?? r.type}
+                    </Badge>
+                    {r.experience_level && (
+                      <span className="font-sans text-[10px] text-muted-foreground capitalize">
+                        {r.experience_level}
+                      </span>
+                    )}
+                  </div>
+                  <p className="font-serif text-sm font-medium group-hover:text-primary transition-colors leading-snug mb-1">
+                    {r.title}
+                  </p>
+                  {r.author && (
+                    <p className="font-sans text-xs text-muted-foreground">{r.author}</p>
+                  )}
+                  <p className="font-sans text-xs text-foreground/60 leading-relaxed mt-1.5 line-clamp-2">
+                    {r.description}
+                  </p>
                 </Link>
               ))}
             </div>
