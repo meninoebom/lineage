@@ -149,6 +149,56 @@ export default function Home() {
         </>
       }
     >
+      {/* Quick-start paths */}
+      <section className="py-16 mb-12">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl mb-3">Where are you right now?</h2>
+          <p className="font-sans text-muted-foreground max-w-md mx-auto">
+            Find resources matched to where you are in practice — not just what tradition you belong to.
+          </p>
+        </div>
+        <div className="grid gap-5 sm:grid-cols-3">
+          {[
+            {
+              heading: "I&rsquo;m new to practice",
+              body: "First steps into meditation, mindfulness, or contemplative life — accessible teachers and beginner texts.",
+              href: "/discover?experience_level=beginner&practice_context=new-to-practice",
+              accent: "bg-[#eaf2ea] border-[#3d6b3d]/15",
+              headingColor: "text-[#3d6b3d]",
+            },
+            {
+              heading: "I want to go deeper",
+              body: "You&rsquo;ve been at this a while. Time to move from the shallows into sustained study and practice.",
+              href: "/discover?experience_level=intermediate&practice_context=deepening",
+              accent: "bg-[#f3ede8] border-[#9e4a3a]/15",
+              headingColor: "text-[#9e4a3a]",
+            },
+            {
+              heading: "I&rsquo;m going through something",
+              body: "Loss, change, uncertainty. Resources for practice in the middle of life, not apart from it.",
+              href: "/discover?practice_context=life-transition",
+              accent: "bg-[#f0ece6] border-[#6b5c3d]/15",
+              headingColor: "text-[#6b5c3d]",
+            },
+          ].map(({ heading, body, href, accent, headingColor }) => (
+            <Link
+              key={href}
+              href={href}
+              className={`group rounded-xl border p-6 transition-all hover:shadow-md hover:-translate-y-0.5 ${accent}`}
+            >
+              <h3
+                className={`font-serif text-lg font-semibold mb-2 group-hover:underline underline-offset-2 ${headingColor}`}
+                dangerouslySetInnerHTML={{ __html: heading }}
+              />
+              <p className="font-sans text-sm text-foreground/70 leading-relaxed">{body}</p>
+              <span className="mt-4 inline-block font-sans text-xs font-medium text-muted-foreground group-hover:text-primary transition-colors">
+                Browse resources →
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* Map teaser */}
       <section className="py-20 -mx-6 px-6 bg-surface-container mb-12">
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-10">
