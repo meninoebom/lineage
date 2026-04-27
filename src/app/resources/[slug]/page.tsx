@@ -9,6 +9,15 @@ import { ResourceTestimonies } from "@/components/resource-testimonies";
 import { TaxonomyBadges } from "@/components/taxonomy-badges";
 import { SITE_URL } from "@/lib/seo";
 
+const TYPE_LABELS: Record<string, string> = {
+  book: "Book",
+  podcast: "Podcast",
+  video: "Video",
+  article: "Article",
+  website: "Website",
+  app: "App",
+};
+
 export function generateStaticParams() {
   return getAllResources().map((r) => ({ slug: r.slug }));
 }
@@ -37,6 +46,8 @@ export default async function ResourcePage({ params }: { params: Promise<{ slug:
   const allTraditions = getAllTraditions();
   const allTeachers = getAllTeachers();
 
+  const allResources = getAllResources();
+
   const traditions = resource.traditions
     .map((s) => allTraditions.find((t) => t.slug === s))
     .filter(Boolean);
@@ -45,13 +56,9 @@ export default async function ResourcePage({ params }: { params: Promise<{ slug:
     .map((s) => allTeachers.find((t) => t.slug === s))
     .filter(Boolean);
 
-  const typeLabels: Record<string, string> = {
-    book: "Book",
-    podcast: "Podcast",
-    video: "Video",
-    article: "Article",
-    website: "Website",
-  };
+  const relatedResources = (resource.related_resources ?? [])
+    .map((s) => allResources.find((r) => r.slug === s))
+    .filter(Boolean);
 
   return (
     <PageLayout>
@@ -65,7 +72,7 @@ export default async function ResourcePage({ params }: { params: Promise<{ slug:
       <article className="max-w-2xl">
         <header className="mb-8">
           <div className="mb-3 flex items-center gap-2">
-            <Badge variant="outline">{typeLabels[resource.type] ?? resource.type}</Badge>
+            <Badge variant="outline">{TYPE_LABELS[resource.type] ?? resource.type}</Badge>
           </div>
           <h1 className="mb-2">{resource.title}</h1>
           {resource.author && (
@@ -124,6 +131,34 @@ export default async function ResourcePage({ params }: { params: Promise<{ slug:
                 </Badge>
               </Link>
             ))}
+          </div>
+        )}
+
+        {/* Related resources */}
+        {relatedResources.length > 0 && (
+          <div className="mb-10">
+            <h2 className="font-serif text-xl font-semibold mb-4">Related Resources</h2>
+            <div className="space-y-3">
+              {relatedResources.map((r) => (
+                <Link
+                  key={r!.slug}
+                  href={`/resources/${r!.slug}`}
+                  className="flex items-start gap-3 rounded-lg border border-border/50 bg-card p-4 hover:bg-accent/50 transition-colors group"
+                >
+                  <Badge variant="outline" className="mt-0.5 shrink-0 text-[10px]">
+                    {TYPE_LABELS[r!.type] ?? r!.type}
+                  </Badge>
+                  <div>
+                    <p className="font-serif text-sm font-medium group-hover:text-primary transition-colors">
+                      {r!.title}
+                    </p>
+                    {r!.author && (
+                      <p className="font-sans text-xs text-muted-foreground mt-0.5">{r!.author}</p>
+                    )}
+                  </div>
+                </Link>
+              ))}
+            </div>
           </div>
         )}
 

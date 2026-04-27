@@ -12,5 +12,10 @@
   "teachers": [],
   "centers": [],
   "category": "web_resource",
-  "slug": "non-dual-awareness-science-and-nonduality"
+  "slug": "non-dual-awareness-science-and-nonduality",
+  "related_resources": [
+    "de-mello-awareness",
+    "open-awareness-open-mind",
+    "sumedho-intuitive-awareness"
+  ]
 }

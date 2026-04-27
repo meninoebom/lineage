@@ -11,5 +11,10 @@
   "teachers": [],
   "centers": [],
   "category": "popular",
-  "slug": "open-awareness-open-mind"
+  "slug": "open-awareness-open-mind",
+  "related_resources": [
+    "de-mello-awareness",
+    "non-dual-awareness-science-and-nonduality",
+    "sumedho-intuitive-awareness"
+  ]
 }

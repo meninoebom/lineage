@@ -67,6 +67,7 @@ export interface Resource {
   experience_level?: ExperienceLevel;
   topics?: string[];
   practice_context?: string[];
+  related_resources?: string[];
 }
 
 // -- Taxonomy types --
