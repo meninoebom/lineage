@@ -195,9 +195,7 @@ function ResourceCard({
 
   return (
     <Link href={`/resources/${item.slug}`} className="group block">
-      <article className="relative rounded-lg border border-border/60 bg-surface p-5 hover:border-primary/30 hover:bg-accent/20 transition-all">
-        {/* Stretched link overlay */}
-        <span className="absolute inset-0" aria-hidden />
+      <article className="rounded-lg border border-border/60 bg-surface p-5 hover:border-primary/30 hover:bg-accent/20 transition-all">
 
         <div className="flex items-start justify-between gap-3 mb-2">
           <div className="flex items-center gap-2 flex-wrap">
@@ -286,8 +284,14 @@ export function DiscoverClient({ traditionNames, teacherNames }: DiscoverClientP
 
   useEffect(() => {
     fetch("/resources-index.json")
-      .then((r) => r.json())
-      .then(setResources)
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
+      .then((data) => {
+        if (Array.isArray(data)) setResources(data as ResourceIndexItem[]);
+        else throw new Error("unexpected shape");
+      })
       .catch(() => setFetchError(true));
   }, []);
 
@@ -319,12 +323,11 @@ export function DiscoverClient({ traditionNames, teacherNames }: DiscoverClientP
   const activeFilterCount = countActiveFilters(filters);
   const hasActiveFilters = activeFilterCount > 0;
 
-  const toggle = useCallback(<K extends keyof FilterState>(
-    key: K,
-    value: string
-  ) => {
+  type ArrayKey = { [K in keyof FilterState]: FilterState[K] extends string[] ? K : never }[keyof FilterState];
+
+  const toggle = useCallback((key: ArrayKey, value: string) => {
     setFilters((prev) => {
-      const current = prev[key] as string[];
+      const current = prev[key];
       return {
         ...prev,
         [key]: current.includes(value)
@@ -354,7 +357,7 @@ export function DiscoverClient({ traditionNames, teacherNames }: DiscoverClientP
           What are you looking for?
         </h1>
         <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
-          Browse {resources ? resources.length.toLocaleString() : "1,156"} books, videos, podcasts, and articles across contemplative traditions.
+          Browse {resources ? `${resources.length.toLocaleString()} books, videos, podcasts, and articles` : "books, videos, podcasts, and articles"} across contemplative traditions.
         </p>
       </header>
 
