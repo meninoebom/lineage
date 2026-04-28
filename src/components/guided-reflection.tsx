@@ -4,13 +4,13 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useSupabase } from "./supabase-provider";
 import { AuthPanel } from "./auth-panel";
-import { ProfileCompletion } from "./profile-completion";
 import {
   createRecommendation,
   getUserRecommendation,
   getRecommendationCount,
   createTestimony,
   getProfile,
+  updateProfile,
 } from "@/lib/testimonies";
 
 const REFLECTION_STEPS = [
@@ -34,7 +34,7 @@ const REFLECTION_STEPS = [
 
 const MAX_CHARS = 2000;
 
-type Stage = "idle" | "auth" | "reflecting" | "profile" | "success";
+type Stage = "idle" | "auth" | "reflecting" | "success";
 
 interface GuidedReflectionProps {
   resourceSlug: string;
@@ -145,23 +145,154 @@ function ReflectionStep({
   );
 }
 
-function ReflectionComplete({ firstAnswer, resourceTitle }: { firstAnswer?: string; resourceTitle: string }) {
+interface ProfileEnrichmentNudgeProps {
+  userId: string;
+}
+
+function ProfileEnrichmentNudge({ userId }: ProfileEnrichmentNudgeProps) {
+  const [expanded, setExpanded] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
+  const [bio, setBio] = useState("");
+  const [practiceBackground, setPracticeBackground] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
+  if (dismissed) return null;
+
+  async function handleSave() {
+    setSaving(true);
+    setErrorMsg(null);
+    try {
+      await updateProfile(userId, {
+        bio: bio || null,
+        practice_background: practiceBackground || null,
+      });
+      setDismissed(true);
+    } catch {
+      setErrorMsg("Something went wrong. Please try again.");
+    } finally {
+      setSaving(false);
+    }
+  }
+
   return (
     <div
-      data-testid="reflection-complete"
-      className="rounded-lg border border-border bg-card p-6 text-center space-y-3"
+      data-testid="profile-enrichment-nudge"
+      className="rounded-lg border border-border bg-card/60 px-6 py-5 space-y-3"
     >
-      <p className="font-serif text-lg font-medium text-foreground">
-        Thank you for sharing
-      </p>
-      {firstAnswer && (
-        <p className="text-sm text-muted-foreground italic">
-          &ldquo;{firstAnswer.slice(0, 120)}{firstAnswer.length > 120 ? "…" : ""}&rdquo;
-        </p>
+      {!expanded ? (
+        <div className="flex items-center justify-between gap-4">
+          <p className="text-sm text-muted-foreground">
+            If you'd like, you can share a bit about your contemplative path — optional, and it helps others understand your perspective.
+          </p>
+          <div className="flex shrink-0 gap-3">
+            <button
+              data-testid="nudge-expand-btn"
+              type="button"
+              onClick={() => setExpanded(true)}
+              className="text-sm font-medium text-terracotta hover:text-terracotta/80 transition-colors whitespace-nowrap"
+            >
+              Share a bit →
+            </button>
+            <button
+              data-testid="nudge-skip-btn"
+              type="button"
+              onClick={() => setDismissed(true)}
+              className="text-sm text-muted-foreground/60 hover:text-muted-foreground transition-colors underline decoration-dotted underline-offset-2 whitespace-nowrap"
+            >
+              Skip for now
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className="space-y-4">
+          <p className="text-sm text-muted-foreground">
+            A few words about your path — entirely optional.
+          </p>
+
+          <div>
+            <label className="text-sm font-medium text-foreground">Bio</label>
+            <textarea
+              data-testid="nudge-bio-input"
+              value={bio}
+              onChange={(e) => setBio(e.target.value)}
+              placeholder="A sentence or two about yourself"
+              maxLength={500}
+              rows={2}
+              className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-terracotta/40 resize-none"
+            />
+          </div>
+
+          <div>
+            <label className="text-sm font-medium text-foreground">Practice background</label>
+            <textarea
+              data-testid="nudge-background-input"
+              value={practiceBackground}
+              onChange={(e) => setPracticeBackground(e.target.value)}
+              placeholder="How did you come to contemplative practice?"
+              maxLength={1000}
+              rows={3}
+              className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-terracotta/40 resize-none"
+            />
+          </div>
+
+          {errorMsg && <p className="text-sm text-destructive">{errorMsg}</p>}
+
+          <div className="flex items-center gap-3">
+            <button
+              data-testid="nudge-save-btn"
+              type="button"
+              onClick={handleSave}
+              disabled={saving}
+              className="rounded-md bg-terracotta px-5 py-2 text-sm font-medium text-white hover:bg-terracotta/90 disabled:opacity-50 transition-colors"
+            >
+              {saving ? "Saving…" : "Save"}
+            </button>
+            <button
+              data-testid="nudge-skip-btn"
+              type="button"
+              onClick={() => setDismissed(true)}
+              className="text-sm text-muted-foreground/60 hover:text-muted-foreground transition-colors underline decoration-dotted underline-offset-2"
+            >
+              Skip for now
+            </button>
+          </div>
+        </div>
       )}
-      <p className="text-sm text-muted-foreground">
-        Your reflection on {resourceTitle} helps others find what matters.
-      </p>
+    </div>
+  );
+}
+
+function ReflectionComplete({
+  firstAnswer,
+  resourceTitle,
+  showNudge,
+  userId,
+}: {
+  firstAnswer?: string;
+  resourceTitle: string;
+  showNudge: boolean;
+  userId?: string;
+}) {
+  return (
+    <div className="space-y-4">
+      <div
+        data-testid="reflection-complete"
+        className="rounded-lg border border-border bg-card p-6 text-center space-y-3"
+      >
+        <p className="font-serif text-lg font-medium text-foreground">
+          Thank you for sharing
+        </p>
+        {firstAnswer && (
+          <p className="text-sm text-muted-foreground italic">
+            &ldquo;{firstAnswer.slice(0, 120)}{firstAnswer.length > 120 ? "…" : ""}&rdquo;
+          </p>
+        )}
+        <p className="text-sm text-muted-foreground">
+          Your reflection on {resourceTitle} helps others find what matters.
+        </p>
+      </div>
+      {showNudge && userId && <ProfileEnrichmentNudge userId={userId} />}
     </div>
   );
 }
@@ -218,7 +349,7 @@ export function GuidedReflection({ resourceSlug, resourceTitle }: GuidedReflecti
       clearActionParam();
 
       const profile = await getProfile(user.id);
-      setNeedsProfile(!profile?.traditions?.length);
+      setNeedsProfile(!(profile?.bio && profile?.practice_background));
 
       setTimeout(() => setStage("reflecting"), 300);
     } catch (err: unknown) {
@@ -293,8 +424,7 @@ export function GuidedReflection({ resourceSlug, resourceTitle }: GuidedReflecti
       .join("\n\n");
 
     if (!combined) {
-      // No answers provided — skip to success
-      setStage(needsProfile ? "profile" : "success");
+      setStage("success");
       return;
     }
 
@@ -308,7 +438,7 @@ export function GuidedReflection({ resourceSlug, resourceTitle }: GuidedReflecti
       });
       const echo = Object.values(answers).find((a) => a.trim());
       setFirstAnswer(echo);
-      setStage(needsProfile ? "profile" : "success");
+      setStage("success");
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : String(err);
       if (msg.includes("banned") || msg.includes("violates row-level security")) {
@@ -333,17 +463,15 @@ export function GuidedReflection({ resourceSlug, resourceTitle }: GuidedReflecti
 
   if (stage === "auth") return <AuthPanel />;
 
-  if (stage === "profile") {
+  if (stage === "success") {
     return (
-      <ProfileCompletion
-        userId={user!.id}
-        onComplete={() => setStage("success")}
+      <ReflectionComplete
+        firstAnswer={firstAnswer}
+        resourceTitle={resourceTitle}
+        showNudge={needsProfile}
+        userId={user?.id}
       />
     );
-  }
-
-  if (stage === "success") {
-    return <ReflectionComplete firstAnswer={firstAnswer} resourceTitle={resourceTitle} />;
   }
 
   const stepVariants = reducedMotion

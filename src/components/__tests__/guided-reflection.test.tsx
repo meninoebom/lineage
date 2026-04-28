@@ -326,8 +326,10 @@ describe("GuidedReflection", () => {
     });
   });
 
-  it("shows profile completion after testimony when profile is incomplete", async () => {
-    (getProfile as ReturnType<typeof vi.fn>).mockResolvedValue({ traditions: [] });
+  // --- Profile enrichment nudge ---
+
+  it("shows enrichment nudge on success screen when bio and practice_background are empty", async () => {
+    (getProfile as ReturnType<typeof vi.fn>).mockResolvedValue({ bio: null, practice_background: null });
     await recommendAndOpenReflection();
     await waitFor(() => expect(screen.getByText("1 of 4")).toBeInTheDocument());
 
@@ -341,7 +343,134 @@ describe("GuidedReflection", () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByText("A little about you")).toBeInTheDocument();
+      expect(screen.getByTestId("reflection-complete")).toBeInTheDocument();
+      expect(screen.getByTestId("profile-enrichment-nudge")).toBeInTheDocument();
+    });
+  });
+
+  it("nudge does not appear when bio and practice_background are already filled", async () => {
+    (getProfile as ReturnType<typeof vi.fn>).mockResolvedValue({
+      bio: "A practitioner of Zen.",
+      practice_background: "10 years of daily sitting.",
+    });
+    await recommendAndOpenReflection();
+    await waitFor(() => expect(screen.getByText("1 of 4")).toBeInTheDocument());
+
+    for (let i = 0; i < 3; i++) {
+      fireEvent.click(screen.getByText("Next"));
+      await waitFor(() => expect(screen.getByText(`${i + 2} of 4`)).toBeInTheDocument());
+    }
+
+    await act(async () => {
+      fireEvent.click(screen.getByText("Submit"));
+    });
+
+    await waitFor(() => {
+      expect(screen.getByTestId("reflection-complete")).toBeInTheDocument();
+      expect(screen.queryByTestId("profile-enrichment-nudge")).not.toBeInTheDocument();
+    });
+  });
+
+  it("nudge uses invitational language", async () => {
+    (getProfile as ReturnType<typeof vi.fn>).mockResolvedValue({ bio: null, practice_background: null });
+    await recommendAndOpenReflection();
+    await waitFor(() => expect(screen.getByText("1 of 4")).toBeInTheDocument());
+
+    for (let i = 0; i < 3; i++) {
+      fireEvent.click(screen.getByText("Next"));
+      await waitFor(() => expect(screen.getByText(`${i + 2} of 4`)).toBeInTheDocument());
+    }
+
+    await act(async () => {
+      fireEvent.click(screen.getByText("Submit"));
+    });
+
+    await waitFor(() => {
+      expect(screen.getByTestId("profile-enrichment-nudge")).toBeInTheDocument();
+    });
+
+    const nudge = screen.getByTestId("profile-enrichment-nudge");
+    expect(nudge.textContent).toMatch(/contemplative path|share a bit|optional/i);
+  });
+
+  it("expanding the nudge shows bio and practice_background fields", async () => {
+    (getProfile as ReturnType<typeof vi.fn>).mockResolvedValue({ bio: null, practice_background: null });
+    await recommendAndOpenReflection();
+    await waitFor(() => expect(screen.getByText("1 of 4")).toBeInTheDocument());
+
+    for (let i = 0; i < 3; i++) {
+      fireEvent.click(screen.getByText("Next"));
+      await waitFor(() => expect(screen.getByText(`${i + 2} of 4`)).toBeInTheDocument());
+    }
+
+    await act(async () => {
+      fireEvent.click(screen.getByText("Submit"));
+    });
+
+    await waitFor(() => {
+      expect(screen.getByTestId("profile-enrichment-nudge")).toBeInTheDocument();
+    });
+
+    fireEvent.click(screen.getByTestId("nudge-expand-btn"));
+
+    await waitFor(() => {
+      expect(screen.getByTestId("nudge-bio-input")).toBeInTheDocument();
+      expect(screen.getByTestId("nudge-background-input")).toBeInTheDocument();
+    });
+  });
+
+  it("nudge save calls updateProfile and hides the nudge", async () => {
+    const { updateProfile } = await import("@/lib/testimonies");
+    (getProfile as ReturnType<typeof vi.fn>).mockResolvedValue({ bio: null, practice_background: null });
+    await recommendAndOpenReflection();
+    await waitFor(() => expect(screen.getByText("1 of 4")).toBeInTheDocument());
+
+    for (let i = 0; i < 3; i++) {
+      fireEvent.click(screen.getByText("Next"));
+      await waitFor(() => expect(screen.getByText(`${i + 2} of 4`)).toBeInTheDocument());
+    }
+
+    await act(async () => {
+      fireEvent.click(screen.getByText("Submit"));
+    });
+
+    await waitFor(() => expect(screen.getByTestId("profile-enrichment-nudge")).toBeInTheDocument());
+
+    fireEvent.click(screen.getByTestId("nudge-expand-btn"));
+    await waitFor(() => expect(screen.getByTestId("nudge-bio-input")).toBeInTheDocument());
+
+    fireEvent.change(screen.getByTestId("nudge-bio-input"), { target: { value: "Zen practitioner." } });
+
+    await act(async () => {
+      fireEvent.click(screen.getByTestId("nudge-save-btn"));
+    });
+
+    await waitFor(() => {
+      expect(updateProfile).toHaveBeenCalledWith("u1", expect.objectContaining({ bio: "Zen practitioner." }));
+      expect(screen.queryByTestId("profile-enrichment-nudge")).not.toBeInTheDocument();
+    });
+  });
+
+  it("nudge skip hides the nudge without saving", async () => {
+    (getProfile as ReturnType<typeof vi.fn>).mockResolvedValue({ bio: null, practice_background: null });
+    await recommendAndOpenReflection();
+    await waitFor(() => expect(screen.getByText("1 of 4")).toBeInTheDocument());
+
+    for (let i = 0; i < 3; i++) {
+      fireEvent.click(screen.getByText("Next"));
+      await waitFor(() => expect(screen.getByText(`${i + 2} of 4`)).toBeInTheDocument());
+    }
+
+    await act(async () => {
+      fireEvent.click(screen.getByText("Submit"));
+    });
+
+    await waitFor(() => expect(screen.getByTestId("profile-enrichment-nudge")).toBeInTheDocument());
+
+    fireEvent.click(screen.getByTestId("nudge-skip-btn"));
+
+    await waitFor(() => {
+      expect(screen.queryByTestId("profile-enrichment-nudge")).not.toBeInTheDocument();
     });
   });
 
