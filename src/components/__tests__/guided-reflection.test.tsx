@@ -474,6 +474,32 @@ describe("GuidedReflection", () => {
     });
   });
 
+  it("nudge skip from expanded state hides the nudge without saving", async () => {
+    (getProfile as ReturnType<typeof vi.fn>).mockResolvedValue({ bio: null, practice_background: null });
+    await recommendAndOpenReflection();
+    await waitFor(() => expect(screen.getByText("1 of 4")).toBeInTheDocument());
+
+    for (let i = 0; i < 3; i++) {
+      fireEvent.click(screen.getByText("Next"));
+      await waitFor(() => expect(screen.getByText(`${i + 2} of 4`)).toBeInTheDocument());
+    }
+
+    await act(async () => {
+      fireEvent.click(screen.getByText("Submit"));
+    });
+
+    await waitFor(() => expect(screen.getByTestId("profile-enrichment-nudge")).toBeInTheDocument());
+
+    fireEvent.click(screen.getByTestId("nudge-expand-btn"));
+    await waitFor(() => expect(screen.getByTestId("nudge-bio-input")).toBeInTheDocument());
+
+    fireEvent.click(screen.getByTestId("nudge-skip-expanded-btn"));
+
+    await waitFor(() => {
+      expect(screen.queryByTestId("profile-enrichment-nudge")).not.toBeInTheDocument();
+    });
+  });
+
   // --- Skip ---
 
   it("skip button dismisses reflection and shows success without submitting testimony", async () => {

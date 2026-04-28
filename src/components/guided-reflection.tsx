@@ -211,8 +211,9 @@ function ProfileEnrichmentNudge({ userId }: ProfileEnrichmentNudgeProps) {
           </p>
 
           <div>
-            <label className="text-sm font-medium text-foreground">Bio</label>
+            <label htmlFor="nudge-bio" className="text-sm font-medium text-foreground">Bio</label>
             <textarea
+              id="nudge-bio"
               data-testid="nudge-bio-input"
               value={bio}
               onChange={(e) => setBio(e.target.value)}
@@ -224,8 +225,9 @@ function ProfileEnrichmentNudge({ userId }: ProfileEnrichmentNudgeProps) {
           </div>
 
           <div>
-            <label className="text-sm font-medium text-foreground">Practice background</label>
+            <label htmlFor="nudge-background" className="text-sm font-medium text-foreground">Practice background</label>
             <textarea
+              id="nudge-background"
               data-testid="nudge-background-input"
               value={practiceBackground}
               onChange={(e) => setPracticeBackground(e.target.value)}
@@ -249,7 +251,7 @@ function ProfileEnrichmentNudge({ userId }: ProfileEnrichmentNudgeProps) {
               {saving ? "Saving…" : "Save"}
             </button>
             <button
-              data-testid="nudge-skip-btn"
+              data-testid="nudge-skip-expanded-btn"
               type="button"
               onClick={() => setDismissed(true)}
               className="text-sm text-muted-foreground/60 hover:text-muted-foreground transition-colors underline decoration-dotted underline-offset-2"
