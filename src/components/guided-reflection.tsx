@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useSupabase } from "./supabase-provider";
 import { AuthPanel } from "./auth-panel";
 import { ProfileCompletion } from "./profile-completion";
@@ -130,7 +131,7 @@ function ReflectionStep({
           disabled={submitting}
           className="rounded-md bg-terracotta px-5 py-2 text-sm font-medium text-white hover:bg-terracotta/90 disabled:opacity-50 transition-colors"
         >
-          {submitting ? "Submitting..." : isLast ? "Submit" : "Next"}
+          {submitting ? "Sharing your reflection..." : isLast ? "Submit" : "Next"}
         </button>
         <button
           type="button"
@@ -144,7 +145,7 @@ function ReflectionStep({
   );
 }
 
-function ReflectionComplete({ firstAnswer }: { firstAnswer?: string }) {
+function ReflectionComplete({ firstAnswer, resourceTitle }: { firstAnswer?: string; resourceTitle: string }) {
   return (
     <div
       data-testid="reflection-complete"
@@ -159,7 +160,7 @@ function ReflectionComplete({ firstAnswer }: { firstAnswer?: string }) {
         </p>
       )}
       <p className="text-sm text-muted-foreground">
-        Your reflection helps others find what matters.
+        Your reflection on {resourceTitle} helps others find what matters.
       </p>
     </div>
   );
@@ -168,6 +169,7 @@ function ReflectionComplete({ firstAnswer }: { firstAnswer?: string }) {
 // --- Main orchestrator ---
 
 export function GuidedReflection({ resourceSlug, resourceTitle }: GuidedReflectionProps) {
+  const reducedMotion = useReducedMotion();
   const { user, loading: authLoading } = useSupabase();
   const [stage, setStage] = useState<Stage>("idle");
   const [hasRecommended, setHasRecommended] = useState(false);
@@ -341,24 +343,42 @@ export function GuidedReflection({ resourceSlug, resourceTitle }: GuidedReflecti
   }
 
   if (stage === "success") {
-    return <ReflectionComplete firstAnswer={firstAnswer} />;
+    return <ReflectionComplete firstAnswer={firstAnswer} resourceTitle={resourceTitle} />;
   }
+
+  const stepVariants = reducedMotion
+    ? {}
+    : {
+        initial: { opacity: 0, y: 8 },
+        animate: { opacity: 1, y: 0 },
+        exit: { opacity: 0, y: -8 },
+        transition: { duration: 0.25, ease: "easeOut" as const },
+      };
 
   if (stage === "reflecting") {
     return (
-      <ReflectionStep
-        step={REFLECTION_STEPS[currentStep]}
-        stepIndex={currentStep}
-        totalSteps={REFLECTION_STEPS.length}
-        answer={answers[currentStep] ?? ""}
-        onChange={handleAnswerChange}
-        onNext={handleNext}
-        onBack={handleBack}
-        onSkip={handleSkip}
-        isLast={currentStep === REFLECTION_STEPS.length - 1}
-        submitting={submitting}
-        errorMsg={errorMsg}
-      />
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentStep}
+          data-testid="reflection-step-animator"
+          data-step={currentStep}
+          {...stepVariants}
+        >
+          <ReflectionStep
+            step={REFLECTION_STEPS[currentStep]}
+            stepIndex={currentStep}
+            totalSteps={REFLECTION_STEPS.length}
+            answer={answers[currentStep] ?? ""}
+            onChange={handleAnswerChange}
+            onNext={handleNext}
+            onBack={handleBack}
+            onSkip={handleSkip}
+            isLast={currentStep === REFLECTION_STEPS.length - 1}
+            submitting={submitting}
+            errorMsg={errorMsg}
+          />
+        </motion.div>
+      </AnimatePresence>
     );
   }
 

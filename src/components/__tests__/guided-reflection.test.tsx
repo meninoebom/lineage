@@ -1,5 +1,24 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, fireEvent, waitFor, act } from "@testing-library/react";
+import React from "react";
+
+// Framer Motion animations don't run in jsdom — AnimatePresence mode="wait"
+// would block navigation tests. Stub the library so components render instantly.
+type MotionDivProps = React.HTMLAttributes<HTMLDivElement> & {
+  children?: React.ReactNode;
+  initial?: unknown;
+  animate?: unknown;
+  exit?: unknown;
+  transition?: unknown;
+};
+function MotionDiv({ children, initial: _i, animate: _a, exit: _e, transition: _t, ...props }: MotionDivProps) {
+  return <div {...props}>{children}</div>;
+}
+vi.mock("framer-motion", () => ({
+  AnimatePresence: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+  motion: { div: MotionDiv },
+  useReducedMotion: () => false,
+}));
 
 const mockUser = { id: "u1", email: "test@example.com" };
 let currentUser: typeof mockUser | null = null;
@@ -375,6 +394,92 @@ describe("GuidedReflection", () => {
       await waitFor(() => {
         expect(window.location.search).not.toContain("action=recommend");
       });
+    });
+  });
+
+  // --- Polish & transitions ---
+
+  describe("loading state and transitions", () => {
+    it("shows encouraging copy while submitting on final step", async () => {
+      let resolveTestimony!: () => void;
+      (createTestimony as ReturnType<typeof vi.fn>).mockReturnValue(
+        new Promise<{ id: string }>((resolve) => {
+          resolveTestimony = () => resolve({ id: "t1" });
+        })
+      );
+
+      await recommendAndOpenReflection();
+      await waitFor(() => expect(screen.getByText("1 of 4")).toBeInTheDocument());
+
+      fireEvent.change(screen.getByRole("textbox"), {
+        target: { value: "It transformed my practice." },
+      });
+
+      // Advance to last step
+      for (let i = 0; i < 3; i++) {
+        fireEvent.click(screen.getByText("Next"));
+        await waitFor(() => expect(screen.getByText(`${i + 2} of 4`)).toBeInTheDocument());
+      }
+
+      await act(async () => {
+        fireEvent.click(screen.getByText("Submit"));
+      });
+
+      // While submitting, encouraging text is shown
+      expect(screen.getByText("Sharing your reflection...")).toBeInTheDocument();
+
+      await act(async () => {
+        resolveTestimony();
+      });
+    });
+
+    it("submit button returns to 'Submit' label after error", async () => {
+      (createTestimony as ReturnType<typeof vi.fn>).mockRejectedValue(
+        new Error("Network error")
+      );
+
+      await recommendAndOpenReflection();
+      await waitFor(() => expect(screen.getByText("1 of 4")).toBeInTheDocument());
+
+      fireEvent.change(screen.getByRole("textbox"), {
+        target: { value: "Something meaningful." },
+      });
+
+      for (let i = 0; i < 3; i++) {
+        fireEvent.click(screen.getByText("Next"));
+        await waitFor(() => expect(screen.getByText(`${i + 2} of 4`)).toBeInTheDocument());
+      }
+
+      await act(async () => {
+        fireEvent.click(screen.getByText("Submit"));
+      });
+
+      await waitFor(() => {
+        expect(screen.getByText("Submit")).toBeInTheDocument();
+        expect(screen.getByText("Something went wrong. Please try again.")).toBeInTheDocument();
+      });
+    });
+
+    it("step wrapper is present in reflecting stage for animation targeting", async () => {
+      await recommendAndOpenReflection();
+      await waitFor(() => expect(screen.getByText("1 of 4")).toBeInTheDocument());
+
+      expect(screen.getByTestId("reflection-step-animator")).toBeInTheDocument();
+    });
+
+    it("step animator key changes when advancing steps", async () => {
+      await recommendAndOpenReflection();
+      await waitFor(() => expect(screen.getByText("1 of 4")).toBeInTheDocument());
+
+      const getKey = () =>
+        screen.getByTestId("reflection-step-animator").getAttribute("data-step");
+
+      const keyBefore = getKey();
+      fireEvent.click(screen.getByText("Next"));
+      await waitFor(() => expect(screen.getByText("2 of 4")).toBeInTheDocument());
+      const keyAfter = getKey();
+
+      expect(keyBefore).not.toBe(keyAfter);
     });
   });
 });
