@@ -183,7 +183,7 @@ function ProfileEnrichmentNudge({ userId }: ProfileEnrichmentNudgeProps) {
       {!expanded ? (
         <div className="flex items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            If you'd like, you can share a bit about your contemplative path — optional, and it helps others understand your perspective.
+            If you&apos;d like, you can share a bit about your contemplative path — optional, and it helps others understand your perspective.
           </p>
           <div className="flex shrink-0 gap-3">
             <button
