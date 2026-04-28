@@ -4,14 +4,19 @@ import React from "react";
 
 // Framer Motion animations don't run in jsdom — AnimatePresence mode="wait"
 // would block navigation tests. Stub the library so components render instantly.
+type MotionDivProps = React.HTMLAttributes<HTMLDivElement> & {
+  children?: React.ReactNode;
+  initial?: unknown;
+  animate?: unknown;
+  exit?: unknown;
+  transition?: unknown;
+};
+function MotionDiv({ children, initial: _i, animate: _a, exit: _e, transition: _t, ...props }: MotionDivProps) {
+  return <div {...props}>{children}</div>;
+}
 vi.mock("framer-motion", () => ({
   AnimatePresence: ({ children }: { children: React.ReactNode }) => <>{children}</>,
-  motion: {
-    div: React.forwardRef(
-      ({ children, ...props }: React.HTMLAttributes<HTMLDivElement> & { children?: React.ReactNode }, ref: React.Ref<HTMLDivElement>) =>
-        <div ref={ref} {...props}>{children}</div>
-    ),
-  },
+  motion: { div: MotionDiv },
   useReducedMotion: () => false,
 }));
 

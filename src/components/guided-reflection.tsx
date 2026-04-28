@@ -145,7 +145,7 @@ function ReflectionStep({
   );
 }
 
-function ReflectionComplete({ firstAnswer }: { firstAnswer?: string }) {
+function ReflectionComplete({ firstAnswer, resourceTitle }: { firstAnswer?: string; resourceTitle: string }) {
   return (
     <div
       data-testid="reflection-complete"
@@ -160,7 +160,7 @@ function ReflectionComplete({ firstAnswer }: { firstAnswer?: string }) {
         </p>
       )}
       <p className="text-sm text-muted-foreground">
-        Your reflection helps others find what matters.
+        Your reflection on {resourceTitle} helps others find what matters.
       </p>
     </div>
   );
@@ -343,7 +343,7 @@ export function GuidedReflection({ resourceSlug, resourceTitle }: GuidedReflecti
   }
 
   if (stage === "success") {
-    return <ReflectionComplete firstAnswer={firstAnswer} />;
+    return <ReflectionComplete firstAnswer={firstAnswer} resourceTitle={resourceTitle} />;
   }
 
   const stepVariants = reducedMotion
