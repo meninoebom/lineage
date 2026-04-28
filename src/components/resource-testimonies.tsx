@@ -1,7 +1,7 @@
 "use client";
 
 import { TestimonyDisplay } from "./testimony-display";
-import { RecommendationFlow } from "./recommendation-flow";
+import { GuidedReflection } from "./guided-reflection";
 import { RecommendationCount } from "./testimony-count";
 
 interface ResourceTestimoniesProps {
@@ -19,7 +19,7 @@ export function ResourceTestimonies({ resourceSlug, resourceTitle }: ResourceTes
         <RecommendationCount resourceSlug={resourceSlug} />
       </div>
       <TestimonyDisplay resourceSlug={resourceSlug} />
-      <RecommendationFlow resourceSlug={resourceSlug} resourceTitle={resourceTitle} />
+      <GuidedReflection resourceSlug={resourceSlug} resourceTitle={resourceTitle} />
     </section>
   );
 }
