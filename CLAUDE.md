@@ -8,7 +8,8 @@ Interactive map of contemplative traditions + teacher/center directory.
 - TypeScript
 - Tailwind CSS + shadcn/ui
 - MDX for tradition editorial content
-- Data: JSON files in `data/` (no database for V1)
+- Editorial/reference data: JSON + MDX files in `data/` (teachers, centers, traditions)
+- User data: Supabase (Postgres) for auth, `profiles`, and `testimonies`. Accessed client-side via the anon key + PostgREST under Row Level Security. Project ref `opcbvaonwchbeawuncsy`, currently on the Free/Nano tier. Schema in `supabase/schema.sql`.
 - Deploy: Render (static site)
 
 ## Design Direction
